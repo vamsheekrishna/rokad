@@ -7,14 +7,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ImageListener {
 
 
     private Menu menu;
+
+    CarouselView carouselView;
+    int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        carouselView = findViewById(R.id.expandedImageCarouselView);
+
+        carouselView.setPageCount(sampleImage.length);
+        carouselView.setImageListener(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -87,5 +99,11 @@ public class MainActivity extends AppCompatActivity {
     private void showOption(int id) {
         MenuItem item = menu.findItem(id);
         item.setVisible(true);
+    }
+
+    @Override
+    public void setImageForPosition(int position, ImageView imageView) {
+
+        imageView.setImageResource(sampleImage[position]);
     }
 }
