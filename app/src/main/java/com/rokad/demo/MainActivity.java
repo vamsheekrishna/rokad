@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements ImageListener {
     private Menu menu;
 
     CarouselView carouselView;
-    int[] sampleImage= {R.drawable.photo, R.drawable.ic_launcher_background};
+    int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
