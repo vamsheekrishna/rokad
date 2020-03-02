@@ -35,14 +35,14 @@ public class BaseNavigationDrawerActivity extends BaseActivity implements Naviga
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        this.menu = menu;
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        hideOption(R.id.action_info);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        this.menu = menu;
+//        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+//        hideOption(R.id.action_info);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -52,7 +52,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity implements Naviga
         return super.onOptionsItemSelected(item);
     }
 
-    private void hideOption(int id) {
+/*    private void hideOption(int id) {
         MenuItem item = menu.findItem(id);
         item.setVisible(false);
     }
@@ -60,7 +60,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity implements Naviga
     private void showOption(int id) {
         MenuItem item = menu.findItem(id);
         item.setVisible(true);
-    }
+    }*/
 
 
     private void setNavigationView() {

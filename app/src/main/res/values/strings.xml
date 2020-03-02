@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">Rokad</string>
-    <string name="large_text"> Advantages to Agents / Franchisee</string>
-    <string name="adv_1">Monthly realization of profit / commission.</string>
-    <string name="adv_2">Expansion in business due to increased footfalls and value added services.</string>
-    <string name="adv_3">Risk free business.</string>
-    <string name="adv_4">Increase in Revenue on the same fleet resulting in additional profits.</string>
-    <string name="adv_5">Job creations in Rural and Urban localities.</string>
+    <string name="adv_title"> Advantages to Agents / Franchisee</string>
+    <string name="adv_1">- Monthly realization of profit / commission.</string>
+    <string name="adv_2">- Expansion in business due to increased footfalls and value added services.</string>
+    <string name="adv_3">- Risk free business.</string>
+    <string name="adv_4">- Increase in Revenue on the same fleet resulting in additional profits.</string>
+    <string name="adv_5">- Job creations in Rural and Urban localities.</string>
     <string name="income_core_header">Income from Core Business Correspondent (BC) Activities</string>
     <string name="income_core_text">Franchisees to be appointed as Bank\'s Business Correspondents and earn percentage based fees on money transfer, cash deposit, cash withdrawal, bill payments and other services to customer.</string>
+
+    <string name="income_service_header">Income from services provided for Bus Corporation\'s SmartCard</string>
+    <string name="income_service_text">Franchisee will be authorised to Issue, Load and Surrender the Bus Corporation SmartCard and earn a flat fee on every activity.</string>
+
     <string name="action_settings">Settings</string>
     <string name="network_error_msg">Network connection is required for this to continue!</string>
     <string name="Open">Open</string>
@@ -22,6 +26,5 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="smart_cards">Smart Cards</string>
-    <string name="bus_ticket_booking"> Bus Ticket Booking</string>
-
+    <string name="bus_ticket_booking">Bus Ticket Booking</string>
 </resources>

@@ -8,8 +8,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activitys.BaseNavigationDrawerActivity"></activity>
-        <activity android:name=".activitys.Authentication" ></activity>
+        <activity android:name=".activitys.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activitys.BaseNavigationDrawerActivity" />
+        <activity android:name=".activitys.Authentication" />
         <activity android:name=".activitys.MainActivity">
 
             <!-- <intent-filter> -->
@@ -17,10 +19,12 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".activitys.SplashActivity"
+        <activity
+            android:name=".activitys.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
