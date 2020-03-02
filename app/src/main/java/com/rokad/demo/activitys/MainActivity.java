@@ -1,7 +1,10 @@
-package com.rokad.demo;
+package com.rokad.demo.activitys;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,15 +14,23 @@ import android.widget.ImageView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.rokad.demo.R;
+import com.rokad.demo.fragments.BaseFragment;
+import com.rokad.demo.models.Utilities;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-public class MainActivity extends AppCompatActivity implements ImageListener {
+import java.util.Objects;
+
+public class MainActivity extends BaseActivity implements ImageListener, NavigationView.OnNavigationItemSelectedListener {
 
 
     private Menu menu;
-
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
     CarouselView carouselView;
     int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
 
@@ -27,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements ImageListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        setNavigationView();
         carouselView = findViewById(R.id.expandedImageCarouselView);
 
         carouselView.setPageCount(sampleImage.length);
@@ -103,7 +116,29 @@ public class MainActivity extends AppCompatActivity implements ImageListener {
 
     @Override
     public void setImageForPosition(int position, ImageView imageView) {
-
         imageView.setImageResource(sampleImage[position]);
+    }
+
+    private void setNavigationView() {
+        dl = findViewById(R.id.drawer_layout);
+        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        dl.addDrawerListener(t);
+        t.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        nv = findViewById(R.id.nav_view);
+        nv.setNavigationItemSelectedListener(this);
+
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return true;
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        dl.closeDrawer(nv);
+        return false;
     }
 }
