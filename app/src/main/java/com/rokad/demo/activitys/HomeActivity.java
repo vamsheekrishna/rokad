@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.rokad.demo.R;
+import com.rokad.demo.fragments.LoginFragment;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -50,7 +51,8 @@ public class HomeActivity extends AppCompatActivity implements ImageListener, Na
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, Authentication.class));
+//                startActivity(new Intent(HomeActivity.this, Authentication.class));
+                getSupportFragmentManager().beginTransaction().add(new LoginFragment(),"login_tag").addToBackStack(null).commit();
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
             }
