@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_side_nav">
+
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.rokad.Fragments.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_services"
+        android:name="com.example.rokad.Fragments.ServicesFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_services" />
+
+
+</navigation>

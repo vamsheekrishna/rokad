@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MobileRechargeFragment">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/select_operator"
+        android:scrollbarDefaultDelayBeforeFade="@android:integer/config_shortAnimTime"
+        android:focusedByDefault="true"
+        android:layout_margin="16dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mobile_number"
+        android:layout_below="@id/select_operator"
+        android:hint="Mobile Number"
+        android:inputType="phone"/>
+
+</RelativeLayout>

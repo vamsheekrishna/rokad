@@ -18,11 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerInside"
-            android:background="@drawable/img_2"
             app:radius="6dp"
             android:minHeight="50dp"
-            app:slideInterval="3000"
-            />
+            app:slideInterval="3000" />
 
         <LinearLayout
             android:background="@color/colorPrimaryDark"
@@ -170,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/adv_5">
             </TextView>
-    </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_marginBottom="16dp"
             android:padding="16dp"
@@ -196,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/income_core_text">
             </TextView>
-    </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_marginBottom="16dp"
             android:padding="16dp"
