@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+<<<<<<< HEAD:app/src/main/res/layout/fragment_home.xml
 
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/expandedImageCarouselView"
@@ -22,11 +23,12 @@
             android:minHeight="50dp"
             app:slideInterval="3000" />
 
+=======
+>>>>>>> parent of 62084de... removed coordinator layout and added corousel view:app/src/main/res/layout/content_scrolling.xml
         <LinearLayout
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:layout_margin="16dp"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,8 +41,8 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/new_users"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="100+"
@@ -64,8 +66,8 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/agents"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="3000+"
@@ -89,8 +91,8 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/new_users"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="30,00,000+"

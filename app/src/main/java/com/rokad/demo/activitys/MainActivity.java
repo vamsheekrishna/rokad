@@ -24,16 +24,15 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.Objects;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
-//        , ImageListener {
+public class MainActivity extends BaseActivity implements ImageListener, NavigationView.OnNavigationItemSelectedListener {
 
 
     private Menu menu;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-//    CarouselView carouselView;
-//    int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
+    CarouselView carouselView;
+    int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +43,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(mToolbar);
 
         setNavigationView();
-//        carouselView = findViewById(R.id.expandedImageCarouselView);
-//
-//        carouselView.setPageCount(sampleImage.length);
-//        carouselView.setImageListener(this);
+        carouselView = findViewById(R.id.expandedImageCarouselView);
+
+        carouselView.setPageCount(sampleImage.length);
+        carouselView.setImageListener(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -115,10 +114,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         item.setVisible(true);
     }
 
-//    @Override
-//    public void setImageForPosition(int position, ImageView imageView) {
-//        imageView.setImageResource(sampleImage[position]);
-//    }
+    @Override
+    public void setImageForPosition(int position, ImageView imageView) {
+        imageView.setImageResource(sampleImage[position]);
+    }
 
     private void setNavigationView() {
         dl = findViewById(R.id.drawer_layout);

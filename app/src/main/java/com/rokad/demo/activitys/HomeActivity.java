@@ -38,47 +38,47 @@ public class HomeActivity extends AppCompatActivity implements ImageListener, Na
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        final Toolbar mToolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(mToolbar);
-//        mToolbar.setTitle(" ");
-        // setNavigationView();
+        final Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle(" ");
+        setNavigationView();
         carouselView = findViewById(R.id.expandedImageCarouselView);
 
         carouselView.setPageCount(sampleImage.length);
         carouselView.setImageListener(this);
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                startActivity(new Intent(HomeActivity.this, Authentication.class));
-//                getSupportFragmentManager().beginTransaction().add(new LoginFragment(),"login_tag").addToBackStack(null).commit();
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(HomeActivity.this, Authentication.class));
+                getSupportFragmentManager().beginTransaction().add(new LoginFragment(),"login_tag").addToBackStack(null).commit();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+            }
+        });
 
-//        AppBarLayout mAppBarLayout = findViewById(R.id.app_bar);
-//        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    isShow = true;
-//                    showOption(R.id.action_info);
-////                    mToolbar.setTitle(" ");
-//                } else if (isShow) {
-//                    isShow = false;
-//                    hideOption(R.id.action_info);
-////                    mToolbar.setTitle(getString(R.string.app_name));
-//                }
-//            }
-//        });
+        AppBarLayout mAppBarLayout = findViewById(R.id.app_bar);
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    isShow = true;
+                    showOption(R.id.action_info);
+                    mToolbar.setTitle(" ");
+                } else if (isShow) {
+                    isShow = false;
+                    hideOption(R.id.action_info);
+                    mToolbar.setTitle(getString(R.string.app_name));
+                }
+            }
+        });
     }
 
     @Override
