@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/base_container"
-        app:navGraph="@navigation/app_side_nav"/>
+        android:id="@+id/base_container"/>
 
 
 </LinearLayout>

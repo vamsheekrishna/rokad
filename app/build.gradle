@@ -18,6 +18,19 @@ android {
             resValue "string", "app_name", "Rocad debug"
         }
     }
+    flavorDimensions 'devEnv'
+    productFlavors {
+        devEnvironment {
+            dimension = 'devEnv'
+            applicationId = 'dev.stage'
+            applicationIdSuffix = 'com.rokad'
+            versionCode = 1
+            versionName = '1'
+            targetSdkVersion 25
+            minSdkVersion 25
+            signingConfig signingConfigs.debug
+        }
+    }
 }
 
 dependencies {
@@ -32,4 +45,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.synnapps:carouselview:0.1.4'
+    implementation 'androidx.navigation:navigation-fragment:2.2.1'
+    implementation 'androidx.navigation:navigation-ui:2.2.1'
 }

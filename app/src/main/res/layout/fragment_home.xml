@@ -12,19 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-<<<<<<< HEAD:app/src/main/res/layout/fragment_home.xml
-
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/expandedImageCarouselView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerInside"
-            app:radius="6dp"
-            android:minHeight="50dp"
-            app:slideInterval="3000" />
-
-=======
->>>>>>> parent of 62084de... removed coordinator layout and added corousel view:app/src/main/res/layout/content_scrolling.xml
         <LinearLayout
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"

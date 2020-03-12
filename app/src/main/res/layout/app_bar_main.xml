@@ -5,14 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    tools:context=".activitys.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -20,10 +13,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
-=======
-    android:fitsSystemWindows="true"
-    tools:context="com.rokad.demo.activitys.MainActivity">
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:fitsSystemWindows="true"
+        tools:context="com.rokad.demo.activitys.MainActivity" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -61,13 +53,7 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
->>>>>>> parent of 62084de... removed coordinator layout and added corousel view
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-<<<<<<< HEAD
     <include layout="@layout/content_main" />
-=======
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -77,6 +63,5 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/new_users" />
->>>>>>> parent of 62084de... removed coordinator layout and added corousel view
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

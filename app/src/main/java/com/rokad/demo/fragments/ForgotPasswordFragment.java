@@ -20,7 +20,7 @@ import com.rokad.demo.R;
  * Use the {@link ForgotPasswordFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ForgotPasswordFragment extends Fragment {
+public class ForgotPasswordFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
