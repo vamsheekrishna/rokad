@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -17,33 +17,21 @@ import com.rokad.demo.R;
 public class BaseNavigationDrawerActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Menu menu;
     private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
+    public ActionBarDrawerToggle t;
     private NavigationView nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.activity_authentication);
+        super.setContentView(R.layout.nav_view_content);
         setNavigationView();
     }
     public void setContentView(int id) {
-        LinearLayout dynamicContent = findViewById(R.id.main_content);
-        // assuming your Wizard content is in content_wizard.xml
+        FrameLayout dynamicContent = findViewById(R.id.main_content);
         View wizardView = getLayoutInflater().inflate(id, dynamicContent, false);
         // add the inflated View to the layout
         dynamicContent.addView(wizardView);
     }
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        this.menu = menu;
-//        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-//        hideOption(R.id.action_info);
-//        return true;
-//    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (t.onOptionsItemSelected(item)) {
@@ -51,18 +39,6 @@ public class BaseNavigationDrawerActivity extends BaseActivity implements Naviga
         }
         return super.onOptionsItemSelected(item);
     }
-
-/*    private void hideOption(int id) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(false);
-    }
-
-    private void showOption(int id) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(true);
-    }*/
-
-
     private void setNavigationView() {
         dl = findViewById(R.id.drawer_layout);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);

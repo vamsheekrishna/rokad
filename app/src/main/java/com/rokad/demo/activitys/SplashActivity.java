@@ -15,7 +15,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
@@ -29,9 +28,8 @@ public class SplashActivity extends AppCompatActivity {
 //                if(Utilities.isNewUser(SplashActivity.this)) {
 //                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 //                    startActivity(intent);
-//
 //                } else {
-//
+
 //                }
                 finish();
             }

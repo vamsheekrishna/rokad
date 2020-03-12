@@ -18,19 +18,19 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //Toast.makeText(getActivity(), String.valueOf(this.getTag()), Toast.LENGTH_SHORT).show();
     }
-    void showDialog(String score, int bg_image, String title) {
-        FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-        ft.addToBackStack(null);
-        final DialogFragment dialogFragment = DialogBoxFragment.newInstance(title ,score, bg_image);
-        dialogFragment.show(ft, DIALOG);
-
-        int SPLASH_TIME_OUT = 3000;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dialogFragment.dismiss();
-                Objects.requireNonNull(getActivity()).onBackPressed();
-            }
-        }, SPLASH_TIME_OUT);
-    }
+//    void showDialog(String score, int bg_image, String title) {
+//        FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+//        ft.addToBackStack(null);
+//        final DialogFragment dialogFragment = DialogBoxFragment.newInstance(title ,score, bg_image);
+//        dialogFragment.show(ft, DIALOG);
+//
+//        int SPLASH_TIME_OUT = 3000;
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                dialogFragment.dismiss();
+//                Objects.requireNonNull(getActivity()).onBackPressed();
+//            }
+//        }, SPLASH_TIME_OUT);
+//    }
 }

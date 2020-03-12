@@ -10,8 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.rokad.demo.R;
 import com.rokad.demo.fragments.BaseFragment;
-import com.rokad.demo.fragments.DialogBoxFragment;
-import com.rokad.demo.models.Utilities;
 
 import java.util.Objects;
 
@@ -27,20 +25,28 @@ public class BaseActivity extends AppCompatActivity {
 //        } else {
 //
 //        }
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
 
     protected void replaceFragment(BaseFragment baseFragment, String fragment_id, boolean isAddToBackStack) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.container, baseFragment, fragment_id);
+        fragmentTransaction.replace(R.id.base_container, baseFragment, fragment_id);
         if(isAddToBackStack) {
             fragmentTransaction.addToBackStack(fragment_id);
         }
         fragmentTransaction.commit();
     }
-
+    protected void addFragment(BaseFragment baseFragment, String fragment_id, boolean isAddToBackStack) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.base_container, baseFragment, fragment_id);
+        if(isAddToBackStack) {
+            fragmentTransaction.addToBackStack(fragment_id);
+        }
+        fragmentTransaction.commit();
+    }
     public void setTitle(String name){
         Objects.requireNonNull(getSupportActionBar()).setTitle(name);
     }
@@ -56,11 +62,11 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    void showDialog(String score, int bg_image, String title) {
-        FragmentTransaction ft = Objects.requireNonNull(this).getSupportFragmentManager().beginTransaction();
-        ft.addToBackStack(null);
-        final DialogFragment dialogFragment = DialogBoxFragment.newInstance(title ,score, bg_image);
-        dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, DIALOG);
-    }
+//    void showDialog(String score, int bg_image, String title) {
+//        FragmentTransaction ft = Objects.requireNonNull(this).getSupportFragmentManager().beginTransaction();
+//        ft.addToBackStack(null);
+//        final DialogFragment dialogFragment = DialogBoxFragment.newInstance(title ,score, bg_image);
+//        dialogFragment.setCancelable(false);
+//        dialogFragment.show(ft, DIALOG);
+//    }
 }

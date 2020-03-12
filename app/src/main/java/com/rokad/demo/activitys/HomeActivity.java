@@ -24,12 +24,12 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity implements ImageListener, NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends BaseNavigationDrawerActivity implements ImageListener {
 
-    private Menu menu;
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
+//    private Menu menu;
+//    private DrawerLayout dl;
+//    private ActionBarDrawerToggle t;
+//    private NavigationView nv;
     CarouselView carouselView;
     int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
 
@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity implements ImageListener, Na
         final Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mToolbar.setTitle(" ");
-        setNavigationView();
+        // setNavigationView();
         carouselView = findViewById(R.id.expandedImageCarouselView);
 
         carouselView.setPageCount(sampleImage.length);
@@ -58,37 +58,37 @@ public class HomeActivity extends AppCompatActivity implements ImageListener, Na
             }
         });
 
-        AppBarLayout mAppBarLayout = findViewById(R.id.app_bar);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    isShow = true;
-                    showOption(R.id.action_info);
-                    mToolbar.setTitle(" ");
-                } else if (isShow) {
-                    isShow = false;
-                    hideOption(R.id.action_info);
-                    mToolbar.setTitle(getString(R.string.app_name));
-                }
-            }
-        });
+//        AppBarLayout mAppBarLayout = findViewById(R.id.app_bar);
+//        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//            boolean isShow = false;
+//            int scrollRange = -1;
+//
+//            @Override
+//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                if (scrollRange == -1) {
+//                    scrollRange = appBarLayout.getTotalScrollRange();
+//                }
+//                if (scrollRange + verticalOffset == 0) {
+//                    isShow = true;
+//                    showOption(R.id.action_info);
+//                    mToolbar.setTitle(" ");
+//                } else if (isShow) {
+//                    isShow = false;
+//                    hideOption(R.id.action_info);
+//                    mToolbar.setTitle(getString(R.string.app_name));
+//                }
+//            }
+//        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        this.menu = menu;
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        hideOption(R.id.action_info);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        this.menu = menu;
+//        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+//        hideOption(R.id.action_info);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,44 +110,44 @@ public class HomeActivity extends AppCompatActivity implements ImageListener, Na
 
         return super.onOptionsItemSelected(item);
     }
-
-    private void hideOption(int id) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(false);
-    }
-
-    private void showOption(int id) {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(true);
-    }
+//
+//    private void hideOption(int id) {
+//        MenuItem item = menu.findItem(id);
+//        item.setVisible(false);
+//    }
+//
+//    private void showOption(int id) {
+//        MenuItem item = menu.findItem(id);
+//        item.setVisible(true);
+//    }
 
     @Override
     public void setImageForPosition(int position, ImageView imageView) {
         imageView.setImageResource(sampleImage[position]);
     }
 
-    private void setNavigationView() {
-        dl = findViewById(R.id.drawer_layout);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
-        dl.addDrawerListener(t);
-        t.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        nv = findViewById(R.id.nav_view);
-        nv.setNavigationItemSelectedListener(this);
-
-    }
+//    private void setNavigationView() {
+//        dl = findViewById(R.id.drawer_layout);
+//        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+//        dl.addDrawerListener(t);
+//        t.syncState();
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//        nv = findViewById(R.id.nav_view);
+//        nv.setNavigationItemSelectedListener(this);
+//
+//    }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return true;
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        dl.closeDrawer(nv);
-        return false;
-    }
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        dl.closeDrawer(nv);
+//        return false;
+//    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

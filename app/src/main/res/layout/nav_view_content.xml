@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     tools:context=".activitys.Authentication">
 <!--    <include layout="@layout/activity_login"/>-->
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/main_content"
         android:orientation="vertical"
         android:layout_width="wrap_content"
