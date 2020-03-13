@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -14,11 +13,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.rokad.demo.R;
 
-public class BaseNavigationDrawerActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseNavigationDrawerActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Menu menu;
-    private DrawerLayout dl;
+    public DrawerLayout dl;
     public ActionBarDrawerToggle t;
-    private NavigationView nv;
+    public NavigationView nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +57,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity implements Naviga
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        dl.closeDrawer(nv);
-        return false;
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

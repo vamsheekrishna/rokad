@@ -1,156 +1,74 @@
 package com.rokad.demo.activitys;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.annotation.NonNull;
+
 import com.rokad.demo.R;
-import com.rokad.demo.fragments.LoginFragment;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
+import com.rokad.demo.fragments.AboutFragment;
+import com.rokad.demo.fragments.HomeFragment;
+import com.rokad.demo.fragments.ServicesHomeFragment;
+import com.rokad.demo.fragments.TermsFragment;
+import com.rokad.demo.fragments.dummy.DummyContent;
+import com.rokad.demo.interfaces.OnHomeInteractionListener;
 
-import java.util.Objects;
-
-public class HomeActivity extends BaseNavigationDrawerActivity implements ImageListener {
-
-//    private Menu menu;
-//    private DrawerLayout dl;
-//    private ActionBarDrawerToggle t;
-//    private NavigationView nv;
-    CarouselView carouselView;
-    int[] sampleImage= {R.drawable.img_1, R.drawable.img_2,R.drawable.img_3,R.drawable.img_4};
+public class HomeActivity extends BaseNavigationDrawerActivity implements OnHomeInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        final Toolbar mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        mToolbar.setTitle(" ");
-        // setNavigationView();
-        carouselView = findViewById(R.id.expandedImageCarouselView);
-
-        carouselView.setPageCount(sampleImage.length);
-        carouselView.setImageListener(this);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                startActivity(new Intent(HomeActivity.this, Authentication.class));
-                getSupportFragmentManager().beginTransaction().add(new LoginFragment(),"login_tag").addToBackStack(null).commit();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
-
-//        AppBarLayout mAppBarLayout = findViewById(R.id.app_bar);
-//        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    isShow = true;
-//                    showOption(R.id.action_info);
-//                    mToolbar.setTitle(" ");
-//                } else if (isShow) {
-//                    isShow = false;
-//                    hideOption(R.id.action_info);
-//                    mToolbar.setTitle(getString(R.string.app_name));
-//                }
-//            }
-//        });
+        setContentView(R.layout.content_main);
+        addFragment(HomeFragment.newInstance("", ""), "HomeFragment", true);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        this.menu = menu;
-//        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-//        hideOption(R.id.action_info);
-//        return true;
-//    }
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_info) {
-            return true;
-        } else {
-            if (t.onOptionsItemSelected(item)) {
-                return true;
-            }
+        if (id == R.id.nav_services) {
+            goToServicesFragment();
+        } else if (id == R.id.nav_about) {
+            goToAboutFragment();
+        } else if (id == R.id.nav_terms) {
+            goToTermsFragment();
+        } else if (id == R.id.nav_logout) {
+            goToSignOut();
         }
-
-        return super.onOptionsItemSelected(item);
+        dl.closeDrawer(nv);
+        return false;
     }
-//
-//    private void hideOption(int id) {
-//        MenuItem item = menu.findItem(id);
-//        item.setVisible(false);
-//    }
-//
-//    private void showOption(int id) {
-//        MenuItem item = menu.findItem(id);
-//        item.setVisible(true);
-//    }
-
     @Override
-    public void setImageForPosition(int position, ImageView imageView) {
-        imageView.setImageResource(sampleImage[position]);
+    public void goToHomeFragment() {
+        replaceFragment(HomeFragment.newInstance("", ""), "HomeFragment", true);
     }
 
-//    private void setNavigationView() {
-//        dl = findViewById(R.id.drawer_layout);
-//        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
-//        dl.addDrawerListener(t);
-//        t.syncState();
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-//        nv = findViewById(R.id.nav_view);
-//        nv.setNavigationItemSelectedListener(this);
-//
-//    }
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return true;
-
+    public void goToServicesFragment() {
+        replaceFragment(ServicesHomeFragment.newInstance(3), "ServicesHomeFragment", true);
     }
 
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//        dl.closeDrawer(nv);
-//        return false;
-//    }
+    @Override
+    public void goToAboutFragment() {
+        replaceFragment(AboutFragment.newInstance("", ""), "AboutFragment", true);
+    }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public void goToTermsFragment() {
+        replaceFragment(TermsFragment.newInstance("", ""), "TermsFragment", true);
+    }
 
+    @Override
+    public void goToSignOut() {
+        finish();
+        startActivity(new Intent(HomeActivity.this, Authentication.class));
+    }
+
+    @Override
+    public void onSelectedServiceInteraction(DummyContent.DummyItem mItem) {
+        if(mItem.id == 1) {
+
+        }
     }
 }
