@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-    tools:showIn="@layout/app_bar_main">
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,13 +26,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/new_users"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="100+"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -53,13 +51,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/agents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="3000+"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -78,13 +76,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/new_users"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:textColor="@color/white"
                     android:text="30,00,000+"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
