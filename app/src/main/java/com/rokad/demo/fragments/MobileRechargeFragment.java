@@ -23,21 +23,11 @@ public class MobileRechargeFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
-    private OnAuthenticationInteractionListener mListener;
+    //private OnMobileInteractionInteractionListener mListener;
 
     public MobileRechargeFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MobileRechargeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MobileRechargeFragment newInstance(String param1, String param2) {
         MobileRechargeFragment fragment = new MobileRechargeFragment();
         Bundle args = new Bundle();
@@ -67,17 +57,17 @@ public class MobileRechargeFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnAuthenticationInteractionListener) {
-            mListener = (OnAuthenticationInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnAuthenticationInteractionListener) {
+//            mListener = (OnAuthenticationInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+//        mListener = null;
     }
 }

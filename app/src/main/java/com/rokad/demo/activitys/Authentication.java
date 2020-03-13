@@ -14,7 +14,7 @@ public class Authentication extends BaseActivity implements OnAuthenticationInte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        addFragment(LoginFragment.newInstance("", ""), "LoginFragment", true);
+        addFragment(LoginFragment.newInstance("", ""), "LoginFragment", false);
     }
 
     @Override

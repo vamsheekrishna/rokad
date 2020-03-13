@@ -68,7 +68,7 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements OnHome
     @Override
     public void onSelectedServiceInteraction(DummyContent.DummyItem mItem) {
         if(mItem.id == 1) {
-
+            startActivity(new Intent(HomeActivity.this, MobileRechargeActivity.class));
         }
     }
 }
