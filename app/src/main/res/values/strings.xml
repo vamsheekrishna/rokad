@@ -61,6 +61,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send_otp">Send OTP</string>
-    <string name="enter_mail_id">Enter mail ID</string>   <!-- coming soon -->
+    <string name="enter_mail_id">Enter mail ID</string>
+    <string name="login_information_sign_up_header">Login Information</string>
+    <string name="general_information_sign_up_header">General</string>   <!-- coming soon -->
 
 </resources>

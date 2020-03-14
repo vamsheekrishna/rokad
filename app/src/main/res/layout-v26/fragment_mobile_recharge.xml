@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MobileRechargeFragment">
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <fr.ganfra.materialspinner.MaterialSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/select_operator"
@@ -13,12 +14,132 @@
         android:focusedByDefault="true"
         android:layout_margin="16dp"/>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <fr.ganfra.materialspinner.MaterialSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mobile_number"
+        android:id="@+id/state"
+        android:layout_margin="16dp"
         android:layout_below="@id/select_operator"
-        android:hint="Mobile Number"
+        android:hint="Select State"
         android:inputType="phone"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+        android:hint="Mobile Number"
+        android:layout_below="@id/state">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:id="@+id/mobile_number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true"
+        android:id="@+id/recharge_txt"
+        android:textColorHint="@color/splash_bg"
+        android:hint="Recharge Amount"
+        android:layout_below="@id/state">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edges"
+            android:inputType="phone"
+            android:id="@+id/recharge_amt"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recharge_plans"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/recharge_txt"
+        android:text="Choose Plans"
+        android:textColor="@color/splash_bg"
+        android:layout_margin="16dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recharge_plans"
+        android:id="@+id/payment"
+        android:layout_margin="16dp"
+        android:weightSum="3"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/payment_header"
+            android:textColor="#000"
+            android:text="Payment Type:"
+            android:textStyle="bold|normal"
+            android:textSize="16sp"/>
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/payment_choice"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash"
+                android:layout_marginRight="22dp"
+                android:id="@+id/payment_choice_cash"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ePayLater"
+                android:id="@+id/payment_choice_e_payment"/>
+
+        </RadioGroup>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/payment"
+        android:layout_margin="16dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Commision"
+            android:padding="12dp"
+            android:background="@drawable/button_round_edges"
+            android:id="@+id/commision"
+            android:layout_marginLeft="36dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recharge"
+            android:padding="12dp"
+            android:background="@drawable/button_round_edges"
+            android:id="@+id/recharge_btn"
+            android:layout_marginLeft="32dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

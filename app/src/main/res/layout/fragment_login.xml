@@ -34,25 +34,39 @@
             android:padding="16dp"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/login_mobile"
-                android:textColorHint="@color/colorPrimaryDark"
-                android:layout_marginBottom="16dp"
-                android:inputType="phone"
-                android:hint="@string/prompt_mobile_number"/>
+                app:hintEnabled="true"
+                android:hint="@string/prompt_mobile_number">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edges"
+                    android:id="@+id/login_mobile"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:layout_marginBottom="16dp"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/colorPrimaryDark"
-                android:id="@+id/user_password"
-                android:layout_marginBottom="16dp"
-                android:inputType="textPassword"
-                android:hint="@string/prompt_password"/>
+                app:hintEnabled="true"
+                android:hint="@string/prompt_password">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edges"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:id="@+id/user_password"
+                    android:layout_marginBottom="16dp"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
