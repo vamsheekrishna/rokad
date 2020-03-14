@@ -25,17 +25,15 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+       style="@style/input_box_styles"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
+        android:id="@+id/mobile"
         android:hint="Mobile Number"
         android:layout_below="@id/state">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+           style="@style/input_box_styles"
             android:inputType="phone"
             android:id="@+id/mobile_number"/>
 
@@ -43,20 +41,15 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+       style="@style/input_box_styles"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
         android:id="@+id/recharge_txt"
-        android:textColorHint="@color/splash_bg"
         android:hint="Recharge Amount"
-        android:layout_below="@id/state">
+        android:layout_below="@id/mobile">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edges"
+           style="@style/input_box_styles"
             android:inputType="phone"
             android:id="@+id/recharge_amt"/>
 
@@ -123,22 +116,20 @@
         android:layout_margin="16dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Commision"
-            android:padding="12dp"
+           style="@style/button_styles"
             android:background="@drawable/button_round_edges"
-            android:id="@+id/commision"
-            android:layout_marginLeft="36dp"/>
+            android:text="View Commision"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left"
+            android:id="@+id/commision" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recharge"
-            android:padding="12dp"
+            style="@style/button_styles"
             android:background="@drawable/button_round_edges"
-            android:id="@+id/recharge_btn"
-            android:layout_marginLeft="32dp"/>
+            android:text="Recharge"
+            android:layout_gravity="center_horizontal"
+            android:gravity="right"
+            android:id="@+id/recharge_btn" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

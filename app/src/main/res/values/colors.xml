@@ -5,4 +5,5 @@
     <color name="colorAccent">#F8D6E6</color>
     <color name="splash_bg">#81007F</color>
     <color name="white">#ffffff</color>
+    <color name="nav_bg">#F1D6D6</color>
 </resources>

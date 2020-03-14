@@ -15,24 +15,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_information_sign_up_header"
-        android:textStyle="bold|normal"
-        android:textSize="34sp"
-        android:id="@+id/login_info_header"
-        android:textColor="#000"
-        android:layout_margin="12dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/cardview_dark_background"/>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,45 +53,6 @@
                     android:inputType="phone"
                     android:id="@+id/sign_up_mobile_num"
                     />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/general_information_sign_up_header"
-                android:textStyle="bold|normal"
-                android:textSize="34sp"
-                android:id="@+id/general_info_header"
-                android:textColor="#000"
-                android:layout_margin="12dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="12dp"
-                android:background="@color/cardview_dark_background"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="true"
-                android:layout_margin="12dp"
-                app:hintTextColor="@color/colorPrimary"
-                app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
-                android:hint="Name of Firm/Individual">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="textAutoComplete"
-                    android:id="@+id/sign_up_name_of_firm"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -156,6 +99,25 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintAnimationEnabled="true"
+                android:layout_margin="12dp"
+                app:hintTextColor="@color/colorPrimary"
+                app:hintEnabled="true"
+                android:textColorHint="@color/colorPrimary"
+                android:hint="DOB (DD-MM-YYYY)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edges"
+                    android:inputType="date"
+                    android:id="@+id/sign_up_general_dob"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,101 +156,12 @@
                 </RadioGroup>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="true"
-                android:layout_margin="12dp"
-                app:hintTextColor="@color/colorPrimary"
-                app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
-                android:hint="Aadhar Number">
+            <com.google.android.material.button.MaterialButton
+                style="@style/button_styles"
+                android:background="@drawable/button_round_edges"
+                android:layout_gravity="center_horizontal"
+                android:text="submit"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="numberSigned"
-                    android:id="@+id/sign_up_general_aadhar_number"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="true"
-                android:layout_margin="12dp"
-                app:hintTextColor="@color/colorPrimary"
-                app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
-                android:hint="PAN/TAN Card">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="textAutoComplete"
-                    android:id="@+id/sign_up_general_pan_tan_card"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="true"
-                android:layout_margin="12dp"
-                app:hintTextColor="@color/colorPrimary"
-                app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
-                android:hint="DOB (DD-MM-YYYY)">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="date"
-                    android:id="@+id/sign_up_general_dob"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="true"
-                android:layout_margin="12dp"
-                app:hintTextColor="@color/colorPrimary"
-                app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
-                android:hint="Current Business(In Shop)">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="textAutoComplete"
-                    android:id="@+id/sign_up_general_current_business"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <fr.ganfra.materialspinner.MaterialSpinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_edges"
-                    android:inputType="textAutoComplete"
-                    app:ms_multiline="false"
-                    app:ms_hint="Highest Qualification"
-                    app:ms_enableErrorLabel="true"
-                    app:ms_enableFloatingLabel="false"
-                    app:ms_floatingLabelText="Highest Qualification"
-                    app:ms_thickness="4dp"
-                    app:ms_thickness_error="6dp"
-                    app:ms_arrowSize="16dp"
-                    app:ms_arrowColor="@color/cardview_dark_background"
-                    app:ms_floatingLabelColor="@color/splash_bg"
-                    android:id="@+id/sign_up_general_qualification"
-                    />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

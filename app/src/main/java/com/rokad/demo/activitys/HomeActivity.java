@@ -33,9 +33,11 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements OnHome
             goToAboutFragment();
         } else if (id == R.id.nav_terms) {
             goToTermsFragment();
-        } else if (id == R.id.nav_logout) {
-            goToSignOut();
         }
+
+//        else if (id == R.id.nav_logout) {
+//            goToSignOut();
+//        }
         dl.closeDrawer(nv);
         return false;
     }

@@ -3,19 +3,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_services"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/ic_assignment_white_24dp"
             android:title="Services" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@android:drawable/ic_menu_send"
+            android:icon="@drawable/information_variant"
             android:title="About" />
         <item
             android:id="@+id/nav_terms"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/contract"
             android:title="Terms and Conditions" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/img_1"
-            android:title="Sign Out" />
+<!--        <item-->
+<!--            android:id="@+id/nav_logout"-->
+<!--            android:icon="@drawable/logout"-->
+<!--            android:title="Sign Out" />-->
     </group>
 </menu>
