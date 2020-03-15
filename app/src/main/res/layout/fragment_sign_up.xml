@@ -158,7 +158,6 @@
 
             <com.google.android.material.button.MaterialButton
                 style="@style/button_styles"
-                android:background="@drawable/button_round_edges"
                 android:layout_gravity="center_horizontal"
                 android:text="submit"/>
 

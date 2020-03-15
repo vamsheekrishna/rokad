@@ -54,14 +54,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                style="@style/button_styles"
                 android:id="@+id/login_button"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_margin="4dp"
-                android:background="@color/colorPrimaryDark"
                 android:text="Login"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
