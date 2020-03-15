@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.rokad.demo.R;
 import com.rokad.demo.interfaces.OnAuthenticationInteractionListener;
 
-public class SignUpFragment extends BaseFragment {
+public class SignUpFragment extends BaseFragment implements View.OnClickListener {
 
     OnAuthenticationInteractionListener mListener;
     private static final String ARG_PARAM1 = "param1";
@@ -22,7 +22,6 @@ public class SignUpFragment extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     public SignUpFragment() {
         // Required empty public constructor
     }
@@ -62,5 +61,11 @@ public class SignUpFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.submit).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        mListener.goToLoginFragment();
     }
 }

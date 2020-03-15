@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.demo.R;
 import com.rokad.demo.fragments.dummy.DummyContent;
-import com.rokad.demo.fragments.dummy.DummyContent.DummyItem;
 import com.rokad.demo.interfaces.OnHomeInteractionListener;
 
 public class ServicesHomeFragment extends BaseFragment {
@@ -60,6 +58,7 @@ public class ServicesHomeFragment extends BaseFragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            DummyContent.ITEMS.clear();
             DummyContent.createDummyItem(1, R.drawable.mobile, "Mobile");
             DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
             DummyContent.createDummyItem(3, R.drawable.insurance, "Insurance");

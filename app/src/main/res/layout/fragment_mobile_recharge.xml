@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MobileRechargeFragment">
 
@@ -11,14 +12,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/select_operator"
         android:scrollbarDefaultDelayBeforeFade="@android:integer/config_shortAnimTime"
-        android:focusedByDefault="true"
-        android:layout_margin="16dp"/>
+        android:focusedByDefault="true"/>
 
     <fr.ganfra.materialspinner.MaterialSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/state"
-        android:layout_margin="16dp"
         android:layout_below="@id/select_operator"
         android:hint="Select State"
         android:inputType="phone"/>
@@ -30,11 +29,14 @@
         app:hintEnabled="true"
         android:id="@+id/mobile"
         android:hint="Mobile Number"
+        android:textColor="@color/colorAccent"
+        android:background="@android:color/transparent"
         android:layout_below="@id/state">
 
         <com.google.android.material.textfield.TextInputEditText
            style="@style/input_box_styles"
             android:inputType="phone"
+            android:background="@android:color/transparent"
             android:id="@+id/mobile_number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -46,11 +48,13 @@
         app:hintEnabled="true"
         android:id="@+id/recharge_txt"
         android:hint="Recharge Amount"
+        android:textColor="@color/colorAccent"
         android:layout_below="@id/mobile">
 
         <com.google.android.material.textfield.TextInputEditText
            style="@style/input_box_styles"
             android:inputType="phone"
+            android:background="@android:color/transparent"
             android:id="@+id/recharge_amt"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -70,8 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/recharge_plans"
         android:id="@+id/payment"
-        android:layout_margin="16dp"
         android:weightSum="3"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -79,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/payment_header"
-            android:textColor="#000"
+            android:textColor="@color/colorPrimary"
             android:text="Payment Type:"
             android:textStyle="bold|normal"
             android:textSize="16sp"/>
@@ -108,29 +112,34 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/payment"
-        android:layout_margin="16dp">
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:weightSum="2">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:layout_alignParentEnd="true"
            style="@style/button_styles"
-            android:background="@drawable/button_round_edges"
-            android:text="View Commision"
-            android:layout_gravity="center_horizontal"
-            android:gravity="left"
+            android:layout_width="0dp"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            android:text="View Commission"
+            android:layout_marginEnd="4dp"
+            android:gravity="center"
             android:id="@+id/commision" />
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/button_styles"
-            android:background="@drawable/button_round_edges"
+            android:layout_width="0dp"
+            android:layout_marginStart="4dp"
+            android:background="@color/colorPrimary"
             android:text="Recharge"
-            android:layout_gravity="center_horizontal"
-            android:gravity="right"
+            android:layout_weight="1"
             android:id="@+id/recharge_btn" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 
 </RelativeLayout>
