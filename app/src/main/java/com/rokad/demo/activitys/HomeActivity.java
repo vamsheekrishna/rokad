@@ -21,7 +21,7 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements OnHome
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        addFragment(HomeFragment.newInstance("", ""), "HomeFragment", true);
+        addFragment(HomeFragment.newInstance("", ""), "HomeFragment", false);
     }
 
     @Override
@@ -33,11 +33,9 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements OnHome
             goToAboutFragment();
         } else if (id == R.id.nav_terms) {
             goToTermsFragment();
+        } else if (id == R.id.sign_out_btn) {
+            goToSignOut();
         }
-
-//        else if (id == R.id.nav_logout) {
-//            goToSignOut();
-//        }
         dl.closeDrawer(nv);
         return false;
     }

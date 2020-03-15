@@ -6,16 +6,6 @@
     android:background="@color/colorPrimaryDark"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:src="@drawable/logo_rokad"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:layout_marginTop="150dp"/>
-
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,17 +17,19 @@
         android:layout_margin="32dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/mid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:padding="16dp"
+            android:padding="8dp"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintEnabled="true"
+                app:boxBackgroundColor="@android:color/transparent"
                 android:hint="@string/prompt_mobile_number">
                 <com.google.android.material.textfield.TextInputEditText
                    style="@style/input_box_styles"
@@ -50,6 +42,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxBackgroundColor="@android:color/transparent"
                 app:hintEnabled="true"
                 android:hint="@string/prompt_password">
 
@@ -61,11 +54,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/login_button"
                 android:textColor="#fff"
                 android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_margin="4dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="Login"/>
 
@@ -73,6 +68,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:src="@drawable/logo_rokad"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
+        android:layout_above="@+id/login_card"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/forgot_password"
