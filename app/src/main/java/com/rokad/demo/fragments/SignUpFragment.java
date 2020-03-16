@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.rokad.demo.R;
 import com.rokad.demo.interfaces.OnAuthenticationInteractionListener;
 
+import java.util.Objects;
+
 public class SignUpFragment extends BaseFragment implements View.OnClickListener {
 
     OnAuthenticationInteractionListener mListener;
@@ -63,7 +65,11 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.submit).setOnClickListener(this);
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("Registration");
+    }
     @Override
     public void onClick(View view) {
         mListener.goToLoginFragment();

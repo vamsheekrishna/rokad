@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import com.rokad.demo.R;
 
+import java.util.Objects;
+
 
 public class TermsFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
@@ -27,7 +29,11 @@ public class TermsFragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("Terms and Conditions");
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

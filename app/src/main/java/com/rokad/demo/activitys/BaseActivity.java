@@ -47,12 +47,6 @@ public class BaseActivity extends AppCompatActivity {
         }
         fragmentTransaction.commit();
     }
-    public void setTitle(String name){
-        Objects.requireNonNull(getSupportActionBar()).setTitle(name);
-    }
-
-
-
     @Override
     protected void onStart() {
         super.onStart();

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import com.rokad.demo.R;
 
+import java.util.Objects;
+
 public class AboutFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,5 +46,11 @@ public class AboutFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_about, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("About");
     }
 }

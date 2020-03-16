@@ -14,6 +14,8 @@ import com.rokad.demo.R;
 import com.rokad.demo.fragments.dummy.DummyContent;
 import com.rokad.demo.interfaces.OnHomeInteractionListener;
 
+import java.util.Objects;
+
 public class ServicesHomeFragment extends BaseFragment {
 
     // TODO: Customize parameter argument names
@@ -75,7 +77,11 @@ public class ServicesHomeFragment extends BaseFragment {
         }
         return view;
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("All Services");
+    }
 
     @Override
     public void onAttach(Context context) {

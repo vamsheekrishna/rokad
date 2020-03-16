@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.rokad.demo.R;
 import com.rokad.demo.interfaces.OnAuthenticationInteractionListener;
 
+import java.util.Objects;
+
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -70,7 +72,11 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                     + " must implement OnAuthenticationInteractionListener");
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("Login");
+    }
     @Override
     public void onDetach() {
         super.onDetach();

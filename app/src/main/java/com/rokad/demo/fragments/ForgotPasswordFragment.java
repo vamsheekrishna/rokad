@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.rokad.demo.R;
 import com.rokad.demo.interfaces.OnAuthenticationInteractionListener;
 
+import java.util.Objects;
+
 public class ForgotPasswordFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -61,7 +63,11 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
         view.findViewById(R.id.sign_in).setOnClickListener(this);
         view.findViewById(R.id.sign_up).setOnClickListener(this);
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("Forgot Password");
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -1,11 +1,13 @@
 package com.rokad.demo.activitys;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.rokad.demo.R;
 import com.rokad.demo.fragments.AboutFragment;
@@ -14,6 +16,8 @@ import com.rokad.demo.fragments.ServicesHomeFragment;
 import com.rokad.demo.fragments.TermsFragment;
 import com.rokad.demo.fragments.dummy.DummyContent;
 import com.rokad.demo.interfaces.OnHomeInteractionListener;
+
+import java.util.Objects;
 
 public class HomeActivity extends BaseNavigationDrawerActivity implements OnHomeInteractionListener {
 
@@ -69,6 +73,17 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements OnHome
     public void onSelectedServiceInteraction(DummyContent.DummyItem mItem) {
         if(mItem.id == 1) {
             startActivity(new Intent(HomeActivity.this, MobileRechargeActivity.class));
+        } else {
+            AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(HomeActivity.this));
+            builder.setTitle("Sorry....");
+            builder.setMessage("Please wait, this feature will be available soon");
+            builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
     }
 }
