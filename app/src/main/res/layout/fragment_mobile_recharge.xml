@@ -65,7 +65,7 @@
         android:id="@+id/recharge_plans"
         android:layout_alignParentRight="true"
         android:layout_below="@id/recharge_txt"
-        android:text="Choose Plans"
+        android:text="Choose from Plans?"
         android:textColor="@color/splash_bg"
         android:layout_margin="16dp"/>
 

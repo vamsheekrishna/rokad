@@ -1,19 +1,29 @@
 package com.rokad.demo.fragments;
 
+import android.R.layout;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import com.rokad.demo.R;
 import com.rokad.demo.interfaces.OnAuthenticationInteractionListener;
 
-public class MobileRechargeFragment extends BaseFragment {
+import java.util.Objects;
+
+import fr.ganfra.materialspinner.MaterialSpinner;
+
+import static android.R.*;
+
+public class MobileRechargeFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemSelectedListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,8 +60,26 @@ public class MobileRechargeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mobile_recharge, container, false);
+        View view = inflater.inflate(R.layout.fragment_mobile_recharge, container, false);
+        MaterialSpinner operatorSpin = view.findViewById(R.id.select_operator);
+        MaterialSpinner locationSpin = view.findViewById(R.id.state);
+        AppCompatTextView choosePlansTv = view.findViewById(R.id.recharge_plans);
+        operatorSpin.setOnItemSelectedListener(this);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+                layout.simple_spinner_item,
+                getActivity().getResources().getStringArray(R.array.mobile_operators));
+        adapter.setDropDownViewResource(layout.simple_spinner_dropdown_item);
+        operatorSpin.setAdapter(adapter);
+
+
+        ArrayAdapter<String> locAdapter = new ArrayAdapter<String>(getContext(),layout.simple_spinner_item,getResources().getStringArray(R.array.states));
+        locAdapter.setDropDownViewResource(layout.simple_spinner_dropdown_item);
+        locationSpin.setAdapter(locAdapter);
+
+        return view;
     }
+
 
 
     @Override
@@ -69,5 +97,24 @@ public class MobileRechargeFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
 //        mListener = null;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        if (v.getId() == R.id.recharge_plans){
+            getActivity().getSupportFragmentManager().beginTransaction().add(new MobileRechargeFragment(),"mobile_recharge_fragment").commit();
+        }
     }
 }
