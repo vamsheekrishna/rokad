@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.rokad.encrypt.Encryption;
-import com.rokad.encrypt.encryptionFactory;
-import com.rokad.encrypt.EncryptionHelper;
-import com.rokad.R;
+import com.rokad.utilities.encrypt.Encryption;
+import com.rokad.utilities.encrypt.encryptionFactory;
+import com.rokad.utilities.encrypt.EncryptionHelper;
 
 public class SplashActivity extends AppCompatActivity {
 

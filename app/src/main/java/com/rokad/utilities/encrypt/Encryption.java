@@ -1,4 +1,4 @@
-package com.rokad.encrypt;
+package com.rokad.utilities.encrypt;
 
 public interface Encryption {
 

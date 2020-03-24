@@ -1,4 +1,4 @@
-package com.rokad.encrypt;
+package com.rokad.utilities.encrypt;
 
 import org.apache.commons.codec.binary.Base64;
 
