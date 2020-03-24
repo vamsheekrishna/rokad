@@ -76,6 +76,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 navController.navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;
             case R.id.button3:
+                // navController.popBackStack(R.id.action_loginFragment_to_forgotFragment, false);
                 navController.navigate(R.id.action_loginFragment_to_forgotFragment);
                 break;
         }

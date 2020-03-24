@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mobile_recharge"
+    app:startDestination="@id/rechagreHomeFragment">
+
+    <fragment
+        android:id="@+id/rechagreHomeFragment"
+        android:name="com.rokad.mobile_recharge.RechargeHomeFragment"
+        android:label="fragment_rechagre_home"
+        tools:layout="@layout/fragment_rechagre_home" />
+</navigation>

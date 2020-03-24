@@ -65,6 +65,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        navController.navigate(R.id.action_registrationFragment_to_loginFragment);
+        navController.popBackStack();
+        // navController.navigate(R.id.action_registrationFragment_to_loginFragment);
     }
 }
