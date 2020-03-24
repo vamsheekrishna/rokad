@@ -1,72 +1,8 @@
 <resources>
-
-    <!--    Application Vitals-->
     <string name="app_name">Rokad</string>
-    <string name="action_settings">Settings</string>
-    <string name="network_error_msg">Network connection is required for this to continue!</string>
-    <string name="Open">Open</string>
-    <string name="Close">Close</string>
-
-
-    <!--    Advertisement Stuff-->
-    <string name="adv_title"> Advantages to Agents / Franchisee</string>
-    <string name="adv_1">- Monthly realization of profit / commission.</string>
-    <string name="adv_2">- Expansion in business due to increased footfalls and value added services.</string>
-    <string name="adv_3">- Risk free business.</string>
-    <string name="adv_4">- Increase in Revenue on the same fleet resulting in additional profits.</string>
-    <string name="adv_5">- Job creations in Rural and Urban localities.</string>
-
-
-    <!--    Login Screen -->
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="forgot_password"><u>Forgot Password?</u></string>
-    <string name="sign_up"><u>sign up?</u></string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="prompt_mobile_number">Mobile Number</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="copy_rights">Copyright \u00A9 Rokad. All Rights Reserved.</string>
-
-
-    <!--    Services Screen-->
-    <string name="income_service_header">Income from services provided for Bus Corporation\'s SmartCard</string>
-    <string name="income_service_text">Franchisee will be authorised to Issue, Load and Surrender the Bus Corporation SmartCard and earn a flat fee on every activity.</string>
-    <string name="income_core_header">Income from Core Business Correspondent (BC) Activities</string>
-    <string name="income_core_text">Franchisees to be appointed as Bank\'s Business Correspondents and earn percentage based fees on money transfer, cash deposit, cash withdrawal, bill payments and other services to customer.</string>
-
-
-    <!--    List of Services -->
-    <string name="smart_cards">Smart Cards</string>
-    <string name="bus_ticket_booking">Bus Ticket Booking</string>
-    <string name="flight_booking">FLight Booking</string>
-    <string name="taxi_booking">Taxi Booking</string>
-    <string name="domestic_money_transfer">Domestic Money Transfer</string>
-    <string name="aeps">Aadhar Enabled Payment System (AEPS)</string>
-    <string name="micro_atm">Micro ATM</string>
-    <string name="electricity">Electricity</string>
-    <string name="current_bus_booking">Current Bus Booking</string>
-    <string name="rail_booking">Rail Booking</string>
-    <string name="pan_card">PAN Card</string>
-    <string name="dth_recharge">DTH Recharge</string>
-    <string name="epaylater">ePaylater</string>
-    <string name="travel_pulse">Travel Pulse 2-Wheeler Security System</string>
-    <string name="two_wheeler_insurance">Two Wheeler Insurance</string>  <!-- coming soon -->
-    <string name="life_insurance">Life Insurance</string>  <!-- coming soon -->
-    <string name="micro_loan">Micro Loan</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="send_otp">Send OTP</string>
-    <string name="enter_mail_id">Enter mail ID</string>
-    <string name="login_information_sign_up_header">Login Information</string>
-    <string name="general_information_sign_up_header">General</string>   <!-- coming soon -->
-
-
-    <!--    Mobile Recharge Screen-->
-
-
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 </resources>

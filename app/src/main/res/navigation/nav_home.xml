@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/servicesHomeFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        app:destination="@id/servicesHomeFragment"
+        android:id="@+id/servicesHomeFragment"
+        android:name="com.rokad.home.ServicesHomeFragment"
+        android:label="fragment_services_home"
+        tools:layout="@layout/fragment_services_home" />
+    <activity
+        android:id="@+id/homeActivity2"
+        android:name="com.rokad.home.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
+    <fragment
+        app:destination="@id/aboutFragment"
+        android:id="@+id/aboutFragment"
+        android:name="com.rokad.home.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        app:destination="@id/termsFragment"
+        android:id="@+id/termsFragment"
+        android:name="com.rokad.home.TermsFragment"
+        android:label="fragment_terms"
+        tools:layout="@layout/fragment_terms" />
+</navigation>
