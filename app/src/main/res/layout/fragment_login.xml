@@ -7,11 +7,11 @@
     tools:context="com.rokad.authentication.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-88dp"
-        android:padding="32dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="84dp"
         android:src="@drawable/rokadpng" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -132,23 +132,23 @@
         android:layout_marginTop="26dp"
         android:textSize="18sp"/>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="12dp"
         android:orientation="horizontal">
 
+        <TableRow>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/don_t_have_an_account"
-            android:layout_marginLeft="18dp"
-            android:textSize="22sp"
-            android:layout_marginStart="32dp" />
+            android:layout_marginLeft="14dp"
+            android:textSize="22sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold|normal"
             android:text="@string/Register"
@@ -157,7 +157,7 @@
             android:layout_marginLeft="8dp"
             android:textSize="22sp"
             android:layout_marginStart="8dp" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

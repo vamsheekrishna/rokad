@@ -2,23 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     tools:context="com.rokad.home.SplashScreenFragment">
+
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="317dp"
-            android:layout_height="313dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="98dp"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
             android:paddingBottom="22dp"
             android:src="@drawable/rokadpng" />
 
+
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_above="@id/splash_link"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="-308dp"
-            android:scaleType="centerInside"
             android:src="@drawable/splash_img" />
 
         <androidx.appcompat.widget.AppCompatTextView
