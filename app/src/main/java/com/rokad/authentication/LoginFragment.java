@@ -4,6 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -22,6 +26,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private AppCompatEditText userName, password;
+    private AppCompatButton loginBtn;
+    private AppCompatTextView forgotPwd;
+    private AppCompatTextView register;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -49,7 +57,16 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).hide();
+
+         userName = view.findViewById(R.id.user_name);
+         password = view.findViewById(R.id.password);
+         loginBtn = view.findViewById(R.id.login_button);
+         forgotPwd = view.findViewById(R.id.forgot_pwd);
+         register = view.findViewById(R.id.register);
+
+        return view;
     }
     @Override
     public void onResume() {
@@ -60,24 +77,29 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.button).setOnClickListener(this);
-        view.findViewById(R.id.button2).setOnClickListener(this);
-        view.findViewById(R.id.button3).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button:
-                Objects.requireNonNull(getActivity()).finish();
+            case R.id.user_name:
+                String usrName = userName.getText().toString();
                 navController.navigate(R.id.action_loginFragment_to_homeActivity);
                 break;
-            case R.id.button2:
+            case R.id.password:
+                String pwd = password.getText().toString();
                 navController.navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;
-            case R.id.button3:
-                // navController.popBackStack(R.id.action_loginFragment_to_forgotFragment, false);
+            case R.id.login_button:
+                /*TODO: Navigate to Home Screen upon Successful login */
+//                 navController.popBackStack(R.id.action_loginFragment_to_forgotFragment, false);
                 navController.navigate(R.id.action_loginFragment_to_forgotFragment);
+                break;
+            case R.id.forgot_pwd:
+                //TODO: Display the sequence of Forgot Password Dialog screens
+                break;
+            case R.id.register:
+                //TODO: Navigate to Register/Signup Screen
                 break;
         }
     }

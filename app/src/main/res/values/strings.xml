@@ -5,4 +5,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
+    <string name="site_link">www.rokad.in</string>
+    <string name="user_name_hint">User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="login_text">Login</string>
+    <string name="forgot_password_text">Forgot Password?</string>
+    <string name="don_t_have_an_account">Don\'t Have an Account?</string>
+    <string name="Register">Register</string>
 </resources>
