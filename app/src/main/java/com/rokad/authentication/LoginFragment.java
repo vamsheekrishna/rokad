@@ -1,23 +1,36 @@
 package com.rokad.authentication;
 
+import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
+import com.rokad.rokad_api.endpoints.pojos.User;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.GetUserDataService;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.util.List;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -54,6 +67,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +82,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
         return view;
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onResume() {
         super.onResume();
@@ -77,6 +92,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+        view.findViewById(R.id.login_button).setOnClickListener(this);
     }
 
     @Override
@@ -84,23 +100,50 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.user_name:
                 String usrName = userName.getText().toString();
-                navController.navigate(R.id.action_loginFragment_to_homeActivity);
                 break;
             case R.id.password:
                 String pwd = password.getText().toString();
-                navController.navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;
             case R.id.login_button:
-                /*TODO: Navigate to Home Screen upon Successful login */
-//                 navController.popBackStack(R.id.action_loginFragment_to_forgotFragment, false);
-                navController.navigate(R.id.action_loginFragment_to_forgotFragment);
+                checkLogin();
                 break;
             case R.id.forgot_pwd:
-                //TODO: Display the sequence of Forgot Password Dialog screens
+                navController.navigate(R.id.action_loginFragment_to_forgotFragment);
                 break;
             case R.id.register:
-                //TODO: Navigate to Register/Signup Screen
+                navController.navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;
         }
+    }
+
+    private void checkLogin() {
+
+        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+        progressBar.setCancelable(false);
+        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        progressBar.show();
+
+        GetUserDataService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(GetUserDataService.class);
+        Call<ResponseUser> user = getUserDataService.login(userName.getText().toString(), password.getText().toString());//("", "");
+        user.enqueue(new Callback<ResponseUser>() {
+            @Override
+            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+                Log.d("onResponse", "onResponse: ");
+                if(response.body().getStatus().equalsIgnoreCase("success")) {
+                    List<User> users = response.body().getData();
+                    User user = users.get(0);
+                    UserData.setInstance(user);
+                    navController.navigate(R.id.action_loginFragment_to_homeActivity);
+                    getActivity().finish();
+                }
+                progressBar.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUser> call, Throwable t) {
+                Log.d("onFailure", "onFailure: ");
+                progressBar.dismiss();
+            }
+        });
     }
 }

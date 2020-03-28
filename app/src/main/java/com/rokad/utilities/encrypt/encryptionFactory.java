@@ -1,18 +1,13 @@
 package com.rokad.utilities.encrypt;
 
+public class EncryptionFactory {
+    public static Encryption getEncryptionByName(String encryptionSTR) throws Exception{
 
-
-public class encryptionFactory {
-	
-	 public static Encryption getEncryptionByName(String encryptionSTR) throws Exception{
-         
-	        if("AES".equalsIgnoreCase(encryptionSTR)){
-	            return new AESEncryption();
-	        } else if("DES".equalsIgnoreCase(encryptionSTR)){
-	            return new DESEncryption();
-	        }
-	        throw new Exception("Invalid Encryption...");
-	    }
-	
-
+        if("AES".equalsIgnoreCase(encryptionSTR)){
+            return new AESEncryption();
+        } else if("DES".equalsIgnoreCase(encryptionSTR)){
+            return new DESEncryption();
+        }
+        throw new Exception("Invalid Encryption...");
+    }
 }

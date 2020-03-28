@@ -17,7 +17,7 @@ public class testClient  extends BaseActivity {
 
 
 		try {
-			AESencryption = encryptionFactory.getEncryptionByName("AES");
+			AESencryption = EncryptionFactory.getEncryptionByName("AES");
 
 
 			String input = "Rajan";

@@ -1,20 +1,36 @@
 package com.rokad;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
 
-import com.rokad.utilities.encrypt.Encryption;
-import com.rokad.utilities.encrypt.encryptionFactory;
-import com.rokad.utilities.encrypt.EncryptionHelper;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+
+import com.rokad.authentication.LoginActivity;
+import com.rokad.authentication.UserData;
+import com.rokad.home.HomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        TextView textView = findViewById(R.id.text_id);
+        setContentView(R.layout.fragment_splash);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if(UserData.isSessionExpire()) {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                } else {
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                }
+                finish();
+            }
+        },1000);
+
+        /*TextView textView = findViewById(R.id.text_id);
         Encryption AESencryption;
         EncryptionHelper objEncryptionHelper = new EncryptionHelper();
         try {
@@ -30,6 +46,6 @@ public class SplashActivity extends AppCompatActivity {
             textView.setText( AESencryption.decrypt("Htzh1otlX4LDEq0lweG4FQ==") +" --> " + AESencryption.encrypt(AESencryption.decrypt("Htzh1otlX4LDEq0lweG4FQ==")));
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

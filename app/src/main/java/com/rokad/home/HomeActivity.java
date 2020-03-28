@@ -11,22 +11,25 @@ import android.view.View;
 
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
+import com.rokad.authentication.UserData;
+import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.utilities.views.BaseNavigationDrawerActivity;
 
 public class HomeActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
 
 
     private NavController navController;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_home);
 
         signOut.setOnClickListener(this);
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.blankFragment);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.blankFragment);
+        assert navHostFragment != null;
         navController = navHostFragment.getNavController();
 
         // navController = Navigation.findNavController(Objects.requireNonNull(this.getCurrentFocus()));
@@ -49,6 +52,7 @@ public class HomeActivity extends BaseNavigationDrawerActivity implements View.O
     @Override
     public void onClick(View view) {
         dl.closeDrawer(nv);
+        UserData.deleteInstance();
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
         finish();
     }
