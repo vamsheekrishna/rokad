@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="12dp"
+        android:layout_margin="16dp"
         android:layout_marginTop="18dp"
         android:weightSum="4"
         android:layout_below="@id/state_hint">
@@ -87,10 +87,19 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="end"
+            android:textColor="@android:color/holo_blue_dark"
             android:layout_height="wrap_content"
             android:text="@string/see_recharge_plans"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/amount"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mobile_recharge_nxt_btn"
