@@ -61,26 +61,13 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.button).setOnClickListener(this);
-        view.findViewById(R.id.button2).setOnClickListener(this);
-        view.findViewById(R.id.button3).setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button:
-                navController.popBackStack();
-                break;
-            case R.id.button3:
-                navController.popBackStack();
-                // navController.navigate(R.id.action_forgotFragment_to_loginFragment);
-                break;
-            case R.id.button2:
 
-                navController.navigate(R.id.action_forgotFragment_to_registrationFragment);
-                // navController.popBackStack(R.id.action_forgotFragment_to_registrationFragment, false);
-                break;
         }
     }
 }

@@ -37,18 +37,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/user_name_hint"
+                android:hint="@string/mobile_number_hint"
                 app:hintTextColor="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/user_name"
-                    android:inputType="text"
+                    android:inputType="phone"
                     style="@style/TextAppearance.AppCompat"
                     android:textColorHint="@android:color/darker_gray"
-                    android:hint="@string/user_name_hint"
-                    android:autofillHints="@string/user_name_hint"
+                    android:hint="@string/mobile_number_hint"
+                    android:autofillHints="@string/mobile_number_hint"
                     android:layout_marginTop="12dp"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="22sp"
