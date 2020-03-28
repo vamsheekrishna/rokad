@@ -93,6 +93,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         view.findViewById(R.id.login_button).setOnClickListener(this);
+        view.findViewById(R.id.forgot_pwd).setOnClickListener(this);
+        view.findViewById(R.id.register).setOnClickListener(this);
     }
 
     @Override
