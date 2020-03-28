@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/recharge_amount"
             android:hint="@string/mobile_recharge_amount"
-            android:background="@android:color/white"
+            android:background="@color/screen_bg"
             android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -21,5 +21,6 @@
     <string name="forgot_ped_email_id">Enter the Email Address Associated with your Account</string>
     <string name="we_will_email_you_a_link_to_reset_your_password">We will email you a link to reset your password</string>
     <string name="enter_email_address">Enter Email Address</string>
-    <string name="submit">Submit</string>
+    <string name="reset_pwd_btn">Reset Password</string>
+    <string name="repeat_transaction_recharge">Repeat Transaction</string>
 </resources>

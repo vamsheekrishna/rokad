@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#9F4689</color>
     <color name="colorPrimaryDark">#9F4689</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#F7A4FA</color>
 
+    <color name="screen_bg">#F4F4F4</color>
     <color name="tab_normal_color">#FEEBFE</color>
     <color name="notificationPanel_splash">#ffff</color>
 </resources>

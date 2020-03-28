@@ -66,15 +66,18 @@
             android:layout_marginRight="16dp"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="16dp"
-            android:elevation="12dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="8dp"
+            android:textSize="22sp"
+            android:padding="12dp"
             android:background="@drawable/plane_rounded_edges"
             android:id="@+id/email_addr_forgot_pwd"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit"
-        android:text="@string/submit"
-        android:layout_margin="100dp"
+        android:text="@string/reset_pwd_btn"
+        android:layout_margin="40dp"
         android:layout_below="@+id/content"
         style="@style/submit_button"/>
 
