@@ -63,7 +63,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rechagre_home, container, false);
-        Objects.requireNonNull(getActivity()).setTitle("New Recharge");
         RecyclerView recyclerView = view.findViewById(R.id.services_list);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -92,6 +91,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         } else if(view.getId() == R.id.see_plans) {
             mListener.goToSeePlansFragment();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("New Recharge");
     }
 
     @Override

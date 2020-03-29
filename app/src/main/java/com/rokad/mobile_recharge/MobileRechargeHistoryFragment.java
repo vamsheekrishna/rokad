@@ -2,6 +2,8 @@ package com.rokad.mobile_recharge;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,14 +17,7 @@ import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MobileRechargeHistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MobileRechargeHistoryFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -34,15 +29,6 @@ public class MobileRechargeHistoryFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MobileRechargeHistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MobileRechargeHistoryFragment newInstance(String param1, String param2) {
         MobileRechargeHistoryFragment fragment = new MobileRechargeHistoryFragment();
         Bundle args = new Bundle();
@@ -65,7 +51,6 @@ public class MobileRechargeHistoryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Objects.requireNonNull(getActivity()).setTitle("Recharge History");
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_history, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recharge_history);
@@ -75,5 +60,16 @@ public class MobileRechargeHistoryFragment extends BaseFragment {
         manager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(getActivity()).setTitle("Recharge History");
     }
 }
