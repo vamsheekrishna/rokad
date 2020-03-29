@@ -6,7 +6,7 @@ public class MobileRecharge {
     private String service = "TSO";
     private String preOperator = "V";
     private String mobileNumber = "9920132100";
-    private String rechargeAmount ="10";
+    private String rechargeAmount ="1";
     private String userID = "338";
     private String mobileOperator ="Vodafone";
     private String rechargeType = "12";

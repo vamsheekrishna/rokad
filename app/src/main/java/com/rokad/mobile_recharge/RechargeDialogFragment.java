@@ -96,16 +96,21 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
             ((TextView)view.findViewById(R.id.status)).setTextColor(getResources().getColor(R.color.success));
             ((ImageView)view.findViewById(R.id.status_logo)).setImageResource(R.drawable.success);
             submit.setText("DO ANOTHER");
-            int balance = Integer.parseInt(UserData.getInstance().getWalletBalance());
-            int rechargeAmount = Integer.parseInt(data.getRechargeAmount());
-            int temp = balance - rechargeAmount;
+            String balanceText = UserData.getInstance().getWalletBalance().replace(",","");
+            float balance = Float.parseFloat(balanceText);
+            String rechargeText =  data.getRechargeAmount();
+            float rechargeAmount = Float.parseFloat(rechargeText);
+            float temp = balance - rechargeAmount;
             UserData.getInstance().setWalletBalance(String.valueOf(temp));
             ((AppCompatTextView)view.findViewById(R.id.wallet_bal_amt)).setText(UserData.getInstance().getWalletBalance());
+            view.findViewById(R.id.home).setOnClickListener(this);
+            view.findViewById(R.id.home).setVisibility(View.VISIBLE);
         } else {
             ((TextView)view.findViewById(R.id.status)).setText("Payment Success");
             ((TextView)view.findViewById(R.id.status)).setTextColor(getResources().getColor(R.color.fail));
             ((ImageView)view.findViewById(R.id.status_logo)).setImageResource(R.drawable.fail);
             submit.setText("TRY AGAIN");
+            view.findViewById(R.id.home).setVisibility(View.GONE);
         }
         submit.setOnClickListener(this);
         ((AppCompatTextView)view.findViewById(R.id.mobile_num)).setText(data.getMobileNumber());
@@ -113,7 +118,6 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
         ((AppCompatTextView)view.findViewById(R.id.state_name)).setText(data.getStateName());
         ((AppCompatTextView)view.findViewById(R.id.recharge_amt)).setText(data.getRechargeAmount());
         ((AppCompatTextView)view.findViewById(R.id.total_amt)).setText(data.getRechargeAmount());
-        view.findViewById(R.id.home).setOnClickListener(this);
 
     }
 
@@ -121,6 +125,7 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
     public void onClick(View view) {
         if(view.getId() == R.id.payment_btn) {
             if(mStatus) {
+                mListener.makeAnotherPayment();
                 dismiss();
             } else {
                 dismiss();

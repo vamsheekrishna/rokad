@@ -1,6 +1,7 @@
 package com.rokad.mobile_recharge;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.res.ColorStateList;
@@ -47,5 +48,17 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
     @Override
     public void goToSeePlansFragment() {
         replaceFragment(MobileRechargePlansHome.newInstance("",""), "MobileRechargePlansHome", true);
+    }
+
+    @Override
+    public void makeAnotherPayment() {
+        /*FragmentManager fm = getSupportFragmentManager();
+        int count = fm.getBackStackEntryCount();
+        for(int i = 0; i < count-1; ++i) {
+            fm.popBackStackImmediate();
+        }*/
+        //onBackPressed();
+        //onBackPressed();
+        replaceFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
     }
 }

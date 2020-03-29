@@ -4,4 +4,5 @@ interface OnMobileRechargeListener {
     MobileRecharge getMobileRechargeModule();
     void goToMakePaymentFragment();
     void goToSeePlansFragment();
+    void makeAnotherPayment();
 }
