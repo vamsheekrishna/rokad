@@ -199,8 +199,8 @@
                     android:layout_weight="1"
                     android:id="@+id/total_amt"
                     android:text="5000"
-                    android:gravity="end"
-                    android:textStyle="bold|normal"/>
+                    android:textStyle="bold|normal"
+                    android:gravity="end" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
