@@ -64,7 +64,7 @@ public class MobileHomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewPager =  view.findViewById(R.id.mobile_recharge_pager);
-        viewPagerAdapter = new MobileRechargePagerAdapter(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),0);
+        viewPagerAdapter = new MobileRechargePagerAdapter(getChildFragmentManager(),0);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout = view.findViewById(R.id.mobile_tabs);
         tabLayout.setupWithViewPager(viewPager);

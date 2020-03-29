@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MobileRechargeHistoryFragment#newInstance} factory method to
@@ -63,6 +65,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Objects.requireNonNull(getActivity()).setTitle("Recharge History");
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_history, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recharge_history);

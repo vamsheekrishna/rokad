@@ -2,26 +2,25 @@ package com.rokad.mobile_recharge;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.util.Objects;
+
 public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private OnMobileRechargeListener mListener;
@@ -62,6 +61,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rechagre_home, container, false);
 
+        Objects.requireNonNull(getActivity()).setTitle("New Recharge");
         RecyclerView recyclerView = view.findViewById(R.id.services_list);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -76,11 +76,17 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.mobile_recharge_nxt_btn).setOnClickListener(this);
+        view.findViewById(R.id.see_plans).setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        mListener.goToMakePaymentFragment();
+        if(view.getId() == R.id.mobile_recharge_nxt_btn) {
+            mListener.goToMakePaymentFragment();
+        } else if(view.getId() == R.id.see_plans) {
+            mListener.goToSeePlansFragment();
+        }
     }
 
     @Override

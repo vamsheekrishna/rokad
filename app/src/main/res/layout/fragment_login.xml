@@ -49,7 +49,7 @@
                     android:textColorHint="@android:color/darker_gray"
                     android:hint="@string/mobile_number_hint"
                     android:autofillHints="@string/mobile_number_hint"
-                    android:text="9000000000"
+                    android:text="8111111115"
                     android:layout_marginTop="12dp"
                     android:textSize="22sp"
                     android:background="@null"/>

@@ -2,20 +2,47 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mobile_recharge.MakePaymentFragment">
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    tools:context=".mobile_recharge.MakePaymentFragment"
+    >
+    <ImageView
+        android:translationZ="90dp"
+        android:id="@+id/status_logo"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/success"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    </LinearLayout>
     <RelativeLayout
+        android:layout_marginTop="-30dp"
+        android:layout_below="@+id/status_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:id="@+id/bill_card"
         android:background="@android:color/white"
-        android:layout_margin="12dp"
         android:elevation="12dp">
 
 
+        <TextView
+            android:id="@+id/status"
+            android:paddingTop="30dp"
+            android:text="Success"
+            android:textSize="22sp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mobile_details"
@@ -191,15 +218,14 @@
                     android:id="@+id/total_amt"
                     android:textColor="@color/black"
                     android:text="5000"
-                    android:textStyle="bold|normal"
-                    android:gravity="end" />
+                    android:gravity="end"
+                    android:textStyle="bold|normal"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </RelativeLayout>
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -230,25 +256,29 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatButton
-        style="@style/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:text="@string/add_money_to_the_wallet_btn"
-        android:id="@+id/money_to_wallet_btn"
-        android:textAllCaps="false"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/wallet_info"
-        android:background="@drawable/plane_rounded_edges"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/wallet_info"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/payment_btn"
-        android:text="@string/make_payment_btn"
-        android:layout_marginBottom="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        style="@style/submit_button"/>
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/payment_btn"
+            android:text="@string/try_again"
+            style="@style/submit_button"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/home"
+            android:text="Home"
+            android:background="@drawable/button_round_edges"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:layout_width="100dp"/>
+    </LinearLayout>
+
+
 
 </RelativeLayout>

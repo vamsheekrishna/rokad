@@ -7,4 +7,8 @@
     <color name="screen_bg">#F4F4F4</color>
     <color name="tab_normal_color">#FEEBFE</color>
     <color name="notificationPanel_splash">#ffff</color>
+    <color name="black">#000000</color>
+    <color name="success">#1EEA26</color>
+    <color name="fail">#F11C0C</color>
+
 </resources>

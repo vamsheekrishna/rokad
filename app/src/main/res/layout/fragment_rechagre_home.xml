@@ -87,6 +87,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/see_plans"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="end"
@@ -108,9 +109,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mobile_recharge_nxt_btn"
         android:layout_below="@id/last_line"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="40dp"
         android:text="@string/next"
-        android:layout_marginBottom="50dp"
         style="@style/submit_button"/>
 
 </RelativeLayout>

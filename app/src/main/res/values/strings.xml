@@ -30,4 +30,5 @@
     <string name="service_charge_txt">Service Charge</string>
     <string name="gst_on_service_charge">Gst on Service Charge</string>
     <string name="total_amount_txt">Total Amount</string>
+    <string name="try_again">Try Again</string>
 </resources>

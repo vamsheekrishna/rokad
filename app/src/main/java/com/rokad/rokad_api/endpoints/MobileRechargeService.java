@@ -15,7 +15,7 @@ public interface MobileRechargeService {
 
     @POST(RECHARGE)
     @FormUrlEncoded
-    Call<ResponseMobileRecharge> login(@Field("recharge_from") String rechargeFrom,
+    Call<ResponseMobileRecharge> recharge(@Field("recharge_from") String rechargeFrom,
                                        @Field("plan_type") String planType,
                                        @Field("service") String service,
                                        @Field("pre_operator") String preOperator,

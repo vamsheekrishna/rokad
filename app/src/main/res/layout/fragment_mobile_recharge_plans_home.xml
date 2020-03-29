@@ -3,16 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".mobile_recharge.MobileRechargePlansHome">
-
-<!--  <android.support.v7.widget.Toolbar-->
-<!--      android:id="@+id/toolbar"-->
-<!--      android:layout_width="match_parent"-->
-<!--      android:layout_height="?attr/actionBarSize"-->
-<!--      android:background="?attr/colorPrimary"-->
-<!--      app:layout_scrollFlags="scroll|enterAlways"-->
-<!--      app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
   <com.google.android.material.tabs.TabLayout
       android:layout_width="match_parent"

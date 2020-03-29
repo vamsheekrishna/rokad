@@ -10,6 +10,16 @@ public class MobileRecharge {
     private String userID = "338";
     private String mobileOperator ="Vodafone";
     private String rechargeType = "12";
+    private String stateName = "Maharashtra Goa";
+
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
 
     public String getRechargeFrom() {
         return rechargeFrom;
