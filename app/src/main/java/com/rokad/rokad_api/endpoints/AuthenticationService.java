@@ -8,10 +8,10 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-public interface GetUserDataService {
-    String URL_LOGIN_BASE = "rest_server/rokad/";
-    String LOGIN = URL_LOGIN_BASE+"login";
-    String FORGOT_PASSWORD = URL_LOGIN_BASE+"forgot_password";
+import static com.rokad.rokad_api.endpoints.URL.FORGOT_PASSWORD;
+import static com.rokad.rokad_api.endpoints.URL.LOGIN;
+
+public interface AuthenticationService {
     @POST(LOGIN)
     @FormUrlEncoded
     Call<ResponseUser> login(@Field("mobile_no") String mobileNo,

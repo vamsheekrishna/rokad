@@ -14,11 +14,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseActivity;
 
-public class MobileRechargeActivity extends BaseActivity {
-
-    private ViewPager viewPager;
-    private MobileRechargePagerAdapter viewPagerAdapter;
-    private TabLayout tabLayout;
+public class MobileRechargeActivity extends BaseActivity implements OnMobileRechargeListener{
+    MobileRecharge mobileRecharge = new MobileRecharge();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,28 +24,21 @@ public class MobileRechargeActivity extends BaseActivity {
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
-        viewPager =  findViewById(R.id.mobile_recharge_pager);
-        viewPagerAdapter = new MobileRechargePagerAdapter(getSupportFragmentManager(),0);
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout = findViewById(R.id.mobile_tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setSelectedTabIndicator(R.drawable.rounded_tab_selected_indicator);
-        tabLayout.setTabRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.tab_normal_color)));
     }
 
-//    private void createTabIcons() {
-//
-//        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.mobile_recharge_rabs, null);
-//        tabLayout.getTabAt(0).setCustomView(tabOne);
-//
-//        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.mobile_recharge_rabs, null);
-//
-//        tabLayout.getTabAt(1).setCustomView(tabTwo);
-//    }
     @Override
     public boolean onSupportNavigateUp(){
         finish();
         return true;
     }
 
+    @Override
+    public MobileRecharge getMobileRechargeModule() {
+        return mobileRecharge;
+    }
+
+    @Override
+    public void goToMakePaymentFragment() {
+
+    }
 }

@@ -17,13 +17,10 @@ import android.view.ViewGroup;
 import com.google.android.material.textfield.TextInputEditText;
 import com.rokad.R;
 import com.rokad.rokad_api.RetrofitClientInstance;
-import com.rokad.rokad_api.endpoints.GetUserDataService;
+import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseForgotPassword;
-import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
-import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.utilities.views.BaseFragment;
 
-import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -91,20 +88,13 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
         progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progressBar.show();
 
-        GetUserDataService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(GetUserDataService.class);
+        AuthenticationService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
         Call<ResponseForgotPassword> user = getUserDataService.forgotPassword(Objects.requireNonNull(eMail.getText()).toString());//("", "");
         user.enqueue(new Callback<ResponseForgotPassword>() {
             @Override
             public void onResponse(Call<ResponseForgotPassword> call, Response<ResponseForgotPassword> response) {
                 Log.d("onResponse", "onResponse: ");
                 showAlertDialog(response.body().getStatus(), response.body().getMsg());
-                /*if(Objects.requireNonNull(response.body()).getStatus().equalsIgnoreCase("success")) {
-                    List<User> users = response.body().getData();
-                    User user = users.get(0);
-                    UserData.setInstance(user);
-                    navController.navigate(R.id.action_loginFragment_to_homeActivity);
-                    getActivity().finish();
-                }*/
                 progressBar.dismiss();
             }
 

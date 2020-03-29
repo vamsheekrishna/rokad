@@ -22,7 +22,7 @@ import com.rokad.R;
 import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.rokad_api.RetrofitClientInstance;
-import com.rokad.rokad_api.endpoints.GetUserDataService;
+import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.List;
@@ -125,7 +125,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progressBar.show();
 
-        GetUserDataService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(GetUserDataService.class);
+        AuthenticationService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
         Call<ResponseUser> user = getUserDataService.login(userName.getText().toString(), password.getText().toString());//("", "");
         user.enqueue(new Callback<ResponseUser>() {
             @Override
