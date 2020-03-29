@@ -52,13 +52,6 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
 
     @Override
     public void makeAnotherPayment() {
-        /*FragmentManager fm = getSupportFragmentManager();
-        int count = fm.getBackStackEntryCount();
-        for(int i = 0; i < count-1; ++i) {
-            fm.popBackStackImmediate();
-        }*/
-        //onBackPressed();
-        //onBackPressed();
         replaceFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
     }
 }

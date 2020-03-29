@@ -82,8 +82,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/recharge_amount"
             android:hint="@string/mobile_recharge_amount"
+
             android:background="@color/screen_bg"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
         <androidx.appcompat.widget.AppCompatTextView
