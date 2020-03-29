@@ -3,6 +3,8 @@ package com.rokad.mobile_recharge;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,7 @@ import com.rokad.utilities.views.BaseFragment;
  * Use the {@link SMSPlans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SMSPlans extends BaseFragment {
+public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,6 +65,15 @@ public class SMSPlans extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_s_m_s_plans, container, false);
 
+        RecyclerView smsPlansList = view.findViewById(R.id.sms_plans);
+        SMSPlansAdapter adapter = new SMSPlansAdapter(this::onClick, getContext());
+        smsPlansList.setAdapter(adapter);
+
         return view;
+    }
+
+    @Override
+    public void onClick(String chosenSubscriber) {
+
     }
 }

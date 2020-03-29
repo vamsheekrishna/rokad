@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
-public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener {
+public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -66,7 +66,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
-        SubcriberListRecyclerView listRecyclerView = new SubcriberListRecyclerView();
+        SubcriberListRecyclerView listRecyclerView = new SubcriberListRecyclerView(this::onClick,getContext());
         recyclerView.setAdapter(listRecyclerView);
 
         return view;
@@ -81,5 +81,10 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         mListener.goToMakePaymentFragment();
+    }
+
+    @Override
+    public void onClick(String chosenSubscriber) {
+
     }
 }

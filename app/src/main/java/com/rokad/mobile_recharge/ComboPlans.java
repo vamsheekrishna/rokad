@@ -3,6 +3,8 @@ package com.rokad.mobile_recharge;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,7 @@ import com.rokad.utilities.views.BaseFragment;
  * Use the {@link ComboPlans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ComboPlans extends BaseFragment {
+public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,6 +64,18 @@ public class ComboPlans extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
+
+        RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
+        ComboPlansAdapter adapter = new ComboPlansAdapter(this::onClick, getContext());
+        comboPlansList.setAdapter(adapter);
+        comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         return view;
+    }
+
+    @Override
+    public void onClick(String chosenSubscriber) {
+
     }
 }
