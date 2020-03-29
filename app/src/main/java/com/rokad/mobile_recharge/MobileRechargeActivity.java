@@ -23,7 +23,7 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
         setContentView(R.layout.activity_mobile_recharge);
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
-
+        addFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
 
     @Override
     public void goToMakePaymentFragment() {
-
+        replaceFragment(MakePaymentFragment.newInstance("",""), "MakePaymentFragment", true);
     }
 }

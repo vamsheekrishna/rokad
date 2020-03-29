@@ -1,8 +1,13 @@
 package com.rokad.mobile_recharge;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,22 +17,14 @@ import android.view.ViewGroup;
 
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RechargeHomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class RechargeHomeFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private OnMobileRechargeListener mListener;
 
     public RechargeHomeFragment() {
         // Required empty public constructor
@@ -40,6 +37,14 @@ public class RechargeHomeFragment extends BaseFragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof OnMobileRechargeListener) {
+            mListener = (OnMobileRechargeListener)context;
+        }
     }
 
     @Override
@@ -65,5 +70,16 @@ public class RechargeHomeFragment extends BaseFragment {
         recyclerView.setAdapter(listRecyclerView);
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.mobile_recharge_nxt_btn).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        mListener.goToMakePaymentFragment();
     }
 }

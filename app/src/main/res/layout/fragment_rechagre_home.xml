@@ -103,9 +103,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mobile_recharge_nxt_btn"
-        android:layout_below="@+id/amount"
+        android:layout_alignParentBottom="true"
         android:text="@string/next"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
         style="@style/submit_button"/>
 
 </RelativeLayout>
