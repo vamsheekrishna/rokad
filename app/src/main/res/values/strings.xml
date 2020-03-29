@@ -23,4 +23,11 @@
     <string name="enter_email_address">Enter Email Address</string>
     <string name="reset_pwd_btn">Reset Password</string>
     <string name="repeat_transaction_recharge">Repeat Transaction</string>
+    <string name="rokad_wallet_balance_text">Rokad Wallet Balance</string>
+    <string name="make_payment_btn">Make Payment</string>
+    <string name="add_money_to_the_wallet_btn">Add Money to the Wallet</string>
+    <string name="recharge_amount_txt">Recharge Amount</string>
+    <string name="service_charge_txt">Service Charge</string>
+    <string name="gst_on_service_charge">Gst on Service Charge</string>
+    <string name="total_amount_txt">Total Amount</string>
 </resources>
