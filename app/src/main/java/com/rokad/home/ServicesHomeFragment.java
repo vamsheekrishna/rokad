@@ -71,6 +71,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
+        view.findViewById(R.id.addMoney).setOnClickListener(this);
         ((TextView)view.findViewById(R.id.name)).setText(UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName());
         ((TextView)view.findViewById(R.id.balance)).setText(UserData.getInstance().getWalletBalance());
         if (mColumnCount <= 1) {
@@ -96,20 +97,28 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        DummyContent.DummyItem mItem = (DummyContent.DummyItem) view.getTag();
-        if(mItem.id == 1) {
-            startActivity(new Intent(getActivity(), MobileRechargeActivity.class));
+        if (view.getId() == R.id.addMoney) {
+            showDialog();
         } else {
-            AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-            builder.setTitle("Sorry....");
-            builder.setMessage("Please wait, this feature will be available soon");
-            builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
+            DummyContent.DummyItem mItem = (DummyContent.DummyItem) view.getTag();
+            if(mItem.id == 1) {
+                startActivity(new Intent(getActivity(), MobileRechargeActivity.class));
+            } else {
+                showDialog();
+            }
         }
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        builder.setTitle("Sorry....");
+        builder.setMessage("Please wait, this feature will be available soon");
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
