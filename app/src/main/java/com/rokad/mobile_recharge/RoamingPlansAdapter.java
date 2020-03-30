@@ -35,7 +35,7 @@ public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapte
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 
     @Override
