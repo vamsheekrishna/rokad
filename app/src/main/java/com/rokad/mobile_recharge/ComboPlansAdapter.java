@@ -34,7 +34,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 
     @Override

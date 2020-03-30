@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@color/screen_bg"
     android:layout_marginBottom="16dp"
-    android:elevation="12dp">
+    android:layout_marginTop="16dp"
+    android:elevation="8dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/top_up_plan_price"
-            android:text="1800"
-            android:gravity="center_vertical"
+            android:text="180"
+            android:gravity="center"
             android:textColor="@android:color/black"
             android:layout_weight="1"
             android:textStyle="bold|normal"
@@ -35,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/plan_description"
-            android:text="vlafshdvcleirh"
+            android:text="Plan Description"
             android:textSize="22sp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
             android:gravity="start"
             android:textColor="@android:color/background_dark"/>
 
@@ -47,7 +48,7 @@
                 android:id="@+id/plan_validity"
                 android:text="validity"
                 android:textSize="22sp"
-                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="22dp"
                 android:gravity="start"
                 android:textColor="@android:color/darker_gray"/>

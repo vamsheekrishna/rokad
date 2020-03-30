@@ -34,7 +34,7 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 
     @Override

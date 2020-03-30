@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
+    android:layout_marginTop="12dp"
     android:elevation="12dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -17,8 +18,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/top_up_plan_price"
-            android:text="1800"
-            android:gravity="center_vertical"
+            android:text="180"
+            android:gravity="center"
             android:textColor="@android:color/black"
             android:layout_weight="1"
             android:textStyle="bold|normal"
