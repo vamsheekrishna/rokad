@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
@@ -23,6 +24,7 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_recharge);
+
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
         mobileRecharge.setUserID(UserData.getUserData().getId());
@@ -31,7 +33,7 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
 
     @Override
     public boolean onSupportNavigateUp(){
-        finish();
+        onBackPressed();
         return true;
     }
 
