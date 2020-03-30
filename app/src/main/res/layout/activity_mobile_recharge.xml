@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mobile_recharge.MobileHomeFragment">
+    tools:context=".mobile_recharge.views.MobileHomeFragment">
     <FrameLayout
         android:id="@+id/base_container"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 
-public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder>{
+public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+
 
     private RecyclerOnClickHandler mRecyclerOnClickHandler;
     private Context mContext;
 
-    public RateCutterPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
+    public RoamingPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
     }
@@ -24,7 +26,7 @@ public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlans
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
-        return new RateCutterPlansAdapter.PlanHolder(view);
+        return new RoamingPlansAdapter.PlanHolder(view);
     }
 
     @Override
@@ -34,17 +36,17 @@ public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlans
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 
-    /*@Override
-    public void onClick(String chosenSubscriber) {
+    @Override
+    public void onClick(int chosenSubscriber) {
 
-    }*/
+    }
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 
-        PlanHolder(@NonNull View itemView) {
+        public PlanHolder(@NonNull View itemView) {
             super(itemView);
         }
     }

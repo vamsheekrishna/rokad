@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
 /**

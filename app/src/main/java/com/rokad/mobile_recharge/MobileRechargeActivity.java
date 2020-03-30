@@ -1,23 +1,17 @@
 package com.rokad.mobile_recharge;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
-
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
+import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
+import com.rokad.mobile_recharge.models.MobileRecharge;
+import com.rokad.mobile_recharge.views.MakePaymentFragment;
+import com.rokad.mobile_recharge.views.MobileHomeFragment;
+import com.rokad.mobile_recharge.views.MobileRechargePlansHome;
 import com.rokad.utilities.views.BaseActivity;
 
-public class MobileRechargeActivity extends BaseActivity implements OnMobileRechargeListener{
+public class MobileRechargeActivity extends BaseActivity implements OnMobileRechargeListener {
     MobileRecharge mobileRecharge = new MobileRecharge();
 
     @Override

@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
@@ -11,14 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.adapters.TopUpRechargePlansRecyclerAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ComboPlans#newInstance} factory method to
+ * Use the {@link RechargeTopUpPlans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +30,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     private String mParam1;
     private String mParam2;
 
-    public ComboPlans() {
+    public RechargeTopUpPlans() {
         // Required empty public constructor
     }
 
@@ -38,11 +40,11 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ComboPlans.
+     * @return A new instance of fragment RechargeTopUpPlans.
      */
     // TODO: Rename and change types and number of parameters
-    public static ComboPlans newInstance(String param1, String param2) {
-        ComboPlans fragment = new ComboPlans();
+    public static RechargeTopUpPlans newInstance(String param1, String param2) {
+        RechargeTopUpPlans fragment = new RechargeTopUpPlans();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,12 +65,13 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
+        View view = inflater.inflate(R.layout.fragment_recharge_top_up_plans, container, false);
 
-        RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
-        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
-        comboPlansList.setAdapter(adapter);
-        comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView topupPlansList = view.findViewById(R.id.top_up_plans);
+        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        topupPlansList.setAdapter(adapter);
+        topupPlansList.setHasFixedSize(true);
+        topupPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }

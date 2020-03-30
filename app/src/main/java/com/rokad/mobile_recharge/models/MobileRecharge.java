@@ -1,6 +1,4 @@
-package com.rokad.mobile_recharge;
-
-import com.rokad.R;
+package com.rokad.mobile_recharge.models;
 
 public class MobileRecharge {
     private String rechargeFrom = "mobile";

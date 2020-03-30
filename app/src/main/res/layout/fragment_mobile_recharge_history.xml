@@ -5,4 +5,4 @@
     android:layout_height="match_parent"
     android:id="@+id/recharge_history"
     tools:listitem="@layout/recharge_history_list_item"
-    tools:context=".mobile_recharge.MobileRechargeHistoryFragment"/>
+    tools:context=".mobile_recharge.views.MobileRechargeHistoryFragment"/>

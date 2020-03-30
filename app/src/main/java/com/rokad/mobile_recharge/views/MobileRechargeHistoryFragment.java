@@ -1,10 +1,9 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.adapters.RechargeHistoryRecyclerAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;

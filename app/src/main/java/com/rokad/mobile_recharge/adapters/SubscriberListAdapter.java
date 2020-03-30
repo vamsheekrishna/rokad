@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.models.SubscriberModule;
 
 import java.util.ArrayList;
 

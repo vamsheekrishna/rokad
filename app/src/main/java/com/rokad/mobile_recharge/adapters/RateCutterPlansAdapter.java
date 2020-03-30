@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 
-public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder>{
 
     private RecyclerOnClickHandler mRecyclerOnClickHandler;
     private Context mContext;
 
-    public ComboPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
+    public RateCutterPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
     }
@@ -24,7 +25,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
-        return new ComboPlansAdapter.PlanHolder(view);
+        return new RateCutterPlansAdapter.PlanHolder(view);
     }
 
     @Override
@@ -34,13 +35,13 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 0;
     }
 
-    @Override
-    public void onClick(int chosenSubscriber) {
+    /*@Override
+    public void onClick(String chosenSubscriber) {
 
-    }
+    }*/
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 

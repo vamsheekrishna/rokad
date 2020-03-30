@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,6 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.rokad.mobile_recharge.views.ComboPlans;
+import com.rokad.mobile_recharge.views.RateCutterPlans;
+import com.rokad.mobile_recharge.views.RechargeTopUpPlans;
+import com.rokad.mobile_recharge.views.RoamingPlans;
+import com.rokad.mobile_recharge.views.SMSPlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.ArrayList;

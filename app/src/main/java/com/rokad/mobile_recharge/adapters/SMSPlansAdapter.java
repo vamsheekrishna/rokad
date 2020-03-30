@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 
-public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
 
-
-    private RecyclerOnClickHandler mRecyclerOnClickHandler;
+    private RecyclerOnClickHandler mOnClickHandler;
     private Context mContext;
 
-    public RoamingPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
-        this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
+    public SMSPlansAdapter(RecyclerOnClickHandler mOnClickHandler, Context mContext) {
+        this.mOnClickHandler = mOnClickHandler;
         this.mContext = mContext;
     }
 
@@ -25,7 +25,7 @@ public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapte
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
-        return new RoamingPlansAdapter.PlanHolder(view);
+        return new SMSPlansAdapter.PlanHolder(view);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapte
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 
-        public PlanHolder(@NonNull View itemView) {
+        PlanHolder(@NonNull View itemView) {
             super(itemView);
         }
     }

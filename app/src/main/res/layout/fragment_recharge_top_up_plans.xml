@@ -7,4 +7,4 @@
     android:id="@+id/top_up_plans"
     android:scrollbars="vertical"
     tools:listitem="@layout/recharge_plan_item"
-    tools:context=".mobile_recharge.RechargeTopUpPlans"/>
+    tools:context=".mobile_recharge.views.RechargeTopUpPlans"/>

@@ -5,4 +5,4 @@
     android:layout_height="match_parent"
     android:id="@+id/rate_cutter_plans"
     tools:listitem="@layout/recharge_plan_item"
-    tools:context=".mobile_recharge.RechargeTopUpPlans"/>
+    tools:context=".mobile_recharge.views.RechargeTopUpPlans"/>

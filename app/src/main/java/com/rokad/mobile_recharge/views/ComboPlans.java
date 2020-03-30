@@ -1,8 +1,7 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,14 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.adapters.ComboPlansAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RoamingPlans#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,21 +24,12 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     private String mParam1;
     private String mParam2;
 
-    public RoamingPlans() {
+    public ComboPlans() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RoamingPlans.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RoamingPlans newInstance(String param1, String param2) {
-        RoamingPlans fragment = new RoamingPlans();
+    public static ComboPlans newInstance(String param1, String param2) {
+        ComboPlans fragment = new ComboPlans();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,12 +50,12 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_roaming_plans, container, false);
+        View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
 
-        RecyclerView roamingPlansList = view.findViewById(R.id.roaming_plans);
-        RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
-        roamingPlansList.setAdapter(adapter);
-        roamingPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
+        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        comboPlansList.setAdapter(adapter);
+        comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }

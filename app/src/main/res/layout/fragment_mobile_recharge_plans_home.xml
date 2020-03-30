@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#F4F4F4"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".mobile_recharge.MobileRechargePlansHome">
+    tools:context=".mobile_recharge.views.MobileRechargePlansHome">
 
   <com.google.android.material.tabs.TabLayout
       android:id="@+id/recharge_plan_tabs"

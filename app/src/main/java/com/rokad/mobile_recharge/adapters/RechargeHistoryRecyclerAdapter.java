@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
-
-import java.util.ArrayList;
 
 public class RechargeHistoryRecyclerAdapter extends RecyclerView.Adapter<RechargeHistoryRecyclerAdapter.HistoryHolder> {
 

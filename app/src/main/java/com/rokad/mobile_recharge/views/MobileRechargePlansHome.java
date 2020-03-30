@@ -1,8 +1,7 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -11,9 +10,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
+import com.rokad.mobile_recharge.adapters.RechargePlansPagerAdapter;
 import com.rokad.utilities.views.BaseFragment;
-
-import java.util.Objects;
 
 
 public class MobileRechargePlansHome extends BaseFragment {

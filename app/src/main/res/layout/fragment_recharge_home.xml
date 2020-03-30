@@ -7,11 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:layout_height="match_parent"
-    tools:context="com.rokad.mobile_recharge.RechargeHomeFragment">
+    tools:context="com.rokad.mobile_recharge.views.RechargeHomeFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.rokad.mobile_recharge.RechargeHomeFragment">
+        tools:context="com.rokad.mobile_recharge.views.RechargeHomeFragment">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -106,12 +106,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recharge_amount"
-                    android:hint="@string/mobile_number_hint"
+                    android:hint="@string/recharge_amount_txt"
                     android:maxLength="3"
                     android:inputType="phone"/>
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/see_plans"

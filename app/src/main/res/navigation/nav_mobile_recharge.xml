@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/rechagreHomeFragment"
-        android:name="com.rokad.mobile_recharge.RechargeHomeFragment"
+        android:name="com.rokad.mobile_recharge.views.RechargeHomeFragment"
         android:label="fragment_rechagre_home"
         tools:layout="@layout/fragment_recharge_home" />
 </navigation>

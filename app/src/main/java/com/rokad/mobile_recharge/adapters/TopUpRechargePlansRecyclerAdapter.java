@@ -1,4 +1,4 @@
-package com.rokad.mobile_recharge;
+package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,22 +9,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 
-public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopUpRechargePlansRecyclerAdapter.PlanHolder> implements RecyclerOnClickHandler {
 
-    private RecyclerOnClickHandler mOnClickHandler;
+    private RecyclerOnClickHandler mRecyclerOnClickHandler;
     private Context mContext;
 
-    public SMSPlansAdapter(RecyclerOnClickHandler mOnClickHandler, Context mContext) {
-        this.mOnClickHandler = mOnClickHandler;
+    public TopUpRechargePlansRecyclerAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext) {
+        this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
+    }
+
+
+    @Override
+    public void onClick(int chosenSubscriber) {
+
     }
 
     @NonNull
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
-        return new SMSPlansAdapter.PlanHolder(view);
+        return new PlanHolder(view);
     }
 
     @Override
@@ -37,12 +44,7 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
         return 2;
     }
 
-    @Override
-    public void onClick(int chosenSubscriber) {
-
-    }
-
-    static class PlanHolder extends RecyclerView.ViewHolder{
+     static class PlanHolder extends RecyclerView.ViewHolder{
 
         PlanHolder(@NonNull View itemView) {
             super(itemView);
