@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -19,12 +21,19 @@
             android:layout_height="wrap_content"
             android:text="@string/forgot_password_text"
             android:gravity="center"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textStyle="bold|normal"
             android:textColor="@color/colorPrimary"
             android:layout_marginTop="64dp"/>
 
-
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_lock_open"
+            android:background="@drawable/button_round_edges"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,10 +41,9 @@
             android:layout_marginTop="22dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="22sp"
-            android:layout_margin="8dp"
+            android:textSize="16sp"
             android:textStyle="bold|normal"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@color/black"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -44,10 +52,9 @@
             android:layout_marginTop="22dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="18sp"
-            android:layout_margin="8dp"
+            android:textSize="16sp"
             android:textStyle="bold|normal"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@color/gray"/>
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -55,21 +62,30 @@
             android:layout_height="wrap_content"
             android:text="@string/enter_email_address"
             android:textStyle="bold|normal"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_margin="22dp"/>
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginStart="22dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center|left"
+            android:gravity="center|left"
             android:elevation="8dp"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:padding="12dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
             android:background="@drawable/plane_rounded_edges"
             android:id="@+id/email_addr_forgot_pwd"/>
     </androidx.appcompat.widget.LinearLayoutCompat>

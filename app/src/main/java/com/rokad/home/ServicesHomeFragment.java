@@ -32,8 +32,6 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     private String mParam1;
     private String mParam2;
 
-    private int mColumnCount = 3;
-
     public ServicesHomeFragment() {
         // Required empty public constructor
     }
@@ -74,11 +72,14 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         view.findViewById(R.id.addMoney).setOnClickListener(this);
         ((TextView)view.findViewById(R.id.name)).setText(UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName());
         ((TextView)view.findViewById(R.id.balance)).setText(UserData.getInstance().getWalletBalance());
+        /*int mColumnCount = 3;
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), mColumnCount));
-        }
+        }*/
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         DummyContent.ITEMS.clear();
         DummyContent.createDummyItem(1, R.drawable.mobile, "Mobile");
         DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
