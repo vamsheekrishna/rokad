@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private TextInputEditText mobileRechargeNum, rechargeAmount;
+    private EditText mobileRechargeNum, rechargeAmount;
     private String mParam1;
     private String mParam2;
     private OnMobileRechargeListener mListener;
@@ -77,7 +78,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
 
-        String[] States = {"Telangana", "Andhra Pradesh", "Maharastra"};
+        String[] States = {"Maharastra Goa"};
         statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,States);
         stateSelector.setAdapter(statesSpinnerAdapter);
 
