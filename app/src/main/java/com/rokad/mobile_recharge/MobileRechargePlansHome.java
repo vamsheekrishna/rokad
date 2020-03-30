@@ -13,6 +13,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MobileRechargePlansHome#newInstance} factory method to
@@ -27,6 +29,9 @@ public class MobileRechargePlansHome extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TabLayout plansTabs;
+    private ViewPager plansPager;
+    private RechargePlansPagerAdapter viewPagerAdapter;
 
     public MobileRechargePlansHome() {
         // Required empty public constructor
@@ -65,9 +70,10 @@ public class MobileRechargePlansHome extends BaseFragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_plans_home, container, false);
 
-        TabLayout plansTabs = view.findViewById(R.id.recharge_plan_tabs);
-        ViewPager plansPager = view.findViewById(R.id.plans_pager);
-        RechargePlansPagerAdapter viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0);
+         plansTabs = view.findViewById(R.id.recharge_plan_tabs);
+         plansPager = view.findViewById(R.id.plans_pager);
+         viewPagerAdapter =
+                new RechargePlansPagerAdapter(getChildFragmentManager(),0);
         plansPager.setAdapter(viewPagerAdapter);
         plansTabs.setupWithViewPager(plansPager);
 

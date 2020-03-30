@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +21,7 @@ import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;
 
-public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler {
+public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler, AdapterView.OnItemSelectedListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -27,6 +30,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private String mParam1;
     private String mParam2;
     private OnMobileRechargeListener mListener;
+    private ArrayAdapter<String> statesSpinnerAdapter;
+//    private AppCompatSpinner stateSelector;
 
     public RechargeHomeFragment() {
         // Required empty public constructor
@@ -62,7 +67,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_rechagre_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_recharge_home, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.services_list);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -70,6 +75,14 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         SubcriberListRecyclerView listRecyclerView = new SubcriberListRecyclerView(this::onClick,getContext());
         recyclerView.setAdapter(listRecyclerView);
 
+        AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
+
+        String[] States = {"Telangana", "Andhra Pradesh", "Maharastra"};
+        statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,States);
+        stateSelector.setAdapter(statesSpinnerAdapter);
+
+        stateSelector.setPrompt("Select State");
+        stateSelector.setOnItemSelectedListener(this);
         return view;
     }
 
@@ -102,5 +115,16 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(String chosenSubscriber) {
         Toast.makeText(getActivity(), "onClick", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        Toast.makeText(getContext(),"Selected State : " + statesSpinnerAdapter.getItem(position),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

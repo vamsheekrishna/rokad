@@ -40,7 +40,7 @@ public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopU
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 1;
     }
 
      static class PlanHolder extends RecyclerView.ViewHolder{

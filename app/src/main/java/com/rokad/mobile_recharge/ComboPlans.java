@@ -70,7 +70,6 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
         comboPlansList.setAdapter(adapter);
         comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
         return view;
     }
 

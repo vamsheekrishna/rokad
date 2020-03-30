@@ -16,28 +16,16 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
     ArrayList<BaseFragment> rechargePlansFrags;
     ArrayList<String> fragTitles;
 
-    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+    public RechargePlansPagerAdapter(@NonNull FragmentManager fm,int behavior) {
+        super(fm,behavior);
         rechargePlansFrags = new ArrayList<>();
         fragTitles = new ArrayList<>();
-    }
 
-    @NonNull
-    @Override
-    public Fragment getItem(int position) {
-
-      rechargePlansFrags.add(RechargeTopUpPlans.newInstance("",""));
-      rechargePlansFrags.add(RoamingPlans.newInstance("",""));
-      rechargePlansFrags.add(ComboPlans.newInstance("",""));
-      rechargePlansFrags.add(RateCutterPlans.newInstance("",""));
-      rechargePlansFrags.add(SMSPlans.newInstance("",""));
-
-        return rechargePlansFrags.get(position);
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
+        rechargePlansFrags.add(RechargeTopUpPlans.newInstance("",""));
+        rechargePlansFrags.add(RoamingPlans.newInstance("",""));
+        rechargePlansFrags.add(ComboPlans.newInstance("",""));
+        rechargePlansFrags.add(RateCutterPlans.newInstance("",""));
+        rechargePlansFrags.add(SMSPlans.newInstance("",""));
 
         fragTitles.add("TopUp");
         fragTitles.add("Roaming");
@@ -45,6 +33,17 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
         fragTitles.add("Rate Cutters");
         fragTitles.add("SMS plans");
 
+    }
+
+    @NonNull
+    @Override
+    public Fragment getItem(int position) {
+        return rechargePlansFrags.get(position);
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
         return fragTitles.get(position);
     }
 
