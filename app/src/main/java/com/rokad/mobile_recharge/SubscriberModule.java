@@ -4,7 +4,7 @@ import com.rokad.R;
 
 public class SubscriberModule {
     private int id = 0;
-    private int image = R.drawable.airtel;
+    private int image;
     private String name = "Airtel";
     private String key = "A";
     private boolean isSelected =false;
