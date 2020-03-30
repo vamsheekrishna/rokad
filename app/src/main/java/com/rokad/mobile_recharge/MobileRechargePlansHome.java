@@ -56,8 +56,7 @@ public class MobileRechargePlansHome extends BaseFragment {
 
          plansTabs = view.findViewById(R.id.recharge_plan_tabs);
          plansPager = view.findViewById(R.id.plans_pager);
-         viewPagerAdapter =
-                new RechargePlansPagerAdapter(getChildFragmentManager(),0);
+         viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0);
         plansPager.setAdapter(viewPagerAdapter);
         plansTabs.setupWithViewPager(plansPager);
 

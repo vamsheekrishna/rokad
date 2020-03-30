@@ -39,7 +39,7 @@ public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapte
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 

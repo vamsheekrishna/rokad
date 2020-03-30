@@ -66,7 +66,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
         View view = inflater.inflate(R.layout.fragment_recharge_top_up_plans, container, false);
 
         RecyclerView topupPlansList = view.findViewById(R.id.top_up_plans);
-        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(this::onClick, getContext());
+        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
         topupPlansList.setAdapter(adapter);
         topupPlansList.setHasFixedSize(true);
         topupPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,7 +75,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 }

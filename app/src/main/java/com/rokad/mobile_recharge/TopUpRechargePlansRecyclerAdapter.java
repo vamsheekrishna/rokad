@@ -22,7 +22,7 @@ public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopU
 
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 

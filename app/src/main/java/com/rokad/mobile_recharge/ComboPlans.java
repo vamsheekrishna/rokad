@@ -66,7 +66,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
         View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
 
         RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
-        ComboPlansAdapter adapter = new ComboPlansAdapter(this::onClick, getContext());
+        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
         comboPlansList.setAdapter(adapter);
         comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -74,7 +74,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 }

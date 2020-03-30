@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
 
@@ -113,6 +114,7 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
             view.findViewById(R.id.home).setVisibility(View.GONE);
         }
         submit.setOnClickListener(this);
+        ((AppCompatImageView)view.findViewById(R.id.service_provider_img)).setImageResource(data.getImage());
         ((AppCompatTextView)view.findViewById(R.id.mobile_num)).setText(data.getMobileNumber());
         ((AppCompatTextView)view.findViewById(R.id.subscriber_name)).setText(data.getMobileOperator());
         ((AppCompatTextView)view.findViewById(R.id.state_name)).setText(data.getStateName());

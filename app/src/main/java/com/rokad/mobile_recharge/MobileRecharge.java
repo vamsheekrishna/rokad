@@ -1,17 +1,27 @@
 package com.rokad.mobile_recharge;
 
+import com.rokad.R;
+
 public class MobileRecharge {
     private String rechargeFrom = "mobile";
     private String planType = "Prepaid Mobile";
     private String service = "TSO";
-    private String preOperator = "V";
     private String mobileNumber = "9920132100";
     private String rechargeAmount ="1";
     private String userID = "338";
-    private String mobileOperator ="Vodafone";
+    private String preOperator = ""; // V
+    private String mobileOperator =""; // Vodafone
     private String rechargeType = "12";
     private String stateName = "Maharashtra Goa";
+    private int image;
 
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
 
     public String getStateName() {
         return stateName;

@@ -5,4 +5,5 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     android:src="@drawable/airtel"
-    android:id="@+id/subscriber_img"/>
+    android:id="@+id/subscriber_img"
+    android:alpha=".5"/>

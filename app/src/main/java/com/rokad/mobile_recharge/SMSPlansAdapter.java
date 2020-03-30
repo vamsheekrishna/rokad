@@ -38,7 +38,7 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 

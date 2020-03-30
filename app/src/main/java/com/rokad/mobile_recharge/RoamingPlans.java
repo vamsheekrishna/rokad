@@ -66,7 +66,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
         View view = inflater.inflate(R.layout.fragment_roaming_plans, container, false);
 
         RecyclerView roamingPlansList = view.findViewById(R.id.roaming_plans);
-        RoamingPlansAdapter adapter = new RoamingPlansAdapter(this::onClick, getContext());
+        RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
         roamingPlansList.setAdapter(adapter);
         roamingPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -74,7 +74,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 }

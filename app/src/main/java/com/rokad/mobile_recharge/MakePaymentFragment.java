@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -81,6 +82,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MobileRecharge data = mListener.getMobileRechargeModule();
+        ((AppCompatImageView)view.findViewById(R.id.service_provider_img)).setImageResource(data.getImage());
         ((AppCompatTextView)view.findViewById(R.id.mobile_num)).setText(data.getMobileNumber());
         ((AppCompatTextView)view.findViewById(R.id.subscriber_name)).setText(data.getMobileOperator());
         ((AppCompatTextView)view.findViewById(R.id.state_name)).setText(data.getStateName());

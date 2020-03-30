@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 
-public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder>{
 
     private RecyclerOnClickHandler mRecyclerOnClickHandler;
     private Context mContext;
@@ -37,10 +37,10 @@ public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlans
         return 0;
     }
 
-    @Override
+    /*@Override
     public void onClick(String chosenSubscriber) {
 
-    }
+    }*/
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 

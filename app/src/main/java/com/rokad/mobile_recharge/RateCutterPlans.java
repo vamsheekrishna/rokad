@@ -66,7 +66,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
         View view = inflater.inflate(R.layout.fragment_rate_cutter_plans, container, false);
 
         RecyclerView rateCutterPlansList = view.findViewById(R.id.rate_cutter_plans);
-        SMSPlansAdapter adapter = new SMSPlansAdapter(this::onClick, getContext());
+        SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
         rateCutterPlansList.setAdapter(adapter);
         rateCutterPlansList.setHasFixedSize(true);
         rateCutterPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,7 +75,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 }

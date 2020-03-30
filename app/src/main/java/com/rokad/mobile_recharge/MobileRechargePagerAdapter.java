@@ -30,6 +30,7 @@ public class MobileRechargePagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        getPageTitle(position);
         return fragments.get(position);
     }
 

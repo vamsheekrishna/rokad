@@ -38,7 +38,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
+    public void onClick(int chosenSubscriber) {
 
     }
 

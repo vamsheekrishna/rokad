@@ -15,11 +15,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class BaseFragment extends Fragment {
 
@@ -72,4 +70,17 @@ public class BaseFragment extends Fragment {
         return inetAddress!=null && !inetAddress.equals("");
     }
 
+    protected void showDialog(String title, String msg) {
+        AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }

@@ -16,14 +16,15 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler, AdapterView.OnItemSelectedListener {
 
+    private ArrayList<SubscriberModule> subscriberModules = new ArrayList<>();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -73,7 +74,13 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
-        SubcriberListRecyclerView listRecyclerView = new SubcriberListRecyclerView(this::onClick,getContext());
+        subscriberModules.clear();
+        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "A"));
+        subscriberModules.add(new SubscriberModule(1, R.drawable.jio, "Reliance GSM", "R"));
+        subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B"));
+        subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I"));
+
+        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(), subscriberModules);
         recyclerView.setAdapter(listRecyclerView);
 
         AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
@@ -99,9 +106,20 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.mobile_recharge_nxt_btn) {
-            mListener.getMobileRechargeModule().setMobileNumber(Objects.requireNonNull(mobileRechargeNum.getText()).toString());
-            mListener.getMobileRechargeModule().setRechargeAmount(Objects.requireNonNull(rechargeAmount.getText()).toString());
-            mListener.goToMakePaymentFragment();
+            String phone = Objects.requireNonNull(mobileRechargeNum.getText()).toString();
+            String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
+            if(null == phone || phone.length() < 10) {
+                showDialog("Sorry!!", "Please enter a valid phone number");
+            } else if(null == amount || amount.length() <= 0) {
+                showDialog("Sorry!!", "Please enter a valid amount. You can choose it from available plans.");
+            } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
+                showDialog("Sorry!!", "Please select the Operator.");
+            } else {
+                mListener.getMobileRechargeModule().setMobileNumber(phone);
+                mListener.getMobileRechargeModule().setRechargeAmount(amount);
+                mListener.goToMakePaymentFragment();
+            }
+
         } else if(view.getId() == R.id.see_plans) {
             mListener.goToSeePlansFragment();
         }
@@ -114,8 +132,16 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onClick(String chosenSubscriber) {
-        Toast.makeText(getActivity(), "onClick", Toast.LENGTH_LONG).show();
+    public void onClick(int chosenSubscriber) {
+        if(chosenSubscriber == -1) {
+            mListener.getMobileRechargeModule().setPreOperator("");
+            mListener.getMobileRechargeModule().setMobileOperator("");
+        } else {
+            subscriberModules.get(chosenSubscriber);
+            mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(chosenSubscriber).getKey());
+            mListener.getMobileRechargeModule().setImage(subscriberModules.get(chosenSubscriber).getImage());
+            mListener.getMobileRechargeModule().setMobileOperator(subscriberModules.get(chosenSubscriber).getName());
+        }
     }
 
     @Override
