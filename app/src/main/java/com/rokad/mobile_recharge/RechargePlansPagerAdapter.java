@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
 
 
-    ArrayList<BaseFragment> rechargePlansFrags;
-    ArrayList<String> fragTitles;
+    private ArrayList<BaseFragment> rechargePlansFrags;
+    private ArrayList<String> fragTitles;
 
     public RechargePlansPagerAdapter(@NonNull FragmentManager fm,int behavior) {
         super(fm,behavior);
+
         rechargePlansFrags = new ArrayList<>();
         fragTitles = new ArrayList<>();
 

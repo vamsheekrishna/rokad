@@ -10,5 +10,6 @@
     <color name="black">#000000</color>
     <color name="success">#1EEA26</color>
     <color name="fail">#F11C0C</color>
+    <color name="white">#ffffffff</color>
 
 </resources>
