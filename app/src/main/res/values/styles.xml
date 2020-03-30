@@ -44,7 +44,8 @@
         <item name="android:textSize">18sp</item>
         <item name="android:background">@drawable/partial_rounded_edges</item>
         <item name="android:textStyle">bold|normal</item>
-        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerInParent">true</item>
         <item name="android:layout_marginTop">32dp</item>
     </style>
 </resources>

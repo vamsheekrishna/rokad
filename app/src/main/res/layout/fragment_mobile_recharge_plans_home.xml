@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F4F4"
@@ -12,11 +11,12 @@
       android:id="@+id/recharge_plan_tabs"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
+      app:tabTextColor="@android:color/white"
+      app:tabSelectedTextColor="@color/colorPrimaryDark"
+      android:background="?attr/colorAccent"
       android:minHeight="?attr/actionBarSize" />
 
   <androidx.viewpager.widget.ViewPager
-      android:layout_alignParentBottom="true"
       android:id="@+id/plans_pager"
       android:layout_below="@id/recharge_plan_tabs"
       android:layout_width="match_parent"

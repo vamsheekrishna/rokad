@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:id="@+id/state_select"
             android:spinnerMode="dropdown"
             android:layout_below="@id/services_list"
@@ -64,7 +64,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
-        android:weightSum="2"
         android:layout_below="@id/state_select">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,6 +88,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="end"
+            android:layout_gravity="center"
             android:textColor="@android:color/holo_blue_dark"
             android:layout_height="wrap_content"
             android:text="@string/see_recharge_plans"/>
