@@ -1,5 +1,6 @@
 package com.rokad.authentication;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
 import com.rokad.R;
@@ -59,13 +61,23 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.button2).setOnClickListener(this);
+        view.findViewById(R.id.submit).setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-        navController.popBackStack();
-        // navController.navigate(R.id.action_registrationFragment_to_loginFragment);
+        AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        builder.setTitle("Sorry....");
+        builder.setMessage("Please wait, this feature will available soon");
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                navController.popBackStack();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
+        // navController.navigate(R.id.action_registrationFragment_to_loginFragment);
 }

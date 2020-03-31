@@ -105,16 +105,16 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
             float rechargeAmount = Float.parseFloat(rechargeText);
             float temp = balance - rechargeAmount;
             UserData.getInstance().setWalletBalance(String.valueOf(temp));
-            ((AppCompatTextView)view.findViewById(R.id.wallet_bal_amt)).setText(UserData.getInstance().getWalletBalance());
             view.findViewById(R.id.home).setOnClickListener(this);
             view.findViewById(R.id.home).setVisibility(View.VISIBLE);
         } else {
-            ((TextView)view.findViewById(R.id.status)).setText("Payment Success");
+            ((TextView)view.findViewById(R.id.status)).setText("Payment Failed");
             ((TextView)view.findViewById(R.id.status)).setTextColor(getResources().getColor(R.color.fail));
             ((ImageView)view.findViewById(R.id.status_logo)).setImageResource(R.drawable.fail);
             submit.setText("TRY AGAIN");
             view.findViewById(R.id.home).setVisibility(View.GONE);
         }
+        ((AppCompatTextView)view.findViewById(R.id.wallet_bal_amt)).setText(UserData.getInstance().getWalletBalance());
         submit.setOnClickListener(this);
         ((AppCompatImageView)view.findViewById(R.id.service_provider_img)).setImageResource(data.getImage());
         ((AppCompatTextView)view.findViewById(R.id.mobile_num)).setText(data.getMobileNumber());

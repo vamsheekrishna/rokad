@@ -6,7 +6,7 @@ public class SubscriberModule {
     private String name = "Airtel";
     private String key = "A";
     private boolean isSelected =false;
-    SubscriberModule(int _id, int _image, String _name, String _key) {
+    public SubscriberModule(int _id, int _image, String _name, String _key) {
         id = _id;
         image = _image;
         name = _name;

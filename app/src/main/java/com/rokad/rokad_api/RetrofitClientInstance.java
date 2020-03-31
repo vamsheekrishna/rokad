@@ -28,7 +28,9 @@ public class RetrofitClientInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "https://testingrokad.msrtcors.com";
 
-    private static String creds = String.format("%s:%s", "android@roadpulse.in", "api@123");
+    // private static String creds = String.format("%s:%s", "android@roadpulse.in", "api@123");
+
+    private static String creds = String.format("%s:%s", "9960703227", "Trimax@123");
     private static String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
     private static String apiKey = BuildConfig.DEBUG?"abcdefghijklmn":"abcdefghijklmn";
 

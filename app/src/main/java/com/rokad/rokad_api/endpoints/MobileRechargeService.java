@@ -1,5 +1,6 @@
 package com.rokad.rokad_api.endpoints;
 
+import com.rokad.rokad_api.endpoints.pojos.ResponseGetPlans;
 import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
 import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 
@@ -8,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
+import static com.rokad.rokad_api.endpoints.URL.GET_PLANS;
 import static com.rokad.rokad_api.endpoints.URL.LOGIN;
 import static com.rokad.rokad_api.endpoints.URL.RECHARGE;
 
@@ -24,4 +26,12 @@ public interface MobileRechargeService {
                                        @Field("user_id") String userID,
                                        @Field("mobile_operator") String mobileOperator,
                                        @Field("recharge_type") String rechargeType);
+
+    @POST(GET_PLANS)
+    @FormUrlEncoded
+    Call<ResponseGetPlans> getPlans(
+            @Field("operator") String operator,
+            @Field("cricle") String cricle,
+            @Field("service_type") String serviceType
+    );
 }

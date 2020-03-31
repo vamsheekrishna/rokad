@@ -1,6 +1,5 @@
 package com.rokad.home;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,19 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.home.dummy.DummyContent;
-import com.rokad.mobile_recharge.MobileRechargeActivity;
+import com.rokad.mobile_recharge.views.MobileRechargeActivity;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;
@@ -113,7 +110,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     private void showDialog() {
         AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setTitle("Sorry....");
-        builder.setMessage("Please wait, this feature will be available soon");
+        builder.setMessage("Please wait, this feature will available soon");
         builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

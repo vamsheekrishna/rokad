@@ -120,32 +120,43 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     private void checkLogin() {
 
-        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
-        progressBar.setCancelable(false);
-        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        progressBar.show();
+        String mobileNumber = userName.getText().toString();
+        String _password = password.getText().toString();
+        if(mobileNumber.length() != 10) {
+            showDialog("Sorry!!", "Please enter valid mobile number.");
+        } else if(_password.length() <= 4) {
+            showDialog("Sorry!!", "Please enter valid password.");
+        } else {
+            ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+            progressBar.setCancelable(false);
+            progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+            progressBar.show();
 
-        AuthenticationService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
-        Call<ResponseUser> user = getUserDataService.login(userName.getText().toString(), password.getText().toString());//("", "");
-        user.enqueue(new Callback<ResponseUser>() {
-            @Override
-            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
-                Log.d("onResponse", "onResponse: ");
-                if(response.body().getStatus().equalsIgnoreCase("success")) {
-                    List<User> users = response.body().getData();
-                    User user = users.get(0);
-                    UserData.setInstance(user);
-                    navController.navigate(R.id.action_loginFragment_to_homeActivity);
-                    getActivity().finish();
+            AuthenticationService getUserDataService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
+            Call<ResponseUser> user = getUserDataService.login(mobileNumber, _password);//("", "");
+            user.enqueue(new Callback<ResponseUser>() {
+                @Override
+                public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+                    Log.d("onResponse", "onResponse: ");
+                    if(response.body()!= null && response.body().getStatus().equalsIgnoreCase("success")) {
+                        List<User> users = response.body().getData();
+                        User user = users.get(0);
+                        UserData.setInstance(user);
+                        navController.navigate(R.id.action_loginFragment_to_homeActivity);
+                        getActivity().finish();
+                    } else {
+                        showDialog("Sorry..", "Server side error." + response.body().getMsg());
+                    }
+                    progressBar.dismiss();
                 }
-                progressBar.dismiss();
-            }
 
-            @Override
-            public void onFailure(Call<ResponseUser> call, Throwable t) {
-                Log.d("onFailure", "onFailure: ");
-                progressBar.dismiss();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseUser> call, Throwable t) {
+                    Log.d("onFailure", "onFailure: ");
+                    progressBar.dismiss();
+                    showDialog("Sorry..", t.getMessage());
+                }
+            });
+        }
     }
 }

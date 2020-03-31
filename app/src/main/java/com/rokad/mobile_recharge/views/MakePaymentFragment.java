@@ -92,6 +92,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
         ((AppCompatTextView)view.findViewById(R.id.total_amt)).setText(data.getRechargeAmount());
         ((AppCompatTextView)view.findViewById(R.id.wallet_bal_amt)).setText(UserData.getInstance().getWalletBalance());
         view.findViewById(R.id.payment_btn).setOnClickListener(this);
+        view.findViewById(R.id.money_to_wallet_btn).setOnClickListener(this);
     }
 
     private void doToRecharge() {
@@ -155,6 +156,10 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        doToRecharge();
+        if(view.getId() == R.id.payment_btn) {
+            doToRecharge();
+        } else if(view.getId() == R.id.money_to_wallet_btn) {
+            showDialog("Sorry....", "Please wait, this feature will available soon");
+        }
     }
 }

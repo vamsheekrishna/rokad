@@ -7,12 +7,12 @@ class BaseResponse {
 
     @SerializedName("status")
     @Expose
-    private String status;
+    private String status = "";
 
 
     @SerializedName("msg")
     @Expose
-    private String msg;
+    private String msg ="";
 
     public String getStatus() {
         return status;
