@@ -68,7 +68,40 @@
                 android:inputType="text"
                 android:background="@drawable/plane_rounded_edges"
                 android:id="@+id/user_name"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_number_hint"
+                android:textStyle="bold|normal"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                android:layout_marginTop="@dimen/registration_top_margin"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"/>
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center|left"
+                android:gravity="center|left"
+                android:elevation="8dp"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:digits="0123456789"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:background="@drawable/plane_rounded_edges"
+                android:id="@+id/mobile_number"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

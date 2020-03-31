@@ -24,6 +24,7 @@ import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 
@@ -100,11 +101,14 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
             ((ImageView)view.findViewById(R.id.status_logo)).setImageResource(R.drawable.success);
             submit.setText("DO ANOTHER");
             String balanceText = UserData.getInstance().getWalletBalance().replace(",","");
-            float balance = Float.parseFloat(balanceText);
+            //double balance = Double.valueOf(balanceText); //Double.parseDouble(balanceText);
+            BigDecimal balance = new BigDecimal(balanceText);
             String rechargeText =  data.getRechargeAmount();
-            float rechargeAmount = Float.parseFloat(rechargeText);
-            float temp = balance - rechargeAmount;
-            UserData.getInstance().setWalletBalance(String.valueOf(temp));
+            /*float rechargeAmount = Float.parseFloat(rechargeText);
+            double temp = balance - rechargeAmount;*/
+
+            balance = balance.subtract(new BigDecimal(rechargeText));
+            UserData.getInstance().setWalletBalance(balance.toString());
             view.findViewById(R.id.home).setOnClickListener(this);
             view.findViewById(R.id.home).setVisibility(View.VISIBLE);
         } else {

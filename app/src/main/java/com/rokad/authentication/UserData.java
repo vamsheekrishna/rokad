@@ -156,7 +156,7 @@ public class UserData {
     }
 
     public void setWalletBalance(String walletBalance) {
-        this.walletBalance = walletBalance;
+        this.walletBalance = walletBalance.replace(",","");
     }
 
     public String getFirstName() {

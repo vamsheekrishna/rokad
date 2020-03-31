@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/mobile_recharge_num"
                 android:hint="@string/mobile_number_hint"
+                android:digits="0123456789"
                 android:maxLength="10"
                 android:inputType="phone"/>
 
@@ -107,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/recharge_amount"
                     android:hint="@string/recharge_amount_txt"
-                    android:maxLength="3"
+                    android:maxLength="5"
                     android:inputType="phone"/>
 
             </com.google.android.material.textfield.TextInputLayout>
