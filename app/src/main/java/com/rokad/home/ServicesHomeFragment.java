@@ -25,7 +25,7 @@ import java.util.Objects;
 public class ServicesHomeFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView mBalance;
     private String mParam1;
     private String mParam2;
 
@@ -54,6 +54,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(getActivity()).setTitle("Services Home");
+        mBalance .setText(UserData.getInstance().getWalletBalance());
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +69,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         RecyclerView recyclerView = view.findViewById(R.id.list);
         view.findViewById(R.id.addMoney).setOnClickListener(this);
         ((TextView)view.findViewById(R.id.name)).setText(UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName());
-        ((TextView)view.findViewById(R.id.balance)).setText(UserData.getInstance().getWalletBalance());
+        mBalance = view.findViewById(R.id.balance);
         /*int mColumnCount = 3;
         if (mColumnCount <= 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

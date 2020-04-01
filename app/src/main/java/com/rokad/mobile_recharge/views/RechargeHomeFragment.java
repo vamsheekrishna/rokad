@@ -89,7 +89,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
 
-        String[] States = {"Maharastra Goa"};
+        String[] States = {"Maharashtra Goa"};
         statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,States);
         stateSelector.setAdapter(statesSpinnerAdapter);
 

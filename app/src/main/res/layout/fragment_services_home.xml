@@ -75,7 +75,9 @@
                 android:textStyle="italic"
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/wallet"
+                android:drawablePadding="2dp"/>
             <TextView
                 android:id="@+id/balance"
                 android:textColor="@color/white"
