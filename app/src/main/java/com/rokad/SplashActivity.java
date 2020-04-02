@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(UserData.isSessionExpire()) {
+                if(UserData.isSessionExpire() && null == UserData.getInstance().getFirstName()) {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, HomeActivity.class));

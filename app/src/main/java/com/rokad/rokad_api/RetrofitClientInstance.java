@@ -26,13 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://testingrokad.msrtcors.com";
-
+    // private static final String BASE_URL = "https://testingrokad.msrtcors.com";
+     //private static final String BASE_URL = "https://rokad.in";
     // private static String creds = String.format("%s:%s", "android@roadpulse.in", "api@123");
 
-    private static String creds = String.format("%s:%s", "9960703227", "Trimax@123");
+    private static String creds = String.format("%s:%s", BuildConfig.AUTH_USERNAME, BuildConfig.AUTH_PASSWORD);
     private static String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
-    private static String apiKey = BuildConfig.DEBUG?"abcdefghijklmn":"abcdefghijklmn";
+    //private static String apiKey = ;
 
     // /rest_server/rokad/login
     public static Retrofit getRetrofitInstance() {
@@ -53,7 +53,7 @@ public class RetrofitClientInstance {
                         Request request = chain.request()
                                 .newBuilder()
                                 .addHeader("Content-Type","application/x-www-form-urlencoded")
-                                .addHeader("X-API-KEY",apiKey)
+                                .addHeader("X-API-KEY",BuildConfig.API_KEY)
                                 .addHeader("Authorization", auth.replace("\n",""))
                                 .build();
                         return chain.proceed(request);
@@ -71,7 +71,7 @@ public class RetrofitClientInstance {
                 Gson gs = new GsonBuilder().setLenient().create();
 
                 retrofit = new retrofit2.Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(BuildConfig.BASE_URL)
                         .client(client)
                         .addConverterFactory(GsonConverterFactory.create(gs))
                         .build();

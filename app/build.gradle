@@ -10,10 +10,59 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String","API_KEY",'"abcdefghijklmn"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+// Specifies one flavor dimension.
+    flavorDimensions "version"
+    productFlavors {
+        staging {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            resValue "string", "app_name", "Rokad Stag"
 
+            buildConfigField("String","AUTH_USERNAME",'"9960703227"')
+            buildConfigField("String","AUTH_PASSWORD",'"Trimax@123"')
+            buildConfigField("String","BASE_URL",'"https://testingrokad.msrtcors.com"')
+
+
+            buildConfigField("String","USERNAME",'"7039191834"')
+            buildConfigField("String","PASSWORD",'"Trimax@123"')
+
+            buildConfigField("String","LOGIN",'"rest_server/rokad/login"')
+            buildConfigField("String","WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
+            buildConfigField("String","FORGOT_PASSWORD",'"rest_server/rokad/forgot_password"')
+            buildConfigField("String","RECHARGE", '"rest_server/Tsoapi/recharge/"')
+            buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
+
+
+        }
+        prod {
+            dimension "version"
+            applicationIdSuffix ".prod"
+            versionNameSuffix "-prod"
+
+            resValue "string", "app_name", "Rokad Prod"
+            buildConfigField("String","AUTH_USERNAME",'"1234567890"')
+            buildConfigField("String","AUTH_PASSWORD",'"Trimax@123"')
+            buildConfigField("String","BASE_URL",'"https://rokad.in"')
+
+            buildConfigField("String","USERNAME",'"8286506657"')
+            buildConfigField("String","PASSWORD",'"Trimax@123"')
+
+            buildConfigField("String","LOGIN",'"rest_server/rokad_andriod/login"')
+            buildConfigField("String","WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
+            buildConfigField("String","FORGOT_PASSWORD",'"rest_server/rokad/forgot_password"')
+            buildConfigField("String","RECHARGE", '"rest_server/Tsoapi/recharge/"')
+            buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
+
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

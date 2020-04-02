@@ -16,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.models.MobileRecharge;
@@ -119,21 +121,26 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onResponse(Call<ResponseMobileRecharge> call, Response<ResponseMobileRecharge> response) {
                 Log.d("onResponse", "onResponse: ");
-                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                Fragment prev = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-                DialogFragment dialogFragment;
-                if(response.body().getStatus().equalsIgnoreCase("success")) {
-                    dialogFragment = RechargeDialogFragment.newInstance(true);
+                if (response.body().getStatus().equalsIgnoreCase("Failed")) {
+                    Toast.makeText(getContext(), BuildConfig.BASE_URL +BuildConfig.RECHARGE ,Toast.LENGTH_LONG).show();
+                    showDialog(response.body().getStatus(), response.body().getMsg());
                 } else {
-                    dialogFragment = RechargeDialogFragment.newInstance(false);
+                    FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                    Fragment prev = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
+                    if (prev != null) {
+                        ft.remove(prev);
+                    }
+                    ft.addToBackStack(null);
+                    DialogFragment dialogFragment;
+                    if (response.body().getStatus().equalsIgnoreCase("success")) {
+                        dialogFragment = RechargeDialogFragment.newInstance(true);
+                    } else {
+                        dialogFragment = RechargeDialogFragment.newInstance(false);
+                    }
+                    dialogFragment.setCancelable(false);
+                    dialogFragment.show(ft, "dialog fragment");
+                    progressBar.dismiss();
                 }
-                dialogFragment.setCancelable(false);
-                dialogFragment.show(ft, "dialog fragment");
-                progressBar.dismiss();
             }
 
             @Override

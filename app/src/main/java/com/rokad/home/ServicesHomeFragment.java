@@ -18,9 +18,16 @@ import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.home.dummy.DummyContent;
 import com.rokad.mobile_recharge.views.MobileRechargeActivity;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.AuthenticationService;
+import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ServicesHomeFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -54,8 +61,36 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(getActivity()).setTitle("Services Home");
+
+        updateWalletBalance();
         mBalance .setText(UserData.getInstance().getWalletBalance());
     }
+
+    private void updateWalletBalance() {
+        AuthenticationService authenticationService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
+        Call<ResponseWalletBalance> apiResponse = authenticationService.getWalletBalance(UserData.getInstance().getId());
+        apiResponse.enqueue(new Callback<ResponseWalletBalance>() {
+            @Override
+            public void onResponse(Call<ResponseWalletBalance> call, Response<ResponseWalletBalance> response) {
+                try {
+                    if (response.body().getStatus().equals("success")) {
+                        mBalance .setText(UserData.getInstance().getWalletBalance());
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                    showDialog("Server error...", "rest_server/rokad/getAgentWalletBalance");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,7 +115,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         DummyContent.ITEMS.clear();
         DummyContent.createDummyItem(1, R.drawable.mobile, "Mobile");
-        DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
+        /*DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
         DummyContent.createDummyItem(3, R.drawable.insurance, "Insurance");
         DummyContent.createDummyItem(4, R.drawable.current_bus_booking, "Current Bus Booking");
         DummyContent.createDummyItem(5, R.drawable.air_hotel_booking, "Hotel Booking");
@@ -90,7 +125,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         DummyContent.createDummyItem(9, R.drawable.domestic_money_transfer, "Domestic Money Transfer");
         DummyContent.createDummyItem(10, R.drawable.e_paylater, "e-Pay Later");
         DummyContent.createDummyItem(11, R.drawable.electricity, "Electricity");
-        DummyContent.createDummyItem(12, R.drawable.gold_loan, "Gold Loan");
+        DummyContent.createDummyItem(12, R.drawable.gold_loan, "Gold Loan");*/
         recyclerView.setAdapter(new MyServiceRecyclerViewAdapter(DummyContent.ITEMS, this));
     }
 

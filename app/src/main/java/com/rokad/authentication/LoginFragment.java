@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 import com.rokad.rokad_api.endpoints.pojos.User;
@@ -79,6 +80,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
          loginBtn = view.findViewById(R.id.login_button);
          forgotPwd = view.findViewById(R.id.forgot_pwd);
          register = view.findViewById(R.id.register);
+
+         userName.setText(BuildConfig.USERNAME);
+         password.setText(BuildConfig.PASSWORD);
 
         return view;
     }
