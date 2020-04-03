@@ -70,6 +70,6 @@ public class MobileRechargeHistoryFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("Recharge History");
+        Objects.requireNonNull(getActivity()).setTitle("Mobile Recharge");
     }
 }

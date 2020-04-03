@@ -149,7 +149,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         navController.navigate(R.id.action_loginFragment_to_homeActivity);
                         getActivity().finish();
                     } else {
-                        showDialog("Sorry..", "Server side error." + response.body().getMsg());
+                        showDialog("Sorry..",response.body().getMsg());
                     }
                     progressBar.dismiss();
                 }
