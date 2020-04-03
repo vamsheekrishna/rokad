@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +9,7 @@
     tools:context="com.rokad.mobile_recharge.views.RechargeHomeFragment">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context="com.rokad.mobile_recharge.views.RechargeHomeFragment">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -29,16 +28,47 @@
                 android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recharge_type_group"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_below="@id/mobile_hint">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/recharge_type_prepaid"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:text="@string/prepaid_radio_btn"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"/>
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/recharge_type_postpaid"
+                android:layout_weight="1"
+                android:text="@string/postpaid_radio_btn"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"/>
+
+        </RadioGroup>
+
         <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="4dp"
-
             android:id="@+id/state_select"
             android:spinnerMode="dropdown"
-            android:layout_below="@id/mobile_hint"
+            android:layout_below="@id/recharge_type_group"
             />
         <!--<androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"

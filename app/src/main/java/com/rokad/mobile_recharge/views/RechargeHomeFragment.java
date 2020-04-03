@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,8 @@ import com.rokad.utilities.views.BaseFragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener, RecyclerOnClickHandler, AdapterView.OnItemSelectedListener {
+public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener,
+        RecyclerOnClickHandler, AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
 
     private ArrayList<SubscriberModule> subscriberModules = new ArrayList<>();
     private static final String ARG_PARAM1 = "param1";
@@ -37,6 +40,10 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private String mParam2;
     private OnMobileRechargeListener mListener;
     private ArrayAdapter<String> statesSpinnerAdapter;
+
+    private RadioGroup rechargeTypeGroup;
+     RadioButton rechargeType;
+    private String racType;
 //    private AppCompatSpinner stateSelector;
 
     public RechargeHomeFragment() {
@@ -74,6 +81,10 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recharge_home, container, false);
+
+        rechargeTypeGroup = view.findViewById(R.id.recharge_type_group);
+        rechargeTypeGroup.setOnCheckedChangeListener(this::onCheckedChanged);
+
         RecyclerView recyclerView = view.findViewById(R.id.services_list);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -107,25 +118,50 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
+    private boolean isValidMobile(String phone) {
+        return android.util.Patterns.PHONE.matcher(phone).matches();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.recharge_type_prepaid:
+                    racType = getResources().getString(R.string.prepaid_radio_btn);
+                break;
+            case R.id.recharge_type_postpaid:
+                racType = getResources().getString(R.string.postpaid_radio_btn);
+                break;
+        }
+    }
+
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.mobile_recharge_nxt_btn) {
-            String phone = Objects.requireNonNull(mobileRechargeNum.getText()).toString();
-            String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
-            if(null == phone || phone.length() < 10) {
-                showDialog("Sorry!!", "Please enter a valid phone number");
-            } else if(null == amount || amount.length() <= 0) {
-                showDialog("Sorry!!", "Please enter a valid amount. You can choose it from available plans.");
-            } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
-                showDialog("Sorry!!", "Please select the Operator.");
-            } else {
-                mListener.getMobileRechargeModule().setMobileNumber(phone);
-                mListener.getMobileRechargeModule().setRechargeAmount(amount);
-                mListener.goToMakePaymentFragment();
-            }
 
-        } else if(view.getId() == R.id.see_plans) {
-            mListener.goToSeePlansFragment();
+        int id = view.getId();
+
+        switch (id){
+            case R.id.mobile_recharge_nxt_btn:
+                String phone = Objects.requireNonNull(mobileRechargeNum.getText()).toString();
+                String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
+                if(null == phone || phone.length() < 10) {
+                    showDialog("Sorry!!", "Please enter a valid phone number");
+                } else if(null == amount || amount.length() <= 0) {
+                    showDialog("Sorry!!", "Please enter a valid amount. You can choose it from available plans.");
+                } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
+                    showDialog("Sorry!!", "Please select the Operator.");
+                } else {
+                    mListener.getMobileRechargeModule().setMobileNumber(phone);
+                    mListener.getMobileRechargeModule().setRechargeAmount(amount);
+                    mListener.getMobileRechargeModule().setRecType(racType);
+                    mListener.goToMakePaymentFragment();
+                }
+                break;
+
+            case R.id.see_plans:
+                mListener.goToSeePlansFragment();
+                break;
+            default:
+                throw new UnsupportedOperationException("Don't know where you've clicked");
         }
     }
 
@@ -158,4 +194,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }

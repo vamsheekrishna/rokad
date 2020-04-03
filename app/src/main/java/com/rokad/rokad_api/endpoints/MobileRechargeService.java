@@ -22,7 +22,7 @@ public interface MobileRechargeService {
                                        @Field("recharge_amount") String rechargeAmount,
                                        @Field("user_id") String userID,
                                        @Field("mobile_operator") String mobileOperator,
-                                       @Field("recharge_type") String rechargeType);
+                                       @Field("rec_type") String rechargeType);
 
     @POST(BuildConfig.GET_PLANS)
     @FormUrlEncoded

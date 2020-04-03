@@ -11,6 +11,16 @@ public class MobileRecharge {
     private String mobileOperator =""; // Vodafone
     private String rechargeType = "12";
     private String stateName = "Maharashtra Goa";
+
+    public String getRecType() {
+        return recType;
+    }
+
+    public void setRecType(String recType) {
+        this.recType = recType;
+    }
+
+    private String recType = "Prepaid";
     private int image;
 
     public int getImage() {

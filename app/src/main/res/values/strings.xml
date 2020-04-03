@@ -33,4 +33,6 @@
     <string name="try_again">Try Again</string>
     <string name="rs">/-</string>
     <string name="new_registration">New Registration</string>
+    <string name="prepaid_radio_btn">Prepaid</string>
+    <string name="postpaid_radio_btn">Postpaid</string>
 </resources>
