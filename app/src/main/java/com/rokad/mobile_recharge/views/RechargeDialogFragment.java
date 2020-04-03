@@ -28,17 +28,21 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 
+
 public class RechargeDialogFragment extends DialogFragment implements View.OnClickListener {
 
     public static final String IS_SUCCESS = "is success";
+    private static final String TRANSACTION = "transaction";
     private OnMobileRechargeListener mListener;
     private boolean mStatus;
+    private String transactionID;
 
-    public static RechargeDialogFragment newInstance(boolean isSuccess) {
+    public static RechargeDialogFragment newInstance(boolean isSuccess, String transactionID) {
 
         RechargeDialogFragment fragment = new RechargeDialogFragment();
         Bundle args = new Bundle();
         args.putBoolean(IS_SUCCESS, isSuccess);
+        args.putString(TRANSACTION, transactionID);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,6 +72,9 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
         super.onCreate(savedInstanceState);
 
         mStatus = getArguments().getBoolean(IS_SUCCESS);
+        if(mStatus) {
+            transactionID = getArguments().getString(TRANSACTION);
+        }
     }
 
     @Override

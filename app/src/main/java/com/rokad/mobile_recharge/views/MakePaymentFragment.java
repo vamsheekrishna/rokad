@@ -133,9 +133,9 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                     ft.addToBackStack(null);
                     DialogFragment dialogFragment;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
-                        dialogFragment = RechargeDialogFragment.newInstance(true);
+                        dialogFragment = RechargeDialogFragment.newInstance(true, "");
                     } else {
-                        dialogFragment = RechargeDialogFragment.newInstance(false);
+                        dialogFragment = RechargeDialogFragment.newInstance(false, "");
                     }
                     dialogFragment.setCancelable(false);
                     dialogFragment.show(ft, "dialog fragment");
@@ -152,7 +152,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                     ft.remove(prev);
                 }
                 ft.addToBackStack(null);
-                DialogFragment dialogFragment = RechargeDialogFragment.newInstance(false);
+                DialogFragment dialogFragment = RechargeDialogFragment.newInstance(false, "");
                 dialogFragment.setCancelable(false);
                 dialogFragment.show(getChildFragmentManager(), "dialog fragment");
 

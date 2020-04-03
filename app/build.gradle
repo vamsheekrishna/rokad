@@ -56,8 +56,8 @@ android {
             buildConfigField("String","PASSWORD",'"Trimax@123"')
 
             buildConfigField("String","LOGIN",'"rest_server/rokad_andriod/login"')
-            buildConfigField("String","WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
-            buildConfigField("String","FORGOT_PASSWORD",'"rest_server/rokad/forgot_password"')
+            buildConfigField("String","WALLET_BALANCE", '"rest_server/rokad_andriod/getAgentWalletBalance"')
+            buildConfigField("String","FORGOT_PASSWORD",'"rest_server/rokad_andriod/forgot_password"')
             buildConfigField("String","RECHARGE", '"rest_server/Tsoapi/recharge/"')
             buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
 
