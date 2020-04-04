@@ -22,7 +22,10 @@ public interface MobileRechargeService {
                                        @Field("recharge_amount") String rechargeAmount,
                                        @Field("user_id") String userID,
                                        @Field("mobile_operator") String mobileOperator,
-                                       @Field("rec_type") String rechargeType);
+                                       @Field("rec_type") String rechargeType,
+                                          @Field("recharge_type") String recTypeParam, //TODO: pass 0 for topup and 1 for any chosen plan
+                                          @Field("mobileapp") String mobileApp,
+                                          @Field("mobileversionid") String mobileVersionID);
 
     @POST(BuildConfig.GET_PLANS)
     @FormUrlEncoded

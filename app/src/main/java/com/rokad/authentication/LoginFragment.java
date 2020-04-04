@@ -92,13 +92,27 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         super.onResume();
         Objects.requireNonNull(getActivity()).setTitle("Login");
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+
         view.findViewById(R.id.login_button).setOnClickListener(this);
         view.findViewById(R.id.forgot_pwd).setOnClickListener(this);
         view.findViewById(R.id.register).setOnClickListener(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (userName.getText().toString() != null || !userName.getText().toString().isEmpty()){
+            outState.putString("userName",userName.getText().toString());
+        }
+
+        if (password.getText().toString() != null || !password.getText().toString().isEmpty()){
+            outState.putString("userName",password.getText().toString());
+        }
     }
 
     @Override

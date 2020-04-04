@@ -115,8 +115,10 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 data.getRechargeAmount(),
                 data.getUserID(),
                 data.getMobileOperator(),
-                data.getRecType()
-        );//("", "");
+                data.getRecType(),
+                data.getRechargeType(),
+                data.getMobileApp(),
+                data.getMobileAppVersionId());
         user.enqueue(new Callback<ResponseMobileRecharge>() {
             @Override
             public void onResponse(Call<ResponseMobileRecharge> call, Response<ResponseMobileRecharge> response) {

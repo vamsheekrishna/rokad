@@ -30,6 +30,8 @@ android {
             buildConfigField("String","AUTH_PASSWORD",'"Trimax@123"')
             buildConfigField("String","BASE_URL",'"https://testingrokad.msrtcors.com"')
 
+            buildConfigField("String", "MOBILE_APPLICATION","\"Y\"")
+            buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
 
             buildConfigField("String","USERNAME",'"7039191834"')
             buildConfigField("String","PASSWORD",'"Trimax@123"')
@@ -50,7 +52,10 @@ android {
             resValue "string", "app_name", "Rokad Prod"
             buildConfigField("String","AUTH_USERNAME",'"1234567890"')
             buildConfigField("String","AUTH_PASSWORD",'"Trimax@123"')
-            buildConfigField("String","BASE_URL",'"https://rokad.in"')
+            buildConfigField("String","BASE_URL",'"https://rokad.in/"')
+
+            buildConfigField("String", "MOBILE_APPLICATION","\"Y\"")
+            buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
 
             buildConfigField("String","USERNAME",'"8286506657"')
             buildConfigField("String","PASSWORD",'"Trimax@123"')

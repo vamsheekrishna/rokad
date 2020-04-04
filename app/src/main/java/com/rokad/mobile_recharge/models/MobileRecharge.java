@@ -1,16 +1,37 @@
 package com.rokad.mobile_recharge.models;
 
+import com.rokad.BuildConfig;
+
 public class MobileRecharge {
     private String rechargeFrom = "mobile";
     private String planType = "Prepaid Mobile";
     private String service = "TSO";
     private String mobileNumber = "9920132100";
     private String rechargeAmount ="1";
-    private String userID = "338";
+    private String userID = "462";
     private String preOperator = ""; // V
     private String mobileOperator =""; // Vodafone
-    private String rechargeType = "12";
+    private String rechargeType = "0"; //TODO: pass 0 for topup and 1 for any chosen plan
     private String stateName = "Maharashtra Goa";
+
+    public String getMobileAppVersionId() {
+        return mobileAppVersionId;
+    }
+
+    public void setMobileAppVersionId(String mobileAppVersionId) {
+        this.mobileAppVersionId = mobileAppVersionId;
+    }
+
+    public String getMobileApp() {
+        return mobileApp;
+    }
+
+    public void setMobileApp(String mobileApp) {
+        this.mobileApp = mobileApp;
+    }
+
+    private String mobileAppVersionId = BuildConfig.MOBILE_VERSION_ID;
+    private String mobileApp = BuildConfig.MOBILE_APPLICATION;
 
     public String getRecType() {
         return recType;
