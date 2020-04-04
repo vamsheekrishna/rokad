@@ -126,6 +126,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 if (response.body().getStatus().equalsIgnoreCase("Failed")) {
                     Toast.makeText(getContext(), BuildConfig.BASE_URL +BuildConfig.RECHARGE ,Toast.LENGTH_LONG).show();
                     showDialog(response.body().getStatus(), response.body().getMsg());
+                    progressBar.dismiss();
                 } else {
                     FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                     Fragment prev = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
@@ -157,7 +158,6 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 DialogFragment dialogFragment = RechargeDialogFragment.newInstance(false, "");
                 dialogFragment.setCancelable(false);
                 dialogFragment.show(getChildFragmentManager(), "dialog fragment");
-
                 progressBar.dismiss();
             }
         });

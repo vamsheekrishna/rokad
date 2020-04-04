@@ -24,6 +24,7 @@ import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AuthenticationService;
+import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.List;
@@ -140,8 +141,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
         String mobileNumber = userName.getText().toString();
         String _password = password.getText().toString();
-        if(mobileNumber.length() != 10) {
-            showDialog("Sorry!!", "Please enter valid mobile number.");
+        if(!Utils.isValidMobile(mobileNumber)) {
+            showDialog("Sorry!!", "Please enter valid phone number.");
         } else if(_password.length() <= 4) {
             showDialog("Sorry!!", "Please enter valid password.");
         } else {

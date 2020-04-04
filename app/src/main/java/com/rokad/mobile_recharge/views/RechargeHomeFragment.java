@@ -28,8 +28,10 @@ import com.rokad.utilities.views.BaseFragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.rokad.utilities.Utils.isValidMobile;
+
 public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener,
-        RecyclerOnClickHandler, AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, View.OnFocusChangeListener{
+        RecyclerOnClickHandler, AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener{
 
     private ArrayList<SubscriberModule> subscriberModules = new ArrayList<>();
     private static final String ARG_PARAM1 = "param1";
@@ -117,22 +119,10 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         view.findViewById(R.id.mobile_recharge_nxt_btn).setOnClickListener(this);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setOnFocusChangeListener(this::onFocusChange);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
-    private boolean isValidMobile(String phone) {
-        if ((phone != null &&  !phone.isEmpty())
-                &&
-        (Integer.parseInt(String.valueOf(phone.charAt(0))) > 5 && Integer.parseInt(String.valueOf(phone.charAt(0))) < 10))
-         {
-            return android.util.Patterns.PHONE.matcher(phone).matches();
-        }
-        else {
-            showDialog("Sorry!!","Please enter a valid mobile number");
-        }
-        return false;
-    }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -155,7 +145,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             case R.id.mobile_recharge_nxt_btn:
                 String phone = Objects.requireNonNull(mobileRechargeNum.getText()).toString();
                 String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
-                if(null == phone || phone.length() < 10) {
+                if(!isValidMobile(phone)) {
                     showDialog("Sorry!!", "Please enter a valid phone number");
                 } else if(null == amount || amount.length() <= 0) {
                     showDialog("Sorry!!", "Please enter a valid amount. You can choose it from available plans.");
@@ -164,7 +154,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
                     showDialog("Sorry!!", "Please check if your recharge type is Prepaid or Postpaid");
                 }
-                else if (perfectMobileNumer){
+                else {
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
@@ -210,19 +200,5 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
     }
 
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        int id = v.getId();
-
-        switch (id){
-            case R.id.mobile_recharge_num:
-                if (!hasFocus){
-                    String phone = mobileRechargeNum.getText().toString();
-                    perfectMobileNumer = isValidMobile(phone);
-                }
-            break;
-        }
-    }
 
 }
