@@ -19,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import static com.rokad.utilities.Utils.internetConnectionAvailable;
+
 public class BaseFragment extends Fragment {
 
     protected NavController navController;
@@ -49,26 +51,7 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    private boolean internetConnectionAvailable() {
-        InetAddress inetAddress = null;
-        try {
-            Future<InetAddress> future = Executors.newSingleThreadExecutor().submit(new Callable<InetAddress>() {
-                @Override
-                public InetAddress call() {
-                    try {
-                        return InetAddress.getByName("google.com");
-                    } catch (UnknownHostException e) {
-                        return null;
-                    }
-                }
-            });
-            inetAddress = future.get(3000, TimeUnit.MILLISECONDS);
-            future.cancel(true);
-        } catch (Exception e) {
-            Log.d("Exception", "Exception: " + e.getMessage());
-        }
-        return inetAddress!=null && !inetAddress.equals("");
-    }
+
 
     protected void showDialog(String title, String msg) {
         AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));

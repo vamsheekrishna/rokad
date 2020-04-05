@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.authentication.LoginActivity;
 import com.rokad.authentication.UserData;
 import com.rokad.home.dummy.DummyContent;
 import com.rokad.mobile_recharge.views.MobileRechargeActivity;
@@ -64,7 +65,12 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         Objects.requireNonNull(getActivity()).setTitle("Services Home");
 
         updateWalletBalance();
-        mBalance .setText(UserData.getInstance().getWalletBalance());
+        String walletBalance = UserData.getInstance().getWalletBalance();
+
+        if (walletBalance != null)
+        mBalance .setText(walletBalance);
+        else
+            startActivity(new Intent(getContext(), LoginActivity.class));
     }
 
     private void updateWalletBalance() {
@@ -75,7 +81,13 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
             public void onResponse(Call<ResponseWalletBalance> call, Response<ResponseWalletBalance> response) {
                 try {
                     if (response.body().getStatus().equals("success")) {
-                        mBalance .setText(UserData.getInstance().getWalletBalance());
+                        String walletBalance = UserData.getInstance().getWalletBalance();
+                        if (walletBalance != null) {
+                            mBalance.setText(walletBalance);
+                        }
+                        else {
+                           startActivity(new Intent(getContext(), LoginActivity.class));
+                        }
                     } else {
 
                     }
@@ -105,7 +117,15 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
         view.findViewById(R.id.addMoney).setOnClickListener(this);
-        ((TextView)view.findViewById(R.id.name)).setText(UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName());
+
+        String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
+
+        if (!usrName.isEmpty() || usrName != null)
+        ((TextView)view.findViewById(R.id.name)).setText(usrName);
+        else
+            startActivity(new Intent(getContext(),LoginActivity.class));
+
+        
         mBalance = view.findViewById(R.id.balance);
         /*int mColumnCount = 3;
         if (mColumnCount <= 1) {

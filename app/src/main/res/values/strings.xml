@@ -1,38 +1,63 @@
 <resources>
-<!--    <string name="app_name">Rokad</string>-->
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hello This is a Blank Fragment</string>
+
+<!--    Splash Screen Module Strings -->
+    <string name="site_link">www.rokad.in</string>
+
+
+<!--    Side Navigation Panel Strings -->
     <string name="Open">Open</string>
     <string name="Close">Close</string>
-    <string name="site_link">www.rokad.in</string>
+    <string name="sign_out_nav_panel_str">Sign Out</string>
+
+
+<!--    Login Screen Strings  -->
     <string name="mobile_number_hint">Mobile Number</string>
     <string name="password_hint">Password</string>
     <string name="login_text">Login</string>
     <string name="forgot_password_text">Forgot Password?</string>
     <string name="don_t_have_an_account">Don\'t Have an Account?</string>
     <string name="Register">Register</string>
-    <string name="service_provider_header">Select Service Provider</string>
-    <string name="select_state_hint">Select State</string>
-    <string name="mobile_recharge_amount">Enter Amount</string>
-    <string name="see_recharge_plans">See Plans</string>
-    <string name="next">next</string>
-    <string name="new_recharge_header">New Recharge</string>
+
+
+<!--    Forgot Password Module Strings  -->
     <string name="forgot_ped_email_id">Enter the Email Address Associated with your Account</string>
     <string name="we_will_email_you_a_link_to_reset_your_password">We will email you a link to reset your password</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="reset_pwd_btn">Reset Password</string>
+
+
+
+<!--    Services Home Screen Strings  -->
+    <string name="balance">Balance :</string>
+    <string name="hello">Hello:</string>
+    <string name="add_to">Add to</string>
+    <string name="rs">/-</string>
+
+
+
+<!--    Mobile Recharge Module Strings -->
+    <string name="new_registration">New Registration</string>
+    <string name="prepaid_radio_btn">Prepaid Mobile</string>
+    <string name="postpaid_radio_btn">Postpaid Mobile</string>
     <string name="repeat_transaction_recharge">Repeat Transaction</string>
-    <string name="rokad_wallet_balance_text">Rokad Wallet Balance :</string>
-    <string name="make_payment_btn">Make Payment</string>
-    <string name="add_money_to_the_wallet_btn">Add Money to the Wallet</string>
     <string name="recharge_amount_txt">Recharge Amount</string>
     <string name="service_charge_txt">Service Charge</string>
     <string name="gst_on_service_charge">Gst on Service Charge</string>
     <string name="total_amount_txt">Total Amount</string>
+    <string name="see_recharge_plans">See Plans</string>
+    <string name="new_recharge_header">New Recharge</string>
+    <string name="next">next</string>
+    <string name="select_state_hint">Select State</string>
+    <string name="mobile_recharge_amount">Enter Amount</string>
+    <string name="add_money_to_the_wallet_btn">Add Money to the Wallet</string>
+    <string name="service_provider_header">Select Service Provider</string>
+    <string name="rokad_wallet_balance_text">Rokad Wallet Balance :</string>
+    <string name="make_payment_btn">Make Payment</string>
     <string name="try_again">Try Again</string>
-    <string name="rs">/-</string>
-    <string name="new_registration">New Registration</string>
-    <string name="prepaid_radio_btn">Prepaid Mobile</string>
-    <string name="postpaid_radio_btn">Postpaid Mobile</string>
+    <string name="app_version">App ver 1.0</string>
+
+
+
 </resources>
