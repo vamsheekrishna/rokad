@@ -149,12 +149,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
                 if(!isValidMobile(phone)) {
                     showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
-                } else if(amount.isEmpty() || !(Integer.parseInt(amount) < 1)) {
-                    showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
+                }else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
+                    showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
                 } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
                     showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
-                } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
-                    showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
+                } else if(amount.isEmpty() || Integer.parseInt(amount) <= 9) {
+                    showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
                 }
                 else {
                     mListener.getMobileRechargeModule().setMobileNumber(phone);

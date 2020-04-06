@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.rokad"
+        buildConfigField("String","USERNAME",'""')
+        buildConfigField("String","PASSWORD",'""')
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -33,8 +35,8 @@ android {
             buildConfigField("String", "MOBILE_APPLICATION","\"Y\"")
             buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
 
-            buildConfigField("String","USERNAME",'"7039191834"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')
+            /*buildConfigField("String","USERNAME",'"7039191834"')
+            buildConfigField("String","PASSWORD",'"Trimax@123"')*/
 
             buildConfigField("String","LOGIN",'"rest_server/rokad/login"')
             buildConfigField("String","WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
@@ -54,8 +56,8 @@ android {
             buildConfigField("String","AUTH_PASSWORD",'"Trimax@123"')
             buildConfigField("String","BASE_URL",'"https://rokad.in/"')
 
-            buildConfigField("String", "MOBILE_APPLICATION","\"Y\"")
-            buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
+            buildConfigField("String", "MOBILE_APPLICATION",'"Y"')
+            buildConfigField("String", "MOBILE_VERSION_ID", '"1.0"')
 
             buildConfigField("String","USERNAME",'"8286506657"')
             buildConfigField("String","PASSWORD",'"Trimax@123"')
