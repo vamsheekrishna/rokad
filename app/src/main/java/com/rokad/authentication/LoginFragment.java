@@ -142,9 +142,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             String mobileNumber = userName.getText().toString();
             String _password = password.getText().toString();
             if (!Utils.isValidMobile(mobileNumber)) {
-                showDialog("Sorry!!", "Please enter valid phone number.");
+                showDialog("Sorry!!", getString(R.string.invalid_mobile_number_alert));
             } else if (_password.length() <= 4) {
-                showDialog("Sorry!!", "Please enter valid password.");
+                showDialog("Sorry!!", getString(R.string.invalid_password_alert));
             } else {
                 ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
                 progressBar.setCancelable(false);
@@ -156,7 +156,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 user.enqueue(new Callback<ResponseUser>() {
                     @Override
                     public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
-                        Log.d("onResponse", "onResponse: ");
+                        Log.d("onResponse", "onResponse: Login Fragment");
                         if (response.body() != null && response.body().getStatus().equalsIgnoreCase("success")) {
                             List<User> users = response.body().getData();
                             User user = users.get(0);
@@ -171,15 +171,15 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onFailure(Call<ResponseUser> call, Throwable t) {
-                        Log.d("onFailure", "onFailure: ");
+                        Log.d("onFailure", "onFailure: Login Fragment ");
                         progressBar.dismiss();
-                        showDialog("Sorry..", t.getMessage());
+                        showDialog("Sorry..", getString(R.string.internet_failed_login_case));
                     }
                 });
 
             }
         } else {
-            showDialog("Sorry!!", "Please check your Internet Connection.");
+            showDialog("Sorry!!", getString(R.string.internet_check));
         }
     }
 }

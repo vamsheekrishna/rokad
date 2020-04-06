@@ -92,7 +92,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
                     }
                 } catch (Exception e) {
-                    showDialog("Server error...", "rest_server/rokad/getAgentWalletBalance");
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
                 }
 
             }
@@ -100,6 +100,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
             @Override
             public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
 
+                showDialog("Sorry..!!", getString(R.string.server_failed_case));
                 Log.e("===D"," errorrr");
             }
         });
@@ -125,7 +126,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         else
             startActivity(new Intent(getContext(),LoginActivity.class));
 
-        
+
         mBalance = view.findViewById(R.id.balance);
         /*int mColumnCount = 3;
         if (mColumnCount <= 1) {
@@ -168,10 +169,11 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     private void showDialog() {
         AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setTitle("Sorry....");
-        builder.setMessage("Please wait, this feature will available soon");
+        builder.setMessage(R.string.feature_availability_msg);
         builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
         AlertDialog alertDialog = builder.create();

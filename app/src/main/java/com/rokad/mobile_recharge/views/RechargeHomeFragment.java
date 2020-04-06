@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
@@ -108,7 +109,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,States);
         stateSelector.setAdapter(statesSpinnerAdapter);
 
-        stateSelector.setPrompt("Select State");
+        stateSelector.setPrompt(getString(R.string.select_state_prompt));
         stateSelector.setOnItemSelectedListener(this);
         return view;
     }
@@ -119,6 +120,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         view.findViewById(R.id.mobile_recharge_nxt_btn).setOnClickListener(this);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -146,13 +148,13 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 String phone = Objects.requireNonNull(mobileRechargeNum.getText()).toString();
                 String amount = Objects.requireNonNull(rechargeAmount.getText()).toString();
                 if(!isValidMobile(phone)) {
-                    showDialog("Sorry!!", "Please enter a valid phone number");
-                } else if(null == amount || amount.length() <= 0) {
-                    showDialog("Sorry!!", "Please enter a valid amount. You can choose it from available plans.");
+                    showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
+                } else if(amount.isEmpty() || !(Integer.parseInt(amount) < 1)) {
+                    showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
                 } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
-                    showDialog("Sorry!!", "Please select the Operator.");
+                    showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
                 } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
-                    showDialog("Sorry!!", "Please check if your recharge type is Prepaid or Postpaid");
+                    showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
                 }
                 else {
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
@@ -192,7 +194,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(getContext(),"Selected State : " + statesSpinnerAdapter.getItem(position),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),"Selected State : " + statesSpinnerAdapter.getItem(position),Toast.LENGTH_SHORT).show();
     }
 
     @Override
