@@ -95,7 +95,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         recyclerView.setLayoutManager(manager);
         subscriberModules.clear();
         subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "A"));
-        subscriberModules.add(new SubscriberModule(1, R.drawable.jio, "Reliance GSM", "R"));
+        subscriberModules.add(new SubscriberModule(1, R.drawable.jio, "Reliance GSM", "RG"));
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B"));
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I"));
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V"));
