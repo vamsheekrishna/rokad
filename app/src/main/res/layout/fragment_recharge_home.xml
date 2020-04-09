@@ -154,7 +154,7 @@
                     android:id="@+id/recharge_amount"
                     android:hint="@string/recharge_amount_txt"
                     android:maxLength="5"
-                    android:inputType="phone"/>
+                    android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

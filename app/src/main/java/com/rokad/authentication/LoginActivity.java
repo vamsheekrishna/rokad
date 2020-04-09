@@ -1,5 +1,6 @@
 package com.rokad.authentication;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.viewpager.widget.ViewPager;
@@ -14,5 +15,15 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
+        } else {
+            finish();
+        }
     }
 }

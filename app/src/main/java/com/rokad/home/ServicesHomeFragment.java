@@ -154,12 +154,15 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+
         if (view.getId() == R.id.addMoney) {
             showDialog();
         } else {
             DummyContent.DummyItem mItem = (DummyContent.DummyItem) view.getTag();
+            Intent intent = new Intent(getActivity(), MobileRechargeActivity.class);
             if(mItem.id == 1) {
-                startActivity(new Intent(getActivity(), MobileRechargeActivity.class));
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             } else {
                 showDialog();
             }
