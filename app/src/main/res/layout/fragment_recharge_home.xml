@@ -90,7 +90,21 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/subscriber_list_item"
             android:layout_below="@id/state_select"
+            android:visibility="gone"
             android:id="@+id/services_list"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/no_service_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/state_select"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:text="@string/recharge_type_msg"
+            android:textSize="22sp" />
 
         <LinearLayout
             android:id="@+id/amount"
@@ -100,6 +114,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:weightSum="4"
+            android:visibility="invisible"
             android:layout_below="@id/services_list">
             <!--<EditText
                 android:layout_width="0dp"
@@ -160,6 +175,7 @@
             android:layout_below="@id/amount"
             android:layout_marginTop="40dp"
             android:text="@string/next"
+            android:visibility="gone"
             style="@style/submit_button"/>
 
     </RelativeLayout>

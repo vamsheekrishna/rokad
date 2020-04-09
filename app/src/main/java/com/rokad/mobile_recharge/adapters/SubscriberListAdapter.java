@@ -35,6 +35,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
         subscriberImgs.add(R.drawable.idea);*/
     }
 
+
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,6 +43,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
         ListViewHolder listViewHolder = new ListViewHolder(view);
         return listViewHolder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
