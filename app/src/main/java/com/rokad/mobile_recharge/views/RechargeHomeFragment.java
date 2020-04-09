@@ -1,6 +1,7 @@
 package com.rokad.mobile_recharge.views;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -115,13 +117,16 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
 
-        
+
         statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,
                 getResources().getStringArray(R.array.states));
         stateSelector.setAdapter(statesSpinnerAdapter);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            stateSelector.setDefaultFocusHighlightEnabled(true);
+        }
         stateSelector.setPrompt(getString(R.string.select_state_prompt));
         stateSelector.setOnItemSelectedListener(this);
+
         return view;
     }
 
@@ -254,12 +259,17 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-//        Toast.makeText(getContext(),"Selected State : " + statesSpinnerAdapter.getItem(position),Toast.LENGTH_SHORT).show();
+        if (position != 0) {
+            mListener.getMobileRechargeModule().setStateName(statesSpinnerAdapter.getItem(position));
+        } else {
+
+            showDialog("Sorry!!", "Please select your State");
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        showDialog("Sorry!!", "Please select your State");
     }
 
     public String getActiveFragment() {

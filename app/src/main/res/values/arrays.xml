@@ -2,6 +2,7 @@
 <resources>
 
     <string-array name="states">
+        <item>Please Select Your State</item>
         <item>Andhra Pradesh Telangana</item>
         <item>Assam</item>
         <item>Bihar Jharkhand</item>
