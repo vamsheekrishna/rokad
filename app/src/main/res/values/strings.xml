@@ -68,8 +68,8 @@
     <string name="valid_recharge_amt_check_msg">Please enter a valid amount minimum of 10/- rs. You can choose it from available plans.</string>
     <string name="mobile_operator_check_msg">Please select the Operator.</string>
     <string name="recharge_type_chk_msg">Please select Prepaid or Postpaid</string>
-    <string name="select_state_prompt">Select State</string>
     <string name="recharge_type_msg">Please choose Prepaid or Postpaid Recharge Type..!!</string>
+    <string name="spinner_prompt">Please Select Your State</string>
 
 
 </resources>

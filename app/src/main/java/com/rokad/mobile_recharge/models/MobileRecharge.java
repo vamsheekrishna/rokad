@@ -12,7 +12,7 @@ public class MobileRecharge {
     private String preOperator = ""; // V
     private String mobileOperator =""; // Vodafone
     private String rechargeType = "0"; //TODO: pass 0 for topup and 1 for any chosen plan
-    private String stateName = "Maharashtra Goa";
+    private String stateName;
 
     public String getMobileAppVersionId() {
         return mobileAppVersionId;

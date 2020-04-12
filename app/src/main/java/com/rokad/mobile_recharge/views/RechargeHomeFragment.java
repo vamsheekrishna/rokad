@@ -1,6 +1,7 @@
 package com.rokad.mobile_recharge.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ import java.util.Objects;
 import static com.rokad.utilities.Utils.isValidMobile;
 
 public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener,
-        RecyclerOnClickHandler, AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener{
+        RecyclerOnClickHandler, RadioGroup.OnCheckedChangeListener{
 
     private ArrayList<SubscriberModule> subscriberModules = new ArrayList<>();
     private static final String ARG_PARAM1 = "param1";
@@ -56,6 +57,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private AppCompatTextView noServiceTxtView;
     private LinearLayout amountLayout;
     private AppCompatButton nxtBtn;
+    private AppCompatSpinner stateSelector;
 //    private AppCompatSpinner stateSelector;
 
     public RechargeHomeFragment() {
@@ -104,29 +106,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
         subscriberModules.clear();
-//        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE", "Airtel BILL", "AB"));
-//        subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG", "Reliance BILL", "RB"));
-//        subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B", "BSNL BILL", "BB"));
-//        subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I", "Idea BILL", "IB"));
-//        subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V", "Vodafone BILL", "VB"));
-//        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JIO","JOE",null,null));
-//        subscriberModules.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",null,null));
-//        subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI", null, null));
-//        subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI", null, null));
 
-
-        AppCompatSpinner stateSelector = view.findViewById(R.id.state_select);
-
-
-        statesSpinnerAdapter = new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,
-                getResources().getStringArray(R.array.states));
-        stateSelector.setAdapter(statesSpinnerAdapter);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stateSelector.setDefaultFocusHighlightEnabled(true);
-        }
-        stateSelector.setPrompt(getString(R.string.select_state_prompt));
-        stateSelector.setOnItemSelectedListener(this);
-
+         stateSelector = view.findViewById(R.id.state_select);
         return view;
     }
 
@@ -182,7 +163,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
+//        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -217,6 +198,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
                 } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
                     showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
+                } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))){
+                    showDialog("Sorry!!", getString(R.string.spinner_prompt));
                 } else if(amount.isEmpty() || Integer.parseInt(amount) <= 9) {
                     showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
                 }
@@ -224,6 +207,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
+                    mListener.getMobileRechargeModule().setStateName(String.valueOf(stateSelector.getSelectedItem()));
                     mListener.goToMakePaymentFragment();
                 }
                 break;
@@ -254,35 +238,4 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             mListener.getMobileRechargeModule().setMobileOperator(subscriberModules.get(chosenSubscriber).getName());
         }
     }
-
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        if (position != 0) {
-            mListener.getMobileRechargeModule().setStateName(statesSpinnerAdapter.getItem(position));
-        } else {
-
-            showDialog("Sorry!!", "Please select your State");
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        showDialog("Sorry!!", "Please select your State");
-    }
-
-    public String getActiveFragment() {
-
-        if (getChildFragmentManager().getBackStackEntryCount() == 0) {
-            return null;
-        }
-
-        String tag = getChildFragmentManager()
-                .getBackStackEntryAt(getChildFragmentManager().getBackStackEntryCount() - 1)
-                .getName();
-
-        return tag;
-    }
-
 }
