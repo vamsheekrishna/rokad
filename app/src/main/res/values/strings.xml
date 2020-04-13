@@ -1,23 +1,23 @@
 <resources>
 
-<!--    Utility Strings -->
+    <!--    Utility Strings -->
     <string name="hello_blank_fragment">Hello This is a Blank Fragment</string>
     <string name="internet_failed_login_case">Please recheck your credentials entered, your stable internet connection and try again</string>
     <string name="server_failed_case"> Looks like something has gone wrong. Please try logging back in sometime.</string>
     <string name="internet_check">Please check your Internet Connection.</string>
     <string name="feature_availability_msg">Please wait, this feature will available soon</string>
 
-<!--    Splash Screen Module Strings -->
+    <!--    Splash Screen Module Strings -->
     <string name="site_link">www.rokad.in</string>
 
 
-<!--    Side Navigation Panel Strings -->
+    <!--    Side Navigation Panel Strings -->
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="sign_out_nav_panel_str">Sign Out</string>
 
 
-<!--    Login Screen Strings  -->
+    <!--    Login Screen Strings  -->
     <string name="mobile_number_hint">Mobile Number</string>
     <string name="password_hint">Password</string>
     <string name="login_text">Login</string>
@@ -27,23 +27,21 @@
     <string name="invalid_password_alert">Please enter valid password.</string>
 
 
-<!--    Forgot Password Module Strings  -->
+    <!--    Forgot Password Module Strings  -->
     <string name="forgot_ped_email_id">Enter the Email Address Associated with your Account</string>
     <string name="we_will_email_you_a_link_to_reset_your_password">We will email you a link to reset your password</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="reset_pwd_btn">Reset Password</string>
 
 
-
-<!--    Services Home Screen Strings  -->
+    <!--    Services Home Screen Strings  -->
     <string name="balance">Balance :</string>
     <string name="hello">Hello:</string>
     <string name="add_to">Add to</string>
     <string name="rs">/-</string>
 
 
-
-<!--    Mobile Recharge Module Strings -->
+    <!--    Mobile Recharge Module Strings -->
     <string name="new_registration">New Registration</string>
     <string name="prepaid_radio_btn">Prepaid Mobile</string>
     <string name="postpaid_radio_btn">Postpaid Mobile</string>

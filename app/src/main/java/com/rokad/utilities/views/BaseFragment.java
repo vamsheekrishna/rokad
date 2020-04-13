@@ -40,7 +40,8 @@ public class BaseFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        System.exit(0);
+                        getActivity().onBackPressed();
+                        // System.exit(0);
                     }
                 });
                 AlertDialog alertDialog = builder.create();

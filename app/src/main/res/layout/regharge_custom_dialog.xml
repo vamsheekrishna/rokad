@@ -77,34 +77,23 @@
                     android:layout_marginTop="16dp"
                     android:text="+91 76488659636"
                     android:textSize="18sp"/>
-
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
+                    android:id="@+id/subscriber_name"
+                    android:text="Vodafone"
+                    android:layout_marginEnd="12dp"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/subscriber_name"
-                        android:text="Vodafone"
-                        android:layout_marginEnd="12dp"
-                        android:textSize="18sp"
-                        android:layout_marginRight="12dp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_weight="3"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/state_name"
-                        android:text="Telangana"
-                        android:textSize="18sp"
-                        android:layout_marginRight="12dp" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/state_name"
+                    android:text="Telangana"
+                    android:textSize="18sp"
+                    android:layout_marginRight="12dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
