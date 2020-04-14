@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +38,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
 
     private String mParam1;
     private String mParam2;
-    TextView mBalance;
+    private TextView mBalance;
+    private EditText mobileNumber;
     private OnDMTInteractionListener mListener;
 
     public DMTHomeFragment() {
@@ -112,6 +116,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("DMT Home");
         return inflater.inflate(R.layout.fragment_dmt_home, container, false);
     }
 
@@ -121,13 +126,11 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         view.findViewById(R.id.addMoney).setOnClickListener(this);
         view.findViewById(R.id.add_sender).setOnClickListener(this);
         view.findViewById(R.id.transfer_fund).setOnClickListener(this);
-
+        mobileNumber = view.findViewById(R.id.edit_text_view);
+        mobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
         String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
-
-        if (!usrName.isEmpty() || usrName != null)
-            ((TextView)view.findViewById(R.id.name)).setText(usrName);
-        else
-            startActivity(new Intent(getContext(),LoginActivity.class));
+        ((TextView)view.findViewById(R.id.name)).setText(usrName);
         mBalance = view.findViewById(R.id.balance);
     }
 
@@ -138,17 +141,17 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
                 builder.setTitle("Sorry....");
                 builder.setMessage(R.string.feature_availability_msg);
-                builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                builder.setNegativeButton("close", (dialog, which) -> dialog.dismiss());
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
             case R.id.transfer_fund:
-                mListener.goToDomesticFundTransfer();
+                String mobile = mobileNumber.getText().toString();
+                if(mobile.length() != 10) {
+                    showDialog("", "Please enter a valid mobile number");
+                } else {
+                    mListener.goToDomesticFundTransfer();
+                }
                 break;
             case R.id.add_sender:
                 mListener.goToSenderRegistration();

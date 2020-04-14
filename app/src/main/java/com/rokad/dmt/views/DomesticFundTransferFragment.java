@@ -41,6 +41,7 @@ public class DomesticFundTransferFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("Transfer Money");
         return inflater.inflate(R.layout.fragment_domestic_fund_transfer, container, false);
     }
 }

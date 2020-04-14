@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditTextWithTitleAndThumbIcon">
+        <attr format="string" name="title"/>
+        <attr format="reference" name="image"/>
+        <attr format="integer" name="maxLength"/>
+        <attr name="android:inputType"/>
+    </declare-styleable>
+</resources>

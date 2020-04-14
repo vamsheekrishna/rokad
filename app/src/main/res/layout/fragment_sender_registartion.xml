@@ -1,13 +1,53 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
     tools:context="com.rokad.dmt.views.SenderRegistrationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:title="@string/first_name"
+        app:image="@drawable/user_new"/>
 
-</FrameLayout>
+    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/last_name"
+        app:image="@drawable/user_new"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:id="@+id/sender_ed_text"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/sender_mobile"
+            app:image="@drawable/mobile"/>
+        <TextView
+            android:id="@+id/send_otp"
+            android:text="Send OTP?"
+            android:textColor="#2644DC"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="75dp"
+            android:paddingRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sender_register"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/sender_register"
+        android:background="@drawable/submit"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

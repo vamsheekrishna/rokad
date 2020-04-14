@@ -5,8 +5,9 @@ import android.os.Bundle;
 import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.views.BaseActivity;
+import com.rokad.utilities.views.ServicesBaseActivity;
 
-public class DMTActivity extends BaseActivity implements OnDMTInteractionListener {
+public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

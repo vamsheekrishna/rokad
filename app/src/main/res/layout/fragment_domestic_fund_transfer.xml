@@ -1,13 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rokad.dmt.views.DomesticFundTransferFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    tools:context="com.rokad.dmt.views.SenderRegistrationFragment"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/sender_mobile"
+            app:image="@drawable/indiaflag"/>
+
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/sender_name"
+            app:image="@drawable/user_new"/>
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Sender IMPS Transfer Limit"
+            app:image="@drawable/impslimit"/>
+
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Sender Registration ID"
+            app:image="@drawable/senderid"/>
+
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Confirm Amount"
+            app:image="@drawable/amount"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/check_commission"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Check Commission"
+            android:background="@drawable/button_bg_gray"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sender_register"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/proceed"
+            android:background="@drawable/submit"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>
+

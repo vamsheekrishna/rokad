@@ -45,7 +45,8 @@
           android:fontFamily="@font/roboto_regular"
           android:text="@string/add_new_sender"
           android:textSize="14sp"
-          android:textColor="@color/white"
+          android:background="@drawable/button_bg_gray"
+          android:textColor="#333333"
           android:layout_height="wrap_content"/>
    </LinearLayout>
 

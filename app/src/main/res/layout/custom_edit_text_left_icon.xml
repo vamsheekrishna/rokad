@@ -24,6 +24,5 @@
         android:textColorHighlight="#2644DC"
         android:drawablePadding="4dp"
         android:background="@drawable/custom_edit_text_bg"
-        android:text="7416226233"
         android:layout_height="40dp"/>
 </LinearLayout>

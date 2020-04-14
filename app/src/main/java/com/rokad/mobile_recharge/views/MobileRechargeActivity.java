@@ -4,28 +4,21 @@ import android.os.Bundle;
 
 import com.rokad.R;
 import com.rokad.authentication.UserData;
+import com.rokad.home.ServicesHomeFragment;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.utilities.views.BaseActivity;
+import com.rokad.utilities.views.ServicesBaseActivity;
 
-public class MobileRechargeActivity extends BaseActivity implements OnMobileRechargeListener {
+public class MobileRechargeActivity extends ServicesBaseActivity implements OnMobileRechargeListener {
     MobileRecharge mobileRecharge = new MobileRecharge();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
-
-        assert getSupportActionBar() != null;   //null check
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
         mobileRecharge.setUserID(UserData.getUserData().getId());
         addFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp(){
-        onBackPressed();
-        return true;
     }
 
     @Override

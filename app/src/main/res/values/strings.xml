@@ -71,6 +71,11 @@
     <string name="sender_name">Sender Name</string>
     <string name="transfer_fund">TRANSFER FUND</string>
     <string name="add_new_sender">Add new sender</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="sender_mobile">Sender Mobile Number</string>
+    <string name="sender_register">Sender Register</string>
+    <string name="proceed">PROCEED</string>
 
 
 </resources>

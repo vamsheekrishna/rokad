@@ -44,6 +44,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("Beneficiary Registration");
         return inflater.inflate(R.layout.fragment_beneficiary_registration, container, false);
     }
 }
