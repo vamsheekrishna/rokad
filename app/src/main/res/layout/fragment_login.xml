@@ -42,7 +42,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/mobile_number_hint"
+            android:hint="@string/mobile_number"
             app:hintTextColor="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -51,7 +51,6 @@
                 android:id="@+id/user_name"
                 style="@style/TextAppearance.AppCompat"
                 android:textColorHint="@color/gray"
-                android:hint="@string/mobile_number_hint"
                 android:text=""
                 android:drawableLeft="@drawable/user"
                 android:drawablePadding="16dp"
@@ -84,8 +83,6 @@
                 android:layout_height="50dp"
                 android:id="@+id/password"
                 android:inputType="textPassword"
-                android:hint="@string/password_hint"
-                android:textColorHint="@color/gray"
                 android:drawableLeft="@drawable/password"
                 android:drawablePadding="16dp"
                 android:text=""

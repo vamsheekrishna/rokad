@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/mobile_recharge_num"
-                android:hint="@string/mobile_number_hint"
+                android:hint="@string/mobile_number"
                 android:digits="0123456789"
                 android:maxLength="10"
                 android:inputType="phone"/>

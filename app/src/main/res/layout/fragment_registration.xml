@@ -71,7 +71,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mobile_number_hint"
+                android:text="@string/mobile_number"
                 android:textStyle="bold|normal"
                 android:textColor="@color/gray"
                 android:textSize="18sp"

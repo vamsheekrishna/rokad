@@ -2,4 +2,5 @@
 <resources>
     <dimen name="text_margin">8dp</dimen>
     <dimen name="registration_top_margin">8dp</dimen>
+    <dimen name="edit_text_sub_header">12sp</dimen>
 </resources>

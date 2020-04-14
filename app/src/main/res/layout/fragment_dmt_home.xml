@@ -1,13 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
     tools:context="com.rokad.dmt.views.DMTHomeFragment">
+   <include
+       android:id="@+id/header"
+       layout="@layout/header_agent_view" />
+   <LinearLayout
+       android:layout_marginTop="40dp"
+       android:layout_below="@+id/header"
+       android:layout_alignParentBottom="true"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+      <androidx.appcompat.widget.AppCompatTextView
+          android:fontFamily="@font/roboto_medium"
+          android:textSize="14sp"
+          android:textColor="@color/black"
+          android:text="@string/transfer_fund"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+         <include layout="@layout/custom_edit_text_left_icon"/>
 
-</FrameLayout>
+         <androidx.appcompat.widget.AppCompatButton
+             android:id="@+id/transfer_fund"
+             android:layout_marginTop="32dp"
+             android:layout_width="match_parent"
+             android:fontFamily="@font/roboto_regular"
+             android:text="@string/transfer_fund"
+             android:background="@drawable/submit"
+             android:textSize="14sp"
+             android:textColor="@color/white"
+             android:layout_height="wrap_content"/>
+
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/add_sender"
+          android:layout_marginTop="64dp"
+          android:layout_width="match_parent"
+          android:fontFamily="@font/roboto_regular"
+          android:text="@string/add_new_sender"
+          android:textSize="14sp"
+          android:textColor="@color/white"
+          android:layout_height="wrap_content"/>
+   </LinearLayout>
+
+</RelativeLayout>

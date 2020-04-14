@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    >
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:visibility="gone"
+        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to"
+        android:padding="8dp"
+        android:drawableRight="@drawable/wallet"
+        android:drawablePadding="4dp"
+        android:background="@drawable/button_round_edges"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:drawableEnd="@drawable/wallet" />
+    <!--<ImageView
+        android:layout_centerInParent="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/bannerbg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
+    <LinearLayout
+        android:background="@drawable/bannerbg"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            android:id="@+id/name"
+            android:textSize="20sp"
+            android:text="Vamshee Krishna P"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Wallet Balance"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_below="@+id/addMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/addMoney"
+                android:background="@drawable/header_rounded_edges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:src="@drawable/wallet_new"
+                android:drawablePadding="2dp"/>
+
+            <TextView
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/rs"
+                android:text="@string/rs"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/balance"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

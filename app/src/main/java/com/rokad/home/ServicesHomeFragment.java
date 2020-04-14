@@ -67,10 +67,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
         updateWalletBalance();
         String walletBalance = UserData.getInstance().getWalletBalance();
-
-        if (walletBalance != null)
-        mBalance .setText(walletBalance);
-        else
+        if (walletBalance == null)
             startActivity(new Intent(getContext(), LoginActivity.class));
     }
 
@@ -126,8 +123,6 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         ((TextView)view.findViewById(R.id.name)).setText(usrName);
         else
             startActivity(new Intent(getContext(),LoginActivity.class));
-
-
         mBalance = view.findViewById(R.id.balance);
         /*int mColumnCount = 3;
         if (mColumnCount <= 1) {

@@ -2,6 +2,7 @@ package com.rokad.dmt.views;
 
 import android.os.Bundle;
 
+import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.views.BaseActivity;
 
@@ -10,6 +11,7 @@ public class DMTActivity extends BaseActivity implements OnDMTInteractionListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_root_view);
         addFragment(DMTHomeFragment.newInstance("", ""), "DMTHomeFragment", false);
     }
 
@@ -40,6 +42,5 @@ public class DMTActivity extends BaseActivity implements OnDMTInteractionListene
 
     @Override
     public void showCustomDialog() {
-        CustomDia
     }
 }

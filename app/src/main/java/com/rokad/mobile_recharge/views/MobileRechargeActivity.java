@@ -6,9 +6,6 @@ import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.MobileRecharge;
-import com.rokad.mobile_recharge.views.MakePaymentFragment;
-import com.rokad.mobile_recharge.views.MobileHomeFragment;
-import com.rokad.mobile_recharge.views.MobileRechargePlansHome;
 import com.rokad.utilities.views.BaseActivity;
 
 public class MobileRechargeActivity extends BaseActivity implements OnMobileRechargeListener {
@@ -17,7 +14,7 @@ public class MobileRechargeActivity extends BaseActivity implements OnMobileRech
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mobile_recharge);
+        setContentView(R.layout.activity_root_view);
 
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button

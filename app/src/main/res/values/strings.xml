@@ -18,7 +18,7 @@
 
 
     <!--    Login Screen Strings  -->
-    <string name="mobile_number_hint">Mobile Number</string>
+    <string name="mobile_number">Mobile Number</string>
     <string name="password_hint">Password</string>
     <string name="login_text">Login</string>
     <string name="forgot_password_text">Forgot Password?</string>
@@ -38,7 +38,7 @@
     <string name="balance">Balance :</string>
     <string name="hello">Hello:</string>
     <string name="add_to">Add to</string>
-    <string name="rs">/-</string>
+    <string name="rs">RS.</string>
 
 
     <!--    Mobile Recharge Module Strings -->
@@ -68,6 +68,9 @@
     <string name="recharge_type_chk_msg">Please select Prepaid or Postpaid</string>
     <string name="recharge_type_msg">Please choose Prepaid or Postpaid Recharge Type..!!</string>
     <string name="spinner_prompt">Please Select Your State</string>
+    <string name="sender_name">Sender Name</string>
+    <string name="transfer_fund">TRANSFER FUND</string>
+    <string name="add_new_sender">Add new sender</string>
 
 
 </resources>
