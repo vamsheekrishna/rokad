@@ -13,6 +13,15 @@ public class MobileRecharge {
     private String mobileOperator =""; // Vodafone
     private String rechargeType = "0"; //TODO: pass 0 for topup and 1 for any chosen plan
     private String stateName;
+    private String paymentType = "cash";
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
 
     public String getMobileAppVersionId() {
         return mobileAppVersionId;

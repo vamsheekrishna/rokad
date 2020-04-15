@@ -16,9 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.models.MobileRecharge;
@@ -106,19 +104,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
 
         MobileRecharge data = mListener.getMobileRechargeModule();
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
-        Call<ResponseMobileRecharge> user = mobileRechargeService.recharge(
-                data.getRechargeFrom(),
-                data.getPlanType(),
-                data.getService(),
-                data.getPreOperator(),
-                data.getMobileNumber(),
-                data.getRechargeAmount(),
-                data.getUserID(),
-                data.getMobileOperator(),
-                data.getRecType(),
-                data.getRechargeType(),
-                data.getMobileApp(),
-                data.getMobileAppVersionId());
+        Call<ResponseMobileRecharge> user = getResponseMobileRechargeCall(data, mobileRechargeService);
         user.enqueue(new Callback<ResponseMobileRecharge>() {
             @Override
             public void onResponse(Call<ResponseMobileRecharge> call, Response<ResponseMobileRecharge> response) {
@@ -161,6 +147,41 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 progressBar.dismiss();
             }
         });
+    }
+
+    private Call<ResponseMobileRecharge> getResponseMobileRechargeCall(MobileRecharge data, MobileRechargeService mobileRechargeService) {
+        if(data.getRecType().equals(getResources().getString(R.string.postpaid_radio_btn))) {
+            return mobileRechargeService.postPaidRecharge(
+                    data.getRechargeFrom(),
+                    data.getPlanType(),
+                    data.getService(),
+                    data.getPreOperator(),
+                    data.getMobileNumber(),
+                    data.getRechargeAmount(),
+                    data.getUserID(),
+                    data.getMobileOperator(),
+                    data.getRecType(),
+                    data.getRechargeType(),
+                    data.getMobileApp(),
+                    data.getMobileAppVersionId(),
+                    data.getPaymentType());
+        } else {
+            return mobileRechargeService.prePaidRecharge(
+                    data.getRechargeFrom(),
+                    data.getPlanType(),
+                    data.getService(),
+                    data.getPreOperator(),
+                    data.getMobileNumber(),
+                    data.getRechargeAmount(),
+                    data.getUserID(),
+                    data.getMobileOperator(),
+                    data.getRecType(),
+                    data.getRechargeType(),
+                    data.getMobileApp(),
+                    data.getMobileAppVersionId(),
+                    data.getPaymentType());
+        }
+
     }
 
     @Override

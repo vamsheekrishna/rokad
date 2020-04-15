@@ -1,19 +1,15 @@
 package com.rokad.mobile_recharge.views;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,12 +19,11 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rokad.BuildConfig;
 import com.rokad.R;
+import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
-import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.ArrayList;
@@ -118,6 +113,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setVisibility(View.VISIBLE);
 
         subscriberModules.clear();
+
         subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG"));
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B"));
@@ -128,28 +124,24 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI"));
         subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI"));
 
-
         SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(),
                 subscriberModules);
         recyclerView.setAdapter(listRecyclerView);
     }
 
-    private void displayPostpaidSubscriberList(){
+    private void displayPostpaidSubscriberList() {
         recyclerView.setVisibility(View.VISIBLE);
         noServiceTxtView.setVisibility(View.GONE);
         amountLayout.setVisibility(View.VISIBLE);
         nxtBtn.setVisibility(View.VISIBLE);
-        subscriberModules.clear();
-        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "Airtel BILL", "AB"));
-        subscriberModules.add(new SubscriberModule(1, R.drawable.reliance,"Reliance BILL", "RB"));
-        subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL BILL", "BB"));
-        subscriberModules.add(new SubscriberModule(3, R.drawable.idea,  "Idea BILL", "IB"));
-        subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone,  "Vodafone BILL", "VB"));
-//        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JIO","JOE",null,null));
-//        subscriberModules.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",null,null));
-        subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata BILL", "TB"));
-//        subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI", null, null));
 
+        subscriberModules.clear();
+        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AB"));
+        subscriberModules.add(new SubscriberModule(1, R.drawable.reliance,"Reliance", "RB"));
+        subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "BB"));
+        subscriberModules.add(new SubscriberModule(3, R.drawable.idea,  "Idea", "IB"));
+        subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone,  "Vodafone", "VB"));
+        subscriberModules.add(new SubscriberModule(5,R.drawable.indicom,"Tata", "TB"));
 
         SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(),
                 subscriberModules);
@@ -174,10 +166,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         switch (checkedId) {
             case R.id.recharge_type_prepaid:
                     racType = getResources().getString(R.string.prepaid_radio_btn);
+                    mListener.getMobileRechargeModule().setPlanType("Prepaid Mobile");
                     displayPrepaidSubscriberList();
                 break;
             case R.id.recharge_type_postpaid:
                 racType = getResources().getString(R.string.postpaid_radio_btn);
+                mListener.getMobileRechargeModule().setPlanType("Postpaid Mobile");
                 displayPostpaidSubscriberList();
                 break;
         }
