@@ -29,7 +29,7 @@
 
          <androidx.appcompat.widget.AppCompatButton
              android:id="@+id/transfer_fund"
-             android:layout_marginTop="32dp"
+             android:layout_marginTop="24dp"
              android:layout_width="match_parent"
              android:fontFamily="@font/roboto_regular"
              android:text="@string/transfer_fund"
@@ -40,11 +40,12 @@
 
       <androidx.appcompat.widget.AppCompatButton
           android:id="@+id/add_sender"
-          android:layout_marginTop="64dp"
-          android:layout_width="match_parent"
+          android:layout_marginTop="32dp"
+          android:layout_width="wrap_content"
           android:fontFamily="@font/roboto_regular"
           android:text="@string/add_new_sender"
           android:textSize="14sp"
+          android:layout_gravity="center_horizontal"
           android:background="@drawable/button_bg_gray"
           android:textColor="#333333"
           android:layout_height="wrap_content"/>

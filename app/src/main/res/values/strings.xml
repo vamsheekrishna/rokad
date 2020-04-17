@@ -76,6 +76,17 @@
     <string name="sender_mobile">Sender Mobile Number</string>
     <string name="sender_register">Sender Register</string>
     <string name="proceed">PROCEED</string>
+    <string name="confirm_payment_btn">confirm payment</string>
+    <string name="wallet_balance_txt">Wallet Balance</string>
+    <string name="sender_info_header">Sender Info</string>
+    <string name="receiver_info_header">Receiver Info</string>
+    <string name="transfer_amount_txt">Transfer Amount</string>
+    <string name="processing_charge_header">Processing Charge</string>
+    <string name="net_transfer_header">Net Transfer</string>
+    <string name="agent_commission_to_be_gained">Agent Commission to be gained</string>
+    <string name="agent_commission_to_be_distributed">Agent Commission to be Distributed</string>
+    <string name="do_another">Do Another</string>
+    <string name="try_again">Try Again</string>
 
 
 </resources>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,6 +18,12 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="38dp">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/success"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="114dp"
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -69,11 +74,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
                     android:background="@drawable/dmt_confirm_payment_sender_info_bg"
                     android:id="@+id/sender_card"
                     android:orientation="vertical">
-                    
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -126,7 +132,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/dmt_module_receiver_info_bg"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
                     android:id="@+id/receiver_card"
                     android:orientation="vertical">
 
@@ -188,7 +195,7 @@
                 android:layout_marginRight="16dp"
                 android:weightSum="2"
                 android:layout_marginTop="18dp">
-                
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -210,7 +217,7 @@
                     android:textSize="16sp"
                     android:fontFamily="@font/roboto_black"
                     android:textStyle="normal"/>
-                
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -252,6 +259,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2"
+                android:layout_marginBottom="35dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="22dp">
@@ -284,22 +292,43 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.cardview.widget.CardView>
-    
-    
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/payment_card"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="168dp"
+            android:minHeight="40dp"
+            android:layout_below="@id/payment_card"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:id="@+id/home_btn"
+            android:layout_marginTop="34dp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg_gray"
+            android:layout_centerHorizontal="true"
+            android:text="Home"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="324dp"
-        android:minHeight="52dp"
+        android:minWidth="168dp"
+        android:minHeight="40dp"
         android:layout_below="@id/payment_card"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:id="@+id/confirm_payment_btn"
+        android:id="@+id/repeat_payment_btn"
         android:layout_marginTop="34dp"
         android:textColor="@color/white"
         android:background="@drawable/submit"
         android:layout_centerHorizontal="true"
-        android:text="@string/confirm_payment_btn"/>
+        android:text="@string/do_another"/>
 
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

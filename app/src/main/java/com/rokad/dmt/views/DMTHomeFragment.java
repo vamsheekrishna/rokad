@@ -108,7 +108,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
                 showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                Log.e("===D"," errorrr");
+//                Log.e("===D"," errorrr");
             }
         });
     }

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:maxWidth="340dp"
+    android:maxHeight="340dp"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:id="@+id/header"
+        android:background="#A1448A">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="44dp"
+            android:minHeight="48dp"
+            android:background="@drawable/dmt"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content"
+        android:layout_marginBottom="34dp"
+        android:layout_below="@id/header"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#2E2E2E"
+                android:textSize="16sp"
+                android:text="@string/agent_commission_to_be_gained"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_black"
+                android:layout_marginStart="24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#2E2E2E"
+                android:textSize="16sp"
+                android:text="Rs. 6.00"
+                android:gravity="end"
+                android:layout_marginRight="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_black"
+                android:layout_marginStart="24dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#2E2E2E"
+                android:textSize="16sp"
+                android:text="@string/agent_commission_to_be_distributed"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_black"
+                android:layout_marginStart="24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#2E2E2E"
+                android:textSize="16sp"
+                android:text="Rs. 5.85"
+                android:gravity="end"
+                android:layout_marginRight="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_black"
+                android:layout_marginStart="24dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/bb"
+        android:layout_below="@id/content"
+        android:layout_marginTop="46dp"
+        android:background="@color/gray"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ok_positive_btn"
+        android:text="OK"
+        android:background="@color/white"
+        android:textColor="#A1448A"
+        android:layout_below="@id/bb"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel_negative_btn"
+        android:text="CANCEL"
+        android:background="@color/white"
+        android:textColor="#A1448A"
+        android:layout_below="@id/bb"
+        android:layout_toLeftOf="@id/ok_positive_btn"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+
+</RelativeLayout>
