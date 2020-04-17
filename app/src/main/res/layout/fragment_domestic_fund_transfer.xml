@@ -36,6 +36,62 @@
             app:title="Sender Registration ID"
             app:image="@drawable/senderid"/>
 
+        <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sub_header"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/select_beneficiary"
+                android:textSize="@dimen/edit_text_sub_header"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_edit_text_bg"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:id="@+id/thumbIcon"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/user_new"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_marginTop="6dp"
+                    android:id="@+id/spinner_view"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:layout_width="match_parent"
+                    android:textColorHighlight="#2644DC"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="36dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="24dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/register_a_new_beneficiary"
+                android:gravity="end"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/reg_beneficiary"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
