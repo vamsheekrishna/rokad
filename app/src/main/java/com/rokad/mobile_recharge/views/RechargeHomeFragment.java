@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
+import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
@@ -32,6 +33,7 @@ import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseGetPlans;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -213,7 +215,13 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
                     mListener.getMobileRechargeModule().setStateName(String.valueOf(stateSelector.getSelectedItem()));
-                    mListener.goToMakePaymentFragment();
+                    BigDecimal balance = new BigDecimal(UserData.getInstance().getWalletBalance());
+                    BigDecimal rechargeAmount = new BigDecimal(mListener.getMobileRechargeModule().getRechargeAmount());
+                    if(balance.compareTo(rechargeAmount) >= 0) {
+                        mListener.goToMakePaymentFragment();
+                    } else  {
+                        showDialog("", "Insufficient balance in your wallet.");
+                    }
                 }
                 break;
 

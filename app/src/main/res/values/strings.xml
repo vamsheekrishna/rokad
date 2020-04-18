@@ -87,7 +87,7 @@
     <string name="agent_commission_to_be_distributed">Agent Commission to be Distributed</string>
     <string name="do_another">Do Another</string>
     <string name="select_beneficiary">Select Beneficiary</string>
-    <string name="register_a_new_beneficiary">Register a New Beneficiary?</string>
+    <string name="register_a_new_beneficiary">Add Beneficiary?</string>
     <string name="beneficiary_fst_name">First Name</string>
     <string name="beneficiary_last_name">Last Name</string>
 

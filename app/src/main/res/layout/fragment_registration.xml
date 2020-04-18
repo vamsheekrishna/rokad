@@ -208,7 +208,7 @@
             android:text="@string/Register"
             android:layout_margin="20dp"
             android:layout_below="@+id/content"
-            style="@style/submit_button"/>
+            style="@style/button_color"/>
 
     </RelativeLayout>
 </ScrollView>

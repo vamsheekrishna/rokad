@@ -114,7 +114,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ok_positive_btn"
+        android:id="@+id/ok_btn"
         android:text="OK"
         android:background="@color/white"
         android:textColor="#A1448A"
@@ -123,7 +123,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <!--<androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cancel_negative_btn"
@@ -133,7 +133,7 @@
         android:layout_below="@id/bb"
         android:layout_toLeftOf="@id/ok_positive_btn"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"/>
+        android:layout_marginLeft="16dp"/>-->
 
 
 </RelativeLayout>

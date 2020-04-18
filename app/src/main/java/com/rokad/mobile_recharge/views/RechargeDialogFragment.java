@@ -32,7 +32,7 @@ import java.util.Objects;
 public class RechargeDialogFragment extends DialogFragment implements View.OnClickListener {
 
     public static final String IS_SUCCESS = "is success";
-    private static final String TRANSACTION = "transaction";
+    public static final String TRANSACTION = "transaction";
     private OnMobileRechargeListener mListener;
     private boolean mStatus;
     private String transactionID;

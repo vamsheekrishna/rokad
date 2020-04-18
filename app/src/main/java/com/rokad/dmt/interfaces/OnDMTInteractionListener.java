@@ -7,4 +7,6 @@ public interface OnDMTInteractionListener {
     void goToDomesticFundTransfer();
     void goToConformation();
     void showCustomDialog();
+    void showCommissionDialog();
+    void makeAnotherPayment();
 }

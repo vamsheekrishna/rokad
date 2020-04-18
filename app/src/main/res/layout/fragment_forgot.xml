@@ -93,6 +93,6 @@
         android:text="@string/reset_pwd_btn"
         android:layout_margin="40dp"
         android:layout_below="@+id/content"
-        style="@style/submit_button"/>
+        style="@style/button_color"/>
 
 </RelativeLayout>

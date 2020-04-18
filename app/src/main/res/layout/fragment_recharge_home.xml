@@ -181,7 +181,7 @@
             android:layout_marginTop="40dp"
             android:text="@string/next"
             android:visibility="gone"
-            style="@style/submit_button"/>
+            style="@style/button_color"/>
 
     </RelativeLayout>
 </ScrollView>

@@ -246,11 +246,10 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/submit_button"
+        style="@style/button_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
         android:text="@string/add_money_to_the_wallet_btn"
         android:id="@+id/money_to_wallet_btn"
         android:textAllCaps="false"
@@ -264,6 +263,8 @@
         android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        style="@style/submit_button"/>
+        style="@style/button_color"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
 </RelativeLayout>

@@ -253,7 +253,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/payment_btn"
             android:text="@string/try_again"
-            style="@style/submit_button"/>
+            style="@style/button_color"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/home"
             android:text="Home"
