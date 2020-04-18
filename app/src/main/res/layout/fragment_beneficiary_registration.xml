@@ -48,8 +48,8 @@
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:src="@drawable/mobile"
                     android:layout_gravity="center" />
@@ -100,7 +100,7 @@
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="46dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="46dp"
                     android:layout_marginLeft="8dp"
                     android:src="@drawable/mobile"

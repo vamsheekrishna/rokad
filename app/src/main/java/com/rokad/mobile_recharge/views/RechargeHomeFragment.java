@@ -1,5 +1,6 @@
 package com.rokad.mobile_recharge.views;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,15 +21,23 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.MobileRechargeService;
+import com.rokad.rokad_api.endpoints.pojos.ResponseGetPlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.rokad.utilities.Utils.isValidMobile;
 
@@ -53,6 +63,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private LinearLayout amountLayout;
     private AppCompatButton nxtBtn;
     private AppCompatSpinner stateSelector;
+    private String subscriberName;
 //    private AppCompatSpinner stateSelector;
 
     public RechargeHomeFragment() {
@@ -155,7 +166,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-//        mobileRechargeNum.setText(BuildConfig.USERNAME);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -207,6 +218,38 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 break;
 
             case R.id.see_plans:
+                MobileRechargeService rechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
+
+                if (subscriberName.isEmpty() && stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))
+                && rechargeTypeGroup.getCheckedRadioButtonId() == -1){
+                    showDialog("Sorry!!", "Please choose your Mobile Operator, your State, Recharge type above.");
+                } else {
+
+                    ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+                    progressBar.setCancelable(false);
+                    progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                    progressBar.show();
+
+                    String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
+
+                    Call<ResponseGetPlans> getPlansCall = rechargeService.getPlans(subscriberName,
+                            stateSelector.getSelectedItem().toString(), rechargeType);
+                    getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
+                        @Override
+                        public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
+                            progressBar.dismiss();
+                            Toast.makeText(getContext(),"body : " + response.body(),Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                        @Override
+                        public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
+                            progressBar.dismiss();
+                            Toast.makeText(getContext(),"body : " + t.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 mListener.goToSeePlansFragment();
                 break;
             default:
@@ -223,13 +266,15 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(int chosenSubscriber) {
         if(chosenSubscriber == -1) {
+            subscriberName = "";
             mListener.getMobileRechargeModule().setPreOperator("");
             mListener.getMobileRechargeModule().setMobileOperator("");
         } else {
+            subscriberName = subscriberModules.get(chosenSubscriber).getName();
             subscriberModules.get(chosenSubscriber);
             mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(chosenSubscriber).getKey());
             mListener.getMobileRechargeModule().setImage(subscriberModules.get(chosenSubscriber).getImage());
-            mListener.getMobileRechargeModule().setMobileOperator(subscriberModules.get(chosenSubscriber).getName());
+            mListener.getMobileRechargeModule().setMobileOperator(subscriberName);
         }
     }
 }

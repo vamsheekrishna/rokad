@@ -74,7 +74,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="sender_mobile">Sender Mobile Number</string>
-    <string name="sender_register">Sender Register</string>
+    <string name="sender_register">Register Sender</string>
     <string name="proceed">PROCEED</string>
     <string name="confirm_payment_btn">confirm payment</string>
     <string name="wallet_balance_txt">Wallet Balance</string>
