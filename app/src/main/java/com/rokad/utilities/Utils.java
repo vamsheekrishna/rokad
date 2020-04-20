@@ -41,4 +41,9 @@ public class Utils {
         }
         return inetAddress!=null && !inetAddress.equals("");
     }
+
+    public static boolean isValidWord(String word) {
+
+        return word.matches("[A-Za-z][^.]*");
+    }
 }

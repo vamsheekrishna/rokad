@@ -15,6 +15,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import com.rokad.R;
 
 public class EditTextWithTitleAndThumbIcon extends LinearLayout {
+    private AppCompatEditText appCompatEditText;
+
     public EditTextWithTitleAndThumbIcon(Context context) {
         super(context);
         initView(null);
@@ -48,11 +50,16 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
 
                     Drawable img = getContext().getResources().getDrawable(styledAttributes.getResourceId(R.styleable.EditTextWithTitleAndThumbIcon_image, 0));
                     img.setBounds(0, 0, 60, 60);
-                    ((AppCompatEditText)view.findViewById(R.id.edit_text_view)).setCompoundDrawables(img, null, null, null);
+                     appCompatEditText = view.findViewById(R.id.edit_text_view);
+                    appCompatEditText.setCompoundDrawables(img, null, null, null);
                 } catch (Exception e) {
 
                 }
             }
         }
+    }
+
+    public AppCompatEditText accessEditText(){
+        return appCompatEditText;
     }
 }
