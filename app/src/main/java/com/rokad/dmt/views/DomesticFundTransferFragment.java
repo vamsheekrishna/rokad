@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.views.BaseFragment;
+import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
 public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -21,6 +22,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private String mParam1;
     private String mParam2;
     private OnDMTInteractionListener mListener;
+    private EditTextWithTitleAndThumbIcon mobileNumber, senderName;
 
     public DomesticFundTransferFragment() {
         // Required empty public constructor

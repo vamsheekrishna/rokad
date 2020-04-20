@@ -90,6 +90,7 @@
     <string name="register_a_new_beneficiary">Add Beneficiary?</string>
     <string name="beneficiary_fst_name">First Name</string>
     <string name="beneficiary_last_name">Last Name</string>
+    <string name="sender_imps_transfer_limit_header">Sender IMPS Transfer Limit</string>
 
 
 </resources>

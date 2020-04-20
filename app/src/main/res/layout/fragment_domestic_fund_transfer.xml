@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context="com.rokad.dmt.views.SenderRegistrationFragment"
-    >
+    tools:context="com.rokad.dmt.views.SenderRegistrationFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,18 +15,49 @@
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/mobile_number"
             app:title="@string/sender_mobile"
             app:image="@drawable/indiaflag"/>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/sender_name"
             app:title="@string/sender_name"
             app:image="@drawable/user_new"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginEnd="22dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="22dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMPS"
+                android:fontFamily="@font/roboto_black"
+                android:layout_margin="12dp"
+                android:id="@+id/imps_transfer"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEFT"
+                android:fontFamily="@font/roboto_black"
+                android:layout_margin="12dp"
+                android:id="@+id/neft_transfer"/>
+
+        </RadioGroup>
+
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Sender IMPS Transfer Limit"
+            android:id="@+id/transfer_limit"
+            app:title="@string/sender_imps_transfer_limit_header"
             app:image="@drawable/impslimit"/>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon

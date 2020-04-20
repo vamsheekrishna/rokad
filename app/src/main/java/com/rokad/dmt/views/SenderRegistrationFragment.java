@@ -3,6 +3,8 @@ package com.rokad.dmt.views;
 import android.content.Context;
 import android.os.Bundle;
 
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +80,10 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
         firstName = view.findViewById(R.id.fst_name);
         lastName = view.findViewById(R.id.lst_name);
         senderMobileNumber = view.findViewById(R.id.sender_mobile_num);
+        senderMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(10);
+        senderMobileNumber.accessEditText().setFilters(fArray);
         stateSelector = view.findViewById(R.id.states_list);
 
         view.findViewById(R.id.sender_register).setOnClickListener(this);
