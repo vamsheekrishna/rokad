@@ -45,6 +45,8 @@ public class Data {
 
     private String bankId;
 
+    private String isPPi;
+
     private EasyWalletList easyWalletList;
 
     private Beneficiaries beneficiaries;
@@ -181,6 +183,12 @@ public class Data {
     public String getBankId(){
         return this.bankId;
     }
+    public void setIsPPi(String isPPi){
+        this.isPPi = isPPi;
+    }
+    public String getIsPPi(){
+        return this.isPPi;
+    }
     public void setEasyWalletList(EasyWalletList easyWalletList){
         this.easyWalletList = easyWalletList;
     }
@@ -193,5 +201,4 @@ public class Data {
     public Beneficiaries getBeneficiaries(){
         return this.beneficiaries;
     }
-
 }

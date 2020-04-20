@@ -53,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
         style="@style/Widget.AppCompat.Spinner"
-        android:entries="@array/states"
+        android:entries="@array/dmt_states_list"
+        android:entryValues="@array/dmt_states_input_params"
         android:prompt="@string/spinner_prompt"
         android:spinnerMode="dropdown"
         android:id="@+id/states_list"/>

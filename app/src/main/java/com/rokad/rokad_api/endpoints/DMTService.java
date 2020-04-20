@@ -8,4 +8,7 @@ public interface DMTService {
     ArrayList<String> getBeneficiaryList(String mobileNumber, String senderName, String userId);
     void fundTransfer();
     void getAllBanks();
+    void processNewTransaction(String processingBankId,String processingBankName,
+                               String customerMobileNumber,String senderId,
+                               String beneficiaryID,String userId,String transactionType);
 }

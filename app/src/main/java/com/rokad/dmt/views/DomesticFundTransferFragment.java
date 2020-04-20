@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
+import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -23,6 +29,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private String mParam2;
     private OnDMTInteractionListener mListener;
     private EditTextWithTitleAndThumbIcon mobileNumber, senderName;
+    private AppCompatSpinner beneficiariesSpinner;
 
     public DomesticFundTransferFragment() {
         // Required empty public constructor
@@ -57,7 +64,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getActivity().setTitle("Transfer Money");
+        Objects.requireNonNull(getActivity()).setTitle("Transfer Money");
         return inflater.inflate(R.layout.fragment_domestic_fund_transfer, container, false);
     }
 
@@ -67,6 +74,21 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
         view.findViewById(R.id.check_commission).setOnClickListener(this);
         view.findViewById(R.id.submit).setOnClickListener(this);
+        beneficiariesSpinner = view.findViewById(R.id.spinner_view);
+
+        DMTUtilis utils = DMTUtilis.getDMTUtilsInstance();
+        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("1234567890", "testname", "338");
+        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);
+        if (beneficiaryNames.isEmpty() || beneficiaryNames == null){
+            beneficiariesSpinner.setEnabled(false);
+        } else {
+            beneficiariesSpinner.setAdapter(namesAdapter);
+        }
+
+//        utils.getAllBanks();
+//        utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
+//                "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
     }
 
     @Override

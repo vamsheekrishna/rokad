@@ -1,6 +1,7 @@
 package com.rokad.rokad_api.endpoints;
 
 import com.rokad.BuildConfig;
+import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
@@ -82,5 +83,11 @@ public interface DMTModuleService {
                                                       @Field("listBen") String listBen,
                                                       @Field("amount") String amount,
                                                       @Field("user_id") String userId);
+
+
+
+    @POST(BuildConfig.BANK_LIST)
+//    @FormUrlEncoded
+    Call<BankListResponsePOJO> BANK_LIST_POJO_CALL();
 
 }

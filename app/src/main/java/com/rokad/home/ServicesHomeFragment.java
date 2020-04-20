@@ -99,7 +99,6 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
             public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
 
                 showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                Log.e("===D"," errorrr");
             }
         });
     }

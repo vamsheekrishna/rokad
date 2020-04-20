@@ -102,6 +102,7 @@
                     android:id="@+id/spinner_view"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:entries="@array/beneficiary_default_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_marginLeft="24dp"
