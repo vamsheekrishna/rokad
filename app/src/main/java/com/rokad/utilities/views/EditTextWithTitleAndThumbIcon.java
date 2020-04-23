@@ -11,11 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.rokad.R;
 
 public class EditTextWithTitleAndThumbIcon extends LinearLayout {
     private AppCompatEditText appCompatEditText;
+    private AppCompatTextView subHeaderTextView;
 
     public EditTextWithTitleAndThumbIcon(Context context) {
         super(context);
@@ -39,7 +41,7 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
             if(null != styledAttributes) {
                 try {
                     String text =  styledAttributes.getString(R.styleable.EditTextWithTitleAndThumbIcon_title);
-                    ((TextView)view.findViewById(R.id.sub_header)).setText(text);
+                    subHeaderTextView.setText(text);
                 } catch (Exception e) {
 
                 }
@@ -59,6 +61,9 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
         }
     }
 
+    public AppCompatTextView accessSubHeaderTextView(){
+        return subHeaderTextView;
+    }
     public AppCompatEditText accessEditText(){
         return appCompatEditText;
     }

@@ -111,7 +111,15 @@
     </integer-array>
 
     <string-array name="beneficiary_default_spinner_item">
-        <item>No Beneficiaries available</item>
+        <item>@string/default_beneficiary_spinner_prompt</item>
+    </string-array>
+
+    <string-array name="default_bank_list_spinner_item">
+        <item>@string/default_bank_list_spinner_prompt</item>
+    </string-array>
+
+    <string-array name="default_relation_list_spinner_item">
+        <item>@string/default_relation_list_spinner_prompt</item>
     </string-array>
 
 </resources>

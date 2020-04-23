@@ -15,6 +15,7 @@
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
+            android:id="@+id/beneficiary_fst_name"
             android:layout_height="wrap_content"
             app:title="@string/beneficiary_fst_name"
             app:image="@drawable/user_new"/>
@@ -22,6 +23,7 @@
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/beneficiary_last_name"
             app:title="@string/beneficiary_last_name"
             app:image="@drawable/user_new"/>
 
@@ -121,7 +123,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,6 +158,7 @@
                     android:id="@+id/bank_list_spinner"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:entries="@array/default_bank_list_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_marginLeft="24dp"
@@ -225,9 +228,10 @@
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_marginTop="6dp"
-                    android:id="@+id/spinner_view"
+                    android:id="@+id/relation_spinner_view"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:entries="@array/default_relation_list_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_marginLeft="24dp"
@@ -241,7 +245,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sender_register"
+            android:id="@+id/reg_beneficiary"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:fontFamily="@font/roboto_regular"

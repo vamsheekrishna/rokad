@@ -1,30 +1,43 @@
 package com.rokad.dmt.pojos.beneficiaryList;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class EasyWallet
 {
+    @SerializedName("easyWalletId")
+    @Expose
     private String easyWalletId;
-
+    @SerializedName("easyWalletType")
+    @Expose
     private String easyWalletType;
+    @SerializedName("easyWalletBalance")
+    @Expose
+    private Double easyWalletBalance;
 
-    private double easyWalletBalance;
+    public String getEasyWalletId() {
+        return easyWalletId;
+    }
 
-    public void setEasyWalletId(String easyWalletId){
+    public void setEasyWalletId(String easyWalletId) {
         this.easyWalletId = easyWalletId;
     }
-    public String getEasyWalletId(){
-        return this.easyWalletId;
+
+    public String getEasyWalletType() {
+        return easyWalletType;
     }
-    public void setEasyWalletType(String easyWalletType){
+
+    public void setEasyWalletType(String easyWalletType) {
         this.easyWalletType = easyWalletType;
     }
-    public String getEasyWalletType(){
-        return this.easyWalletType;
+
+    public Double getEasyWalletBalance() {
+        return easyWalletBalance;
     }
-    public void setEasyWalletBalance(double easyWalletBalance){
+
+    public void setEasyWalletBalance(Double easyWalletBalance) {
         this.easyWalletBalance = easyWalletBalance;
     }
-    public double getEasyWalletBalance(){
-        return this.easyWalletBalance;
-    }
 }
+
 

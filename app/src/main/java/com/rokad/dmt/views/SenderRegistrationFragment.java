@@ -1,13 +1,16 @@
 package com.rokad.dmt.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,11 +18,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
+import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +42,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
 
     private EditTextWithTitleAndThumbIcon firstName, lastName,senderMobileNumber;
     private AppCompatSpinner stateSelector;
+    private HashMap<String, String> stateDetails;
 
     public SenderRegistrationFragment() {
         // Required empty public constructor
@@ -85,6 +93,22 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
         fArray[0] = new InputFilter.LengthFilter(10);
         senderMobileNumber.accessEditText().setFilters(fArray);
         stateSelector = view.findViewById(R.id.states_list);
+        TypedArray selectedValue = getResources().obtainTypedArray(R.array.dmt_states_input_params);
+         stateDetails = new HashMap<>();
+
+        stateSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                stateDetails.put("state_name",stateSelector.getSelectedItem().toString());
+                stateDetails.put("state_code", String.valueOf(selectedValue.getInt(position, -1)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         view.findViewById(R.id.sender_register).setOnClickListener(this);
     }
@@ -109,6 +133,15 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 } else {
                     showDialog("Sorry!!", "Please enter your valid mobile number");
                 }
+
+                if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){
+                    showDialog("Sorry!!", "Please select your State");
+                } else {
+
+                    //TODO: Register Sender API call.
+//                    DMTUtilis.getDMTUtilsInstance().
+                }
+
 
 //                Objects.requireNonNull(getActivity()).onBackPressed();
                 // mListener.goToDMTHome();

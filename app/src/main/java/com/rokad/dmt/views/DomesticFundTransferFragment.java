@@ -2,10 +2,13 @@ package com.rokad.dmt.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,13 +17,14 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import com.rokad.R;
 import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener {
+public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -28,8 +32,11 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private String mParam1;
     private String mParam2;
     private OnDMTInteractionListener mListener;
-    private EditTextWithTitleAndThumbIcon mobileNumber, senderName;
+    private EditTextWithTitleAndThumbIcon senderName, transferLimit, transferAmount;
     private AppCompatSpinner beneficiariesSpinner;
+    private EditTextWithTitleAndThumbIcon senderMobileNumber, senderRegID;
+    private RadioGroup transferTypeGroup;
+    private RadioButton transferType;
 
     public DomesticFundTransferFragment() {
         // Required empty public constructor
@@ -68,27 +75,46 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         return inflater.inflate(R.layout.fragment_domestic_fund_transfer, container, false);
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
         view.findViewById(R.id.check_commission).setOnClickListener(this);
         view.findViewById(R.id.submit).setOnClickListener(this);
+        senderMobileNumber = view.findViewById(R.id.mobile_number);
+        transferLimit = view.findViewById(R.id.transfer_limit);
+        senderRegID = view.findViewById(R.id.sender_reg_id);
+        transferTypeGroup = view.findViewById(R.id.transfer_type);
+        transferAmount = view.findViewById(R.id.transfer_amt);
+        transferAmount.accessEditText().setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        transferTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                transferType = view.findViewById(checkedId);
+
+                if (transferType.getText().equals("NEFT")){
+                    transferLimit.accessSubHeaderTextView().setText("Sender NEFT transfer limit");
+                }
+            }
+        });
+
         beneficiariesSpinner = view.findViewById(R.id.spinner_view);
 
         DMTUtilis utils = DMTUtilis.getDMTUtilsInstance();
-        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("1234567890", "testname", "338");
-        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
-                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);
-        if (beneficiaryNames.isEmpty() || beneficiaryNames == null){
-            beneficiariesSpinner.setEnabled(false);
-        } else {
-            beneficiariesSpinner.setAdapter(namesAdapter);
-        }
+//        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("9920132129", "dhiraj", "338");
+//        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+//                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);
+//        if (beneficiaryNames.isEmpty() || beneficiaryNames == null){
+//            beneficiariesSpinner.setEnabled(false);
+//        } else {
+//            beneficiariesSpinner.setAdapter(namesAdapter);
+//        }
 
 //        utils.getAllBanks();
-//        utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
-//                "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
+        utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
+                "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
     }
 
     @Override
@@ -101,8 +127,24 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                 mListener.showCommissionDialog();
                 break;
             case R.id.submit:
+
+                if (!Utils.isValidMobile(senderMobileNumber.accessEditText().getText().toString())){
+                    showDialog("Sorry!!", "Please check the sender's mobile number.");
+                } else if (!Utils.isValidWord(senderName.accessEditText().getText().toString())){
+                    showDialog("Sorry!!", "Please enter the sender's Name properly.");
+                } else if (senderRegID.accessEditText().getText().equals("")){
+                    showDialog("Sorry!!", "Please enter sender's Registration ID.");
+                } else if (beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
+                beneficiariesSpinner.getSelectedItem().equals("Please select a Beneficiary.")){
+                    showDialog("Sorry!!","Please select a Beneficiary.");
+                } else if (transferAmount.accessEditText().getText().equals("")){
+                    showDialog("Sorry!!", "Please enter the Transfer Amount.");
+                }
+
                 mListener.goToConformation();
                 break;
         }
     }
+
+
 }

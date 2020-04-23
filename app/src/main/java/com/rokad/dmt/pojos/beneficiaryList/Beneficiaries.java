@@ -1,14 +1,20 @@
 package com.rokad.dmt.pojos.beneficiaryList;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Beneficiaries {
-    private List<Beneficiary> beneficiary;
+    @SerializedName("beneficiary")
+    @Expose
+    private List<Beneficiary> beneficiary = null;
 
-    public void setBeneficiary(List<Beneficiary> beneficiary){
-        this.beneficiary = beneficiary;
+    public List<Beneficiary> getBeneficiary() {
+        return beneficiary;
     }
-    public List<Beneficiary> getBeneficiary(){
-        return this.beneficiary;
+
+    public void setBeneficiary(List<Beneficiary> beneficiary) {
+        this.beneficiary = beneficiary;
     }
 }

@@ -1,204 +1,271 @@
 package com.rokad.dmt.pojos.beneficiaryList;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Data {
+    @SerializedName("sessionId")
+    @Expose
     private String sessionId;
-
+    @SerializedName("sourceId")
+    @Expose
     private String sourceId;
-
-    private int requestType;
-
+    @SerializedName("requestType")
+    @Expose
+    private Integer requestType;
+    @SerializedName("username")
+    @Expose
     private String username;
-
+    @SerializedName("icwCode")
+    @Expose
     private String icwCode;
-
+    @SerializedName("responseCode")
+    @Expose
     private String responseCode;
-
+    @SerializedName("responseDesc")
+    @Expose
     private String responseDesc;
-
-    private int senderMobileNo;
-
+    @SerializedName("senderMobileNo")
+    @Expose
+    private Integer senderMobileNo;
+    @SerializedName("processingBankName")
+    @Expose
     private String processingBankName;
-
+    @SerializedName("processingBankId")
+    @Expose
     private String processingBankId;
-
+    @SerializedName("senderId")
+    @Expose
     private String senderId;
-
+    @SerializedName("senderName")
+    @Expose
     private String senderName;
-
+    @SerializedName("neftLimit")
+    @Expose
     private String neftLimit;
-
+    @SerializedName("impsLimit")
+    @Expose
     private String impsLimit;
-
-    private int neftLimitRs;
-
-    private int impsLimitRs;
-
+    @SerializedName("neftLimitRs")
+    @Expose
+    private Integer neftLimitRs;
+    @SerializedName("impsLimitRs")
+    @Expose
+    private Integer impsLimitRs;
+    @SerializedName("kycVerified")
+    @Expose
     private String kycVerified;
-
+    @SerializedName("isSenderAvailable")
+    @Expose
     private String isSenderAvailable;
-
+    @SerializedName("bcSenderVerified")
+    @Expose
     private String bcSenderVerified;
-
-    private int bcLimitRs;
-
-    private int ebixLimitRs;
-
+    @SerializedName("bcLimitRs")
+    @Expose
+    private Integer bcLimitRs;
+    @SerializedName("ebixLimitRs")
+    @Expose
+    private Integer ebixLimitRs;
+    @SerializedName("bankId")
+    @Expose
     private String bankId;
-
-    private String isPPi;
-
+    @SerializedName("easyWalletList")
+    @Expose
     private EasyWalletList easyWalletList;
-
+    @SerializedName("beneficiaries")
+    @Expose
     private Beneficiaries beneficiaries;
 
-    public void setSessionId(String sessionId){
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
-    public String getSessionId(){
-        return this.sessionId;
+
+    public String getSourceId() {
+        return sourceId;
     }
-    public void setSourceId(String sourceId){
+
+    public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
     }
-    public String getSourceId(){
-        return this.sourceId;
+
+    public Integer getRequestType() {
+        return requestType;
     }
-    public void setRequestType(int requestType){
+
+    public void setRequestType(Integer requestType) {
         this.requestType = requestType;
     }
-    public int getRequestType(){
-        return this.requestType;
+
+    public String getUsername() {
+        return username;
     }
-    public void setUsername(String username){
+
+    public void setUsername(String username) {
         this.username = username;
     }
-    public String getUsername(){
-        return this.username;
+
+    public String getIcwCode() {
+        return icwCode;
     }
-    public void setIcwCode(String icwCode){
+
+    public void setIcwCode(String icwCode) {
         this.icwCode = icwCode;
     }
-    public String getIcwCode(){
-        return this.icwCode;
+
+    public String getResponseCode() {
+        return responseCode;
     }
-    public void setResponseCode(String responseCode){
+
+    public void setResponseCode(String responseCode) {
         this.responseCode = responseCode;
     }
-    public String getResponseCode(){
-        return this.responseCode;
+
+    public String getResponseDesc() {
+        return responseDesc;
     }
-    public void setResponseDesc(String responseDesc){
+
+    public void setResponseDesc(String responseDesc) {
         this.responseDesc = responseDesc;
     }
-    public String getResponseDesc(){
-        return this.responseDesc;
+
+    public Integer getSenderMobileNo() {
+        return senderMobileNo;
     }
-    public void setSenderMobileNo(int senderMobileNo){
+
+    public void setSenderMobileNo(Integer senderMobileNo) {
         this.senderMobileNo = senderMobileNo;
     }
-    public int getSenderMobileNo(){
-        return this.senderMobileNo;
+
+    public String getProcessingBankName() {
+        return processingBankName;
     }
-    public void setProcessingBankName(String processingBankName){
+
+    public void setProcessingBankName(String processingBankName) {
         this.processingBankName = processingBankName;
     }
-    public String getProcessingBankName(){
-        return this.processingBankName;
+
+    public String getProcessingBankId() {
+        return processingBankId;
     }
-    public void setProcessingBankId(String processingBankId){
+
+    public void setProcessingBankId(String processingBankId) {
         this.processingBankId = processingBankId;
     }
-    public String getProcessingBankId(){
-        return this.processingBankId;
+
+    public String getSenderId() {
+        return senderId;
     }
-    public void setSenderId(String senderId){
+
+    public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
-    public String getSenderId(){
-        return this.senderId;
+
+    public String getSenderName() {
+        return senderName;
     }
-    public void setSenderName(String senderName){
+
+    public void setSenderName(String senderName) {
         this.senderName = senderName;
     }
-    public String getSenderName(){
-        return this.senderName;
+
+    public String getNeftLimit() {
+        return neftLimit;
     }
-    public void setNeftLimit(String neftLimit){
+
+    public void setNeftLimit(String neftLimit) {
         this.neftLimit = neftLimit;
     }
-    public String getNeftLimit(){
-        return this.neftLimit;
+
+    public String getImpsLimit() {
+        return impsLimit;
     }
-    public void setImpsLimit(String impsLimit){
+
+    public void setImpsLimit(String impsLimit) {
         this.impsLimit = impsLimit;
     }
-    public String getImpsLimit(){
-        return this.impsLimit;
+
+    public Integer getNeftLimitRs() {
+        return neftLimitRs;
     }
-    public void setNeftLimitRs(int neftLimitRs){
+
+    public void setNeftLimitRs(Integer neftLimitRs) {
         this.neftLimitRs = neftLimitRs;
     }
-    public int getNeftLimitRs(){
-        return this.neftLimitRs;
+
+    public Integer getImpsLimitRs() {
+        return impsLimitRs;
     }
-    public void setImpsLimitRs(int impsLimitRs){
+
+    public void setImpsLimitRs(Integer impsLimitRs) {
         this.impsLimitRs = impsLimitRs;
     }
-    public int getImpsLimitRs(){
-        return this.impsLimitRs;
+
+    public String getKycVerified() {
+        return kycVerified;
     }
-    public void setKycVerified(String kycVerified){
+
+    public void setKycVerified(String kycVerified) {
         this.kycVerified = kycVerified;
     }
-    public String getKycVerified(){
-        return this.kycVerified;
+
+    public String getIsSenderAvailable() {
+        return isSenderAvailable;
     }
-    public void setIsSenderAvailable(String isSenderAvailable){
+
+    public void setIsSenderAvailable(String isSenderAvailable) {
         this.isSenderAvailable = isSenderAvailable;
     }
-    public String getIsSenderAvailable(){
-        return this.isSenderAvailable;
+
+    public String getBcSenderVerified() {
+        return bcSenderVerified;
     }
-    public void setBcSenderVerified(String bcSenderVerified){
+
+    public void setBcSenderVerified(String bcSenderVerified) {
         this.bcSenderVerified = bcSenderVerified;
     }
-    public String getBcSenderVerified(){
-        return this.bcSenderVerified;
+
+    public Integer getBcLimitRs() {
+        return bcLimitRs;
     }
-    public void setBcLimitRs(int bcLimitRs){
+
+    public void setBcLimitRs(Integer bcLimitRs) {
         this.bcLimitRs = bcLimitRs;
     }
-    public int getBcLimitRs(){
-        return this.bcLimitRs;
+
+    public Integer getEbixLimitRs() {
+        return ebixLimitRs;
     }
-    public void setEbixLimitRs(int ebixLimitRs){
+
+    public void setEbixLimitRs(Integer ebixLimitRs) {
         this.ebixLimitRs = ebixLimitRs;
     }
-    public int getEbixLimitRs(){
-        return this.ebixLimitRs;
+
+    public String getBankId() {
+        return bankId;
     }
-    public void setBankId(String bankId){
+
+    public void setBankId(String bankId) {
         this.bankId = bankId;
     }
-    public String getBankId(){
-        return this.bankId;
+
+    public EasyWalletList getEasyWalletList() {
+        return easyWalletList;
     }
-    public void setIsPPi(String isPPi){
-        this.isPPi = isPPi;
-    }
-    public String getIsPPi(){
-        return this.isPPi;
-    }
-    public void setEasyWalletList(EasyWalletList easyWalletList){
+
+    public void setEasyWalletList(EasyWalletList easyWalletList) {
         this.easyWalletList = easyWalletList;
     }
-    public EasyWalletList getEasyWalletList(){
-        return this.easyWalletList;
+
+    public Beneficiaries getBeneficiaries() {
+        return beneficiaries;
     }
-    public void setBeneficiaries(Beneficiaries beneficiaries){
+
+    public void setBeneficiaries(Beneficiaries beneficiaries) {
         this.beneficiaries = beneficiaries;
-    }
-    public Beneficiaries getBeneficiaries(){
-        return this.beneficiaries;
     }
 }

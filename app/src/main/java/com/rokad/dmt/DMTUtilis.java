@@ -50,8 +50,12 @@ public class DMTUtilis implements DMTService {
                 //TODO: return array list of beneficiaries.
 
 //                Log.e("===lllD", response.raw().toString());
+                if(response.isSuccessful())
                 for (int i = 0; i < response.body().getData().getBeneficiaries().getBeneficiary().size() ; i++) {
                     beneficiaryList.add(response.body().getData().getBeneficiaries().getBeneficiary().get(i).getBeneficiaryFullName());
+                }
+                else{
+                    Log.e(">>>>>>", "failed : " + response.message());
                 }
 
             }
@@ -60,7 +64,7 @@ public class DMTUtilis implements DMTService {
             public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
                 //TODO: return failure response i.e. null.
                 Log.e("===lllD", Objects.requireNonNull(t.getCause().toString()));
-//                beneficiaryList.clear();
+                t.printStackTrace();
             }
         });
         return beneficiaryList;
@@ -103,7 +107,7 @@ public class DMTUtilis implements DMTService {
 
                     @Override
                     public void onFailure(Call<NewTransactionProcessResponsePOJO> call, Throwable t) {
-                        Log.e("===D", Objects.requireNonNull(t.getMessage()));
+                        t.printStackTrace();
                     }
                 });
 

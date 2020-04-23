@@ -1,23 +1,32 @@
 package com.rokad.dmt.pojos;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 
 public class BeneficiaryListResponsePOJO {
-    private String status;
 
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("data")
+    @Expose
     private Data data;
 
-    public void setStatus(String status){
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
         this.status = status;
     }
-    public String getStatus(){
-        return this.status;
+
+    public Data getData() {
+        return data;
     }
-    public void setData(Data data){
+
+    public void setData(Data data) {
         this.data = data;
-    }
-    public Data getData(){
-        return this.data;
     }
 
 }
