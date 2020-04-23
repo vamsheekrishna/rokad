@@ -34,7 +34,7 @@ public class PaymentDialogFragment extends DialogFragment implements View.OnClic
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof OnMobileRechargeListener) {
+        if(context instanceof OnDMTInteractionListener) {
             mListener = (OnDMTInteractionListener)context;
         }
     }
@@ -64,6 +64,7 @@ public class PaymentDialogFragment extends DialogFragment implements View.OnClic
                 break;
             case R.id.repeat_payment_btn:
                 mListener.makeAnotherPayment();
+                dismiss();
                 break;
         }
     }

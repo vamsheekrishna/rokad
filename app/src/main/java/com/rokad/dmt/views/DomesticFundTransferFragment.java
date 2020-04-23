@@ -2,6 +2,7 @@ package com.rokad.dmt.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,12 +84,25 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
         view.findViewById(R.id.check_commission).setOnClickListener(this);
         view.findViewById(R.id.submit).setOnClickListener(this);
+
         senderMobileNumber = view.findViewById(R.id.mobile_number);
+        senderMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        InputFilter[] filterArray = new InputFilter[1];
+        filterArray[0] = new InputFilter.LengthFilter(10);
+        senderMobileNumber.accessEditText().setFilters(filterArray);
+
+        senderName = view.findViewById(R.id.sender_name);
+        senderName.accessSubHeaderTextView().setText("Sender Name");
+
         transferLimit = view.findViewById(R.id.transfer_limit);
+        transferLimit.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+
         senderRegID = view.findViewById(R.id.sender_reg_id);
         transferTypeGroup = view.findViewById(R.id.transfer_type);
+
         transferAmount = view.findViewById(R.id.transfer_amt);
-        transferAmount.accessEditText().setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        transferAmount.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+
         transferTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -96,6 +110,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 
                 if (transferType.getText().equals("NEFT")){
                     transferLimit.accessSubHeaderTextView().setText("Sender NEFT transfer limit");
+                } else {
+                    transferLimit.accessSubHeaderTextView().setText("Sender IMPS transfer limit");
                 }
             }
         });
@@ -139,9 +155,10 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                     showDialog("Sorry!!","Please select a Beneficiary.");
                 } else if (transferAmount.accessEditText().getText().equals("")){
                     showDialog("Sorry!!", "Please enter the Transfer Amount.");
+                } else {
+                    mListener.goToConformation();
                 }
 
-                mListener.goToConformation();
                 break;
         }
     }

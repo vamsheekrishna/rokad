@@ -67,9 +67,10 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof OnDMTInteractionListener)
+//        if(context instanceof OnDMTInteractionListener)
         mListener = (OnDMTInteractionListener) context;
     }
+
 
     @Override
     public void onResume() {

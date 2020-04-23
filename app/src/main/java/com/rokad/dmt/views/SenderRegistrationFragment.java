@@ -148,6 +148,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 break;
 
             case R.id.send_otp:
+                Toast.makeText(getContext(),"clicked", Toast.LENGTH_SHORT).show();
                 //TODO: to be implemented.
         }
     }

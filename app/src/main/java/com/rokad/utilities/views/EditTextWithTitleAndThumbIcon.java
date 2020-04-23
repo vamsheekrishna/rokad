@@ -41,6 +41,7 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
             if(null != styledAttributes) {
                 try {
                     String text =  styledAttributes.getString(R.styleable.EditTextWithTitleAndThumbIcon_title);
+                    subHeaderTextView = view.findViewById(R.id.sub_header);
                     subHeaderTextView.setText(text);
                 } catch (Exception e) {
 
