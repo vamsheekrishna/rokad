@@ -11,9 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.adapters.RateCutterPlansAdapter;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
+import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +34,8 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private List<RATECUTTER> ratecutter;
 
     public RateCutterPlans() {
         // Required empty public constructor
@@ -52,12 +59,19 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
         return fragment;
     }
 
+    public static BaseFragment newInstance(List<RATECUTTER> ratecutter) {
+        RateCutterPlans fragment = new RateCutterPlans();
+        Bundle args = new Bundle();
+        args.putSerializable("cutter", (Serializable) ratecutter);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+          ratecutter  = (List<RATECUTTER>) getArguments().getSerializable("cutter");
         }
     }
 
@@ -68,7 +82,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
         View view = inflater.inflate(R.layout.fragment_rate_cutter_plans, container, false);
 
         RecyclerView rateCutterPlansList = view.findViewById(R.id.rate_cutter_plans);
-        SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        RateCutterPlansAdapter adapter = new RateCutterPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(),ratecutter);
         rateCutterPlansList.setAdapter(adapter);
         rateCutterPlansList.setHasFixedSize(true);
         rateCutterPlansList.setLayoutManager(new LinearLayoutManager(getContext()));

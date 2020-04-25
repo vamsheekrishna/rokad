@@ -6,19 +6,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
+import com.rokad.mobile_recharge.models.mPlans.SM;
+
+import java.util.List;
 
 public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
 
     private RecyclerOnClickHandler mOnClickHandler;
     private Context mContext;
+    private List<SM> sms;
 
-    public SMSPlansAdapter(RecyclerOnClickHandler mOnClickHandler, Context mContext) {
+    public SMSPlansAdapter(RecyclerOnClickHandler mOnClickHandler, Context mContext, List<SM> sms) {
         this.mOnClickHandler = mOnClickHandler;
         this.mContext = mContext;
+        this.sms = sms;
     }
 
     @NonNull
@@ -30,12 +38,15 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
 
     @Override
     public void onBindViewHolder(@NonNull PlanHolder holder, int position) {
-
+        holder.desc.setText(sms.get(position).getDesc());
+        holder.planPrice.setText(String.valueOf(sms.get(position).getRs()));
+        holder.validity.setText(sms.get(position).getValidity());
+        holder.lastUpdate.setText(sms.get(position).getLastUpdate());
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return sms.size();
     }
 
     @Override
@@ -45,8 +56,16 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 
+        AppCompatTextView desc, validity,lastUpdate, planPrice;
+        AppCompatButton chooseButton;
+
         PlanHolder(@NonNull View itemView) {
             super(itemView);
+            desc = itemView.findViewById(R.id.desc);
+            validity = itemView.findViewById(R.id.validity);
+            lastUpdate = itemView.findViewById(R.id.last_update);
+            planPrice = itemView.findViewById(R.id.top_up_plan_price);
+            chooseButton = itemView.findViewById(R.id.select_plan);
         }
     }
 }

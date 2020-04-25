@@ -13,7 +13,11 @@ import android.view.ViewGroup;
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.TopUpRechargePlansRecyclerAdapter;
+import com.rokad.mobile_recharge.models.mPlans.TOPUP;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +33,8 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private List<TOPUP> topup;
 
     public RechargeTopUpPlans() {
         // Required empty public constructor
@@ -52,12 +58,19 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
         return fragment;
     }
 
+    public static BaseFragment newInstance(List<TOPUP> topup) {
+        RechargeTopUpPlans fragment = new RechargeTopUpPlans();
+        Bundle args = new Bundle();
+        args.putSerializable("topup", (Serializable) topup);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+           topup = (List<TOPUP>) getArguments().getSerializable("topup");
         }
     }
 
@@ -68,7 +81,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
         View view = inflater.inflate(R.layout.fragment_recharge_top_up_plans, container, false);
 
         RecyclerView topupPlansList = view.findViewById(R.id.top_up_plans);
-        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), topup);
         topupPlansList.setAdapter(adapter);
         topupPlansList.setHasFixedSize(true);
         topupPlansList.setLayoutManager(new LinearLayoutManager(getContext()));

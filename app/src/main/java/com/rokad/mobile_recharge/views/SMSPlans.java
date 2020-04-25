@@ -11,7 +11,11 @@ import android.view.ViewGroup;
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
     private static final String ARG_PARAM1 = "param1";
@@ -20,6 +24,7 @@ public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
     private String mParam1;
     private String mParam2;
 
+    private List<SM> sm;
     public SMSPlans() {
         // Required empty public constructor
     }
@@ -33,12 +38,19 @@ public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
         return fragment;
     }
 
+    public static BaseFragment newInstance(List<SM> sm) {
+        SMSPlans fragment = new SMSPlans();
+        Bundle args = new Bundle();
+        args.putSerializable("sm", (Serializable) sm);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+          sm = (List<SM>) getArguments().getSerializable("sm");
         }
     }
 
@@ -49,7 +61,7 @@ public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
         View view = inflater.inflate(R.layout.fragment_s_m_s_plans, container, false);
 
         RecyclerView smsPlansList = view.findViewById(R.id.sms_plans);
-        SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), sm);
         smsPlansList.setAdapter(adapter);
 
         return view;

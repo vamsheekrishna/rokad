@@ -5,6 +5,7 @@ import android.util.Log;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
+import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.rokad_api.endpoints.DMTService;
@@ -31,6 +32,11 @@ public class DMTUtilis implements DMTService {
     }
 
     @Override
+    public void resendOTP() {
+
+    }
+
+    @Override
     public void verifyOTP() {
 
     }
@@ -41,8 +47,8 @@ public class DMTUtilis implements DMTService {
     }
 
     @Override
-    public ArrayList<String> getBeneficiaryList(String mobileNumber, String senderName, String userId) {
-         ArrayList<String> beneficiaryList = new ArrayList<>();
+    public ArrayList<Beneficiary> getBeneficiaryList(String mobileNumber, String senderName, String userId) {
+         ArrayList<Beneficiary> beneficiaryList = new ArrayList<>();
         getServiceInstance().BENEFICIARY_LIST_RESPONSE_CALL(mobileNumber,senderName,userId)
                 .enqueue(new Callback<BeneficiaryListResponsePOJO>() {
             @Override
@@ -52,7 +58,7 @@ public class DMTUtilis implements DMTService {
 //                Log.e("===lllD", response.raw().toString());
                 if(response.isSuccessful())
                 for (int i = 0; i < response.body().getData().getBeneficiaries().getBeneficiary().size() ; i++) {
-                    beneficiaryList.add(response.body().getData().getBeneficiaries().getBeneficiary().get(i).getBeneficiaryFullName());
+                    beneficiaryList.add(response.body().getData().getBeneficiaries().getBeneficiary().get(i));
                 }
                 else{
                     Log.e(">>>>>>", "failed : " + response.message());

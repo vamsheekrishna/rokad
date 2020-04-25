@@ -11,7 +11,15 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
 import com.rokad.mobile_recharge.adapters.RechargePlansPagerAdapter;
+import com.rokad.mobile_recharge.models.mPlans.COMBO;
+import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
+import com.rokad.mobile_recharge.models.mPlans.Romaing;
+import com.rokad.mobile_recharge.models.mPlans.SM;
+import com.rokad.mobile_recharge.models.mPlans.TOPUP;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class MobileRechargePlansHome extends BaseFragment {
@@ -25,14 +33,26 @@ public class MobileRechargePlansHome extends BaseFragment {
     private ViewPager plansPager;
     private RechargePlansPagerAdapter viewPagerAdapter;
 
+    private List<TOPUP> topup;
+    private List<Romaing> roaming;
+    private List<COMBO> combo;
+    private List<RATECUTTER> ratecutter;
+    private List<SM> sm;
+
     public MobileRechargePlansHome() {
         // Required empty public constructor
     }
-    public static MobileRechargePlansHome newInstance(String param1, String param2) {
+
+
+    public static BaseFragment newInstance(List<TOPUP> topup, List<Romaing> roaming, List<COMBO> combo, List<RATECUTTER> ratecutter, List<SM> sm) {
         MobileRechargePlansHome fragment = new MobileRechargePlansHome();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("top_up", (Serializable) topup);
+        args.putSerializable("roaming", (Serializable) roaming);
+        args.putSerializable("combo", (Serializable) combo);
+        args.putSerializable("cutter", (Serializable) ratecutter);
+        args.putSerializable("sm", (Serializable) sm);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,8 +61,12 @@ public class MobileRechargePlansHome extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+            topup = (List<TOPUP>) getArguments().getSerializable("top_up");
+            roaming = (List<Romaing>) getArguments().getSerializable("roaming");
+            combo = (List<COMBO>) getArguments().getSerializable("combo");
+            ratecutter = (List<RATECUTTER>) getArguments().getSerializable("cutter");
+            sm = (List<SM>) getArguments().getSerializable("sm");
         }
     }
 
@@ -54,7 +78,7 @@ public class MobileRechargePlansHome extends BaseFragment {
 
          plansTabs = view.findViewById(R.id.recharge_plan_tabs);
          plansPager = view.findViewById(R.id.plans_pager);
-         viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0);
+         viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0,topup,roaming,combo,ratecutter,sm);
         plansPager.setAdapter(viewPagerAdapter);
         plansTabs.setupWithViewPager(plansPager);
 

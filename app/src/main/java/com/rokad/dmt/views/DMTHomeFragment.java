@@ -24,6 +24,7 @@ import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
+import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.Objects;
@@ -148,9 +149,10 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.transfer_fund:
                 String mobile = mobileNumber.getText().toString();
-                if(mobile.length() != 10) {
+                if(!Utils.isValidMobile(mobile)) {
                     showDialog("", "Please enter a valid mobile number");
                 } else {
+                    mListener.getHomeScreenDetails().setMobileNumber(mobile);
                     mListener.goToDomesticFundTransfer();
                 }
                 break;

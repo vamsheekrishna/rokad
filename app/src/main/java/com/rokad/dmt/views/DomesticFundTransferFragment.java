@@ -1,5 +1,6 @@
 package com.rokad.dmt.views;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -25,7 +26,7 @@ import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener{
+public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener, View.OnFocusChangeListener{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -94,6 +95,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         senderName = view.findViewById(R.id.sender_name);
         senderName.accessSubHeaderTextView().setText("Sender Name");
 
+        senderName.accessEditText().setOnFocusChangeListener(this);
+
         transferLimit = view.findViewById(R.id.transfer_limit);
         transferLimit.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -131,6 +134,34 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 //        utils.getAllBanks();
         utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
                 "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()){
+            case R.id.sender_name:
+
+                if (!hasFocus) {
+                    String mobile = senderMobileNumber.accessEditText().getText().toString();
+                    String name = senderName.accessEditText().getText().toString();
+                    if (Utils.isValidMobile(mobile) && Utils.isValidWord(name)) {
+                        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+                        progressBar.setCancelable(false);
+                        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                        progressBar.show();
+                        mListener.getFundTransferDetails().setMobileNumber(mobile);
+                        mListener.getFundTransferDetails().setSenderName(name);
+                        DMTUtilis.getDMTUtilsInstance().getBeneficiaryList(mobile,name,"338");
+                    } else {
+                        showDialog("Sorry!!", "Please check and enter the mobile number and Sender's name again");
+                        senderMobileNumber.accessEditText().setText("");
+                        senderName.accessEditText().setText("");
+                    }
+                }
+
+
+
+        }
     }
 
     @Override

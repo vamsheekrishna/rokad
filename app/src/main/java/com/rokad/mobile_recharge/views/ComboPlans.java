@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.ComboPlansAdapter;
+import com.rokad.mobile_recharge.models.mPlans.COMBO;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     // TODO: Rename parameter arguments, choose names that match
@@ -24,15 +28,16 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     private String mParam1;
     private String mParam2;
 
+    private List<COMBO> combo;
     public ComboPlans() {
         // Required empty public constructor
     }
 
-    public static ComboPlans newInstance(String param1, String param2) {
+
+    public static BaseFragment newInstance(List<COMBO> combo) {
         ComboPlans fragment = new ComboPlans();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("combo", (Serializable) combo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,8 +46,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            combo = (List<COMBO>) getArguments().getSerializable("combo");
         }
     }
 
@@ -53,7 +57,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
         View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
 
         RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
-        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(),combo);
         comboPlansList.setAdapter(adapter);
         comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 

@@ -6,6 +6,8 @@ import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
+import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
+import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
 
 import retrofit2.Call;
@@ -90,4 +92,21 @@ public interface DMTModuleService {
 //    @FormUrlEncoded
     Call<BankListResponsePOJO> BANK_LIST_POJO_CALL();
 
+
+    @POST(BuildConfig.OTP_VERIFICATION)
+    @FormUrlEncoded
+    Call<OTPValidationResponsePOJO> OTP_VALIDATION_CALL(@Field("user_id") String userID,
+                                                        @Field("unique_session_id") String uniqueSessionID,
+                                                        @Field("mob_no") String mobileNumber,
+                                                        @Field("fname") String firstName,
+                                                        @Field("lname") String lastName,
+                                                        @Field("otp") String otp,
+                                                        @Field("registrationId") String regID,
+                                                        @Field("paytmUserState") String paytmUserSate);
+
+
+    @POST(BuildConfig.RESEND_OTP)
+    @FormUrlEncoded
+    Call<ResendOTPResponsePOJO> RESEND_OTP_CALL(@Field("session_id") String sessionId,
+                                                @Field("mob_no") String mobileNumber);
 }

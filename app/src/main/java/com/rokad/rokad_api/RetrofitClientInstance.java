@@ -50,11 +50,12 @@ public class RetrofitClientInstance {
                 Interceptor basicAuth = new Interceptor() {
                     @Override
                     public Response intercept(Interceptor.Chain chain) throws IOException {
+                        String test = auth.replace("\n","");
                         Request request = chain.request()
                                 .newBuilder()
                                 .addHeader("Content-Type","application/x-www-form-urlencoded")
                                 .addHeader("X-API-KEY",BuildConfig.API_KEY)
-                                .addHeader("Authorization", auth.replace("\n",""))
+                                .addHeader("Authorization", test)
                                 .build();
                         return chain.proceed(request);
                     }

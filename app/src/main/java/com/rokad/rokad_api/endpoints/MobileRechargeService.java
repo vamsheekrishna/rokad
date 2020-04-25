@@ -1,9 +1,8 @@
 package com.rokad.rokad_api.endpoints;
 
 import com.rokad.BuildConfig;
-import com.rokad.rokad_api.endpoints.pojos.ResponseGetPlans;
+import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
 import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
-import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

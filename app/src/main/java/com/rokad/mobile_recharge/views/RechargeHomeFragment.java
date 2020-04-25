@@ -28,9 +28,14 @@ import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
+import com.rokad.mobile_recharge.models.mPlans.COMBO;
+import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
+import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
+import com.rokad.mobile_recharge.models.mPlans.Romaing;
+import com.rokad.mobile_recharge.models.mPlans.SM;
+import com.rokad.mobile_recharge.models.mPlans.TOPUP;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.MobileRechargeService;
-import com.rokad.rokad_api.endpoints.pojos.ResponseGetPlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.math.BigDecimal;
@@ -246,10 +251,16 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         @Override
                         public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
                             progressBar.dismiss();
-                            Toast.makeText(getContext(),"body : " + response.body(),Toast.LENGTH_SHORT).show();
+                            if (response.body().getStatus().equalsIgnoreCase("Success")) {
+
+                                mListener.goToSeePlansFragment(response.body().getData().getRecords().getTOPUP(),
+                                        response.body().getData().getRecords().getRomaing(),
+                                        response.body().getData().getRecords().getCOMBO(),
+                                        response.body().getData().getRecords().getRATECUTTER(),
+                                        response.body().getData().getRecords().getSMS());
+                            }
+
                         }
-
-
 
                         @Override
                         public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
@@ -258,7 +269,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         }
                     });
                 }
-                mListener.goToSeePlansFragment();
+
                 break;
             default:
                 throw new UnsupportedOperationException("Don't know where you've clicked");

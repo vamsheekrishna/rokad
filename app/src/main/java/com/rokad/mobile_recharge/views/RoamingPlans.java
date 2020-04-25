@@ -11,9 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.RoamingPlansAdapter;
+import com.rokad.mobile_recharge.models.mPlans.Romaing;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,24 +35,19 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     private String mParam1;
     private String mParam2;
 
+    private List<Romaing> roaming;
+
+    private OnMobileRechargeListener onMobileRechargeListener;
+
     public RoamingPlans() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RoamingPlans.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RoamingPlans newInstance(String param1, String param2) {
+
+    public static BaseFragment newInstance(List<Romaing> roaming) {
         RoamingPlans fragment = new RoamingPlans();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("roaming", (Serializable) roaming);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,8 +56,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+           roaming = (List<Romaing>) getArguments().getSerializable("roaming");
         }
     }
 
@@ -68,7 +67,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
         View view = inflater.inflate(R.layout.fragment_roaming_plans, container, false);
 
         RecyclerView roamingPlansList = view.findViewById(R.id.roaming_plans);
-        RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext());
+        RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), roaming);
         roamingPlansList.setAdapter(adapter);
         roamingPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -77,6 +76,6 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
 
     @Override
     public void onClick(int chosenSubscriber) {
-
+        
     }
 }
