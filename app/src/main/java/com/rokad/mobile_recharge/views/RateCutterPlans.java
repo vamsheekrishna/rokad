@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,10 +83,17 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
         View view = inflater.inflate(R.layout.fragment_rate_cutter_plans, container, false);
 
         RecyclerView rateCutterPlansList = view.findViewById(R.id.rate_cutter_plans);
-        RateCutterPlansAdapter adapter = new RateCutterPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(),ratecutter);
-        rateCutterPlansList.setAdapter(adapter);
-        rateCutterPlansList.setHasFixedSize(true);
-        rateCutterPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        if (ratecutter.isEmpty()){
+            rateCutterPlansList.setVisibility(View.GONE);
+            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+        } else {
+
+            RateCutterPlansAdapter adapter = new RateCutterPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), ratecutter);
+            rateCutterPlansList.setAdapter(adapter);
+            rateCutterPlansList.setHasFixedSize(true);
+            rateCutterPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
 
         return view;
     }

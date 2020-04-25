@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -61,8 +62,14 @@ public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
         View view = inflater.inflate(R.layout.fragment_s_m_s_plans, container, false);
 
         RecyclerView smsPlansList = view.findViewById(R.id.sms_plans);
-        SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), sm);
-        smsPlansList.setAdapter(adapter);
+
+        if (sm.isEmpty()){
+            smsPlansList.setVisibility(View.GONE);
+            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+        } else {
+            SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), sm);
+            smsPlansList.setAdapter(adapter);
+        }
 
         return view;
     }

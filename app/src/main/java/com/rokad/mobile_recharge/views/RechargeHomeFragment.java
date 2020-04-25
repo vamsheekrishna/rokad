@@ -265,7 +265,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         @Override
                         public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
                             progressBar.dismiss();
-                            Toast.makeText(getContext(),"body : " + t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

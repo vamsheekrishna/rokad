@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,10 +82,16 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
         View view = inflater.inflate(R.layout.fragment_recharge_top_up_plans, container, false);
 
         RecyclerView topupPlansList = view.findViewById(R.id.top_up_plans);
-        TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), topup);
-        topupPlansList.setAdapter(adapter);
-        topupPlansList.setHasFixedSize(true);
-        topupPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        if (topup.isEmpty()){
+            topupPlansList.setVisibility(View.GONE);
+            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+        } else {
+            TopUpRechargePlansRecyclerAdapter adapter = new TopUpRechargePlansRecyclerAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), topup);
+            topupPlansList.setAdapter(adapter);
+            topupPlansList.setHasFixedSize(true);
+            topupPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
 
         return view;
     }

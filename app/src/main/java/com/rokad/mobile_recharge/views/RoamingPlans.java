@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,15 +68,21 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
         View view = inflater.inflate(R.layout.fragment_roaming_plans, container, false);
 
         RecyclerView roamingPlansList = view.findViewById(R.id.roaming_plans);
-        RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), roaming);
-        roamingPlansList.setAdapter(adapter);
-        roamingPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        if (roaming.isEmpty()) {
+            roamingPlansList.setVisibility(View.GONE);
+            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+        } else {
+            RoamingPlansAdapter adapter = new RoamingPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), roaming);
+            roamingPlansList.setAdapter(adapter);
+            roamingPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
 
         return view;
     }
 
     @Override
     public void onClick(int chosenSubscriber) {
-        
+
     }
 }

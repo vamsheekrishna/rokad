@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,9 +58,15 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
         View view = inflater.inflate(R.layout.fragment_combo_plans, container, false);
 
         RecyclerView comboPlansList = view.findViewById(R.id.combo_plans);
-        ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(),combo);
-        comboPlansList.setAdapter(adapter);
-        comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        if (combo.isEmpty()){
+            comboPlansList.setVisibility(View.GONE);
+            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+        } else {
+            ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), combo);
+            comboPlansList.setAdapter(adapter);
+            comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
 
         return view;
     }
