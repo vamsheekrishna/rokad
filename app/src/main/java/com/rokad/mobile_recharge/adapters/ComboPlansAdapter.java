@@ -1,6 +1,7 @@
 package com.rokad.mobile_recharge.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,21 +9,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.mPlans.COMBO;
+import com.rokad.mobile_recharge.views.MobileHomeFragment;
+import com.rokad.mobile_recharge.views.RechargeHomeFragment;
 
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
 
     private RecyclerOnClickHandler mRecyclerOnClickHandler;
-    private Context mContext;
+    private FragmentActivity mContext;
     private List<COMBO> combo;
+    private List<Fragment> test;
 
-    public ComboPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext, List<COMBO> combo) {
+    public ComboPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, FragmentActivity mContext, List<COMBO> combo) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         this.combo = combo;
@@ -32,6 +40,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
+
         return new ComboPlansAdapter.PlanHolder(view);
     }
 
@@ -41,6 +50,19 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
         holder.planPrice.setText(String.valueOf(combo.get(position).getRs()));
         holder.validity.setText(combo.get(position).getValidity());
         holder.lastUpdate.setText(combo.get(position).getLastUpdate());
+
+        holder.chooseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRecyclerOnClickHandler.onClick(combo.get(position).getRs());
+                Intent intent = new Intent(mContext, mContext.getClass());
+                intent.putExtra("planPrice", combo.get(position).getRs());
+                mContext.getSupportFragmentManager().getFragments().get(0).onActivityResult(
+                        mContext.getSupportFragmentManager().getFragments().get(0).getTargetRequestCode(), RESULT_OK, intent);
+
+                mContext.getSupportFragmentManager().popBackStack();
+            }
+        });
     }
 
     @Override
@@ -67,5 +89,6 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
             planPrice = itemView.findViewById(R.id.top_up_plan_price);
             chooseButton = itemView.findViewById(R.id.select_plan);
         }
+
     }
 }

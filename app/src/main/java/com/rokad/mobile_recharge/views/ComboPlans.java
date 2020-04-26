@@ -63,7 +63,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
             comboPlansList.setVisibility(View.GONE);
             ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
         } else {
-            ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), combo);
+            ComboPlansAdapter adapter = new ComboPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getActivity(), combo);
             comboPlansList.setAdapter(adapter);
             comboPlansList.setLayoutManager(new LinearLayoutManager(getContext()));
         }
