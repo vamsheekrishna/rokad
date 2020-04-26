@@ -251,13 +251,21 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         @Override
                         public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
                             progressBar.dismiss();
-                            if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                            if (response.code() == 200) {
+                                if (response.body().getStatus().equalsIgnoreCase("Success")) {
 
-                                mListener.goToSeePlansFragment(response.body().getData().getRecords().getTOPUP(),
-                                        response.body().getData().getRecords().getRomaing(),
-                                        response.body().getData().getRecords().getCOMBO(),
-                                        response.body().getData().getRecords().getRATECUTTER(),
-                                        response.body().getData().getRecords().getSMS());
+                                    mListener.goToSeePlansFragment(
+                                            response.body().getData().getRecords().getTOPUP(),
+                                            response.body().getData().getRecords().getRomaing(),
+                                            response.body().getData().getRecords().getCOMBO(),
+                                            response.body().getData().getRecords().getRATECUTTER(),
+                                            response.body().getData().getRecords().getSMS());
+                                }else {
+                                    showDialog("Sorry!!", "Plans are not available");
+                                }
+
+                            } else {
+                                showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                             }
 
                         }
