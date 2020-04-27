@@ -20,6 +20,12 @@ import java.util.List;
 public class MobileRechargePlansHome extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String TOP_UP = "top_up";
+    public static final String ROAMING = "roaming";
+    public static final String COMBO = "combo";
+    public static final String CUTTER = "cutter";
+    public static final String SPECIAL_PLANS = "special_plans";
+    public static final String SM = "sm";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -33,20 +39,23 @@ public class MobileRechargePlansHome extends BaseFragment {
     private List<RechargePlans> combo;
     private List<RechargePlans> ratecutter;
     private List<RechargePlans> sm;
+    private List<RechargePlans> specialPlans;
 
     public MobileRechargePlansHome() {
         // Required empty public constructor
     }
 
 
-    public static BaseFragment newInstance(List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm) {
+    public static BaseFragment newInstance(List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo,
+                                           List<RechargePlans> ratecutter, List<RechargePlans> sm, List<RechargePlans> specialPlans) {
         MobileRechargePlansHome fragment = new MobileRechargePlansHome();
         Bundle args = new Bundle();
-        args.putSerializable("top_up", (Serializable) topup);
-        args.putSerializable("roaming", (Serializable) roaming);
-        args.putSerializable("combo", (Serializable) combo);
-        args.putSerializable("cutter", (Serializable) ratecutter);
-        args.putSerializable("sm", (Serializable) sm);
+        args.putSerializable(TOP_UP, (Serializable) topup);
+        args.putSerializable(ROAMING, (Serializable) roaming);
+        args.putSerializable(COMBO, (Serializable) combo);
+        args.putSerializable(CUTTER, (Serializable) ratecutter);
+        args.putSerializable(SM, (Serializable) sm);
+        args.putSerializable(SPECIAL_PLANS, (Serializable) specialPlans);
 
         fragment.setArguments(args);
         return fragment;
@@ -57,11 +66,12 @@ public class MobileRechargePlansHome extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 
-            topup = (List<RechargePlans>) getArguments().getSerializable("top_up");
-            roaming = (List<RechargePlans>) getArguments().getSerializable("roaming");
-            combo = (List<RechargePlans>) getArguments().getSerializable("combo");
-            ratecutter = (List<RechargePlans>) getArguments().getSerializable("cutter");
-            sm = (List<RechargePlans>) getArguments().getSerializable("sm");
+            topup = (List<RechargePlans>) getArguments().getSerializable(TOP_UP);
+            roaming = (List<RechargePlans>) getArguments().getSerializable(ROAMING);
+            combo = (List<RechargePlans>) getArguments().getSerializable(COMBO);
+            ratecutter = (List<RechargePlans>) getArguments().getSerializable(CUTTER);
+            sm = (List<RechargePlans>) getArguments().getSerializable(SM);
+            specialPlans = (List<RechargePlans>) getArguments().getSerializable(SPECIAL_PLANS);
         }
     }
 
@@ -73,9 +83,9 @@ public class MobileRechargePlansHome extends BaseFragment {
 
          plansTabs = view.findViewById(R.id.recharge_plan_tabs);
          plansPager = view.findViewById(R.id.plans_pager);
-         viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0,topup,roaming,combo,ratecutter,sm);
-        plansPager.setAdapter(viewPagerAdapter);
-        plansTabs.setupWithViewPager(plansPager);
+         viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0,topup,roaming,combo,ratecutter,sm, specialPlans);
+         plansPager.setAdapter(viewPagerAdapter);
+         plansTabs.setupWithViewPager(plansPager);
 
         return view;
     }

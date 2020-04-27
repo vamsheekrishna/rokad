@@ -83,8 +83,8 @@ android {
             buildConfigField("String", "MOBILE_APPLICATION", '"Y"')
             buildConfigField("String", "MOBILE_VERSION_ID", '"1.0"')
 
-            buildConfigField("String","USERNAME",'"8286506657"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')
+//            buildConfigField("String","USERNAME",'"8286506657"')
+//            buildConfigField("String","PASSWORD",'"Trimax@123"')
 
             //LOGIN/Forgot password APIS
             buildConfigField("String", "LOGIN", '"rest_server/rokad_andriod/login"')

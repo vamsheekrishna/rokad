@@ -19,7 +19,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<BaseFragment> rechargePlansFrags;
     private ArrayList<String> fragTitles;
 
-    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior, List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm) {
+    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior, List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm, List<RechargePlans> specialPlans) {
         super(fm,behavior);
 
         rechargePlansFrags = new ArrayList<>();
@@ -56,6 +56,11 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
         if(sm.size() > 0 ) {
             fragTitles.add("SMS plans");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(sm));
+        }
+
+        if(specialPlans.size() > 0 ) {
+            fragTitles.add("Special Plans");
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(specialPlans));
         }
     }
 

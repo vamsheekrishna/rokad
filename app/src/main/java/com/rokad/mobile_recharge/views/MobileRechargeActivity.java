@@ -8,9 +8,11 @@ import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.MobileRecharge;
+import com.rokad.mobile_recharge.models.mPlans.PostpaidData;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MobileRechargeActivity extends ServicesBaseActivity implements OnMobileRechargeListener {
@@ -36,7 +38,7 @@ public class MobileRechargeActivity extends ServicesBaseActivity implements OnMo
 
     @Override
     public void goToSeePlansFragment(List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm) {
-        replaceFragment(MobileRechargePlansHome.newInstance(topup,roaming,combo,ratecutter,sm), "MobileRechargePlansHome", true);
+        replaceFragment(MobileRechargePlansHome.newInstance(topup,roaming,combo,ratecutter,sm,new ArrayList<RechargePlans>()), "MobileRechargePlansHome", true);
     }
 
     @Override
@@ -52,5 +54,10 @@ public class MobileRechargeActivity extends ServicesBaseActivity implements OnMo
         fragment.onDetach();
         fragment.onAttach(getApplicationContext());
         fragment.onResume();
+    }
+
+    @Override
+    public void goToSeePlansFragment(PostpaidData data) {
+        replaceFragment(MobileRechargePlansHome.newInstance(new ArrayList<RechargePlans>(),new ArrayList<RechargePlans>(), new ArrayList<RechargePlans>(), new ArrayList<RechargePlans>(), new ArrayList<RechargePlans>(), data.getRecords()), "MobileRechargePlansHome", true);
     }
 }

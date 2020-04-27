@@ -28,7 +28,10 @@ import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
+import com.rokad.mobile_recharge.models.mPlans.PostpaidData;
+import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
+import com.rokad.mobile_recharge.models.mPlans.ResponseGetPostpaidPlans;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.utilities.views.BaseFragment;
@@ -180,9 +183,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea,  "Idea", "IB"));
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone,  "Vodafone", "VB"));
         subscriberModules.add(new SubscriberModule(5,R.drawable.indicom,"Tata", "TB"));
-//        if(selectedSubscriber!=-1) {
-//            subscriberModules.get(selectedSubscriber).setSelected(true);
-//        }
+        if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
+            subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
+        }
         SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(),
                 subscriberModules);
 
@@ -290,40 +293,74 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
                     progressBar.show();
 
-                    String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
+                    // String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
+                    if(racType.equals(getString(R.string.prepaid_radio_btn))) {
+                        Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "P");
+                        getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
+                            @Override
+                            public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
+                                progressBar.dismiss();
+                                if (response.code() == 200) {
+                                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                                        Records recorde = response.body().getData().getRecords();
+                                        if(null == recorde) {
+                                            showDialog("", "Plans are not available");
+                                        } else {
+                                            mListener.goToSeePlansFragment(
+                                                    response.body().getData().getRecords().getTOPUP(),
+                                                    response.body().getData().getRecords().getRomaing(),
+                                                    response.body().getData().getRecords().getCOMBO(),
+                                                    response.body().getData().getRecords().getRATECUTTER(),
+                                                    response.body().getData().getRecords().getSMS());
+                                        }
+                                    }else {
+                                        showDialog("Sorry!!", "Plans are not available");
+                                    }
 
-                    Call<ResponseGetPlans> getPlansCall = rechargeService.getPlans(subscriberName, stateSelector.getSelectedItem().toString(), rechargeType);
-                    getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
-                        @Override
-                        public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
-                            progressBar.dismiss();
-                            if (response.code() == 200) {
-                                if (response.body().getStatus().equalsIgnoreCase("Success")) {
-
-                                    mListener.goToSeePlansFragment(
-                                            response.body().getData().getRecords().getTOPUP(),
-                                            response.body().getData().getRecords().getRomaing(),
-                                            response.body().getData().getRecords().getCOMBO(),
-                                            response.body().getData().getRecords().getRATECUTTER(),
-                                            response.body().getData().getRecords().getSMS());
-
-
-                                }else {
-                                    showDialog("Sorry!!", "Plans are not available");
+                                } else {
+                                    showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                                 }
 
-                            } else {
-                                showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                             }
 
-                        }
+                            @Override
+                            public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
+                                progressBar.dismiss();
+                                Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "PO", phone);
+                        getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
+                            @Override
+                            public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
+                                progressBar.dismiss();
+                                if (response.code() == 200) {
+                                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
 
-                        @Override
-                        public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
-                            progressBar.dismiss();
-                            Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                        PostpaidData data = response.body().getData();
+                                        if(null == data.getRecords() || data.getRecords().size()<=0) {
+                                            showDialog("", "Plans are not available");
+                                        } else {
+                                            mListener.goToSeePlansFragment(data);
+                                        }
+                                    }else {
+                                        showDialog("Sorry!!", "Plans are not available");
+                                    }
+
+                                } else {
+                                    showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
+                                progressBar.dismiss();
+                                Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 }
 
                 break;

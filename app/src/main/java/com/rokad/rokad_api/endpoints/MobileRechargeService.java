@@ -2,6 +2,7 @@ package com.rokad.rokad_api.endpoints;
 
 import com.rokad.BuildConfig;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
+import com.rokad.mobile_recharge.models.mPlans.ResponseGetPostpaidPlans;
 import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
 
 import retrofit2.Call;
@@ -47,9 +48,18 @@ public interface MobileRechargeService {
 
     @POST(BuildConfig.GET_PLANS)
     @FormUrlEncoded
-    Call<ResponseGetPlans> getPlans(
+    Call<ResponseGetPlans> getPrepaidPlans(
             @Field("operator") String operator,
             @Field("cricle") String cricle,
             @Field("service_type") String serviceType
+    );
+
+    @POST(BuildConfig.GET_PLANS)
+    @FormUrlEncoded
+    Call<ResponseGetPostpaidPlans> getPostpaidPlans(
+            @Field("operator") String operator,
+            @Field("cricle") String cricle,
+            @Field("service_type") String serviceType,
+            @Field("mobile_no") String mobileNumber
     );
 }
