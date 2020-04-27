@@ -16,7 +16,6 @@ import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class RoamingPlans extends BaseFragment implements OnPlanSelectedHandler {
@@ -38,13 +37,13 @@ public class RoamingPlans extends BaseFragment implements OnPlanSelectedHandler 
     }
 
 
-    public static BaseFragment newInstance(List<SM> roaming) {
-        RoamingPlans fragment = new RoamingPlans();
-        Bundle args = new Bundle();
-        args.putSerializable("roaming", (Serializable) roaming);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static BaseFragment newInstance(List<SM> roaming) {
+//        RoamingPlans fragment = new RoamingPlans();
+//        Bundle args = new Bundle();
+//        args.putSerializable("roaming", (Serializable) roaming);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

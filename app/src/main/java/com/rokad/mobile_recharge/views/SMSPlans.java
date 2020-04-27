@@ -1,7 +1,9 @@
 package com.rokad.mobile_recharge.views;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
@@ -26,10 +29,18 @@ public class SMSPlans extends BaseFragment implements OnPlanSelectedHandler {
 
     private String mParam1;
     private String mParam2;
-
+    private OnMobileRechargeListener mListener;
     private List<SM> sm;
     public SMSPlans() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnMobileRechargeListener) {
+            mListener = (OnMobileRechargeListener) context;
+        }
     }
 
     public static SMSPlans newInstance(String param1, String param2) {
@@ -69,7 +80,7 @@ public class SMSPlans extends BaseFragment implements OnPlanSelectedHandler {
             smsPlansList.setVisibility(View.GONE);
             ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
         } else {
-            SMSPlansAdapter adapter = new SMSPlansAdapter(chosenSubscriber -> onClick(chosenSubscriber), getContext(), sm);
+            SMSPlansAdapter adapter = new SMSPlansAdapter(this, getContext(), sm);
             smsPlansList.setAdapter(adapter);
         }
 
@@ -78,6 +89,7 @@ public class SMSPlans extends BaseFragment implements OnPlanSelectedHandler {
 
     @Override
     public void onClick(SM chosenSubscriber) {
-        Toast.makeText(getActivity(), "chosenSubscriber", Toast.LENGTH_LONG).show();
+        mListener.getMobileRechargeModule().setRechargeAmount(String.valueOf(chosenSubscriber.getRs()));
+        getActivity().onBackPressed();
     }
 }

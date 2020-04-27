@@ -3,11 +3,12 @@ package com.rokad.mobile_recharge.models;
 import com.rokad.BuildConfig;
 
 public class MobileRecharge {
-    private String rechargeFrom = "mobile";
+
+    private String rechargeFrom = "";
     private String planType = "Prepaid Mobile";
     private String service = "TSO";
-    private String mobileNumber = "9920132100";
-    private String rechargeAmount ="1";
+    private String mobileNumber = "";
+    private String rechargeAmount ="";
     private String userID = "462";
     private String preOperator = ""; // V
     private String mobileOperator =""; // Vodafone
@@ -140,4 +141,5 @@ public class MobileRecharge {
     public void setRechargeType(String rechargeType) {
         this.rechargeType = rechargeType;
     }
+
 }

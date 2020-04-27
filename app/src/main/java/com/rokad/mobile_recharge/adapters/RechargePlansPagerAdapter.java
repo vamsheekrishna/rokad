@@ -7,10 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.rokad.mobile_recharge.models.mPlans.SM;
-import com.rokad.mobile_recharge.views.ComboPlans;
-import com.rokad.mobile_recharge.views.RateCutterPlans;
-import com.rokad.mobile_recharge.views.RechargeTopUpPlans;
-import com.rokad.mobile_recharge.views.RoamingPlans;
 import com.rokad.mobile_recharge.views.SMSPlans;
 import com.rokad.utilities.views.BaseFragment;
 
@@ -29,18 +25,38 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
         rechargePlansFrags = new ArrayList<>();
         fragTitles = new ArrayList<>();
 
-        rechargePlansFrags.add(RechargeTopUpPlans.newInstance(topup));
-        rechargePlansFrags.add(RoamingPlans.newInstance(roaming));
-        rechargePlansFrags.add(ComboPlans.newInstance(combo));
-        rechargePlansFrags.add(RateCutterPlans.newInstance(ratecutter));
-        rechargePlansFrags.add(SMSPlans.newInstance(sm));
+//        rechargePlansFrags.add(RechargeTopUpPlans.newInstance(topup));
+//        rechargePlansFrags.add(RoamingPlans.newInstance(roaming));
+//        rechargePlansFrags.add(ComboPlans.newInstance(combo));
+//        rechargePlansFrags.add(RateCutterPlans.newInstance(ratecutter));
+//        rechargePlansFrags.add(SMSPlans.newInstance(sm));
+//
+//        fragTitles.add("TopUp");
+//        fragTitles.add("Roaming");
+//        fragTitles.add("Combo Plans");
+//        fragTitles.add("Rate Cutters");
+//        fragTitles.add("SMS plans");
 
-        fragTitles.add("TopUp");
-        fragTitles.add("Roaming");
-        fragTitles.add("Combo Plans");
-        fragTitles.add("Rate Cutters");
-        fragTitles.add("SMS plans");
-
+        if(topup.size() > 0 ) {
+            fragTitles.add("TopUp");
+            rechargePlansFrags.add(SMSPlans.newInstance(topup));
+        }
+        if(roaming.size() > 0 ) {
+            fragTitles.add("Roaming");
+            rechargePlansFrags.add(SMSPlans.newInstance(roaming));
+        }
+        if(combo.size() > 0 ) {
+            fragTitles.add("Combo Plans");
+            rechargePlansFrags.add(SMSPlans.newInstance(combo));
+        }
+        if(ratecutter.size() > 0 ) {
+            fragTitles.add("Rate Cutters");
+            rechargePlansFrags.add(SMSPlans.newInstance(ratecutter));
+        }
+        if(sm.size() > 0 ) {
+            fragTitles.add("SMS plans");
+            rechargePlansFrags.add(SMSPlans.newInstance(sm));
+        }
     }
 
     @NonNull

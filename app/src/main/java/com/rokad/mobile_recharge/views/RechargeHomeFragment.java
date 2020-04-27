@@ -327,6 +327,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     public void onResume() {
         super.onResume();
         requireActivity().setTitle("New Recharge");
+        rechargeAmount.setText(mListener.getMobileRechargeModule().getRechargeAmount());
+
     }
 
     @Override
