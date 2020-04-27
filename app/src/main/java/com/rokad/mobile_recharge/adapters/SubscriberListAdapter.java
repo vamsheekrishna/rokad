@@ -28,6 +28,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         subscriberModules = _subscriberModules;
+        // mSelected = selected;
         /*subscriberImgs = new ArrayList<>();
         subscriberImgs.add(R.drawable.airtel);
         subscriberImgs.add(R.drawable.jio);
@@ -51,7 +52,11 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
         holder.subscriberImg.setTag(position);
         holder.subscriberImg.setOnClickListener(this);
         if(subscriberModules.get(position).isSelected()) {
-            holder.subscriberImg.setAlpha(1);
+            holder.subscriberImg.setAlpha(1f);
+            if(selected != position) {
+                selectedView = holder.subscriberImg;
+                selected = position;
+            }
         } else {
             holder.subscriberImg.setAlpha(.5f);
         }

@@ -5,7 +5,7 @@ import com.rokad.BuildConfig;
 public class MobileRecharge {
 
     private String rechargeFrom = "";
-    private String planType = "Prepaid Mobile";
+    private String planType = "";
     private String service = "TSO";
     private String mobileNumber = "";
     private String rechargeAmount ="";
@@ -15,6 +15,15 @@ public class MobileRecharge {
     private String rechargeType = "0"; //TODO: pass 0 for topup and 1 for any chosen plan
     private String stateName;
     private String paymentType = "cash";
+    private int selectedSubscriber = -1;
+
+    public int getSelectedSubscriber() {
+        return selectedSubscriber;
+    }
+
+    public void setSelectedSubscriber(int selectedSubscriber) {
+        this.selectedSubscriber = selectedSubscriber;
+    }
 
     public String getPaymentType() {
         return paymentType;

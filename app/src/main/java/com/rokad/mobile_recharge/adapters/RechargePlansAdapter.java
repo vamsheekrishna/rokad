@@ -19,11 +19,11 @@ import java.util.List;
 public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdapter.PlanHolder> implements  View.OnClickListener {
 
     private OnPlanSelectedHandler mOnClickHandler;
-    private List<RechargePlans> sms;
+    private List<RechargePlans> mRechargePlanList;
 
-    public RechargePlansAdapter(OnPlanSelectedHandler mOnClickHandler, Context mContext, List<RechargePlans> sms) {
+    public RechargePlansAdapter(OnPlanSelectedHandler mOnClickHandler, Context mContext, List<RechargePlans> rechargePlanList) {
         this.mOnClickHandler = mOnClickHandler;
-        this.sms = sms;
+        this.mRechargePlanList = rechargePlanList;
     }
 
     @NonNull
@@ -37,22 +37,22 @@ public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdap
 
     @Override
     public void onBindViewHolder(@NonNull PlanHolder holder, int position) {
-        holder.desc.setText(sms.get(position).getDesc());
-        holder.planPrice.setText(String.valueOf(sms.get(position).getRs()));
-        holder.validity.setText(sms.get(position).getValidity());
-        holder.lastUpdate.setText(sms.get(position).getLastUpdate());
+        holder.desc.setText(mRechargePlanList.get(position).getDesc());
+        holder.planPrice.setText(String.valueOf(mRechargePlanList.get(position).getRs()));
+        holder.validity.setText(mRechargePlanList.get(position).getValidity());
+        holder.lastUpdate.setText(mRechargePlanList.get(position).getLastUpdate());
         holder.mItemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
-        return sms.size();
+        return mRechargePlanList.size();
     }
 
     @Override
     public void onClick(View view) {
         int position = (int) view.getTag();
-        mOnClickHandler.onClick(sms.get(position));
+        mOnClickHandler.onClick(mRechargePlanList.get(position));
     }
 
     static class PlanHolder extends RecyclerView.ViewHolder{
