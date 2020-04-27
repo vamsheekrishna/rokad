@@ -19,25 +19,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
-import com.rokad.mobile_recharge.models.mPlans.COMBO;
-import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
-import com.rokad.mobile_recharge.models.mPlans.Romaing;
 import com.rokad.mobile_recharge.models.mPlans.SM;
-import com.rokad.mobile_recharge.models.mPlans.TOPUP;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.utilities.views.BaseFragment;
@@ -169,7 +161,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B"));
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I"));
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V"));
-        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JIO","JOE"));
+        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE"));
         subscriberModules.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD"));
         subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI"));
         subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI"));
@@ -205,11 +197,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
-
-
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -337,7 +326,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("New Recharge");
+        requireActivity().setTitle("New Recharge");
     }
 
     @Override

@@ -45,7 +45,7 @@ public class RetrofitClientInstance {
                 // Create an ssl socket factory with our all-trusting manager
                 final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
                 HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                logging.level(HttpLoggingInterceptor.Level.BODY);
 
                 Interceptor basicAuth = new Interceptor() {
                     @Override

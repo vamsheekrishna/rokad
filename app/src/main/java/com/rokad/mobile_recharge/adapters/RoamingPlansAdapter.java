@@ -11,19 +11,20 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.Romaing;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 
 import java.util.List;
 
-public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapter.PlanHolder> implements OnPlanSelectedHandler {
 
 
-    private RecyclerOnClickHandler mRecyclerOnClickHandler;
+    private OnPlanSelectedHandler mRecyclerOnClickHandler;
     private Context mContext;
-    private List<Romaing> roaming;
+    private List<SM> roaming;
 
-    public RoamingPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext, List<Romaing> roaming) {
+    public RoamingPlansAdapter(OnPlanSelectedHandler mRecyclerOnClickHandler, Context mContext, List<SM> roaming) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         this.roaming = roaming;
@@ -50,7 +51,7 @@ public class RoamingPlansAdapter extends RecyclerView.Adapter<RoamingPlansAdapte
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
         mRecyclerOnClickHandler.onClick(chosenSubscriber);
     }
 

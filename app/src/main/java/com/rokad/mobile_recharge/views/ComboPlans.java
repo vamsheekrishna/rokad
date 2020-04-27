@@ -11,15 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.ComboPlansAdapter;
-import com.rokad.mobile_recharge.models.mPlans.COMBO;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class ComboPlans extends BaseFragment implements OnPlanSelectedHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,13 +30,13 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     private String mParam1;
     private String mParam2;
 
-    private List<COMBO> combo;
+    private List<SM> combo;
     public ComboPlans() {
         // Required empty public constructor
     }
 
 
-    public static BaseFragment newInstance(List<COMBO> combo) {
+    public static BaseFragment newInstance(List<SM> combo) {
         ComboPlans fragment = new ComboPlans();
         Bundle args = new Bundle();
         args.putSerializable("combo", (Serializable) combo);
@@ -47,7 +48,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            combo = (List<COMBO>) getArguments().getSerializable("combo");
+            combo = (List<SM>) getArguments().getSerializable("combo");
         }
     }
 
@@ -72,7 +73,7 @@ public class ComboPlans extends BaseFragment implements RecyclerOnClickHandler {
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 }

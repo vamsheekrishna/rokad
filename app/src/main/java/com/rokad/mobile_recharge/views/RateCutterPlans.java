@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 
 import com.rokad.R;
 import com.rokad.mobile_recharge.adapters.RateCutterPlansAdapter;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
-import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.io.Serializable;
@@ -26,7 +26,7 @@ import java.util.List;
  * Use the {@link RateCutterPlans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class RateCutterPlans extends BaseFragment implements OnPlanSelectedHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +36,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
     private String mParam1;
     private String mParam2;
 
-    private List<RATECUTTER> ratecutter;
+    private List<SM> ratecutter;
 
     public RateCutterPlans() {
         // Required empty public constructor
@@ -60,7 +60,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
         return fragment;
     }
 
-    public static BaseFragment newInstance(List<RATECUTTER> ratecutter) {
+    public static BaseFragment newInstance(List<SM> ratecutter) {
         RateCutterPlans fragment = new RateCutterPlans();
         Bundle args = new Bundle();
         args.putSerializable("cutter", (Serializable) ratecutter);
@@ -72,7 +72,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-          ratecutter  = (List<RATECUTTER>) getArguments().getSerializable("cutter");
+          ratecutter  = (List<SM>) getArguments().getSerializable("cutter");
         }
     }
 
@@ -99,7 +99,7 @@ public class RateCutterPlans extends BaseFragment implements RecyclerOnClickHand
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 }

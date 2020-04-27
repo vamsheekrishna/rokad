@@ -1,20 +1,20 @@
 package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.rokad.R;
-import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.TopUpRechargePlansRecyclerAdapter;
-import com.rokad.mobile_recharge.models.mPlans.TOPUP;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
+import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.io.Serializable;
@@ -25,7 +25,7 @@ import java.util.List;
  * Use the {@link RechargeTopUpPlans#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class RechargeTopUpPlans extends BaseFragment implements OnPlanSelectedHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +35,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
     private String mParam1;
     private String mParam2;
 
-    private List<TOPUP> topup;
+    private List<SM> topup;
 
     public RechargeTopUpPlans() {
         // Required empty public constructor
@@ -59,7 +59,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
         return fragment;
     }
 
-    public static BaseFragment newInstance(List<TOPUP> topup) {
+    public static BaseFragment newInstance(List<SM> topup) {
         RechargeTopUpPlans fragment = new RechargeTopUpPlans();
         Bundle args = new Bundle();
         args.putSerializable("topup", (Serializable) topup);
@@ -71,7 +71,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-           topup = (List<TOPUP>) getArguments().getSerializable("topup");
+           topup = (List<SM>) getArguments().getSerializable("topup");
         }
     }
 
@@ -97,7 +97,7 @@ public class RechargeTopUpPlans extends BaseFragment implements RecyclerOnClickH
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 }

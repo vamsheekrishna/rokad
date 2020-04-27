@@ -11,19 +11,20 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.TOPUP;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 
 import java.util.List;
 
-public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopUpRechargePlansRecyclerAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopUpRechargePlansRecyclerAdapter.PlanHolder> implements OnPlanSelectedHandler {
 
-    private RecyclerOnClickHandler mRecyclerOnClickHandler;
+    private OnPlanSelectedHandler mRecyclerOnClickHandler;
     private Context mContext;
-    private List<TOPUP> topup;
+    private List<SM> topup;
 
 
-    public TopUpRechargePlansRecyclerAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext, List<TOPUP> topup) {
+    public TopUpRechargePlansRecyclerAdapter(OnPlanSelectedHandler mRecyclerOnClickHandler, Context mContext, List<SM> topup) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
 
@@ -32,7 +33,7 @@ public class TopUpRechargePlansRecyclerAdapter extends RecyclerView.Adapter<TopU
 
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 

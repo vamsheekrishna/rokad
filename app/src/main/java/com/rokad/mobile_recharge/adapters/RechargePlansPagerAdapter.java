@@ -6,11 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.rokad.mobile_recharge.models.mPlans.COMBO;
-import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
-import com.rokad.mobile_recharge.models.mPlans.Romaing;
 import com.rokad.mobile_recharge.models.mPlans.SM;
-import com.rokad.mobile_recharge.models.mPlans.TOPUP;
 import com.rokad.mobile_recharge.views.ComboPlans;
 import com.rokad.mobile_recharge.views.RateCutterPlans;
 import com.rokad.mobile_recharge.views.RechargeTopUpPlans;
@@ -27,7 +23,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<BaseFragment> rechargePlansFrags;
     private ArrayList<String> fragTitles;
 
-    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior,  List<TOPUP> topup, List<Romaing> roaming, List<COMBO> combo, List<RATECUTTER> ratecutter, List<SM> sm) {
+    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior,  List<SM> topup, List<SM> roaming, List<SM> combo, List<SM> ratecutter, List<SM> sm) {
         super(fm,behavior);
 
         rechargePlansFrags = new ArrayList<>();

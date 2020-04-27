@@ -35,14 +35,17 @@ android {
             buildConfigField("String", "MOBILE_APPLICATION", "\"Y\"")
             buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
 
-            /*buildConfigField("String","USERNAME",'"7039191834"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')*/
+            /*
+                buildConfigField("String","USERNAME",'"7039191834"')
+                buildConfigField("String","PASSWORD",'"Trimax@123"')
+            */
 
             buildConfigField("String", "LOGIN", '"rest_server/rokad/login"')
             buildConfigField("String", "WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
             buildConfigField("String", "FORGOT_PASSWORD", '"rest_server/rokad/forgot_password"')
             buildConfigField("String", "RECHARGE", '"rest_server/Tsoapi/recharge/"')
             buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
+
             // DMT Service
             buildConfigField("String", "BENEFICIARY_LIST", '"rest_server/Domestic_transfer/list_beneficiary"')
             // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/process_transaction_new
@@ -121,6 +124,8 @@ android {
     }
     buildTypes {
         release {
+            buildConfigField("String", "USERNAME", '""')
+            buildConfigField("String", "PASSWORD", '""')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

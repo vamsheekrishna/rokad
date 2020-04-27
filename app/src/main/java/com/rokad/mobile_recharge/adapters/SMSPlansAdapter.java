@@ -11,19 +11,19 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
 import com.rokad.mobile_recharge.models.mPlans.SM;
 
 import java.util.List;
 
-public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHolder> implements OnPlanSelectedHandler {
 
-    private RecyclerOnClickHandler mOnClickHandler;
+    private OnPlanSelectedHandler mOnClickHandler;
     private Context mContext;
     private List<SM> sms;
 
-    public SMSPlansAdapter(RecyclerOnClickHandler mOnClickHandler, Context mContext, List<SM> sms) {
+    public SMSPlansAdapter(OnPlanSelectedHandler mOnClickHandler, Context mContext, List<SM> sms) {
         this.mOnClickHandler = mOnClickHandler;
         this.mContext = mContext;
         this.sms = sms;
@@ -42,6 +42,7 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
         holder.planPrice.setText(String.valueOf(sms.get(position).getRs()));
         holder.validity.setText(sms.get(position).getValidity());
         holder.lastUpdate.setText(sms.get(position).getLastUpdate());
+        this.mOnClickHandler.onClick(sms.get(position));
     }
 
     @Override
@@ -50,7 +51,7 @@ public class SMSPlansAdapter extends RecyclerView.Adapter<SMSPlansAdapter.PlanHo
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 

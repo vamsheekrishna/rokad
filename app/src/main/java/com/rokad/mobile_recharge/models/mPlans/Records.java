@@ -10,33 +10,33 @@ public class Records {
 
     @SerializedName("TOPUP")
     @Expose
-    private List<TOPUP> tOPUP = new ArrayList<TOPUP>();
+    private List<SM> tOPUP = new ArrayList<SM>();
     @SerializedName("RATE CUTTER")
     @Expose
-    private List<RATECUTTER> rATECUTTER = new ArrayList<RATECUTTER>();
+    private List<SM> rATECUTTER = new ArrayList<SM>();
     @SerializedName("SMS")
     @Expose
     private List<SM> sMS = new ArrayList<SM>();
     @SerializedName("Romaing")
     @Expose
-    private List<Romaing> romaing = new ArrayList<Romaing>();
+    private List<SM> romaing = new ArrayList<SM>();
     @SerializedName("COMBO")
     @Expose
-    private List<COMBO> cOMBO = new ArrayList<COMBO>();
+    private List<SM> cOMBO = new ArrayList<SM>();
 
-    public List<TOPUP> getTOPUP() {
+    public List<SM> getTOPUP() {
         return tOPUP;
     }
 
-    public void setTOPUP(List<TOPUP> tOPUP) {
+    public void setTOPUP(List<SM> tOPUP) {
         this.tOPUP = tOPUP;
     }
 
-    public List<RATECUTTER> getRATECUTTER() {
+    public List<SM> getRATECUTTER() {
         return rATECUTTER;
     }
 
-    public void setRATECUTTER(List<RATECUTTER> rATECUTTER) {
+    public void setRATECUTTER(List<SM> rATECUTTER) {
         this.rATECUTTER = rATECUTTER;
     }
 
@@ -48,19 +48,19 @@ public class Records {
         this.sMS = sMS;
     }
 
-    public List<Romaing> getRomaing() {
+    public List<SM> getRomaing() {
         return romaing;
     }
 
-    public void setRomaing(List<Romaing> romaing) {
+    public void setRomaing(List<SM> romaing) {
         this.romaing = romaing;
     }
 
-    public List<COMBO> getCOMBO() {
+    public List<SM> getCOMBO() {
         return cOMBO;
     }
 
-    public void setCOMBO(List<COMBO> cOMBO) {
+    public void setCOMBO(List<SM> cOMBO) {
         this.cOMBO = cOMBO;
     }
 

@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.SMSPlansAdapter;
 import com.rokad.mobile_recharge.models.mPlans.SM;
@@ -18,7 +20,7 @@ import com.rokad.utilities.views.BaseFragment;
 import java.io.Serializable;
 import java.util.List;
 
-public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class SMSPlans extends BaseFragment implements OnPlanSelectedHandler {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -75,7 +77,7 @@ public class SMSPlans extends BaseFragment implements RecyclerOnClickHandler {
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
-
+    public void onClick(SM chosenSubscriber) {
+        Toast.makeText(getActivity(), "chosenSubscriber", Toast.LENGTH_LONG).show();
     }
 }

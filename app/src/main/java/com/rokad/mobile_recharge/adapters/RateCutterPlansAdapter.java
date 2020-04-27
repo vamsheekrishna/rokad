@@ -11,18 +11,19 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.RATECUTTER;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 
 import java.util.List;
 
-public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder> implements RecyclerOnClickHandler{
+public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder> implements OnPlanSelectedHandler {
 
-    private RecyclerOnClickHandler mRecyclerOnClickHandler;
+    private OnPlanSelectedHandler mRecyclerOnClickHandler;
     private Context mContext;
-    private List<RATECUTTER> ratecutter;
+    private List<SM> ratecutter;
 
-    public RateCutterPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext, List<RATECUTTER> ratecutter) {
+    public RateCutterPlansAdapter(OnPlanSelectedHandler mRecyclerOnClickHandler, Context mContext, List<SM> ratecutter) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         this.ratecutter = ratecutter;
@@ -49,7 +50,7 @@ public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlans
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 

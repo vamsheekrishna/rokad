@@ -1,32 +1,25 @@
 package com.rokad.mobile_recharge.views;
 
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.rokad.R;
-import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
-import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.adapters.RoamingPlansAdapter;
-import com.rokad.mobile_recharge.models.mPlans.Romaing;
+import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RoamingPlans#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler {
+public class RoamingPlans extends BaseFragment implements OnPlanSelectedHandler {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +29,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     private String mParam1;
     private String mParam2;
 
-    private List<Romaing> roaming;
+    private List<SM> roaming;
 
     private OnMobileRechargeListener onMobileRechargeListener;
 
@@ -45,7 +38,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     }
 
 
-    public static BaseFragment newInstance(List<Romaing> roaming) {
+    public static BaseFragment newInstance(List<SM> roaming) {
         RoamingPlans fragment = new RoamingPlans();
         Bundle args = new Bundle();
         args.putSerializable("roaming", (Serializable) roaming);
@@ -57,7 +50,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-           roaming = (List<Romaing>) getArguments().getSerializable("roaming");
+           roaming = (List<SM>) getArguments().getSerializable("roaming");
         }
     }
 
@@ -82,7 +75,7 @@ public class RoamingPlans extends BaseFragment implements RecyclerOnClickHandler
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 }

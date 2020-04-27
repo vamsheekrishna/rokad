@@ -1,6 +1,5 @@
 package com.rokad.mobile_recharge.adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +13,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.COMBO;
-import com.rokad.mobile_recharge.views.MobileHomeFragment;
-import com.rokad.mobile_recharge.views.RechargeHomeFragment;
+import com.rokad.mobile_recharge.models.mPlans.SM;
 
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.PlanHolder> implements RecyclerOnClickHandler {
+public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.PlanHolder> implements OnPlanSelectedHandler {
 
-    private RecyclerOnClickHandler mRecyclerOnClickHandler;
+    private OnPlanSelectedHandler mRecyclerOnClickHandler;
     private FragmentActivity mContext;
-    private List<COMBO> combo;
+    private List<SM> combo;
     private List<Fragment> test;
 
-    public ComboPlansAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, FragmentActivity mContext, List<COMBO> combo) {
+    public ComboPlansAdapter(OnPlanSelectedHandler mRecyclerOnClickHandler, FragmentActivity mContext, List<SM> combo) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         this.combo = combo;
@@ -54,7 +52,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRecyclerOnClickHandler.onClick(combo.get(position).getRs());
+                mRecyclerOnClickHandler.onClick(combo.get(position));
                 Intent intent = new Intent(mContext, mContext.getClass());
                 intent.putExtra("planPrice", combo.get(position).getRs());
                 mContext.getSupportFragmentManager().getFragments().get(0).onActivityResult(
@@ -71,7 +69,7 @@ public class ComboPlansAdapter extends RecyclerView.Adapter<ComboPlansAdapter.Pl
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(SM chosenSubscriber) {
 
     }
 
