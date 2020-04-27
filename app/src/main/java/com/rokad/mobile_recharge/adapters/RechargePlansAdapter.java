@@ -12,55 +12,57 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
-import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.mPlans.SM;
+import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 
 import java.util.List;
 
-public class RateCutterPlansAdapter extends RecyclerView.Adapter<RateCutterPlansAdapter.PlanHolder> implements OnPlanSelectedHandler {
+public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdapter.PlanHolder> implements  View.OnClickListener {
 
-    private OnPlanSelectedHandler mRecyclerOnClickHandler;
-    private Context mContext;
-    private List<SM> ratecutter;
+    private OnPlanSelectedHandler mOnClickHandler;
+    private List<RechargePlans> sms;
 
-    public RateCutterPlansAdapter(OnPlanSelectedHandler mRecyclerOnClickHandler, Context mContext, List<SM> ratecutter) {
-        this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
-        this.mContext = mContext;
-        this.ratecutter = ratecutter;
+    public RechargePlansAdapter(OnPlanSelectedHandler mOnClickHandler, Context mContext, List<RechargePlans> sms) {
+        this.mOnClickHandler = mOnClickHandler;
+        this.sms = sms;
     }
 
     @NonNull
     @Override
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
-        return new RateCutterPlansAdapter.PlanHolder(view);
+        PlanHolder viewObject = new PlanHolder(view);
+        viewObject.mItemView.setOnClickListener(this);
+        return viewObject;
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlanHolder holder, int position) {
-        holder.desc.setText(ratecutter.get(position).getDesc());
-        holder.planPrice.setText(String.valueOf(ratecutter.get(position).getRs()));
-        holder.validity.setText(ratecutter.get(position).getValidity());
-        holder.lastUpdate.setText(ratecutter.get(position).getLastUpdate());
+        holder.desc.setText(sms.get(position).getDesc());
+        holder.planPrice.setText(String.valueOf(sms.get(position).getRs()));
+        holder.validity.setText(sms.get(position).getValidity());
+        holder.lastUpdate.setText(sms.get(position).getLastUpdate());
+        holder.mItemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
-        return ratecutter.size();
+        return sms.size();
     }
 
     @Override
-    public void onClick(SM chosenSubscriber) {
-
+    public void onClick(View view) {
+        int position = (int) view.getTag();
+        mOnClickHandler.onClick(sms.get(position));
     }
 
     static class PlanHolder extends RecyclerView.ViewHolder{
 
         AppCompatTextView desc, validity,lastUpdate, planPrice;
         AppCompatButton chooseButton;
-
+        View mItemView;
         PlanHolder(@NonNull View itemView) {
             super(itemView);
+            mItemView = itemView;
             desc = itemView.findViewById(R.id.desc);
             validity = itemView.findViewById(R.id.validity);
             lastUpdate = itemView.findViewById(R.id.last_update);

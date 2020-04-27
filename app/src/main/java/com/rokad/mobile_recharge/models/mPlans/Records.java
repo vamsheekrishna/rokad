@@ -10,57 +10,57 @@ public class Records {
 
     @SerializedName("TOPUP")
     @Expose
-    private List<SM> tOPUP = new ArrayList<SM>();
+    private List<RechargePlans> tOPUP = new ArrayList<RechargePlans>();
     @SerializedName("RATE CUTTER")
     @Expose
-    private List<SM> rATECUTTER = new ArrayList<SM>();
+    private List<RechargePlans> rATECUTTER = new ArrayList<RechargePlans>();
     @SerializedName("SMS")
     @Expose
-    private List<SM> sMS = new ArrayList<SM>();
+    private List<RechargePlans> sMS = new ArrayList<RechargePlans>();
     @SerializedName("Romaing")
     @Expose
-    private List<SM> romaing = new ArrayList<SM>();
+    private List<RechargePlans> romaing = new ArrayList<RechargePlans>();
     @SerializedName("COMBO")
     @Expose
-    private List<SM> cOMBO = new ArrayList<SM>();
+    private List<RechargePlans> cOMBO = new ArrayList<RechargePlans>();
 
-    public List<SM> getTOPUP() {
+    public List<RechargePlans> getTOPUP() {
         return tOPUP;
     }
 
-    public void setTOPUP(List<SM> tOPUP) {
+    public void setTOPUP(List<RechargePlans> tOPUP) {
         this.tOPUP = tOPUP;
     }
 
-    public List<SM> getRATECUTTER() {
+    public List<RechargePlans> getRATECUTTER() {
         return rATECUTTER;
     }
 
-    public void setRATECUTTER(List<SM> rATECUTTER) {
+    public void setRATECUTTER(List<RechargePlans> rATECUTTER) {
         this.rATECUTTER = rATECUTTER;
     }
 
-    public List<SM> getSMS() {
+    public List<RechargePlans> getSMS() {
         return sMS;
     }
 
-    public void setSMS(List<SM> sMS) {
+    public void setSMS(List<RechargePlans> sMS) {
         this.sMS = sMS;
     }
 
-    public List<SM> getRomaing() {
+    public List<RechargePlans> getRomaing() {
         return romaing;
     }
 
-    public void setRomaing(List<SM> romaing) {
+    public void setRomaing(List<RechargePlans> romaing) {
         this.romaing = romaing;
     }
 
-    public List<SM> getCOMBO() {
+    public List<RechargePlans> getCOMBO() {
         return cOMBO;
     }
 
-    public void setCOMBO(List<SM> cOMBO) {
+    public void setCOMBO(List<RechargePlans> cOMBO) {
         this.cOMBO = cOMBO;
     }
 

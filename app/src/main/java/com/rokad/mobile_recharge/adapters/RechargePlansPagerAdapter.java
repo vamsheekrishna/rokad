@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.rokad.mobile_recharge.models.mPlans.SM;
-import com.rokad.mobile_recharge.views.SMSPlans;
+import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
+import com.rokad.mobile_recharge.views.MobileRechargePlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<BaseFragment> rechargePlansFrags;
     private ArrayList<String> fragTitles;
 
-    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior,  List<SM> topup, List<SM> roaming, List<SM> combo, List<SM> ratecutter, List<SM> sm) {
+    public RechargePlansPagerAdapter(@NonNull FragmentManager fm, int behavior, List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm) {
         super(fm,behavior);
 
         rechargePlansFrags = new ArrayList<>();
@@ -39,23 +39,23 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
 
         if(topup.size() > 0 ) {
             fragTitles.add("TopUp");
-            rechargePlansFrags.add(SMSPlans.newInstance(topup));
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(topup));
         }
         if(roaming.size() > 0 ) {
             fragTitles.add("Roaming");
-            rechargePlansFrags.add(SMSPlans.newInstance(roaming));
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(roaming));
         }
         if(combo.size() > 0 ) {
             fragTitles.add("Combo Plans");
-            rechargePlansFrags.add(SMSPlans.newInstance(combo));
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(combo));
         }
         if(ratecutter.size() > 0 ) {
             fragTitles.add("Rate Cutters");
-            rechargePlansFrags.add(SMSPlans.newInstance(ratecutter));
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(ratecutter));
         }
         if(sm.size() > 0 ) {
             fragTitles.add("SMS plans");
-            rechargePlansFrags.add(SMSPlans.newInstance(sm));
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(sm));
         }
     }
 

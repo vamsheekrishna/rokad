@@ -29,7 +29,6 @@ import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
-import com.rokad.mobile_recharge.models.mPlans.SM;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.utilities.views.BaseFragment;

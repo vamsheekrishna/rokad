@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.rokad.R;
 import com.rokad.mobile_recharge.adapters.RechargePlansPagerAdapter;
-import com.rokad.mobile_recharge.models.mPlans.SM;
+import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.io.Serializable;
@@ -28,18 +28,18 @@ public class MobileRechargePlansHome extends BaseFragment {
     private ViewPager plansPager;
     private RechargePlansPagerAdapter viewPagerAdapter;
 
-    private List<SM> topup;
-    private List<SM> roaming;
-    private List<SM> combo;
-    private List<SM> ratecutter;
-    private List<SM> sm;
+    private List<RechargePlans> topup;
+    private List<RechargePlans> roaming;
+    private List<RechargePlans> combo;
+    private List<RechargePlans> ratecutter;
+    private List<RechargePlans> sm;
 
     public MobileRechargePlansHome() {
         // Required empty public constructor
     }
 
 
-    public static BaseFragment newInstance(List<SM> topup, List<SM> roaming, List<SM> combo, List<SM> ratecutter, List<SM> sm) {
+    public static BaseFragment newInstance(List<RechargePlans> topup, List<RechargePlans> roaming, List<RechargePlans> combo, List<RechargePlans> ratecutter, List<RechargePlans> sm) {
         MobileRechargePlansHome fragment = new MobileRechargePlansHome();
         Bundle args = new Bundle();
         args.putSerializable("top_up", (Serializable) topup);
@@ -57,11 +57,11 @@ public class MobileRechargePlansHome extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 
-            topup = (List<SM>) getArguments().getSerializable("top_up");
-            roaming = (List<SM>) getArguments().getSerializable("roaming");
-            combo = (List<SM>) getArguments().getSerializable("combo");
-            ratecutter = (List<SM>) getArguments().getSerializable("cutter");
-            sm = (List<SM>) getArguments().getSerializable("sm");
+            topup = (List<RechargePlans>) getArguments().getSerializable("top_up");
+            roaming = (List<RechargePlans>) getArguments().getSerializable("roaming");
+            combo = (List<RechargePlans>) getArguments().getSerializable("combo");
+            ratecutter = (List<RechargePlans>) getArguments().getSerializable("cutter");
+            sm = (List<RechargePlans>) getArguments().getSerializable("sm");
         }
     }
 

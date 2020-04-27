@@ -4,7 +4,7 @@ package com.rokad.mobile_recharge.models.mPlans;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SM {
+public class RechargePlans {
 
     @SerializedName("rs")
     @Expose

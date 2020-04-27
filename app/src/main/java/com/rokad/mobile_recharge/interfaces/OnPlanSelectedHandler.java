@@ -1,7 +1,7 @@
 package com.rokad.mobile_recharge.interfaces;
 
-import com.rokad.mobile_recharge.models.mPlans.SM;
+import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 
 public interface OnPlanSelectedHandler {
-    void onClick(SM chosenSubscriber);
+    void onClick(RechargePlans chosenSubscriber);
 }
