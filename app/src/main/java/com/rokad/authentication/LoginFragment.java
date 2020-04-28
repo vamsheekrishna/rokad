@@ -74,7 +74,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).hide();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
 
          userName = view.findViewById(R.id.user_name);
          password = view.findViewById(R.id.password);
@@ -82,8 +82,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
          forgotPwd = view.findViewById(R.id.forgot_pwd);
          register = view.findViewById(R.id.register);
 
-         userName.setText(BuildConfig.AUTH_USERNAME);
-         password.setText(BuildConfig.AUTH_PASSWORD);
+//         userName.setText(BuildConfig.AUTH_USERNAME);
+//         password.setText(BuildConfig.AUTH_PASSWORD);
 
         return view;
     }
@@ -91,7 +91,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("Login");
+        requireActivity().setTitle("Login");
     }
 
     @Override

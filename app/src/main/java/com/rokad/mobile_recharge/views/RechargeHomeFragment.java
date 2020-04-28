@@ -210,7 +210,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.AUTH_USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -347,9 +346,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                     progressBar.dismiss();
                                     if (response.code() == 200) {
                                         if (response.body().getStatus().equalsIgnoreCase("Success")) {
-
                                             List<RechargePlans> data = response.body().getData().getRecords();
-                                            if (null == data.get(0).getDesc()) {
+                                            if (null == data || null == data.get(0).getDesc()|| data.get(0).getDesc().contains("Not Available")) {
                                                 showDialog("", "Plans are not available");
                                             } else {
                                                 mListener.goToSeePlansFragment(data);
