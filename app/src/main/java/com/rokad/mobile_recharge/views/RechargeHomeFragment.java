@@ -30,6 +30,7 @@ import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
 import com.rokad.mobile_recharge.models.SubscriberModule;
 import com.rokad.mobile_recharge.models.mPlans.PostpaidData;
+import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPostpaidPlans;
@@ -39,6 +40,7 @@ import com.rokad.utilities.views.BaseFragment;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -314,12 +316,11 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                             if (null == recorde) {
                                                 showDialog("", "Plans are not available");
                                             } else {
-                                                mListener.goToSeePlansFragment(
-                                                        response.body().getData().getRecords().getTOPUP(),
-                                                        response.body().getData().getRecords().getRomaing(),
+                                                mListener.goToSeePlansFragment( response.body().getData().getRecords());
+                                                        /*response.body().getData().getRecords().getRomaing(),
                                                         response.body().getData().getRecords().getCOMBO(),
                                                         response.body().getData().getRecords().getRATECUTTER(),
-                                                        response.body().getData().getRecords().getSMS());
+                                                        response.body().getData().getRecords().getSMS());*/
                                             }
                                         } else {
                                             showDialog("Sorry!!", "Plans are not available");
@@ -347,8 +348,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                     if (response.code() == 200) {
                                         if (response.body().getStatus().equalsIgnoreCase("Success")) {
 
-                                            PostpaidData data = response.body().getData();
-                                            if (null == data.getRecords() || data.getRecords().size() <= 0) {
+                                            List<RechargePlans> data = response.body().getData().getRecords();
+                                            if (null == data.get(0).getDesc()) {
                                                 showDialog("", "Plans are not available");
                                             } else {
                                                 mListener.goToSeePlansFragment(data);
