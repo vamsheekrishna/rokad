@@ -95,6 +95,7 @@ public class MobileRechargePlansHome extends BaseFragment {
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_plans_home, container, false);
 
          plansTabs = view.findViewById(R.id.recharge_plan_tabs);
+         plansTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
          plansPager = view.findViewById(R.id.plans_pager);
 
          viewPagerAdapter = new RechargePlansPagerAdapter(getChildFragmentManager(),0, plansData);

@@ -214,6 +214,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
