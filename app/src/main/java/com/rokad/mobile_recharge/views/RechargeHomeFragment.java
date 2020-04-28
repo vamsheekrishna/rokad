@@ -220,6 +220,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 //                }
                     racType = getResources().getString(R.string.prepaid_radio_btn);
                     mListener.getMobileRechargeModule().setPlanType("Prepaid Mobile");
+                    mListener.getMobileRechargeModule().setRechargeType("0");
                     saveInstanceBundle.putInt("recharge_type_id",R.id.recharge_type_prepaid);
                     displayPrepaidSubscriberList();
                 break;
@@ -227,6 +228,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 //                if(!mListener.getMobileRechargeModule().getPlanType().equals("Postpaid Mobile")) {
 //                }
                     racType = getResources().getString(R.string.postpaid_radio_btn);
+                    mListener.getMobileRechargeModule().setRechargeType("1");
                     mListener.getMobileRechargeModule().setPlanType("Postpaid Mobile");
                     saveInstanceBundle.putInt("recharge_type_id",R.id.recharge_type_postpaid);
                     displayPostpaidSubscriberList();
