@@ -187,8 +187,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone,  "Vodafone", "VB"));
         subscriberModules.add(new SubscriberModule(5,R.drawable.indicom,"Tata Indicom", "TB"));
         subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JIO","JIO"));
-        if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
-            subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
+        try {
+            if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
+                subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
+            }
+        } catch (Exception e) {
+
         }
         SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(),
                 subscriberModules);

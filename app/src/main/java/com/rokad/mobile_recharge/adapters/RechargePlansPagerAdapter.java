@@ -77,6 +77,11 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
             fragTitles.add("Full Talk Time");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getFullTT()));
         }
+
+        if(records.getFRC().size() > 0 ) {
+            fragTitles.add("FRC");
+            rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getFRC()));
+        }
     }
 
     @NonNull

@@ -33,6 +33,10 @@ public class Records implements Serializable {
     @Expose
     private ArrayList<RechargePlans> fullTT = new ArrayList<>();
 
+    @SerializedName("FRC")
+    @Expose
+    private ArrayList<RechargePlans> FRC = new ArrayList<>();
+
     @SerializedName("2G")
     @Expose
     private ArrayList<RechargePlans> G2 = new ArrayList<>();
@@ -109,5 +113,13 @@ public class Records implements Serializable {
 
     public void setFullTT(ArrayList<RechargePlans> fullTT) {
         this.fullTT = fullTT;
+    }
+
+    public ArrayList<RechargePlans> getFRC() {
+        return FRC;
+    }
+
+    public void setFRC(ArrayList<RechargePlans> FRC) {
+        this.FRC = FRC;
     }
 }
