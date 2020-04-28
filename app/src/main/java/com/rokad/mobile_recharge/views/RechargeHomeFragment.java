@@ -22,6 +22,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
@@ -206,6 +207,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -275,92 +277,96 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             case R.id.see_plans:
                 MobileRechargeService rechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
 
-                if (subscriberName.isEmpty() && stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))
-                && rechargeTypeGroup.getCheckedRadioButtonId() == -1){
-                    showDialog("Sorry!!", "Please choose your Mobile Operator, your State, Recharge type above.");
-                } else if(!isValidMobile(phone)) {
-                 showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
-                }else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
-                    showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
-                } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
-                    showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
-                } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))){
-                    showDialog("Sorry!!", getString(R.string.spinner_prompt));
-                } else {
-
-                    ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
-                    progressBar.setCancelable(false);
-                    progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-                    progressBar.show();
-
-                    // String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
-                    if(racType.equals(getString(R.string.prepaid_radio_btn))) {
-                        Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "P");
-                        getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
-                            @Override
-                            public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
-                                progressBar.dismiss();
-                                if (response.code() == 200) {
-                                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
-                                        Records recorde = response.body().getData().getRecords();
-                                        if(null == recorde) {
-                                            showDialog("", "Plans are not available");
-                                        } else {
-                                            mListener.goToSeePlansFragment(
-                                                    response.body().getData().getRecords().getTOPUP(),
-                                                    response.body().getData().getRecords().getRomaing(),
-                                                    response.body().getData().getRecords().getCOMBO(),
-                                                    response.body().getData().getRecords().getRATECUTTER(),
-                                                    response.body().getData().getRecords().getSMS());
-                                        }
-                                    }else {
-                                        showDialog("Sorry!!", "Plans are not available");
-                                    }
-
-                                } else {
-                                    showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
-                                progressBar.dismiss();
-                                Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                if (subscriberName != null && stateSelector!= null && rechargeTypeGroup!=null && mListener != null) {
+                    if (subscriberName.isEmpty() && stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))
+                            && rechargeTypeGroup.getCheckedRadioButtonId() == -1) {
+                        showDialog("Sorry!!", "Please choose your Mobile Operator, your State, Recharge type above.");
+                    } else if (!isValidMobile(phone)) {
+                        showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
+                    } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1) {
+                        showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
+                    } else if (mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
+                        showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
+                    } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))) {
+                        showDialog("Sorry!!", getString(R.string.spinner_prompt));
                     } else {
-                        Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "PO", phone);
-                        getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
-                            @Override
-                            public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
-                                progressBar.dismiss();
-                                if (response.code() == 200) {
-                                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
 
-                                        PostpaidData data = response.body().getData();
-                                        if(null == data.getRecords() || data.getRecords().size()<=0) {
-                                            showDialog("", "Plans are not available");
+                        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+                        progressBar.setCancelable(false);
+                        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                        progressBar.show();
+
+                        // String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
+                        if (racType.equals(getString(R.string.prepaid_radio_btn))) {
+                            Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "P");
+                            getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
+                                @Override
+                                public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
+                                    progressBar.dismiss();
+                                    if (response.code() == 200) {
+                                        if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                                            Records recorde = response.body().getData().getRecords();
+                                            if (null == recorde) {
+                                                showDialog("", "Plans are not available");
+                                            } else {
+                                                mListener.goToSeePlansFragment(
+                                                        response.body().getData().getRecords().getTOPUP(),
+                                                        response.body().getData().getRecords().getRomaing(),
+                                                        response.body().getData().getRecords().getCOMBO(),
+                                                        response.body().getData().getRecords().getRATECUTTER(),
+                                                        response.body().getData().getRecords().getSMS());
+                                            }
                                         } else {
-                                            mListener.goToSeePlansFragment(data);
+                                            showDialog("Sorry!!", "Plans are not available");
                                         }
-                                    }else {
-                                        showDialog("Sorry!!", "Plans are not available");
+
+                                    } else {
+                                        showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                                     }
 
-                                } else {
-                                    showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                                 }
 
-                            }
+                                @Override
+                                public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
+                                    progressBar.dismiss();
+                                    Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "PO", phone);
+                            getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
+                                @Override
+                                public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
+                                    progressBar.dismiss();
+                                    if (response.code() == 200) {
+                                        if (response.body().getStatus().equalsIgnoreCase("Success")) {
 
-                            @Override
-                            public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
-                                progressBar.dismiss();
-                                Toast.makeText(getContext(),"Plans Not Available. Please try again later",Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                            PostpaidData data = response.body().getData();
+                                            if (null == data.getRecords() || data.getRecords().size() <= 0) {
+                                                showDialog("", "Plans are not available");
+                                            } else {
+                                                mListener.goToSeePlansFragment(data);
+                                            }
+                                        } else {
+                                            showDialog("Sorry!!", "Plans are not available");
+                                        }
+
+                                    } else {
+                                        showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
+                                    progressBar.dismiss();
+                                    Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
+                } else {
+                    showDialog("Sorry!!", "Please fill in Subscriber and State details to see the plans.");
                 }
 
                 break;
