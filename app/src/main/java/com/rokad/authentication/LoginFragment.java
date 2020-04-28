@@ -82,8 +82,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
          forgotPwd = view.findViewById(R.id.forgot_pwd);
          register = view.findViewById(R.id.register);
 
-         userName.setText(BuildConfig.USERNAME);
-         password.setText(BuildConfig.PASSWORD);
+         userName.setText(BuildConfig.AUTH_USERNAME);
+         password.setText(BuildConfig.AUTH_PASSWORD);
 
         return view;
     }

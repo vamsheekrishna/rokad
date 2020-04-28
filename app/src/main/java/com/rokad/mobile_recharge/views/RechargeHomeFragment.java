@@ -156,12 +156,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         updateOperator();
         subscriberModules.clear();
 
-        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE"));
+        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AE"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG"));
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B"));
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I"));
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V"));
-        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE"));
+        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"jio","jio"));
         subscriberModules.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD"));
         subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI"));
         subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI"));
@@ -178,12 +178,13 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         updateOperator();
 
         subscriberModules.clear();
-        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AB"));
+        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AB"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance,"Reliance", "RB"));
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "BB"));
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea,  "Idea", "IB"));
         subscriberModules.add(new SubscriberModule(4, R.drawable.vodafone,  "Vodafone", "VB"));
-        subscriberModules.add(new SubscriberModule(5,R.drawable.indicom,"Tata", "TB"));
+        subscriberModules.add(new SubscriberModule(5,R.drawable.indicom,"Tata Indicom", "TB"));
+        subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JIO","JIO"));
         if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
             subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
         }
@@ -207,7 +208,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setOnClickListener(this::onClick);
         view.findViewById(R.id.see_plans).setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
+        mobileRechargeNum.setText(BuildConfig.AUTH_USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -298,7 +299,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
                         // String rechargeType = racType.equals(getString(R.string.prepaid_radio_btn)) ? "P" : "PO";
                         if (racType.equals(getString(R.string.prepaid_radio_btn))) {
-                            Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "P");
+                            String state = stateSelector.getSelectedItem().toString();
+                            Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(subscriberName,
+                                    state,"P");
                             getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
                                 @Override
                                 public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
@@ -333,7 +336,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                 }
                             });
                         } else {
-                            Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(subscriberName, stateSelector.getSelectedItem().toString(), "PO", phone);
+                            Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(subscriberName, stateSelector.getSelectedItem().toString(),
+                                    "PO", phone);
                             getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
                                 @Override
                                 public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
