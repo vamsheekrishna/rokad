@@ -5,14 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
-import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.mobile_recharge.views.MobileRechargePlans;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -47,7 +44,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getRomaing()));
         }
         if(records.getCOMBO().size() > 0 ) {
-            fragTitles.add("Combo Plans");
+            fragTitles.add("COMBO");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getCOMBO()));
         }
         if(records.getRATECUTTER().size() > 0 ) {
@@ -55,7 +52,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getRATECUTTER()));
         }
         if(records.getSMS().size() > 0 ) {
-            fragTitles.add("SMS plans");
+            fragTitles.add("SMS");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getSMS()));
         }
 
@@ -69,7 +66,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
         }
 
         if(records.getSpecialPlan().size() > 0 ) {
-            fragTitles.add("Special Plans");
+            fragTitles.add("");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getSpecialPlan()));
         }
 

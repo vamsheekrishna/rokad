@@ -222,8 +222,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.recharge_type_prepaid:
-//                if(!mListener.getMobileRechargeModule().getPlanType().equals("Prepaid Mobile")) {
-//                }
                     racType = getResources().getString(R.string.prepaid_radio_btn);
                     mListener.getMobileRechargeModule().setPlanType("Prepaid Mobile");
                     mListener.getMobileRechargeModule().setRechargeType("0");
@@ -231,8 +229,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     displayPrepaidSubscriberList();
                 break;
             case R.id.recharge_type_postpaid:
-//                if(!mListener.getMobileRechargeModule().getPlanType().equals("Postpaid Mobile")) {
-//                }
                     racType = getResources().getString(R.string.postpaid_radio_btn);
                     mListener.getMobileRechargeModule().setRechargeType("1");
                     mListener.getMobileRechargeModule().setPlanType("Postpaid Mobile");
@@ -321,10 +317,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                                 showDialog("", "Plans are not available");
                                             } else {
                                                 mListener.goToSeePlansFragment( response.body().getData().getRecords());
-                                                        /*response.body().getData().getRecords().getRomaing(),
-                                                        response.body().getData().getRecords().getCOMBO(),
-                                                        response.body().getData().getRecords().getRATECUTTER(),
-                                                        response.body().getData().getRecords().getSMS());*/
                                             }
                                         } else {
                                             showDialog("Sorry!!", "Plans are not available");
