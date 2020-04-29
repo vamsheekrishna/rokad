@@ -16,7 +16,7 @@ import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 
 import java.util.List;
 
-public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdapter.PlanHolder> implements  View.OnClickListener {
+public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdapter.PlanHolder> {
 
     private OnPlanSelectedHandler mOnClickHandler;
     private List<RechargePlans> mRechargePlanList;
@@ -31,7 +31,7 @@ public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdap
     public PlanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recharge_plan_item,parent, false);
         PlanHolder viewObject = new PlanHolder(view);
-        viewObject.mItemView.setOnClickListener(this);
+
         return viewObject;
     }
 
@@ -42,17 +42,18 @@ public class RechargePlansAdapter extends RecyclerView.Adapter<RechargePlansAdap
         holder.validity.setText(mRechargePlanList.get(position).getValidity());
         holder.lastUpdate.setText(mRechargePlanList.get(position).getLastUpdate());
         holder.mItemView.setTag(position);
+        holder.chooseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                int position = (int) v.getTag();
+                mOnClickHandler.onClick(mRechargePlanList.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return mRechargePlanList.size();
-    }
-
-    @Override
-    public void onClick(View view) {
-        int position = (int) view.getTag();
-        mOnClickHandler.onClick(mRechargePlanList.get(position));
     }
 
     static class PlanHolder extends RecyclerView.ViewHolder{

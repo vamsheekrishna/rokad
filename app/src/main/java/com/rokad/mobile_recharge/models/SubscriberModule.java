@@ -5,6 +5,16 @@ public class SubscriberModule {
     private int image;
     private String name;
     private String key;
+
+    public String getPlanKey() {
+        return planKey;
+    }
+
+    public void setPlanKey(String planKey) {
+        this.planKey = planKey;
+    }
+
+    private String planKey;
     private boolean isSelected =false;
 
 
@@ -25,11 +35,12 @@ public class SubscriberModule {
         this.key = key;
     }
 
-    public SubscriberModule(int _id, int _image, String _name, String _key) {
+    public SubscriberModule(int _id, int _image, String _name, String _key, String planKey) {
         id = _id;
         image = _image;
         name = _name;
         key = _key;
+        this.planKey = planKey;
     }
 
     public int getId() {

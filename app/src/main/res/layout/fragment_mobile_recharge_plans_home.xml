@@ -10,8 +10,8 @@
   <com.google.android.material.tabs.TabLayout
       android:id="@+id/recharge_plan_tabs"
       android:layout_width="match_parent"
-
       android:layout_height="wrap_content"
+      app:tabGravity="fill"
       app:tabTextAppearance="@style/TextAppearance.AppCompat.Title"
       app:tabTextColor="@android:color/white"
       android:background="?attr/colorPrimary"

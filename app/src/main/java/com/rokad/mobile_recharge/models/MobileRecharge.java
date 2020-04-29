@@ -4,7 +4,7 @@ import com.rokad.BuildConfig;
 
 public class MobileRecharge {
 
-    private String rechargeFrom = "";
+    private String rechargeFrom = "mobile";
     private String planType = "";
     private String service = "TSO";
     private String mobileNumber = "";

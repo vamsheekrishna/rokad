@@ -51,7 +51,9 @@ public interface MobileRechargeService {
     Call<ResponseGetPlans> getPrepaidPlans(
             @Field("operator") String operator,
             @Field("cricle") String cricle,
-            @Field("service_type") String serviceType
+            @Field("service_type") String serviceType,
+            @Field("mobileapp") String mobileApp,
+            @Field("mobileversionid") String mobileVersionID
     );
 
     @POST(BuildConfig.GET_PLANS)
@@ -60,6 +62,8 @@ public interface MobileRechargeService {
             @Field("operator") String operator,
             @Field("cricle") String cricle,
             @Field("service_type") String serviceType,
-            @Field("mobile_no") String mobileNumber
+            @Field("mobile_no") String mobileNumber,
+            @Field("mobileapp") String mobileApp,
+            @Field("mobileversionid") String mobileVersionID
     );
 }

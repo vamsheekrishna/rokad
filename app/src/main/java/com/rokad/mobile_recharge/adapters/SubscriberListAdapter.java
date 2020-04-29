@@ -24,11 +24,13 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
     private int selected;
     private View selectedView;
 
-    public SubscriberListAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler, Context mContext, ArrayList<SubscriberModule> _subscriberModules) {
+    public SubscriberListAdapter(RecyclerOnClickHandler mRecyclerOnClickHandler,
+                                 Context mContext, ArrayList<SubscriberModule> _subscriberModules) {
         this.mRecyclerOnClickHandler = mRecyclerOnClickHandler;
         this.mContext = mContext;
         subscriberModules = _subscriberModules;
     }
+
 
 
     @NonNull
@@ -72,7 +74,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
             subscriberModules.get(selected).setSelected(false);
         }
         selected = position;
-        subscriberModules.get(position).setSelected(!subscriberModules.get(position).isSelected());
+        subscriberModules.get(selected).setSelected(!subscriberModules.get(selected).isSelected());
 
         if(subscriberModules.get(position).isSelected()) {
             v.setAlpha(1f);
