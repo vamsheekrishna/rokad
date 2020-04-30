@@ -3,6 +3,7 @@ package com.rokad.rokad_api.endpoints;
 import com.rokad.BuildConfig;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPostpaidPlans;
+import com.rokad.rokad_api.endpoints.pojos.ResponseGetHistory;
 import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
 
 import retrofit2.Call;
@@ -66,4 +67,8 @@ public interface MobileRechargeService {
             @Field("mobileapp") String mobileApp,
             @Field("mobileversionid") String mobileVersionID
     );
+
+    @POST(BuildConfig.HISTORY)
+    @FormUrlEncoded
+    Call<ResponseGetHistory> getHistory(@Field("user_id") String userID );
 }

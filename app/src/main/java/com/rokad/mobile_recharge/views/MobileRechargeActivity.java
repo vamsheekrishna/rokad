@@ -32,6 +32,11 @@ public class MobileRechargeActivity extends ServicesBaseActivity implements OnMo
     }
 
     @Override
+    public void resetMobileRechargeModule() {
+        mobileRecharge = new MobileRecharge();
+    }
+
+    @Override
     public void goToMakePaymentFragment() {
         replaceFragment(MakePaymentFragment.newInstance("",""), "MakePaymentFragment", true);
     }

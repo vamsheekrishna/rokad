@@ -1,21 +1,62 @@
 package com.rokad.mobile_recharge.models;
 
 import com.rokad.BuildConfig;
+import com.rokad.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MobileRecharge {
 
+    private final ArrayList<SubscriberModule> prepaidSubscriberList;
+    HashMap<String,  SubscriberModule> prepaidSubscriberMap;
     private String rechargeFrom = "mobile";
     private String planType = "";
     private String service = "TSO";
     private String mobileNumber = "";
     private String rechargeAmount ="";
-    private String userID = "462";
+    private String userID = "";
     private String preOperator = ""; // V
     private String mobileOperator =""; // Vodafone
     private String rechargeType = "0"; //TODO: pass 0 for topup and 1 for any chosen plan
     private String stateName;
     private String paymentType = "cash";
     private int selectedSubscriber = -1;
+
+    public MobileRecharge() {
+        this.prepaidSubscriberList = new ArrayList<>();
+        prepaidSubscriberMap = new HashMap<>();
+        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
+        prepaidSubscriberMap.put("AE", prepaidSubscriberList.get(0));
+        this.prepaidSubscriberList.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
+        prepaidSubscriberMap.put("RG", prepaidSubscriberList.get(1));
+        this.prepaidSubscriberList.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B", "BSNL"));
+        prepaidSubscriberMap.put("B", prepaidSubscriberList.get(2));
+        this.prepaidSubscriberList.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I", "idea"));
+        prepaidSubscriberMap.put("I", prepaidSubscriberList.get(3));
+        this.prepaidSubscriberList.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V", "Vodafone"));
+        prepaidSubscriberMap.put("V", prepaidSubscriberList.get(4));
+        this.prepaidSubscriberList.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE", "jio"));
+        prepaidSubscriberMap.put("JOE", prepaidSubscriberList.get(5));
+        this.prepaidSubscriberList.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",""));
+        prepaidSubscriberMap.put("TD", prepaidSubscriberList.get(6));
+        this.prepaidSubscriberList.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI","Tata Indicom"));
+        prepaidSubscriberMap.put("TI", prepaidSubscriberList.get(7));
+        this.prepaidSubscriberList.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI",""));
+        prepaidSubscriberMap.put("AI", prepaidSubscriberList.get(8));
+    }
+    public ArrayList<SubscriberModule> getPrepaidSubscriberList() {
+        return prepaidSubscriberList;
+    }
+
+    public SubscriberModule getPrepaidSubscriber(String key) {
+        if(prepaidSubscriberMap.containsKey(key)) {
+            return prepaidSubscriberMap.get(key);
+        } else {
+            return prepaidSubscriberMap.get("AI");
+        }
+    }
 
     public int getSelectedSubscriber() {
         return selectedSubscriber;

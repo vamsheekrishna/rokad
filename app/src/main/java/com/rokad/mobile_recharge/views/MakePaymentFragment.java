@@ -76,7 +76,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Objects.requireNonNull(getActivity()).setTitle("Make Payment");
+        requireActivity().setTitle("Make Payment");
         return inflater.inflate(R.layout.fragment_make_payment, container, false);
     }
 
@@ -114,8 +114,8 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                     showDialog(response.body().getStatus(), response.body().getMsg());
                     progressBar.dismiss();
                 } else {
-                    FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                    Fragment prev = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
+                    FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+                    Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("RechargeDialogFragment");
                     if (prev != null) {
                         ft.remove(prev);
                     }
@@ -135,8 +135,8 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onFailure(Call<ResponseMobileRecharge> call, Throwable t) {
                 Log.d("onFailure", "onFailure: ");
-                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                Fragment prev = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
+                FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+                Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
                 if (prev != null) {
                     ft.remove(prev);
                 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface OnMobileRechargeListener {
     MobileRecharge getMobileRechargeModule();
+    void resetMobileRechargeModule();
     void goToMakePaymentFragment();
     void goToSeePlansFragment(List<RechargePlans> topup);
     void makeAnotherPayment();

@@ -140,8 +140,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         updateOperator();
         subscriberModules.clear();
         rechargeAmount.setText("");
-
         subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
+        subscriberModules = mListener.getMobileRechargeModule().getPrepaidSubscriberList();
+        /*subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
         subscriberModules.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B", "BSNL"));
         subscriberModules.add(new SubscriberModule(3, R.drawable.idea, "Idea", "I", "idea"));
@@ -149,7 +150,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         subscriberModules.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE", "jio"));
         subscriberModules.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",""));
         subscriberModules.add(new SubscriberModule(7,R.drawable.indicom,"Tata Indicom", "TI","Tata Indicom"));
-        subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI",""));
+        subscriberModules.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI",""));*/
         if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
             subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
         }
