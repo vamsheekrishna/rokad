@@ -48,7 +48,7 @@
     <string name="repeat_transaction_recharge">Repeat Transaction</string>
     <string name="recharge_amount_txt">Recharge Amount</string>
     <string name="service_charge_txt">Service Charge</string>
-    <string name="gst_on_service_charge">Gst on Service Charge</string>
+    <string name="gst_on_service_charge">GST on Service Charge</string>
     <string name="total_amount_txt">Total Amount</string>
     <string name="see_recharge_plans">See Plans</string>
     <string name="new_recharge_header">New Recharge</string>

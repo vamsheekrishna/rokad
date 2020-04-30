@@ -139,6 +139,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private void displayPrepaidSubscriberList(){
         updateOperator();
         subscriberModules.clear();
+        rechargeAmount.setText("");
 
         subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
@@ -160,6 +161,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private void displayPostpaidSubscriberList() {
 
         updateOperator();
+        rechargeAmount.setText("");
 
         subscriberModules.clear();
         subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress","AB", "Airtel"));
@@ -219,6 +221,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+
+
     @Override
     public void onClick(View view) {
 
@@ -241,6 +245,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
                 }
                 else {
+
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
@@ -368,18 +373,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK){
-            if (requestCode == 123){
-                // Toast.makeText(getContext(),"kirkiriii",Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    }
-
-    @Override
     public void onClick(int chosenSubscriber) {
         mListener.getMobileRechargeModule().setSelectedSubscriber(chosenSubscriber);
         if(chosenSubscriber == -1) {
@@ -395,6 +388,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             mListener.getMobileRechargeModule().setImage(subscriberModules.get(chosenSubscriber).getImage());
             mListener.getMobileRechargeModule().setMobileOperator(subscriberName);
         }
-        rechargeAmount.setText("");
+
     }
 }
