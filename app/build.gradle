@@ -67,15 +67,13 @@ android {
 //            buildConfigField("String", "BENEFICIARY_LIST",'"rest_server/Domestic_transfer/list_beneficiary"')
             buildConfigField("String", "PROCESS_NEW_TRANSACTION", '"rest_server/Domestic_transfer/process_transaction_new"')
 //            buildConfigField("String", "FUND_TRANSFER", '"rest_server/Domestic_transfer/fund_transfer"')
-
-
         }
         prod {
             dimension "version"
             applicationIdSuffix ".prod"
             versionNameSuffix "-prod"
 
-            resValue "string", "app_name", "Rokad Prod"
+            resValue "string", "app_name", "Rokad"
             buildConfigField("String", "AUTH_USERNAME", '"1234567890"')
             buildConfigField("String", "AUTH_PASSWORD", '"Trimax@123"')
             buildConfigField("String", "BASE_URL", '"https://rokad.in/"')
@@ -83,8 +81,8 @@ android {
             buildConfigField("String", "MOBILE_APPLICATION", '"Y"')
             buildConfigField("String", "MOBILE_VERSION_ID", '"1.0"')
 
-            buildConfigField("String","USERNAME",'"8286506657"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')
+//            buildConfigField("String","USERNAME",'"8286506657"')
+//            buildConfigField("String","PASSWORD",'"Trimax@123"')
 
             //LOGIN/Forgot password APIS
             buildConfigField("String", "LOGIN", '"rest_server/rokad_andriod/login"')

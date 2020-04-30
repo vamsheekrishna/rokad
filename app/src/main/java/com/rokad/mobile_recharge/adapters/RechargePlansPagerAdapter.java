@@ -66,7 +66,7 @@ public class RechargePlansPagerAdapter extends FragmentStatePagerAdapter {
         }
 
         if(records.getSpecialPlan().size() > 0 ) {
-            fragTitles.add("");
+            fragTitles.add("Special Plans");
             rechargePlansFrags.add(MobileRechargePlans.newInstance(records.getSpecialPlan()));
         }
 

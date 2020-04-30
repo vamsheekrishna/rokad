@@ -77,7 +77,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     Bundle saveInstanceBundle;
     private String planKey;
     // private int selectedSubscriber = -1;
-
+    AppCompatTextView seePlans;
     public RechargeHomeFragment() {
         // Required empty public constructor
     }
@@ -173,12 +173,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
                 subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
             }
-        } catch (Exception e) {
-
-        }
-        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(),
-                subscriberModules);
-
+        } catch (Exception e) { }
+        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(), subscriberModules);
         recyclerView.setAdapter(listRecyclerView);
     }
 
@@ -194,7 +190,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
         nxtBtn = view.findViewById(R.id.mobile_recharge_nxt_btn);
         nxtBtn.setOnClickListener(this::onClick);
-        view.findViewById(R.id.see_plans).setOnClickListener(this);
+        seePlans = view.findViewById(R.id.see_plans);
+        seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
 //        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
@@ -205,6 +202,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         switch (checkedId) {
             case R.id.recharge_type_prepaid:
                     racType = getResources().getString(R.string.prepaid_radio_btn);
+                    seePlans.setVisibility(View.VISIBLE);
                     mListener.getMobileRechargeModule().setPlanType("Prepaid Mobile");
                     mListener.getMobileRechargeModule().setRechargeType("0");
                     saveInstanceBundle.putInt("recharge_type_id",R.id.recharge_type_prepaid);
@@ -212,6 +210,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.recharge_type_postpaid:
                     racType = getResources().getString(R.string.postpaid_radio_btn);
+                    seePlans.setVisibility(View.GONE);
                     mListener.getMobileRechargeModule().setRechargeType("1");
                     mListener.getMobileRechargeModule().setPlanType("Postpaid Mobile");
                     saveInstanceBundle.putInt("recharge_type_id",R.id.recharge_type_postpaid);
@@ -219,7 +218,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 break;
         }
     }
-
 
     @Override
     public void onClick(View view) {
@@ -243,10 +241,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     showDialog("Sorry!!", getString(R.string.valid_recharge_amt_check_msg));
                 }
                 else {
-//                    saveInstanceBundle.putString("phoneNumber",phone);
-//                    saveInstanceBundle.putString("amount",amount);
-//                    saveInstanceBundle.putInt("state",stateSelector.getSelectedItemPosition());
-
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
@@ -291,58 +285,27 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                             getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
                                 @Override
                                 public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
-                                    progressBar.dismiss();
+                                    Records records = new Records();
+                                    // progressBar.dismiss();
                                     if (response.code() == 200) {
                                         if (response.body().getStatus().equalsIgnoreCase("Success")) {
-                                            Records recorde = response.body().getData().getRecords();
-                                            if (null == recorde) {
+                                            records = response.body().getData().getRecords();
+                                            /*if (null == records) {
                                                 showDialog("", "Plans are not available");
                                             } else {
-                                                mListener.goToSeePlansFragment( response.body().getData().getRecords());
-                                            }
+                                                // mListener.goToSeePlansFragment( response.body().getData().getRecords());
+                                            }*/
                                         } else {
-                                            showDialog("Sorry!!", "Plans are not available");
+                                            //showDialog("Sorry!!", "Plans are not available");
                                         }
-
+                                        getSpecialPlans(phone, rechargeService, progressBar, records);
                                     } else {
                                         showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
                                     }
-
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
-                                    progressBar.dismiss();
-                                    Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        } else {
-                            Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(planKey, stateSelector.getSelectedItem().toString(),
-                                    "PO", phone, BuildConfig.MOBILE_APPLICATION,BuildConfig.MOBILE_VERSION_ID);
-                            getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
-                                @Override
-                                public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
-                                    progressBar.dismiss();
-                                    if (response.code() == 200) {
-                                        if (response.body().getStatus().equalsIgnoreCase("Success")) {
-                                            List<RechargePlans> data = response.body().getData().getRecords();
-                                            if (null == data || null == data.get(0).getDesc()|| data.get(0).getDesc().contains("Not Available")) {
-                                                showDialog("", "Plans are not available");
-                                            } else {
-                                                mListener.goToSeePlansFragment(data);
-                                            }
-                                        } else {
-                                            showDialog("Sorry!!", "Plans are not available");
-                                        }
-
-                                    } else {
-                                        showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
-                                    }
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
                                     progressBar.dismiss();
                                     Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
                                 }
@@ -357,6 +320,40 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             default:
                 throw new UnsupportedOperationException("Don't know where you've clicked");
         }
+    }
+
+    private void getSpecialPlans(String phone, MobileRechargeService rechargeService, ProgressDialog progressBar, Records records) {
+        Call<ResponseGetPostpaidPlans> getPlansCall = rechargeService.getPostpaidPlans(planKey, stateSelector.getSelectedItem().toString(),
+                "PO", phone, BuildConfig.MOBILE_APPLICATION,BuildConfig.MOBILE_VERSION_ID);
+        getPlansCall.enqueue(new Callback<ResponseGetPostpaidPlans>() {
+            @Override
+            public void onResponse(Call<ResponseGetPostpaidPlans> call, Response<ResponseGetPostpaidPlans> response) {
+                progressBar.dismiss();
+                if (response.code() == 200) {
+                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                        List<RechargePlans> data = response.body().getData().getRecords();
+                        if (null == data || null == data.get(0).getDesc()|| data.get(0).getDesc().contains("Not Available")) {
+                            // showDialog("", "Plans are not available");
+                        } else {
+                            records.setSpecialPlans(data);
+                        }
+                    } else {
+                        // showDialog("Sorry!!", "Plans are not available");
+                    }
+
+                    mListener.goToSeePlansFragment(records);
+                } else {
+                    showDialog("Sorry!!", "Looks like there's a network or server problem. Please try again in sometime.");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
+                progressBar.dismiss();
+                Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -376,7 +373,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         if (resultCode == RESULT_OK){
             if (requestCode == 123){
-                Toast.makeText(getContext(),"kirkiriii",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(),"kirkiriii",Toast.LENGTH_SHORT).show();
             }
         }
 
