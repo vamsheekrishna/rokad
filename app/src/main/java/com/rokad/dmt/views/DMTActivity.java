@@ -110,7 +110,21 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
         DialogFragment dialogFragment;
         dialogFragment = DMTCommissionDialogFragment.newInstance(true);
         dialogFragment.setCancelable(false);
-        dialogFragment.show(ft, "DMTCommissionDialogFragment");
+        dialogFragment.show(ft, "OTPVerificationDialog");
+    }
+
+    @Override
+    public void showCustomOTPDialog(String mobileNumber) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("OTPVerificationDialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        DialogFragment dialogFragment;
+        dialogFragment = OTPVerificationDialogFragment.newInstance(mobileNumber);
+        dialogFragment.setCancelable(false);
+        dialogFragment.show(ft, "OTPVerificationDialog");
     }
 
     @Override

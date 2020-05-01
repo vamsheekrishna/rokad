@@ -14,6 +14,7 @@ public interface OnDMTInteractionListener {
     void goToConformation();
     void showCustomDialog();
     void showCommissionDialog();
+    void showCustomOTPDialog(String mobileNumber);
     void makeAnotherPayment();
     DMTHomeScreenDetails getHomeScreenDetails();
     FundTransferDetails getFundTransferDetails();

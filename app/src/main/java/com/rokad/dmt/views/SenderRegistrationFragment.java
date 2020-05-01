@@ -85,6 +85,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.send_otp).setOnClickListener(this::onClick);
         firstName = view.findViewById(R.id.fst_name);
         lastName = view.findViewById(R.id.lst_name);
         senderMobileNumber = view.findViewById(R.id.sender_mobile_num);
@@ -148,8 +149,13 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 break;
 
             case R.id.send_otp:
-                Toast.makeText(getContext(),"clicked", Toast.LENGTH_SHORT).show();
-                //TODO: to be implemented.
+                String mobile = senderMobileNumber.accessEditText().getText().toString();
+                if (mobile.isEmpty() || !Utils.isValidMobile(mobile)){
+                    showDialog("Sorry!!", "Please enter a valid mobile number");
+                } else {
+                    mListener.showCustomOTPDialog(mobile);
+                }
+                break;
         }
     }
 }

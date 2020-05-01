@@ -28,6 +28,7 @@ import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
+import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.models.SubscriberModule;
 import com.rokad.mobile_recharge.models.mPlans.PostpaidData;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
@@ -140,7 +141,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         updateOperator();
         subscriberModules.clear();
         rechargeAmount.setText("");
-        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
+//        subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
         subscriberModules = mListener.getMobileRechargeModule().getPrepaidSubscriberList();
         /*subscriberModules.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
         subscriberModules.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
@@ -154,9 +155,15 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         if(mListener.getMobileRechargeModule().getSelectedSubscriber()!=-1) {
             subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
         }
-        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(this::onClick,getContext(),
-                subscriberModules);
-        recyclerView.setAdapter(listRecyclerView);
+        SubscriberListAdapter listRecyclerView = null;
+
+        if (listRecyclerView == null) {
+            listRecyclerView = new SubscriberListAdapter(this::onClick, getContext(),
+                    subscriberModules);
+            recyclerView.setAdapter(listRecyclerView);
+        } else {
+            listRecyclerView.notifyDataSetChanged();
+        }
     }
 
     private void displayPostpaidSubscriberList() {
@@ -233,12 +240,11 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         switch (id){
             case R.id.mobile_recharge_nxt_btn:
-
                 if(!isValidMobile(phone)) {
                     showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
                 }else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
                     showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
-                } else if(mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
+                } else if( stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))) {
                     showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
                 } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))){
                     showDialog("Sorry!!", getString(R.string.spinner_prompt));
@@ -263,7 +269,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
             case R.id.see_plans:
                 MobileRechargeService rechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
-
+                int j = mListener.getMobileRechargeModule().getPreOperator().length();
                 if (subscriberName != null && stateSelector!= null && rechargeTypeGroup!=null && mListener != null) {
                     if (subscriberName.isEmpty() && stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))
                             && rechargeTypeGroup.getCheckedRadioButtonId() == -1) {
@@ -272,7 +278,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
                     } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1) {
                         showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
-                    } else if (mListener.getMobileRechargeModule().getPreOperator().length() <= 0) {
+                    } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))) {
                         showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
                     } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))) {
                         showDialog("Sorry!!", getString(R.string.spinner_prompt));

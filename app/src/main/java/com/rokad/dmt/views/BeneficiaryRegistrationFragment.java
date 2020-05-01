@@ -5,7 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +26,10 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
     private String mParam1;
     private String mParam2;
     private OnDMTInteractionListener mListener;
-    private EditTextWithTitleAndThumbIcon firstName, lastName, senderMobileNumber, ifscCode;
-    private EditTextWithTitleAndThumbIcon beneficiaryMobileNumber, bankAccNumber, confirmBankAccNumber;
+    private EditTextWithTitleAndThumbIcon firstName, lastName, ifscCode;
+    private EditTextWithTitleAndThumbIcon bankAccNumber, confirmBankAccNumber;
     private AppCompatSpinner banksListSpinner, relationSpinner;
+    private AppCompatEditText senderMobileNumber,beneficiaryMobileNumber;
 
     public BeneficiaryRegistrationFragment() {
         // Required empty public constructor
@@ -90,19 +93,20 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                     showDialog("Sorry!!","Please enter your first name without any spaces and special characters.");
                 } else if (!Utils.isValidWord(lastName.accessEditText().getText().toString())){
                     showDialog("Sorry!!","Please enter your last name without any spaces and special characters.");
-                } else if (!Utils.isValidMobile(senderMobileNumber.accessEditText().getText().toString())){
-                    showDialog("Sorry!!","Please enter your valid Mobile Number.");
-                }  else if (!Utils.isValidMobile(beneficiaryMobileNumber.accessEditText().getText().toString())){
-                    showDialog("Sorry!!","Please enter your valid Mobile Number.");
-                } else if (!bankAccNumber.accessEditText().getText().equals("")){
+                } else if (!Utils.isValidMobile(senderMobileNumber.getText().toString())){
+                    showDialog("Sorry!!","Please enter your valid Sender's Mobile Number.");
+                }  else if (!Utils.isValidMobile(beneficiaryMobileNumber.getText().toString())){
+                    showDialog("Sorry!!","Please enter your valid Beneficiary's Mobile Number.");
+                } else if (bankAccNumber.accessEditText().getText().toString().isEmpty()){
                     showDialog("Sorry!!","Please enter your valid Bank Account Number.");
-                } else if (!confirmBankAccNumber.accessEditText().getText().equals("")){
+                } else if (confirmBankAccNumber.accessEditText().getText().toString().isEmpty()){
                     showDialog("Sorry!!","Please re-enter your valid Bank Account Number to confirm.");
                     confirmBankAccNumber.accessEditText().setFocusable(true);
                 } else if (!bankAccNumber.accessEditText().getText().equals(confirmBankAccNumber.accessEditText().getText())){
                     showDialog("Sorry!!","Mismatch of Bank Account Numbers. Please enter again.");
                     bankAccNumber.accessEditText().setText("");
                     bankAccNumber.accessEditText().setFocusable(true);
+                    confirmBankAccNumber.accessEditText().setText("");
                 } else if (ifscCode.accessEditText().getText().equals("")){
                     showDialog("Sorry!!","Please enter your Bank IFSC code.");
                     ifscCode.accessEditText().setFocusable(true);

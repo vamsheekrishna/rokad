@@ -23,9 +23,6 @@
         android:id="@+id/lst_name"
         app:image="@drawable/user_new"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:id="@+id/sender_mobile_num"
             android:layout_centerInParent="true"
@@ -34,17 +31,23 @@
             android:layout_height="wrap_content"
             app:title="@string/sender_mobile"
             app:image="@drawable/mobile"/>
-        <TextView
-            android:id="@+id/send_otp"
-            android:text="Send OTP?"
-            android:textColor="#2644DC"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="75dp"
-            android:paddingRight="50dp"
-            android:layout_marginBottom="32dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/send_otp"
+        android:text="Send OTP?"
+        android:clickable="true"
+        android:textColor="#2644DC"
+        android:layout_marginTop="8dp"
+        android:paddingRight="8dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="end"
+        android:layout_marginBottom="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:paddingEnd="18dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 

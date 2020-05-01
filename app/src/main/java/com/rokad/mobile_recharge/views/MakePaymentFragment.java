@@ -192,4 +192,5 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
             showDialog("Sorry....", "Please wait, this feature will available soon");
         }
     }
+
 }

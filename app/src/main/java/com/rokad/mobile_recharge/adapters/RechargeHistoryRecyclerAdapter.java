@@ -39,7 +39,7 @@ public class RechargeHistoryRecyclerAdapter extends RecyclerView.Adapter<Recharg
         LastTransaction data = mLastTransaction[position];
         holder.repeatTransaction.setTag(data);
         holder.subscriberImg.setImageResource(data.getOperatorLogo());
-        holder.planPrice.setText(data.getLastTransactionAmount());
+        holder.planPrice.setText("Rs."+data.getLastTransactionAmount());
         holder.stateName.setText(data.getStateName());
         holder.subscriberName.setText(data.getOperatorName());
         holder.mobileNum.setText(data.getRechargeOn());
