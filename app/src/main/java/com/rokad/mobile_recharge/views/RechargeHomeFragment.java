@@ -203,7 +203,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-//        mobileRechargeNum.setText(BuildConfig.USERNAME);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -319,7 +319,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                 @Override
                                 public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
                                     progressBar.dismiss();
-                                    Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Please check your Internet connection and try again later", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -363,7 +363,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
             @Override
             public void onFailure(Call<ResponseGetPostpaidPlans> call, Throwable t) {
                 progressBar.dismiss();
-                Toast.makeText(getContext(), "Plans Not Available. Please try again later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please check your Internet connection and try again later", Toast.LENGTH_SHORT).show();
             }
         });
     }

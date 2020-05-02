@@ -1,10 +1,12 @@
 package com.rokad.mobile_recharge.views;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
     private String mParam1;
     private String mParam2;
     private RecyclerView recyclerView;
+    private AppCompatTextView emptyView;
     private OnMobileRechargeListener mListener;
 
     public MobileRechargeHistoryFragment() {
@@ -75,12 +78,24 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_history, container, false);
+        emptyView = view.findViewById(R.id.empty_view);
+        return view;
+    }
+
+
+    public void loadRechargeHistory(){
+        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+        progressBar.setCancelable(false);
+        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        progressBar.show();
+
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
         mobileRechargeService.getHistory(UserData.getUserData().getId()).enqueue(new Callback<ResponseGetHistory>() {
             @Override
             public void onResponse(Call<ResponseGetHistory> call, Response<ResponseGetHistory> response) {
                 if(response.isSuccessful()) {
                     if(response.body().getStatus().equals("success") && response.body().getLastTransaction().length > 0) {
+                        progressBar.dismiss();
                         for (LastTransaction lastTransaction : response.body().getLastTransaction()) {
                             SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
                             lastTransaction.setOperatorLogo(operator.getImage());
@@ -99,11 +114,13 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
 
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
-
+                progressBar.dismiss();
+                recyclerView.setVisibility(View.GONE);
+                emptyView.setVisibility(View.VISIBLE);
             }
         });
-        return view;
     }
+
     @Override
     public void setMenuVisibility(final boolean visible) {
         super.setMenuVisibility(visible);
@@ -128,6 +145,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
     public void onResume() {
         super.onResume();
         requireActivity().setTitle("Mobile Recharge");
+        loadRechargeHistory();
     }
 
     @Override

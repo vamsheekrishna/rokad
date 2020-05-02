@@ -111,7 +111,11 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 Log.d("onResponse", "onResponse: ");
                 if (response.body().getStatus().equalsIgnoreCase("Failed")) {
 //                    Toast.makeText(getContext(), BuildConfig.BASE_URL +BuildConfig.RECHARGE ,Toast.LENGTH_LONG).show();
-                    showDialog(response.body().getStatus(), response.body().getMsg());
+                    String bod = response.body().getMsg();
+                    if (bod.isEmpty()){
+                        bod = "Transaction Failed. Please try again after sometime.";
+                    }
+                    showDialog(response.body().getStatus(), bod);
                     progressBar.dismiss();
                 } else {
                     FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
