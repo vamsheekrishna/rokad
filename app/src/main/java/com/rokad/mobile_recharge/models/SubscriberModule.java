@@ -6,6 +6,16 @@ public class SubscriberModule {
     private String name;
     private String key;
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    private String state;
+
     public String getPlanKey() {
         return planKey;
     }

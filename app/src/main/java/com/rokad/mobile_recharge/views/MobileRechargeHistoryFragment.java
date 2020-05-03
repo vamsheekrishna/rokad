@@ -100,7 +100,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
                             SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
                             lastTransaction.setOperatorLogo(operator.getImage());
                             lastTransaction.setOperatorName(operator.getName());
-                            lastTransaction.setStateName("Maharashtra Goa");
+                            lastTransaction.setStateName(lastTransaction.getStateName());
                         }
                         RechargeHistoryRecyclerAdapter recyclerAdapter = new RechargeHistoryRecyclerAdapter(response.body().getLastTransaction()
                                 , MobileRechargeHistoryFragment.this);

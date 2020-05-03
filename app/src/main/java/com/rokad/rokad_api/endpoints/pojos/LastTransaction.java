@@ -24,9 +24,25 @@ public class LastTransaction {
     @Expose
     String createdBy;
 
+    @SerializedName("created_on")
+    @Expose
+    String createdOn;
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+
+    @SerializedName("state")
+    @Expose
+    String stateName;
+
     int operatorLogo;
     String operatorName;
-    String stateName;
 
     public String getOperatorName() {
         return operatorName;
