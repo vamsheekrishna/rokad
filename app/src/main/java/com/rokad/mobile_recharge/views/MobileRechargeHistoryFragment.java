@@ -84,10 +84,10 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
 
 
     public void loadRechargeHistory(){
-        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
-        progressBar.setCancelable(false);
-        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        progressBar.show();
+//        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+//        progressBar.setCancelable(false);
+//        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+//        progressBar.show();
 
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
         mobileRechargeService.getHistory(UserData.getUserData().getId()).enqueue(new Callback<ResponseGetHistory>() {
@@ -95,7 +95,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
             public void onResponse(Call<ResponseGetHistory> call, Response<ResponseGetHistory> response) {
                 if(response.isSuccessful()) {
                     if(response.body().getStatus().equals("success") && response.body().getLastTransaction().length > 0) {
-                        progressBar.dismiss();
+//                        progressBar.dismiss();
                         for (LastTransaction lastTransaction : response.body().getLastTransaction()) {
                             SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
                             lastTransaction.setOperatorLogo(operator.getImage());
@@ -114,7 +114,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
 
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
-                progressBar.dismiss();
+//                progressBar.dismiss();
                 recyclerView.setVisibility(View.GONE);
                 emptyView.setVisibility(View.VISIBLE);
             }

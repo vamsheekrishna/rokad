@@ -2,8 +2,8 @@ package com.rokad.mobile_recharge.views;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,9 +29,7 @@ import com.rokad.authentication.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
-import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.models.SubscriberModule;
-import com.rokad.mobile_recharge.models.mPlans.PostpaidData;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
@@ -48,12 +47,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
 import static com.rokad.utilities.Utils.isValidMobile;
 
 public class RechargeHomeFragment extends BaseFragment implements View.OnClickListener,
         RecyclerOnClickHandler, RadioGroup.OnCheckedChangeListener{
 
+    private static RechargeHomeFragment fragment;
     private ArrayList<SubscriberModule> subscriberModules = new ArrayList<>();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -84,11 +83,15 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
     public static RechargeHomeFragment newInstance(String param1, String param2) {
-        RechargeHomeFragment fragment = new RechargeHomeFragment();
+         fragment = new RechargeHomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static RechargeHomeFragment getInstance(){
         return fragment;
     }
 
@@ -111,6 +114,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+    public void setRechargeAmountEmpty(){
+        rechargeAmount.setText("");
+    }
 
 
     @Override
@@ -134,6 +140,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         return view;
     }
+
 
 
 
@@ -203,7 +210,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
+//        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 

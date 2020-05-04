@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/empty_view"
-        android:text="Unable to get Recharge History. Please come back in sometime"
+        android:text="Please try again later"
         android:textSize="32sp"
         android:visibility="gone"
         android:textStyle="bold|normal"

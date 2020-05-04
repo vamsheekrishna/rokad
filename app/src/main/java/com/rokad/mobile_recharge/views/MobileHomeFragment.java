@@ -5,8 +5,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +19,7 @@ import com.rokad.R;
 import com.rokad.mobile_recharge.adapters.MobileRechargePagerAdapter;
 import com.rokad.utilities.views.BaseFragment;
 
-public class MobileHomeFragment extends BaseFragment {
+public class MobileHomeFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -68,5 +71,27 @@ public class MobileHomeFragment extends BaseFragment {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setSelectedTabIndicator(R.drawable.rounded_tab_selected_indicator);
         tabLayout.setTabRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.tab_normal_color)));
+
+        viewPager.addOnPageChangeListener(this);
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+//        int initialPos = 1;
+//        if (initialPos == position){
+//            Fragment fragment = viewPagerAdapter.getItem(0);
+//
+//        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
