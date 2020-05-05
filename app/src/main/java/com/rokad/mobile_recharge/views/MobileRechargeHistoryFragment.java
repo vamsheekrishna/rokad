@@ -88,7 +88,8 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
 //        progressBar.setCancelable(false);
 //        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
 //        progressBar.show();
-
+        emptyView.setVisibility(View.VISIBLE);
+        emptyView.setText("Loading..!!");
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
         mobileRechargeService.getHistory(UserData.getUserData().getId()).enqueue(new Callback<ResponseGetHistory>() {
             @Override
@@ -96,6 +97,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
                 if(response.isSuccessful()) {
                     if(response.body().getStatus().equals("success") && response.body().getLastTransaction().length > 0) {
 //                        progressBar.dismiss();
+                        emptyView.setVisibility(View.GONE);
                         for (LastTransaction lastTransaction : response.body().getLastTransaction()) {
                             SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
                             lastTransaction.setOperatorLogo(operator.getImage());
@@ -116,6 +118,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
 //                progressBar.dismiss();
                 recyclerView.setVisibility(View.GONE);
+                emptyView.setText("Please try again later.");
                 emptyView.setVisibility(View.VISIBLE);
             }
         });
