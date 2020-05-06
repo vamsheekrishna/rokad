@@ -133,7 +133,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         DummyContent.ITEMS.clear();
         DummyContent.createDummyItem(1, R.drawable.mobile_home_icon, "Mobile");
-        DummyContent.createDummyItem(2, R.drawable.domestic_money_transfer, "Domestic Money Transfer");
+//        DummyContent.createDummyItem(2, R.drawable.domestic_money_transfer, "Domestic Money Transfer");
         /*DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
         DummyContent.createDummyItem(3, R.drawable.insurance, "Insurance");
         DummyContent.createDummyItem(4, R.drawable.current_bus_booking, "Current Bus Booking");
