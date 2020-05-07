@@ -1,125 +1,59 @@
 package com.rokad.dmt;
 
-import android.util.Log;
-
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
+import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
+import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
-import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
+import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
+import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
+import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
-import com.rokad.rokad_api.endpoints.DMTService;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class DMTUtilis implements DMTService {
+public class DMTUtilis {
 
-   private static DMTUtilis dmtUtilis = null;
+    private final DMTModuleService services;
 
-    private DMTUtilis() {
-
-    }
-
-    public static DMTUtilis getDMTUtilsInstance(){
-        if (dmtUtilis == null)
-            dmtUtilis = new DMTUtilis();
-        return dmtUtilis;
-    }
-
-    @Override
-    public void resendOTP() {
-
-    }
-
-    @Override
-    public void verifyOTP() {
-
-    }
-
-    @Override
-    public void getSenderInfo() {
-
-    }
-
-    @Override
-    public ArrayList<Beneficiary> getBeneficiaryList(String mobileNumber, String senderName, String userId) {
-         ArrayList<Beneficiary> beneficiaryList = new ArrayList<>();
-        getServiceInstance().BENEFICIARY_LIST_RESPONSE_CALL(mobileNumber,senderName,userId)
-                .enqueue(new Callback<BeneficiaryListResponsePOJO>() {
-            @Override
-            public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
-                //TODO: return array list of beneficiaries.
-
-//                Log.e("===lllD", response.raw().toString());
-                if(response.isSuccessful())
-                for (int i = 0; i < response.body().getData().getBeneficiaries().getBeneficiary().size() ; i++) {
-                    beneficiaryList.add(response.body().getData().getBeneficiaries().getBeneficiary().get(i));
-                }
-                else{
-                    Log.e(">>>>>>", "failed : " + response.message());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
-                //TODO: return failure response i.e. null.
-                Log.e("===lllD", Objects.requireNonNull(t.getCause().toString()));
-                t.printStackTrace();
-            }
-        });
-        return beneficiaryList;
-    }
-
-    @Override
-    public void fundTransfer() {
-        //TODO: check with team for params.
-//        getServiceInstance().FUND_TRANSFER_CALL()
-    }
-
-    @Override
-    public void getAllBanks() {
-        getServiceInstance().BANK_LIST_POJO_CALL().enqueue(new Callback<BankListResponsePOJO>() {
-            @Override
-            public void onResponse(Call<BankListResponsePOJO> call, Response<BankListResponsePOJO> response) {
-                Log.e("=== D Bank list : " , response.raw().toString());
-            }
-
-            @Override
-            public void onFailure(Call<BankListResponsePOJO> call, Throwable t) {
-                Log.e( "Bank list errrorrrrr:" , t.getMessage() );
-            }
-        });
-    }
-
-    @Override
-    public void processNewTransaction(String processingBankId,String processingBankName,
-                                      String customerMobileNumber,String senderId,
-                                      String beneficiaryID,String userId,String transactionType) {
-
-        getServiceInstance().NEW_TRANSACTION_PROCESS_CALL(processingBankId,processingBankName,
-                customerMobileNumber,senderId,beneficiaryID,userId,transactionType)
-                .enqueue(new Callback<NewTransactionProcessResponsePOJO>() {
-                    @Override
-                    public void onResponse(Call<NewTransactionProcessResponsePOJO> call, Response<NewTransactionProcessResponsePOJO> response) {
-
-                        Log.e("===lllD", response.raw().toString());
-                    }
-
-                    @Override
-                    public void onFailure(Call<NewTransactionProcessResponsePOJO> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-
+    public DMTUtilis() {
+        services = RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class);
     }
 
     private DMTModuleService getServiceInstance(){
         return RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class);
+    }
+
+    public Call<BeneficiaryListResponsePOJO> getBeneficiaryLis(String mobileNumber, String senderName, String userID) {
+        return services.getBeneficiaryLis(mobileNumber, senderName, userID);
+    }
+
+    public Call<NewTransactionProcessResponsePOJO> doTransaction(String processingBankId, String processingBankName, String customerMobileNumber, String senderId, String beneficiaryID, String userId, String transactionType) {
+        return services.doTransaction(processingBankId, processingBankName, customerMobileNumber, senderId, beneficiaryID, userId, transactionType);
+    }
+
+    public Call<SenderRegistrationResponsePOJO> senderRegistration(String senderMobileNumber, String senderFirstName, String lastName, String state, String userId) {
+        return services.senderRegistration(senderMobileNumber, senderFirstName, lastName, state, userId);
+    }
+
+    public Call<BeneficiaryRegistrationResponsePOJO> beneficiaryRegistration(String mobileNumber, String senderID, String firstName, String lastName, String beneficaryMobileNumber, String bankName, String accountNumber, String reenteredAccountNumber, String ifscCode, String relation, String branchName, String ifscOption, String beneficiaryCheck, String processingBankId, String sessionId, String userId) {
+        return null;
+    }
+
+    public Call<FundTransferResponsePOJO> fundTransfer(String processingBankId, String processingBankName, String transferAmount, String transferFee, String totalAmount, String walletId, String walletType, String walletBal, String neftLimit, String transferType, String customerMobileNumber, String senderName, String neftLimit_, String impsLimit, String senderId, String listBen, String amount, String userId) {
+        return null;
+    }
+
+    public Call<BankListResponsePOJO> BANK_LIST_POJO_CALL() {
+        return null;
+    }
+
+    public Call<OTPValidationResponsePOJO> OTPValidation(String userID, String uniqueSessionID, String mobileNumber, String firstName, String lastName, String otp, String regID, String paytmUserSate) {
+        return services.OTPValidation(userID, uniqueSessionID, mobileNumber, firstName, lastName, otp, regID, paytmUserSate);
+    }
+
+    public Call<ResendOTPResponsePOJO> resendOTP(String sessionId, String mobileNumber) {
+        return services.resendOTP(sessionId, mobileNumber);
     }
 }

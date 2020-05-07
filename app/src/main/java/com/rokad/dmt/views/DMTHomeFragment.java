@@ -21,8 +21,10 @@ import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AuthenticationService;
+import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
@@ -76,7 +78,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("Services Home");
+        requireActivity().setTitle("Services Home");
 
         updateWalletBalance();
         String walletBalance = UserData.getInstance().getWalletBalance();
@@ -118,7 +120,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getActivity().setTitle("DMT Home");
+        requireActivity().setTitle("DMT Home");
         return inflater.inflate(R.layout.fragment_dmt_home, container, false);
     }
 
@@ -140,7 +142,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addMoney:
-                AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
                 builder.setTitle("Sorry....");
                 builder.setMessage(R.string.feature_availability_msg);
                 builder.setNegativeButton("close", (dialog, which) -> dialog.dismiss());
@@ -152,8 +154,18 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 if(!Utils.isValidMobile(mobile)) {
                     showDialog("", "Please enter a valid mobile number");
                 } else {
-                    mListener.getHomeScreenDetails().setMobileNumber(mobile);
-                    mListener.goToDomesticFundTransfer();
+                    // mListener.goToDomesticFundTransfer();
+                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(mobile, UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
+                        @Override
+                        public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
+                            
+                        }
+
+                        @Override
+                        public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
+
+                        }
+                    });
                 }
                 break;
             case R.id.add_sender:

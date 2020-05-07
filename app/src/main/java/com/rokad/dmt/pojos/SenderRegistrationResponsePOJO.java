@@ -1,50 +1,42 @@
 package com.rokad.dmt.pojos;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.rokad.dmt.pojos.SenderRegistration.Data;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-public class SenderRegistrationResponsePOJO implements Serializable, Parcelable {
+public class SenderRegistrationResponsePOJO implements Serializable{
     @SerializedName("status")
     @Expose
     private String status;
+
+    @SerializedName("msg")
+    @Expose
+    String msg;
+
+    @SerializedName("error")
+    @Expose
+    String error;
+
     @SerializedName("data")
     @Expose
-    private Data data;
-    public final static Parcelable.Creator<SenderRegistrationResponsePOJO> CREATOR = new Creator<SenderRegistrationResponsePOJO>() {
+    private SenderData senderData;
 
-
-        @SuppressWarnings({
-                "unchecked"
-        })
-        public SenderRegistrationResponsePOJO createFromParcel(Parcel in) {
-            return new SenderRegistrationResponsePOJO(in);
-        }
-
-        public SenderRegistrationResponsePOJO[] newArray(int size) {
-            return (new SenderRegistrationResponsePOJO[size]);
-        }
-
-    }
-            ;
-    private final static long serialVersionUID = -3361088673564887700L;
-
-    protected SenderRegistrationResponsePOJO(Parcel in) {
-        this.status = ((String) in.readValue((String.class.getClassLoader())));
-        this.data = ((Data) in.readValue((Data.class.getClassLoader())));
+    public String getError() {
+        return error;
     }
 
-    public SenderRegistrationResponsePOJO() {
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getStatus() {
@@ -55,20 +47,11 @@ public class SenderRegistrationResponsePOJO implements Serializable, Parcelable 
         this.status = status;
     }
 
-    public Data getData() {
-        return data;
+    public SenderData getSenderData() {
+        return senderData;
     }
 
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(status);
-        dest.writeValue(data);
-    }
-
-    public int describeContents() {
-        return 0;
+    public void setSenderData(SenderData senderData) {
+        this.senderData = senderData;
     }
 }

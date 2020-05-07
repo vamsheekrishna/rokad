@@ -1,4 +1,6 @@
 package com.rokad.dmt.pojos;
 
-public class OTPValidationResponsePOJO {
+import com.rokad.rokad_api.endpoints.pojos.BaseResponse;
+
+public class OTPValidationResponsePOJO extends BaseResponse {
 }

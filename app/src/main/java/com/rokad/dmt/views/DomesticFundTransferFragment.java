@@ -8,7 +8,6 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,14 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
-import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener, View.OnFocusChangeListener{
     private static final String ARG_PARAM1 = "param1";
@@ -73,7 +68,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Objects.requireNonNull(getActivity()).setTitle("Transfer Money");
+        requireActivity().setTitle("Transfer Money");
         return inflater.inflate(R.layout.fragment_domestic_fund_transfer, container, false);
     }
 
@@ -121,7 +116,6 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 
         beneficiariesSpinner = view.findViewById(R.id.spinner_view);
 
-        DMTUtilis utils = DMTUtilis.getDMTUtilsInstance();
 //        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("9920132129", "dhiraj", "338");
 //        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
 //                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);
@@ -132,8 +126,9 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 //        }
 
 //        utils.getAllBanks();
-        utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
-                "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
+
+//        utils.processNewTransaction("RMB000000000003","ITZCASH  CARD LTD",
+//                "1234567890", "TREG00000005659","BFC000000001114","338", "IMPS");
     }
 
     @Override
@@ -149,9 +144,9 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         progressBar.setCancelable(false);
                         progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
                         progressBar.show();
-                        mListener.getFundTransferDetails().setMobileNumber(mobile);
-                        mListener.getFundTransferDetails().setSenderName(name);
-                        DMTUtilis.getDMTUtilsInstance().getBeneficiaryList(mobile,name,"338");
+                        // mListener.getFundTransferDetails().setMobileNumber(mobile);
+                        // mListener.getFundTransferDetails().setSenderName(name);
+                        // DMTUtilis.getDMTUtilsInstance().getBeneficiaryList(mobile,name,"338");
                     } else {
                         showDialog("Sorry!!", "Please check and enter the mobile number and Sender's name again");
                         senderMobileNumber.accessEditText().setText("");

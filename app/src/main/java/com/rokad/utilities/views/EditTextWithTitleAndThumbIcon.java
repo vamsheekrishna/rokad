@@ -52,8 +52,11 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
                     // .setTextCursorDrawable(imageDrawable);
 
                     Drawable img = getContext().getResources().getDrawable(styledAttributes.getResourceId(R.styleable.EditTextWithTitleAndThumbIcon_image, 0));
-                    img.setBounds(0, 0, 60, 60);
-                     appCompatEditText = view.findViewById(R.id.edit_text_view);
+                    int width = img.getIntrinsicWidth();
+                    int height = img.getIntrinsicHeight();
+
+                    img.setBounds(0, 0, width, height);
+                    appCompatEditText = view.findViewById(R.id.edit_text_view);
                     appCompatEditText.setCompoundDrawables(img, null, null, null);
                 } catch (Exception e) {
 

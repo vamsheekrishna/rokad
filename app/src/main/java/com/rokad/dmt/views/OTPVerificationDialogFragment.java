@@ -1,11 +1,13 @@
 package com.rokad.dmt.views;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,25 +15,38 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
 
 import com.rokad.R;
+import com.rokad.authentication.UserData;
+import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
+import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
+import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
 import java.util.concurrent.TimeUnit;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class OTPVerificationDialogFragment extends DialogFragment implements View.OnClickListener {
 
 
+    public static final String SEDER = "seder";
     private EditTextWithTitleAndThumbIcon otpValue;
     private AppCompatTextView timer, resendOTP;
+    private SenderData senderObject;
+    private DMTModuleService DMTService;
 
     public OTPVerificationDialogFragment() {
     }
 
-    public static OTPVerificationDialogFragment newInstance(String mobileNumber) {
+    public static OTPVerificationDialogFragment newInstance(SenderData senderData) {
 
         Bundle args = new Bundle();
-
         OTPVerificationDialogFragment fragment = new OTPVerificationDialogFragment();
-        args.putString("mobile", mobileNumber);
+        args.putSerializable(SEDER, senderData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,6 +54,9 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        assert savedInstanceState != null;
+        senderObject = (SenderData) getArguments().getSerializable(SEDER);
+        DMTService =  RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class);
     }
 
 
@@ -52,7 +70,8 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
         otpValue.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
         timer = view.findViewById(R.id.timer);
         resendOTP = view.findViewById(R.id.resend_otp_btn);
-
+        view.findViewById(R.id.submit_otp).setOnClickListener(this);
+        view.findViewById(R.id.close).setOnClickListener(this);
         CountDownTimer downTimer = new CountDownTimer(40000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -70,10 +89,69 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
         return view;
     }
-
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.resend_otp_btn:
+                DMTService.resendOTP(senderObject.getSessionId(), senderObject.getMobileNo()).enqueue(new Callback<ResendOTPResponsePOJO>() {
+                    @Override
+                    public void onResponse(Call<ResendOTPResponsePOJO> call, Response<ResendOTPResponsePOJO> response) {
+                        ResendOTPResponsePOJO data = response.body();
+                        if(data.getStatus().equals("Success")) {
 
+                        } else {
+                            Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<ResendOTPResponsePOJO> call, Throwable t) {
+                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+                break;
+            case R.id.submit_otp:
+                String otp = otpValue.accessEditText().getText().toString();
+                if (otp.length() == 6) {
+                    DMTService.OTPValidation(UserData.getUserData().getId(), senderObject.getSessionId(),senderObject.getMobileNo(),senderObject.getFirstName(),
+                            senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState()).enqueue(new Callback<OTPValidationResponsePOJO>() {
+                        @Override
+                        public void onResponse(Call<OTPValidationResponsePOJO> call, Response<OTPValidationResponsePOJO> response) {
+                            if(response.isSuccessful()) {
+                                OTPValidationResponsePOJO data = response.body();
+                                if(data.getStatus().equals("Success")) {
+                                    requireActivity().onBackPressed();
+                                } else {
+                                    Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
+                                    // show("", data.getMsg());
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<OTPValidationResponsePOJO> call, Throwable t) {
+                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+                break;
+
+            case R.id.close:
+                requireActivity().onBackPressed();
+                break;
+        }
     }
 }

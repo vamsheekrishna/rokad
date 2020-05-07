@@ -3,7 +3,7 @@ package com.rokad.rokad_api.endpoints.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-class BaseResponse {
+public class BaseResponse {
 
     @SerializedName("status")
     @Expose

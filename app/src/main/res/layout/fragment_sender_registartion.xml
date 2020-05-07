@@ -33,6 +33,7 @@
             app:image="@drawable/mobile"/>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/send_otp"
         android:text="Send OTP?"
         android:clickable="true"

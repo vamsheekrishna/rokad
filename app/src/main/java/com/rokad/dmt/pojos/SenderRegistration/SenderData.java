@@ -9,94 +9,66 @@ import com.google.gson.annotations.SerializedName;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Data
+public class SenderData implements Serializable
 {
     @SerializedName("sessionId")
     @Expose
     private String sessionId;
-    @SerializedName("checkSum")
-    @Expose
-    private List<Object> checkSum = new ArrayList<Object>();
-    @SerializedName("sourceId")
-    @Expose
-    private String sourceId;
+
+//    @SerializedName("sourceId")
+//    @Expose
+//    private String sourceId;
+
     @SerializedName("requestType")
     @Expose
     private Integer requestType;
+
     @SerializedName("username")
     @Expose
     private String username;
+
     @SerializedName("icwCode")
     @Expose
     private String icwCode;
+
     @SerializedName("responseCode")
     @Expose
     private String responseCode;
+
     @SerializedName("responseDesc")
     @Expose
     private String responseDesc;
+
     @SerializedName("firstName")
     @Expose
     private String firstName;
+
     @SerializedName("lastName")
     @Expose
     private String lastName;
+
     @SerializedName("mobileNo")
     @Expose
-    private Integer mobileNo;
+    private String mobileNo;
+
     @SerializedName("stateId")
     @Expose
-    private Integer stateId;
+    private String stateId;
+
     @SerializedName("registrationId")
     @Expose
     private String registrationId;
     @SerializedName("paytmUserState")
     @Expose
     private String paytmUserState;
+
     @SerializedName("easyWalletList")
     @Expose
     private EasyWalletList easyWalletList;
-    public final static Parcelable.Creator<Data> CREATOR = new Parcelable.Creator<Data>() {
-
-
-        @SuppressWarnings({
-                "unchecked"
-        })
-        public Data createFromParcel(Parcel in) {
-            return new Data(in);
-        }
-
-        public Data[] newArray(int size) {
-            return (new Data[size]);
-        }
-
-    }
-            ;
-    private final static long serialVersionUID = -5253945984504606033L;
-
-    protected Data(Parcel in) {
-        this.sessionId = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.checkSum, (java.lang.Object.class.getClassLoader()));
-        this.sourceId = ((String) in.readValue((String.class.getClassLoader())));
-        this.requestType = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.username = ((String) in.readValue((String.class.getClassLoader())));
-        this.icwCode = ((String) in.readValue((String.class.getClassLoader())));
-        this.responseCode = ((String) in.readValue((String.class.getClassLoader())));
-        this.responseDesc = ((String) in.readValue((String.class.getClassLoader())));
-        this.firstName = ((String) in.readValue((String.class.getClassLoader())));
-        this.lastName = ((String) in.readValue((String.class.getClassLoader())));
-        this.mobileNo = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.stateId = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.registrationId = ((String) in.readValue((String.class.getClassLoader())));
-        this.paytmUserState = ((String) in.readValue((String.class.getClassLoader())));
-        this.easyWalletList = ((EasyWalletList) in.readValue((EasyWalletList.class.getClassLoader())));
-    }
-
-    public Data() {
-    }
 
     public String getSessionId() {
         return sessionId;
@@ -104,22 +76,6 @@ public class Data
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
-    }
-
-    public List<Object> getCheckSum() {
-        return checkSum;
-    }
-
-    public void setCheckSum(List<Object> checkSum) {
-        this.checkSum = checkSum;
-    }
-
-    public String getSourceId() {
-        return sourceId;
-    }
-
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
     }
 
     public Integer getRequestType() {
@@ -178,19 +134,19 @@ public class Data
         this.lastName = lastName;
     }
 
-    public Integer getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(Integer mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
-    public Integer getStateId() {
+    public String getStateId() {
         return stateId;
     }
 
-    public void setStateId(Integer stateId) {
+    public void setStateId(String stateId) {
         this.stateId = stateId;
     }
 
@@ -217,27 +173,4 @@ public class Data
     public void setEasyWalletList(EasyWalletList easyWalletList) {
         this.easyWalletList = easyWalletList;
     }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(sessionId);
-        dest.writeList(checkSum);
-        dest.writeValue(sourceId);
-        dest.writeValue(requestType);
-        dest.writeValue(username);
-        dest.writeValue(icwCode);
-        dest.writeValue(responseCode);
-        dest.writeValue(responseDesc);
-        dest.writeValue(firstName);
-        dest.writeValue(lastName);
-        dest.writeValue(mobileNo);
-        dest.writeValue(stateId);
-        dest.writeValue(registrationId);
-        dest.writeValue(paytmUserState);
-        dest.writeValue(easyWalletList);
-    }
-
-    public int describeContents() {
-        return 0;
-    }
-
 }

@@ -7,58 +7,52 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.rokad.R;
-import com.rokad.dmt.RequestPackets.BeneficiaryRegistrationDetails;
-import com.rokad.dmt.RequestPackets.CommissionDetails;
-import com.rokad.dmt.RequestPackets.DMTHomeScreenDetails;
-import com.rokad.dmt.RequestPackets.FundTransferDetails;
-import com.rokad.dmt.RequestPackets.NewSenderRegistrationDetails;
+import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
-import com.rokad.mobile_recharge.views.RechargeDialogFragment;
-import com.rokad.utilities.views.BaseActivity;
+import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.utilities.views.ServicesBaseActivity;
-
-import java.util.Objects;
 
 public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractionListener {
 
 
-    private DMTHomeScreenDetails homeScreenDetails = new DMTHomeScreenDetails();
-    private FundTransferDetails fundTransferDetails = new FundTransferDetails();
-    private NewSenderRegistrationDetails senderRegistrationDetails = new NewSenderRegistrationDetails();
-    private BeneficiaryRegistrationDetails beneficiaryRegistrationDetails = new BeneficiaryRegistrationDetails();
-    private CommissionDetails commissionDetails = new CommissionDetails();
-
+//    private DMTHomeScreenDetails homeScreenDetails = new DMTHomeScreenDetails();
+//    private FundTransferDetails fundTransferDetails = new FundTransferDetails();
+//    private NewSenderRegistrationDetails senderRegistrationDetails = new NewSenderRegistrationDetails();
+//    private BeneficiaryRegistrationDetails beneficiaryRegistrationDetails = new BeneficiaryRegistrationDetails();
+//    private CommissionDetails commissionDetails = new CommissionDetails();
+    DMTUtilis dmtUtilis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
+        dmtUtilis = new DMTUtilis();
         addFragment(DMTHomeFragment.newInstance("", ""), "DMTHomeFragment", false);
     }
 
-    @Override
-    public DMTHomeScreenDetails getHomeScreenDetails() {
-        return homeScreenDetails;
-    }
-
-    @Override
-    public FundTransferDetails getFundTransferDetails() {
-        return fundTransferDetails;
-    }
-
-    @Override
-    public NewSenderRegistrationDetails getSenderRegistrationDetails() {
-        return senderRegistrationDetails;
-    }
-
-    @Override
-    public BeneficiaryRegistrationDetails getBeneficiaryRegistrationDetails() {
-        return beneficiaryRegistrationDetails;
-    }
-
-    @Override
-    public CommissionDetails getCommissionDetails() {
-        return commissionDetails;
-    }
+//    @Override
+//    public DMTHomeScreenDetails getHomeScreenDetails() {
+//        return homeScreenDetails;
+//    }
+//
+//    @Override
+//    public FundTransferDetails getFundTransferDetails() {
+//        return fundTransferDetails;
+//    }
+//
+//    @Override
+//    public NewSenderRegistrationDetails getSenderRegistrationDetails() {
+//        return senderRegistrationDetails;
+//    }
+//
+//    @Override
+//    public BeneficiaryRegistrationDetails getBeneficiaryRegistrationDetails() {
+//        return beneficiaryRegistrationDetails;
+//    }
+//
+//    @Override
+//    public CommissionDetails getCommissionDetails() {
+//        return commissionDetails;
+//    }
 
     @Override
     public void goToDMTHome() {
@@ -114,7 +108,7 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void showCustomOTPDialog(String mobileNumber) {
+    public void showCustomOTPDialog(SenderData mobileNumber) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("OTPVerificationDialog");
         if (prev != null) {
@@ -130,5 +124,10 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     @Override
     public void makeAnotherPayment() {
         goToDMTHome();
+    }
+
+    @Override
+    public DMTUtilis getDMTUtili() {
+        return dmtUtilis;
     }
 }

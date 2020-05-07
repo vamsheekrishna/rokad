@@ -95,7 +95,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         return fragment;
     }
 
-    @Override
+
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         saveInstanceBundle = new Bundle();
@@ -104,7 +104,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -119,7 +119,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
 
-    @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -202,7 +202,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         nxtBtn.setVisibility(View.VISIBLE);
     }
 
-    @Override
+
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nxtBtn = view.findViewById(R.id.mobile_recharge_nxt_btn);
@@ -214,7 +214,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
-    @Override
+
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.recharge_type_prepaid:
@@ -238,7 +238,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
 
 
-    @Override
+
     public void onClick(View view) {
 
         int id = view.getId();
@@ -302,7 +302,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                             Call<ResponseGetPlans> getPlansCall = rechargeService.getPrepaidPlans(planKey,
                                     state,"P", BuildConfig.MOBILE_APPLICATION,BuildConfig.MOBILE_VERSION_ID);
                             getPlansCall.enqueue(new Callback<ResponseGetPlans>() {
-                                @Override
+
                                 public void onResponse(Call<ResponseGetPlans> call, Response<ResponseGetPlans> response) {
                                     Records records = new Records();
                                     // progressBar.dismiss();
@@ -323,7 +323,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                                     }
                                 }
 
-                                @Override
+
                                 public void onFailure(Call<ResponseGetPlans> call, Throwable t) {
                                     progressBar.dismiss();
                                     Toast.makeText(getContext(), "Please check your Internet connection and try again later", Toast.LENGTH_SHORT).show();

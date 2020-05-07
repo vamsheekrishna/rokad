@@ -37,14 +37,19 @@
         android:id="@+id/timer" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@id/otp_value"
-        android:layout_centerInParent="true"
+        android:layout_margin="18dp"
         android:layout_marginTop="46dp"
-        android:layout_marginBottom="18dp"
         android:text="Verify"
-        android:textColor="@color/white"
         android:id="@+id/submit_otp"
-        android:background="@drawable/rounded_edges"/>
+        style="@style/button_color"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_below="@id/submit_otp"
+        android:layout_margin="18dp"
+        android:layout_marginTop="46dp"
+        android:layout_centerHorizontal="true"
+        android:text="Close"
+        android:id="@+id/close"
+        style="@style/button_gray"/>
 </RelativeLayout>

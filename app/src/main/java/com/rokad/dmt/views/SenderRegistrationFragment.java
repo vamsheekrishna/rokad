@@ -6,35 +6,37 @@ import android.os.Bundle;
 
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
-import com.rokad.dmt.DMTUtilis;
+import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SenderRegistrationFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String STATE_NAME = "state_name";
+    public static final String STATE_CODE = "state_code";
 
     private String mParam1;
     private String mParam2;
@@ -47,6 +49,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
     public SenderRegistrationFragment() {
         // Required empty public constructor
     }
+
 
     public static SenderRegistrationFragment newInstance(String param1, String param2) {
         SenderRegistrationFragment fragment = new SenderRegistrationFragment();
@@ -101,8 +104,8 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                stateDetails.put("state_name",stateSelector.getSelectedItem().toString());
-                stateDetails.put("state_code", String.valueOf(selectedValue.getInt(position, -1)));
+                stateDetails.put(STATE_NAME,stateSelector.getSelectedItem().toString());
+                stateDetails.put(STATE_CODE, String.valueOf(selectedValue.getInt(position, -1)));
             }
 
             @Override
@@ -120,40 +123,37 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
             case R.id.sender_register:
                 String fstName = firstName.accessEditText().getText().toString();
                 String lstName = lastName.accessEditText().getText().toString();
-
-                if (Utils.isValidWord(fstName) && Utils.isValidWord(lstName)){
-
-                } else {
-                    showDialog("Sorry!!", "Please enter your first and last name without any spaces and special characters");
-                }
-
                 String mobileNumber = senderMobileNumber.accessEditText().getText().toString();
 
-                if (Utils.isValidMobile(mobileNumber)){
-
-                } else {
+                if (!Utils.isValidWord(fstName) && !Utils.isValidWord(lstName)){
+                    showDialog("Sorry!!", "Please enter your first and last name without any spaces and special characters");
+                } else  if (!Utils.isValidMobile(mobileNumber)){
                     showDialog("Sorry!!", "Please enter your valid mobile number");
-                }
 
-                if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){
+                } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){
                     showDialog("Sorry!!", "Please select your State");
                 } else {
+                    String code=stateDetails.get(STATE_CODE);
+                    mListener.getDMTUtili().senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId()).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
+                        @Override
+                        public void onResponse(Call<SenderRegistrationResponsePOJO> call, Response<SenderRegistrationResponsePOJO> response) {
+                            if (response.body().getStatus().equals("Success")) {
+                                SenderRegistrationResponsePOJO senderRegistrationResponsePOJO = response.body();
+                                SenderData senderData = senderRegistrationResponsePOJO.getSenderData();
+                                mListener.showCustomOTPDialog(senderData);
+                            } else {
+                                String text = response.body().getMsg();
+                                //String text1 = response.body().getError();
+                                showDialog("", text+ " ");
+                            }
 
-                    //TODO: Register Sender API call.
-//                    DMTUtilis.getDMTUtilsInstance().
-                }
+                        }
 
-
-//                Objects.requireNonNull(getActivity()).onBackPressed();
-                // mListener.goToDMTHome();
-                break;
-
-            case R.id.send_otp:
-                String mobile = senderMobileNumber.accessEditText().getText().toString();
-                if (mobile.isEmpty() || !Utils.isValidMobile(mobile)){
-                    showDialog("Sorry!!", "Please enter a valid mobile number");
-                } else {
-                    mListener.showCustomOTPDialog(mobile);
+                        @Override
+                        public void onFailure(Call<SenderRegistrationResponsePOJO> call, Throwable t) {
+                            showDialog("", t.getMessage());
+                        }
+                    });
                 }
                 break;
         }
