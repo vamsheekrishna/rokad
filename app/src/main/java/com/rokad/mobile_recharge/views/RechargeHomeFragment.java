@@ -221,7 +221,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-//        mobileRechargeNum.setText(BuildConfig.USERNAME);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -411,8 +411,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 //            subscriberModules.get(selected).setSelected(false);
 //        }
 
-        if (subscriber != -1){
+        if (subscriber == chosenSubscriber){
             recyclerView.findViewHolderForAdapterPosition(subscriber).itemView.setAlpha(.5f);
+            subscriberModules.get(subscriber).setSelected(!subscriberModules.get(chosenSubscriber).isSelected());
             subscriber = -1;
         }
 

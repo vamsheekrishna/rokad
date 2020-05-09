@@ -37,8 +37,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subscriber_list_item,parent,false);
-        ListViewHolder listViewHolder = new ListViewHolder(view);
-        return listViewHolder;
+        return new ListViewHolder(view);
     }
 
 
