@@ -5,23 +5,32 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
+import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DomesticFundTransferFragment extends BaseFragment implements View.OnClickListener, View.OnFocusChangeListener{
     private static final String ARG_PARAM1 = "param1";
@@ -76,7 +85,32 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         return inflater.inflate(R.layout.fragment_domestic_fund_transfer, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(senderData.getSenderMobileNo(), UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
+            @Override
+            public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
+                if (response.isSuccessful()) {
+                    BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
+                    if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                    } else {
+                        senderData = mBeneficiaryListResponsePOJO.getData();
+                        // mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                    }
+                } else {
+                    Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
+                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("Failure", "Failure: "+t.getMessage());
+            }
+        });
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -126,7 +160,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         });
 
         beneficiariesSpinner = view.findViewById(R.id.spinner_view);
-
+        beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getBeneficiaries().getBeneficiary()));
 //        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("9920132129", "dhiraj", "338");
 //        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
 //                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);

@@ -1,5 +1,6 @@
 package com.rokad.dmt.views;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,6 +46,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     private TextView mBalance;
     private EditText mobileNumber;
     private OnDMTInteractionListener mListener;
+    private ProgressDialog progressBar;
 
     public DMTHomeFragment() {
         // Required empty public constructor
@@ -66,6 +68,10 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        progressBar.setCancelable(false);
     }
 
     @Override
@@ -156,6 +162,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                     showDialog("", "Please enter a valid mobile number");
                 } else {
                     // mListener.goToDomesticFundTransfer();
+                    progressBar.show();
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(mobile, UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
                         @Override
                         public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
@@ -169,12 +176,14 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                             } else {
                                 Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
                             }
+                            progressBar.cancel();
                         }
 
                         @Override
                         public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
                             Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                             Log.d("Failure", "Failure: "+t.getMessage());
+                            progressBar.cancel();
                         }
                     });
                 }
