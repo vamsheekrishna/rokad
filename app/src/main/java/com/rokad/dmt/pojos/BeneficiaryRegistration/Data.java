@@ -1,54 +1,106 @@
 package com.rokad.dmt.pojos.BeneficiaryRegistration;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Data
 {
+    @SerializedName("sessionId")
+    @Expose
     private String sessionId;
 
+    @SerializedName("sourceId")
+    @Expose
     private String sourceId;
 
+    /*@SerializedName("requestType")
+    @Expose
     private int requestType;
 
+    @SerializedName("username")
+    @Expose
     private String username;
 
+    @SerializedName("icwCode")
+    @Expose
     private String icwCode;
 
+    @SerializedName("responseCode")
+    @Expose
     private String responseCode;
 
+    @SerializedName("responseDesc")
+    @Expose
     private String responseDesc;
 
+    @SerializedName("senderId")
+    @Expose
     private String senderId;
 
-    private int senderMobileNo;
+    @SerializedName("senderMobileNo")
+    @Expose
+    private String senderMobileNo;
 
+    @SerializedName("firstName")
+    @Expose
     private String firstName;
 
+    @SerializedName("lastName")
+    @Expose
     private String lastName;
 
-    private int beneficiaryMobileNo;
+    @SerializedName("beneficiaryMobileNo")
+    @Expose
+    private String beneficiaryMobileNo;
 
+    @SerializedName("relation")
+    @Expose
     private String relation;
 
+    @SerializedName("ifscOption")
+    @Expose
     private String ifscOption;
 
+    @SerializedName("ifscCode")
+    @Expose
     private String ifscCode;
 
+    @SerializedName("bankName")
+    @Expose
     private String bankName;
 
+    @SerializedName("branchName")
+    @Expose
     private String branchName;
 
+    @SerializedName("bankCity")
+    @Expose
     private int bankCity;
 
+    @SerializedName("bankState")
+    @Expose
     private int bankState;
 
-    private int accountNo;
+    @SerializedName("accountNo")
+    @Expose
+    private String accountNo;
 
-    private int reAccountNo;
+    @SerializedName("reAccountNo")
+    @Expose
+    private String reAccountNo;
 
+    @SerializedName("isUpdatable")
+    @Expose
     private String isUpdatable;
 
+    @SerializedName("beneName")
+    @Expose
     private String beneName;
 
-    private String beneficiaryId;
+    @SerializedName("beneficiaryId")
+    @Expose
+    private String beneficiaryId;*/
+
 
     public void setSessionId(String sessionId){
         this.sessionId = sessionId;
@@ -62,7 +114,7 @@ public class Data
     public String getSourceId(){
         return this.sourceId;
     }
-    public void setRequestType(int requestType){
+    /*public void setRequestType(int requestType){
         this.requestType = requestType;
     }
     public int getRequestType(){
@@ -98,10 +150,10 @@ public class Data
     public String getSenderId(){
         return this.senderId;
     }
-    public void setSenderMobileNo(int senderMobileNo){
+    public void setSenderMobileNo(String senderMobileNo){
         this.senderMobileNo = senderMobileNo;
     }
-    public int getSenderMobileNo(){
+    public String getSenderMobileNo(){
         return this.senderMobileNo;
     }
     public void setFirstName(String firstName){
@@ -116,10 +168,10 @@ public class Data
     public String getLastName(){
         return this.lastName;
     }
-    public void setBeneficiaryMobileNo(int beneficiaryMobileNo){
+    public void setBeneficiaryMobileNo(String beneficiaryMobileNo){
         this.beneficiaryMobileNo = beneficiaryMobileNo;
     }
-    public int getBeneficiaryMobileNo(){
+    public String getBeneficiaryMobileNo(){
         return this.beneficiaryMobileNo;
     }
     public void setRelation(String relation){
@@ -164,16 +216,16 @@ public class Data
     public int getBankState(){
         return this.bankState;
     }
-    public void setAccountNo(int accountNo){
+    public void setAccountNo(String accountNo){
         this.accountNo = accountNo;
     }
-    public int getAccountNo(){
+    public String getAccountNo(){
         return this.accountNo;
     }
-    public void setReAccountNo(int reAccountNo){
+    public void setReAccountNo(String reAccountNo){
         this.reAccountNo = reAccountNo;
     }
-    public int getReAccountNo(){
+    public String getReAccountNo(){
         return this.reAccountNo;
     }
     public void setIsUpdatable(String isUpdatable){
@@ -193,5 +245,5 @@ public class Data
     }
     public String getBeneficiaryId(){
         return this.beneficiaryId;
-    }
+    }*/
 }

@@ -20,11 +20,12 @@ import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
+import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -134,13 +135,13 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                     showDialog("Sorry!!", "Please select your State");
                 } else {
                     String code=stateDetails.get(STATE_CODE);
-                    mListener.getDMTUtili().senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId()).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
+                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId()).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
                         @Override
                         public void onResponse(Call<SenderRegistrationResponsePOJO> call, Response<SenderRegistrationResponsePOJO> response) {
                             if (response.body().getStatus().equals("Success")) {
                                 SenderRegistrationResponsePOJO senderRegistrationResponsePOJO = response.body();
                                 SenderData senderData = senderRegistrationResponsePOJO.getSenderData();
-                                mListener.showCustomOTPDialog(senderData);
+                                mListener.showCustomOTPDialog(senderData, null);
                             } else {
                                 String text = response.body().getMsg();
                                 //String text1 = response.body().getError();

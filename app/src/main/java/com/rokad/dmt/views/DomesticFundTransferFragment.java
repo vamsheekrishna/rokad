@@ -17,6 +17,8 @@ import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
+import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
@@ -26,7 +28,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private BeneficiaryListResponsePOJO mBeneficiaryListResponsePOJO;
     private String mParam2;
     private OnDMTInteractionListener mListener;
     private EditTextWithTitleAndThumbIcon senderName, transferLimit, transferAmount;
@@ -34,14 +36,15 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private EditTextWithTitleAndThumbIcon senderMobileNumber, senderRegID;
     private RadioGroup transferTypeGroup;
     private RadioButton transferType;
+    private Data senderData;
 
     public DomesticFundTransferFragment() {
         // Required empty public constructor
     }
-    public static DomesticFundTransferFragment newInstance(String param1, String param2) {
+    public static DomesticFundTransferFragment newInstance(BeneficiaryListResponsePOJO param1, String param2) {
         DomesticFundTransferFragment fragment = new DomesticFundTransferFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putSerializable(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -59,7 +62,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mBeneficiaryListResponsePOJO = (BeneficiaryListResponsePOJO) getArguments().getSerializable(ARG_PARAM1);
+            senderData = mBeneficiaryListResponsePOJO.getData();
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -86,31 +90,38 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         InputFilter[] filterArray = new InputFilter[1];
         filterArray[0] = new InputFilter.LengthFilter(10);
         senderMobileNumber.accessEditText().setFilters(filterArray);
+        senderMobileNumber.accessEditText().setText(senderData.getSenderMobileNo());
+        senderMobileNumber.accessEditText().setFocusable(false);
 
         senderName = view.findViewById(R.id.sender_name);
         senderName.accessSubHeaderTextView().setText("Sender Name");
+        senderName.accessEditText().setText(senderData.getSenderName());
+        senderName.accessEditText().setFocusable(false);
 
         senderName.accessEditText().setOnFocusChangeListener(this);
 
         transferLimit = view.findViewById(R.id.transfer_limit);
-        transferLimit.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        transferLimit.accessEditText().setText(senderData.getImpsLimit());
+        transferLimit.accessEditText().setFocusable(false);
 
         senderRegID = view.findViewById(R.id.sender_reg_id);
+        senderRegID.accessEditText().setText(senderData.getSenderId());
+        senderRegID.accessEditText().setFocusable(false);
+
         transferTypeGroup = view.findViewById(R.id.transfer_type);
 
         transferAmount = view.findViewById(R.id.transfer_amt);
         transferAmount.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        String[] neft = senderData.getNeftLimit().split(" ");
+        String[] imps = senderData.getImpsLimit().split(" ");
+        transferLimit.accessEditText().setText(imps[imps.length-1]);
 
-        transferTypeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                transferType = view.findViewById(checkedId);
-
-                if (transferType.getText().equals("NEFT")){
-                    transferLimit.accessSubHeaderTextView().setText("Sender NEFT transfer limit");
-                } else {
-                    transferLimit.accessSubHeaderTextView().setText("Sender IMPS transfer limit");
-                }
+        transferTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            transferType = view.findViewById(checkedId);
+            if (transferType.getText().equals("NEFT")){
+                transferLimit.accessEditText().setText(neft[neft.length-1]);
+            } else {
+                transferLimit.accessEditText().setText(imps[imps.length-1]);
             }
         });
 
@@ -163,7 +174,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.reg_beneficiary:
-                mListener.goToReBeneficiaryRegistration();
+                mListener.goToReBeneficiaryRegistration(senderData);
                 break;
             case R.id.check_commission:
                 mListener.showCommissionDialog();

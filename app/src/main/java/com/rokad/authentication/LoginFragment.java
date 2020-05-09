@@ -18,7 +18,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
 import com.rokad.rokad_api.endpoints.pojos.User;

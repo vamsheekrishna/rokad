@@ -1,19 +1,19 @@
 package com.rokad.dmt.interfaces;
 
-import com.rokad.dmt.DMTUtilis;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.dmt.pojos.beneficiaryList.Data;
 
 public interface OnDMTInteractionListener {
     void goToDMTHome();
-    void goToReBeneficiaryRegistration();
+    void goToReBeneficiaryRegistration(Data senderData);
     void goToSenderRegistration();
-    void goToDomesticFundTransfer();
+    void goToDomesticFundTransfer(BeneficiaryListResponsePOJO beneficiaryListResponsePOJO);
     void goToConformation();
     void showCustomDialog();
     void showCommissionDialog();
-    void showCustomOTPDialog(SenderData mobileNumber);
+    void showCustomOTPDialog(SenderData senderData, BeneficiaryListResponsePOJO beneficiaryListResponsePOJO);
     void makeAnotherPayment();
-    DMTUtilis getDMTUtili();
 
 //    DMTHomeScreenDetails getHomeScreenDetails();
 //    FundTransferDetails getFundTransferDetails();

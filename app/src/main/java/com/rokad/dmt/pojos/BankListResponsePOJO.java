@@ -5,31 +5,53 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.rokad.rokad_api.endpoints.pojos.BaseResponse;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class BankListResponsePOJO implements Serializable {
-    @SerializedName("bankId")
+public class BankListResponsePOJO extends BaseResponse implements Serializable {
+
+    @SerializedName("data")
     @Expose
-    private String bankId;
-    @SerializedName("bankName")
-    @Expose
-    private String bankName;
-    private final static long serialVersionUID = 150143044848584022L;
+    List<BanksList> banksLists;
 
-    public String getBankId() {
-        return bankId;
+    public List<BanksList> getBanksLists() {
+        return banksLists;
     }
 
-    public void setBankId(String bankId) {
-        this.bankId = bankId;
+    public void setBanksLists(List<BanksList> banksLists) {
+        this.banksLists = banksLists;
     }
 
-    public String getBankName() {
-        return bankName;
-    }
+    public static class BanksList {
+        @SerializedName("bankId")
+        @Expose
+        private String bankId;
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+        @SerializedName("bankName")
+        @Expose
+        private String bankName;
+
+        public BanksList(String id, String name) {
+            setBankId(id);
+            setBankName(name);
+        }
+
+        public String getBankId() {
+            return bankId;
+        }
+
+        public void setBankId(String bankId) {
+            this.bankId = bankId;
+        }
+
+        public String getBankName() {
+            return bankName;
+        }
+
+        public void setBankName(String bankName) {
+            this.bankName = bankName;
+        }
     }
 }

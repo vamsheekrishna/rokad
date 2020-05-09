@@ -3,7 +3,9 @@ package com.rokad.dmt.pojos.beneficiaryList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Data {
+import java.io.Serializable;
+
+public class Data implements Serializable {
     @SerializedName("sessionId")
     @Expose
     private String sessionId;
@@ -27,7 +29,7 @@ public class Data {
     private String responseDesc;
     @SerializedName("senderMobileNo")
     @Expose
-    private Integer senderMobileNo;
+    private String senderMobileNo;
     @SerializedName("processingBankName")
     @Expose
     private String processingBankName;
@@ -133,11 +135,11 @@ public class Data {
         this.responseDesc = responseDesc;
     }
 
-    public Integer getSenderMobileNo() {
+    public String getSenderMobileNo() {
         return senderMobileNo;
     }
 
-    public void setSenderMobileNo(Integer senderMobileNo) {
+    public void setSenderMobileNo(String senderMobileNo) {
         this.senderMobileNo = senderMobileNo;
     }
 

@@ -63,19 +63,18 @@
                     android:maxLength="10"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.5"
+                    android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_height="40dp"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:layout_height="wrap_content"
-                    android:text="Send OTP"
-                    android:id="@+id/send_otp_btn" />
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textColor="@android:color/holo_blue_dark"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Send OTP"-->
+<!--                    android:id="@+id/send_otp_btn" />-->
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -156,18 +155,16 @@
                     android:layout_marginStart="8dp" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
                     android:id="@+id/bank_list_spinner"
                     android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:entries="@array/default_bank_list_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="36dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginEnd="32dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -186,9 +183,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/confirm_bank_account_num"
             android:inputType="number"
-            app:title="Confirm Bank Account Number"
+            app:title="@string/confirm_account_number"
             app:image="@drawable/bank"/>
 
+        <!--<com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bank_branch"
+            android:inputType="text"
+            app:title="Branch Name"
+            app:image="@drawable/bank"/>-->
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"

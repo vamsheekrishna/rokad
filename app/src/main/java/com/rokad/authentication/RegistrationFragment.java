@@ -49,7 +49,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("Registration");
+        requireActivity().setTitle("Registration");
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +67,7 @@ public class RegistrationFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
         builder.setTitle("Sorry....");
         builder.setMessage("Please wait, this feature will available soon");
         builder.setNegativeButton("close", new DialogInterface.OnClickListener() {

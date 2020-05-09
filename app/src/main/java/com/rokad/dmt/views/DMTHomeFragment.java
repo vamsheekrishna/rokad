@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -158,12 +159,22 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(mobile, UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
                         @Override
                         public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
-                            
+                            if (response.isSuccessful()) {
+                                BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
+                                if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                                    mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                } else {
+                                    mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                                }
+                            } else {
+                                Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
-
+                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            Log.d("Failure", "Failure: "+t.getMessage());
                         }
                     });
                 }

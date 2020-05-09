@@ -29,10 +29,10 @@ public class Beneficiary {
     private String impsStatus;
     @SerializedName("beneficiaryMobileNo")
     @Expose
-    private Integer beneficiaryMobileNo;
+    private String beneficiaryMobileNo;
     @SerializedName("beneficiaryAccountNo")
     @Expose
-    private Integer beneficiaryAccountNo;
+    private String beneficiaryAccountNo;
     @SerializedName("ifscCode")
     @Expose
     private String ifscCode;
@@ -94,19 +94,19 @@ public class Beneficiary {
         this.impsStatus = impsStatus;
     }
 
-    public Integer getBeneficiaryMobileNo() {
+    public String getBeneficiaryMobileNo() {
         return beneficiaryMobileNo;
     }
 
-    public void setBeneficiaryMobileNo(Integer beneficiaryMobileNo) {
+    public void setBeneficiaryMobileNo(String beneficiaryMobileNo) {
         this.beneficiaryMobileNo = beneficiaryMobileNo;
     }
 
-    public Integer getBeneficiaryAccountNo() {
+    public String getBeneficiaryAccountNo() {
         return beneficiaryAccountNo;
     }
 
-    public void setBeneficiaryAccountNo(Integer beneficiaryAccountNo) {
+    public void setBeneficiaryAccountNo(String beneficiaryAccountNo) {
         this.beneficiaryAccountNo = beneficiaryAccountNo;
     }
 

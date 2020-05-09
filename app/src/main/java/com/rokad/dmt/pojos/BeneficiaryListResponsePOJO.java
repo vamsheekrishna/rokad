@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 
-public class BeneficiaryListResponsePOJO {
+import java.io.Serializable;
+
+public class BeneficiaryListResponsePOJO implements Serializable {
 
     @SerializedName("status")
     @Expose

@@ -119,7 +119,7 @@
     </string-array>
 
     <string-array name="default_relation_list_spinner_item">
-        <item>@string/default_relation_list_spinner_prompt</item>
+        <item>@string/relation_friend</item>
     </string-array>
 
 </resources>

@@ -33,7 +33,7 @@ public class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if(!internetConnectionAvailable()) {
             try {
-                AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
                 builder.setTitle("No internet Connection");
                 builder.setMessage("Please turn on internet connection to continue");
                 builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
@@ -55,8 +55,9 @@ public class BaseFragment extends Fragment {
 
 
     protected void showDialog(String title, String msg) {
-        AlertDialog.Builder builder =new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
         builder.setTitle(title);
+        builder.setCancelable(false);
         builder.setMessage(msg);
         builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
             @Override

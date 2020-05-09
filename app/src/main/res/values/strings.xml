@@ -94,7 +94,9 @@
     <string name="default_beneficiary_spinner_prompt">No Beneficiaries available</string>
     <string name="default_bank_list_spinner_prompt">Banks List Not Available</string>
     <string name="default_relation_list_spinner_prompt">No Relations Available</string>
+    <string name="relation_friend">Friend</string>
     <string name="success">success</string>
+    <string name="confirm_account_number">Confirm Bank Account Number</string>
 
 
 </resources>

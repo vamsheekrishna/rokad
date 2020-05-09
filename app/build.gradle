@@ -49,7 +49,7 @@ android {
             // DMT Service
             buildConfigField("String", "BENEFICIARY_LIST", '"rest_server/Domestic_transfer/list_beneficiary"')
             // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/process_transaction_new
-            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer/process_transaction_new"')
+            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer/beneficiary_register"')
             // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/sender_register
             buildConfigField("String", "SENDER_REGISTRATION", '"rest_server/Domestic_transfer/sender_register"')
             // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/fund_transfer

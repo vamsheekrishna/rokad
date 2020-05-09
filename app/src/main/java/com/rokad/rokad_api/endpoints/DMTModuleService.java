@@ -10,6 +10,8 @@ import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
 import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -44,20 +46,19 @@ public interface DMTModuleService {
 
     @POST(BuildConfig.BENEFICIARY_REGISTRATION)
     @FormUrlEncoded
-    Call<BeneficiaryRegistrationResponsePOJO> beneficiaryRegistration(@Field("CustomerMobileNo ") String mobileNumber,
+    Call<BeneficiaryRegistrationResponsePOJO> beneficiaryRegistration(@Field("CustomerMobileNo") String mobileNumber,
                                                                       @Field("SenderId") String senderID,
                                                                       @Field("FirstName") String firstName,
                                                                       @Field("LastName") String lastName,
                                                                       @Field("BenMobileNo") String beneficaryMobileNumber,
                                                                       @Field("bank_name") String bankName,
-                                                                      @Field("AccNum:") String accountNumber,
+                                                                      @Field("AccNum") String accountNumber,
                                                                       @Field("ReAccNum") String reenteredAccountNumber,
                                                                       @Field("ifscCode") String ifscCode,
-                                                                      @Field("relation") String relation,
-                                                                      @Field("br_name") String branchName,
+                                                                      // @Field("relation") String relation,
                                                                       @Field("ifscOption") String ifscOption,
                                                                       @Field("beneficiaryCheck") String beneficiaryCheck,
-                                                                      @Field("processingBankId ") String processingBankId,
+                                                                      // @Field("processingBankId ") String processingBankId,
                                                                       @Field("unique_session_id") String sessionId,
                                                                       @Field("user_id") String userId);
 
@@ -86,8 +87,7 @@ public interface DMTModuleService {
 
 
     @POST(BuildConfig.BANK_LIST)
-//    @FormUrlEncoded
-    Call<BankListResponsePOJO> BANK_LIST_POJO_CALL();
+    Call<BankListResponsePOJO> getBanksList();
 
 
     @POST(BuildConfig.OTP_VERIFICATION)

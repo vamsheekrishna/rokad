@@ -7,9 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.rokad.R;
-import com.rokad.dmt.DMTUtilis;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
 public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractionListener {
@@ -20,12 +21,10 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
 //    private NewSenderRegistrationDetails senderRegistrationDetails = new NewSenderRegistrationDetails();
 //    private BeneficiaryRegistrationDetails beneficiaryRegistrationDetails = new BeneficiaryRegistrationDetails();
 //    private CommissionDetails commissionDetails = new CommissionDetails();
-    DMTUtilis dmtUtilis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
-        dmtUtilis = new DMTUtilis();
         addFragment(DMTHomeFragment.newInstance("", ""), "DMTHomeFragment", false);
     }
 
@@ -60,8 +59,8 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void goToReBeneficiaryRegistration() {
-        replaceFragment(BeneficiaryRegistrationFragment.newInstance("", ""), "BeneficiaryRegistration", true);
+    public void goToReBeneficiaryRegistration(Data senderData) {
+        replaceFragment(BeneficiaryRegistrationFragment.newInstance(senderData, ""), "BeneficiaryRegistration", true);
     }
 
     @Override
@@ -70,8 +69,8 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void goToDomesticFundTransfer() {
-        replaceFragment(DomesticFundTransferFragment.newInstance("", ""), "DomesticFundTransfer", true);
+    public void goToDomesticFundTransfer(BeneficiaryListResponsePOJO beneficiaryListResponsePOJO) {
+        replaceFragment(DomesticFundTransferFragment.newInstance(beneficiaryListResponsePOJO, ""), "DomesticFundTransfer", true);
     }
 
     @Override
@@ -108,7 +107,7 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void showCustomOTPDialog(SenderData mobileNumber) {
+    public void showCustomOTPDialog(SenderData mobileNumber, BeneficiaryListResponsePOJO beneficiaryListResponsePOJO) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("OTPVerificationDialog");
         if (prev != null) {
@@ -126,8 +125,4 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
         goToDMTHome();
     }
 
-    @Override
-    public DMTUtilis getDMTUtili() {
-        return dmtUtilis;
-    }
 }
