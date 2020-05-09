@@ -153,6 +153,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         transferTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
             transferType = view.findViewById(checkedId);
             if (transferType.getText().equals("NEFT")){
+                transferLimit.accessSubHeaderTextView().setText("Sender NEFT Transfer Limit");
                 transferLimit.accessEditText().setText(neft[neft.length-1]);
             } else {
                 transferLimit.accessEditText().setText(imps[imps.length-1]);

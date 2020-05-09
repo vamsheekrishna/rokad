@@ -7,6 +7,7 @@
     android:padding="16dp"
     android:background="@color/white"
     tools:context="com.rokad.dmt.views.SenderRegistrationFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,20 +27,43 @@
             app:title="@string/sender_name"
             app:image="@drawable/user_new"/>
 
-        <RadioGroup
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
+            android:paddingTop="24dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="20dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/transfer_typ_header"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginBottom="6dp"
+                android:text="@string/transfer_type"
+                android:textSize="@dimen/edit_text_sub_header"
+                android:layout_height="wrap_content"/>
+
+
+            <RadioGroup
+            android:layout_width="match_parent"
+                android:layout_height="44dp"
             android:id="@+id/transfer_type"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
             android:layout_marginRight="22dp"
-            android:layout_marginEnd="22dp"
+            android:layout_marginEnd="2dp"
             android:orientation="horizontal"
-            android:layout_marginStart="22dp">
+                android:background="@drawable/custom_edit_text_bg">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="IMPS"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:checked="true"
                 android:fontFamily="@font/roboto_black"
                 android:layout_margin="12dp"
@@ -49,11 +73,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NEFT"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:fontFamily="@font/roboto_black"
                 android:layout_margin="12dp"
                 android:id="@+id/neft_transfer"/>
 
         </RadioGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
@@ -74,10 +101,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="24dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="22dp"
+            android:paddingRight="20dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="20dp">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sub_header"
+                android:layout_marginBottom="6dp"
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/select_beneficiary"
@@ -86,7 +116,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:background="@drawable/custom_edit_text_bg"
                 android:weightSum="2">
@@ -98,7 +128,8 @@
                     android:layout_marginLeft="8dp"
                     android:src="@drawable/user_new"
                     android:layout_gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_marginTop="6dp"
@@ -108,11 +139,10 @@
                     android:entries="@array/beneficiary_default_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
-                    android:layout_marginLeft="24dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginRight="36dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginEnd="32dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
