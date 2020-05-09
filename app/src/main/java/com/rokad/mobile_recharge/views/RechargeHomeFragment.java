@@ -116,12 +116,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    public void setRechargeAmountEmpty(){
-        rechargeAmount.setText("");
-    }
-
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -221,7 +215,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
+//        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 

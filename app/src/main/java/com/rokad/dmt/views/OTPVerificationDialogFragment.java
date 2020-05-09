@@ -3,6 +3,7 @@ package com.rokad.dmt.views;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,9 +66,14 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.otp_verification_dialog,container,false);
         otpValue = view.findViewById(R.id.otp_value);
-        otpValue.accessEditText().setHint("Enter the OTP Number");
+        otpValue.accessSubHeaderTextView().setText("OTP Number");
         otpValue.accessEditText().setTextSize(16);
         otpValue.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+//        otpValue.accessEditText().setBackgroundResource(R.drawable.edit_txt_rounded_corners);
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(6);
+        otpValue.accessEditText().setFilters(fArray);
+
         resendOTP = view.findViewById(R.id.resend_otp_btn);
         view.findViewById(R.id.submit_otp).setOnClickListener(this);
         view.findViewById(R.id.close).setOnClickListener(this);
