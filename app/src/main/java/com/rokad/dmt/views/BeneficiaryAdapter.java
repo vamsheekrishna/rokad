@@ -40,7 +40,7 @@ class BeneficiaryAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_view_row, viewGroup, false);
         TextView index = rowView.findViewById(R.id.index);
-        index.setText(i+".");
+        index.setText((i+1)+".");
 
         TextView textView = rowView.findViewById(R.id.text);
         textView.setText(getItem(i).getBeneficiaryAccountNo());

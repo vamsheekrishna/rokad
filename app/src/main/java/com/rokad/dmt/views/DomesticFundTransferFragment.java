@@ -97,6 +97,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
                     } else {
                         senderData = mBeneficiaryListResponsePOJO.getData();
+                        beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getBeneficiaries().getBeneficiary()));
                         // mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
                     }
                 } else {
@@ -161,7 +162,6 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         });
 
         beneficiariesSpinner = view.findViewById(R.id.spinner_view);
-        beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getBeneficiaries().getBeneficiary()));
 //        ArrayList<String> beneficiaryNames = utils.getBeneficiaryList("9920132129", "dhiraj", "338");
 //        ArrayAdapter<String> namesAdapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
 //                R.layout.support_simple_spinner_dropdown_item, beneficiaryNames);
