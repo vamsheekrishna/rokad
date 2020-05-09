@@ -1,45 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:maxLength="6"
-        android:id="@+id/otp_value"
-        app:title="Enter OTP"
-        app:image="@drawable/mobile"/>
+        android:text="OTP Verification"
+        android:textStyle="bold|normal"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="26sp"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/otp_value_box"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@drawable/custom_edit_text_bg"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/mobile"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_marginTop="6dp"
+            android:id="@+id/otp_value"
+            android:inputType="phone"
+            android:paddingLeft="8dp"
+            android:maxLength="6"
+            android:hint="Enter OTP"
+            android:paddingRight="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:textColorHighlight="#2644DC"
+            android:layout_height="40dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Resend OTP"
         android:textSize="16sp"
-        android:layout_below="@id/otp_value"
-        android:layout_margin="18dp"
-        android:visibility="gone"
+        android:layout_below="@id/otp_value_box"
+        android:layout_margin="8dp"
         android:gravity="end"
         android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/resend_otp_btn"
         />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0:00"
-        android:textSize="16sp"
-        android:layout_below="@id/otp_value"
-        android:layout_margin="18dp"
-        android:gravity="end"
-        android:textColor="@android:color/holo_blue_dark"
-        android:id="@+id/timer" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_below="@id/otp_value"
+        android:layout_below="@id/otp_value_box"
         android:layout_margin="18dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="76dp"
         android:text="Verify"
         android:id="@+id/submit_otp"
         style="@style/button_color"/>
@@ -48,8 +72,9 @@
         android:layout_below="@id/submit_otp"
         android:layout_margin="18dp"
         android:layout_marginTop="46dp"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:text="Close"
         android:id="@+id/close"
         style="@style/button_gray"/>
-</RelativeLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

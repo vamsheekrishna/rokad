@@ -46,7 +46,6 @@ public class OTPVerificationDialog extends DialogFragment implements View.OnClic
         otpValue.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
         otpValue.accessEditText().setFilters(new InputFilter[] { new InputFilter.LengthFilter(6) });
         submitOtp = v.findViewById(R.id.submit_otp);
-        timer = v.findViewById(R.id.timer);
         resendOtp = v.findViewById(R.id.resend_otp_btn);
 
         return v;

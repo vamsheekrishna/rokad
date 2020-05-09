@@ -35,7 +35,7 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
     public static final String SEDER = "seder";
     private EditTextWithTitleAndThumbIcon otpValue;
-    private AppCompatTextView timer, resendOTP;
+    private AppCompatTextView resendOTP;
     private SenderData senderObject;
     private DMTModuleService DMTService;
 
@@ -68,20 +68,19 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
         otpValue.accessEditText().setHint("Enter the OTP Number");
         otpValue.accessEditText().setTextSize(16);
         otpValue.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
-        timer = view.findViewById(R.id.timer);
         resendOTP = view.findViewById(R.id.resend_otp_btn);
         view.findViewById(R.id.submit_otp).setOnClickListener(this);
         view.findViewById(R.id.close).setOnClickListener(this);
         CountDownTimer downTimer = new CountDownTimer(40000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timer.setText( "Secs : " + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)%60 + "     ");
+                resendOTP.setText( "Secs : " + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)%60 + "     ");
             }
 
             @Override
             public void onFinish() {
-                timer.setVisibility(View.GONE);
-                resendOTP.setVisibility(View.VISIBLE);
+                resendOTP.setText("Resend OTP?");
+                resendOTP.setOnClickListener(OTPVerificationDialogFragment.this::onClick);
             }
         };
 

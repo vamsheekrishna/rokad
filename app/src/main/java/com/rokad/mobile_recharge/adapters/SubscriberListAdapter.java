@@ -73,16 +73,7 @@ public class SubscriberListAdapter extends RecyclerView.Adapter<SubscriberListAd
         if(selected != position) {
             subscriberModules.get(selected).setSelected(false);
         }
-        selected = position;
-        subscriberModules.get(selected).setSelected(!subscriberModules.get(selected).isSelected());
-
-        if(subscriberModules.get(position).isSelected()) {
-            v.setAlpha(1f);
-            mRecyclerOnClickHandler.onClick(selected);
-        } else {
-            v.setAlpha(.5f);
-            mRecyclerOnClickHandler.onClick(-1);
-        }
+        mRecyclerOnClickHandler.onClick(position,v);
     }
 
     class ListViewHolder extends RecyclerView.ViewHolder {

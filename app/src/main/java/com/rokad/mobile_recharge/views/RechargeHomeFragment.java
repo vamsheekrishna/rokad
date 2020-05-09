@@ -3,7 +3,7 @@ package com.rokad.mobile_recharge.views;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,6 +77,9 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     private String planKey;
     // private int selectedSubscriber = -1;
     AppCompatTextView seePlans;
+    private int subscriber = -1;
+    private View vhView;
+
     public RechargeHomeFragment() {
         // Required empty public constructor
     }
@@ -138,9 +140,17 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
 
         rechargeTypeGroup.setOnCheckedChangeListener(this::onCheckedChanged);
 
+        if (subscriber != -1 && vhView != null){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    recyclerView.findViewHolderForAdapterPosition(subscriber).itemView.setAlpha(1f);
+                }
+            },100);
+        }
+
         return view;
     }
-
 
 
 
@@ -165,12 +175,13 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         SubscriberListAdapter listRecyclerView = null;
 
         if (listRecyclerView == null) {
-            listRecyclerView = new SubscriberListAdapter(this::onClick, getContext(),
+            listRecyclerView = new SubscriberListAdapter((chosenSubscriber, clickedItemViewHolder) -> onClick(chosenSubscriber, clickedItemViewHolder), getContext(),
                     subscriberModules);
             recyclerView.setAdapter(listRecyclerView);
         } else {
             listRecyclerView.notifyDataSetChanged();
         }
+
     }
 
     private void displayPostpaidSubscriberList() {
@@ -191,7 +202,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 subscriberModules.get(mListener.getMobileRechargeModule().getSelectedSubscriber()).setSelected(true);
             }
         } catch (Exception e) { }
-        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(chosenSubscriber -> onClick(chosenSubscriber),getContext(), subscriberModules);
+        SubscriberListAdapter listRecyclerView = new SubscriberListAdapter(this::onClick,getContext(), subscriberModules);
         recyclerView.setAdapter(listRecyclerView);
     }
 
@@ -251,7 +262,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
                 }else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1){
                     showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
-                } else if( stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))) {
+                } else if(subscriber == -1) {
                     showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
                 } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))){
                     showDialog("Sorry!!", getString(R.string.spinner_prompt));
@@ -264,6 +275,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
                     mListener.getMobileRechargeModule().setStateName(String.valueOf(stateSelector.getSelectedItem()));
+                    mListener.getMobileRechargeModule().setMobileOperator(subscriberModules.get(subscriber).getName());
+                    mListener.getMobileRechargeModule().setImage(subscriberModules.get(subscriber).getImage());
                     BigDecimal balance = new BigDecimal(UserData.getInstance().getWalletBalance());
                     BigDecimal rechargeAmount = new BigDecimal(mListener.getMobileRechargeModule().getRechargeAmount());
                     if(balance.compareTo(rechargeAmount) >= 0) {
@@ -285,7 +298,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                         showDialog("Sorry!!", getString(R.string.phone_number_check_msg));
                     } else if (rechargeTypeGroup.getCheckedRadioButtonId() == -1) {
                         showDialog("Sorry!!", getString(R.string.recharge_type_chk_msg));
-                    } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))) {
+                    } else if (subscriber == -1) {
                         showDialog("Sorry!!", getString(R.string.mobile_operator_check_msg));
                     } else if (String.valueOf(stateSelector.getSelectedItem()).equals(getString(R.string.spinner_prompt))) {
                         showDialog("Sorry!!", getString(R.string.spinner_prompt));
@@ -387,21 +400,43 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void onClick(int chosenSubscriber) {
+    public void onClick(int chosenSubscriber, View view) {
         mListener.getMobileRechargeModule().setSelectedSubscriber(chosenSubscriber);
-        if(chosenSubscriber == -1) {
-            subscriberName = "";
-            mListener.getMobileRechargeModule().setPreOperator("");
-            mListener.getMobileRechargeModule().setMobileOperator("");
-        } else {
+
+//        if(null != selectedView) {
+//            selectedView.setAlpha(.5f);
+//        }
+//        selectedView = v;
+//        if(selected != position) {
+//            subscriberModules.get(selected).setSelected(false);
+//        }
+
+        if (subscriber != -1){
+            recyclerView.findViewHolderForAdapterPosition(subscriber).itemView.setAlpha(.5f);
+            subscriber = -1;
+        }
+
+        subscriberModules.get(chosenSubscriber).setSelected(!subscriberModules.get(chosenSubscriber).isSelected());
+
+        if(subscriberModules.get(chosenSubscriber).isSelected()) {
+            view.setAlpha(1f);
+            vhView = view;
+            subscriber = chosenSubscriber;
             subscriberName = subscriberModules.get(chosenSubscriber).getName();
             subscriberModules.get(chosenSubscriber);
             planKey = subscriberModules.get(chosenSubscriber).getPlanKey();
-            saveInstanceBundle.putInt("chosenSubscriber", chosenSubscriber);
             mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(chosenSubscriber).getKey());
             mListener.getMobileRechargeModule().setImage(subscriberModules.get(chosenSubscriber).getImage());
             mListener.getMobileRechargeModule().setMobileOperator(subscriberName);
+        } else {
+            view.setAlpha(.5f);
+            vhView = view;
+            subscriber = -1;
+            rechargeAmount.setText("");
+            subscriberName = "";
+            mListener.getMobileRechargeModule().setPreOperator("");
+            mListener.getMobileRechargeModule().setMobileOperator("");
         }
-
     }
+
 }
