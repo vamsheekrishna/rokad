@@ -3,14 +3,12 @@ package com.rokad.rokad_api.endpoints;
 import com.rokad.BuildConfig;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
-import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
 import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
+import com.rokad.dmt.pojos.ResponseBeneficiaryRegistration;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -46,21 +44,21 @@ public interface DMTModuleService {
 
     @POST(BuildConfig.BENEFICIARY_REGISTRATION)
     @FormUrlEncoded
-    Call<BeneficiaryRegistrationResponsePOJO> beneficiaryRegistration(@Field("CustomerMobileNo") String mobileNumber,
-                                                                      @Field("SenderId") String senderID,
-                                                                      @Field("FirstName") String firstName,
-                                                                      @Field("LastName") String lastName,
-                                                                      @Field("BenMobileNo") String beneficaryMobileNumber,
-                                                                      @Field("bank_name") String bankName,
-                                                                      @Field("AccNum") String accountNumber,
-                                                                      @Field("ReAccNum") String reenteredAccountNumber,
-                                                                      @Field("ifscCode") String ifscCode,
-                                                                      // @Field("relation") String relation,
-                                                                      @Field("ifscOption") String ifscOption,
-                                                                      @Field("beneficiaryCheck") String beneficiaryCheck,
-                                                                      // @Field("processingBankId ") String processingBankId,
-                                                                      @Field("unique_session_id") String sessionId,
-                                                                      @Field("user_id") String userId);
+    Call<ResponseBeneficiaryRegistration> beneficiaryRegistration(@Field("CustomerMobileNo") String mobileNumber,
+                                                                  @Field("SenderId") String senderID,
+                                                                  @Field("FirstName") String firstName,
+                                                                  @Field("LastName") String lastName,
+                                                                  @Field("BenMobileNo") String beneficaryMobileNumber,
+                                                                  @Field("bank_name") String bankName,
+                                                                  @Field("AccNum") String accountNumber,
+                                                                  @Field("ReAccNum") String reenteredAccountNumber,
+                                                                  @Field("ifscCode") String ifscCode,
+                                                                  // @Field("relation") String relation,
+                                                                  @Field("ifscOption") String ifscOption,
+                                                                  @Field("beneficiaryCheck") String beneficiaryCheck,
+                                                                  // @Field("processingBankId ") String processingBankId,
+                                                                  @Field("unique_session_id") String sessionId,
+                                                                  @Field("user_id") String userId);
 
 
     @POST(BuildConfig.FUND_TRANSFER)   // TODO: FAULTY API ==> Check with team

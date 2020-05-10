@@ -1,11 +1,13 @@
 package com.rokad.dmt.pojos.beneficiaryList;
 
+import androidx.lifecycle.ViewModel;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Data implements Serializable {
+public class Data extends ViewModel implements Serializable {
     @SerializedName("sessionId")
     @Expose
     private String sessionId;

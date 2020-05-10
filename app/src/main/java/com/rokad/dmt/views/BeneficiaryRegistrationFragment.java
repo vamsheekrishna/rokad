@@ -21,6 +21,7 @@ import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
+import com.rokad.dmt.pojos.ResponseBeneficiaryRegistration;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
@@ -129,14 +130,6 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         beneficiaryMobileNumber.setText("8919251923");
 
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
-        /*bankList.clear();
-        bankList.add(new BankListResponsePOJO.BanksList("RBI000000000234", "ZOROASTRIAN COOPERATIVE BANK"));
-        bankList.add(new BankListResponsePOJO.BanksList("RBI000000000001", "A P MAHESH CO-OP URBAN BANK LTD."));
-        bankList.add(new BankListResponsePOJO.BanksList("RBI000000000002", "ABHYUDAYA CO-OP BANK LTD"));
-        bankList.add(new BankListResponsePOJO.BanksList("RBI000000000203", "AIRTEL PAYMENTS BANK LIMITED"));
-        bankList.add(new BankListResponsePOJO.BanksList("RMB000000000009", "AHMEDNAGAR MERCHANTS CO-OP BANK LTD."));*/
-        // banksListSpinner.setAdapter(new BankListAdapter(bankList));
-
         progressBar.setCancelable(false);
         progressBar.show();
         RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBanksList().enqueue(new Callback<BankListResponsePOJO>() {
@@ -198,9 +191,9 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
 
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).beneficiaryRegistration(senderData.getSenderMobileNo(), senderData.getSenderId(), _firstName,
                             _lastName, _beneficiaryMobileNumber, selectedBank.getBankId(),_bankAccNumber, _confirmBankAccNumber,_ifscCode,"ByIfsc"
-                    ,"N", senderData.getSessionId(), UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryRegistrationResponsePOJO>() {
+                    ,"N", senderData.getSessionId(), UserData.getUserData().getId()).enqueue(new Callback<ResponseBeneficiaryRegistration>() {
                         @Override
-                        public void onResponse(Call<BeneficiaryRegistrationResponsePOJO> call, Response<BeneficiaryRegistrationResponsePOJO> response) {
+                        public void onResponse(Call<ResponseBeneficiaryRegistration> call, Response<ResponseBeneficiaryRegistration> response) {
                             if(response.isSuccessful() && response.body().getStatus().equalsIgnoreCase("Success")) {
                                 requireActivity().onBackPressed();
                             } else {
@@ -210,7 +203,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                         }
 
                         @Override
-                        public void onFailure(Call<BeneficiaryRegistrationResponsePOJO> call, Throwable t) {
+                        public void onFailure(Call<ResponseBeneficiaryRegistration> call, Throwable t) {
                             showDialog("", t.getMessage());
                             progressBar.cancel();
                         }
