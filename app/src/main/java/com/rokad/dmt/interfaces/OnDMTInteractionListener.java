@@ -9,7 +9,7 @@ public interface OnDMTInteractionListener {
     void goToReBeneficiaryRegistration(Data senderData);
     void goToSenderRegistration();
     void goToDomesticFundTransfer(BeneficiaryListResponsePOJO beneficiaryListResponsePOJO);
-    void goToConformation();
+    void goToConformation(com.rokad.dmt.pojos.FundTransfer.Data data);
     void showCustomDialog();
     void showCommissionDialog();
     void showCustomOTPDialog(SenderData senderData, BeneficiaryListResponsePOJO beneficiaryListResponsePOJO);

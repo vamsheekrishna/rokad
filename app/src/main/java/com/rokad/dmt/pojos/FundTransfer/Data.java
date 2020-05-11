@@ -1,158 +1,224 @@
 package com.rokad.dmt.pojos.FundTransfer;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Data
 {
+    @SerializedName("sessionId")
+    @Expose
     private String sessionId;
 
+    @SerializedName("sourceId")
+    @Expose
     private String sourceId;
 
-    private int requestType;
+    @SerializedName("requestType")
+    @Expose
+    private String requestType;
 
+    @SerializedName("username")
+    @Expose
     private String username;
 
+    @SerializedName("icwCode")
+    @Expose
     private String icwCode;
 
+    @SerializedName("responseCode")
+    @Expose
     private String responseCode;
 
+    @SerializedName("responseDesc")
+    @Expose
     private String responseDesc;
 
-    private int senderMobileNo;
+    @SerializedName("senderMobileNo")
+    @Expose
+    private String senderMobileNo;
 
+    @SerializedName("senderName")
+    @Expose
     private String senderName;
 
+    @SerializedName("senderId")
+    @Expose
     private String senderId;
 
+    @SerializedName("processingBankName")
+    @Expose
     private String processingBankName;
 
+    @SerializedName("processingBankId")
+    @Expose
     private String processingBankId;
 
+    @SerializedName("beneficiaryId")
+    @Expose
     private String beneficiaryId;
 
-    private int amount;
+    @SerializedName("amount")
+    @Expose
+    private String amount;
 
+    @SerializedName("remitType")
+    @Expose
     private String remitType;
 
+    @SerializedName("paymentMode")
+    @Expose
     private String paymentMode;
 
-    private int processingfee;
+    @SerializedName("processingfee")
+    @Expose
+    private String processingfee;
 
-    private int netAmount;
+    @SerializedName("netAmount")
+    @Expose
+    private String netAmount;
 
-    private EasyWalletList easyWalletList;
+    public String getSessionId() {
+        return sessionId;
+    }
 
-    public void setSessionId(String sessionId){
+    public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
-    public String getSessionId(){
-        return this.sessionId;
+
+    public String getSourceId() {
+        return sourceId;
     }
-    public void setSourceId(String sourceId){
+
+    public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
     }
-    public String getSourceId(){
-        return this.sourceId;
+
+    public String getRequestType() {
+        return requestType;
     }
-    public void setRequestType(int requestType){
+
+    public void setRequestType(String requestType) {
         this.requestType = requestType;
     }
-    public int getRequestType(){
-        return this.requestType;
+
+    public String getUsername() {
+        return username;
     }
-    public void setUsername(String username){
+
+    public void setUsername(String username) {
         this.username = username;
     }
-    public String getUsername(){
-        return this.username;
+
+    public String getIcwCode() {
+        return icwCode;
     }
-    public void setIcwCode(String icwCode){
+
+    public void setIcwCode(String icwCode) {
         this.icwCode = icwCode;
     }
-    public String getIcwCode(){
-        return this.icwCode;
+
+    public String getResponseCode() {
+        return responseCode;
     }
-    public void setResponseCode(String responseCode){
+
+    public void setResponseCode(String responseCode) {
         this.responseCode = responseCode;
     }
-    public String getResponseCode(){
-        return this.responseCode;
+
+    public String getResponseDesc() {
+        return responseDesc;
     }
-    public void setResponseDesc(String responseDesc){
+
+    public void setResponseDesc(String responseDesc) {
         this.responseDesc = responseDesc;
     }
-    public String getResponseDesc(){
-        return this.responseDesc;
+
+    public String getSenderMobileNo() {
+        return senderMobileNo;
     }
-    public void setSenderMobileNo(int senderMobileNo){
+
+    public void setSenderMobileNo(String senderMobileNo) {
         this.senderMobileNo = senderMobileNo;
     }
-    public int getSenderMobileNo(){
-        return this.senderMobileNo;
+
+    public String getSenderName() {
+        return senderName;
     }
-    public void setSenderName(String senderName){
+
+    public void setSenderName(String senderName) {
         this.senderName = senderName;
     }
-    public String getSenderName(){
-        return this.senderName;
+
+    public String getSenderId() {
+        return senderId;
     }
-    public void setSenderId(String senderId){
+
+    public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
-    public String getSenderId(){
-        return this.senderId;
+
+    public String getProcessingBankName() {
+        return processingBankName;
     }
-    public void setProcessingBankName(String processingBankName){
+
+    public void setProcessingBankName(String processingBankName) {
         this.processingBankName = processingBankName;
     }
-    public String getProcessingBankName(){
-        return this.processingBankName;
+
+    public String getProcessingBankId() {
+        return processingBankId;
     }
-    public void setProcessingBankId(String processingBankId){
+
+    public void setProcessingBankId(String processingBankId) {
         this.processingBankId = processingBankId;
     }
-    public String getProcessingBankId(){
-        return this.processingBankId;
+
+    public String getBeneficiaryId() {
+        return beneficiaryId;
     }
-    public void setBeneficiaryId(String beneficiaryId){
+
+    public void setBeneficiaryId(String beneficiaryId) {
         this.beneficiaryId = beneficiaryId;
     }
-    public String getBeneficiaryId(){
-        return this.beneficiaryId;
+
+    public String getAmount() {
+        return amount;
     }
-    public void setAmount(int amount){
+
+    public void setAmount(String amount) {
         this.amount = amount;
     }
-    public int getAmount(){
-        return this.amount;
+
+    public String getRemitType() {
+        return remitType;
     }
-    public void setRemitType(String remitType){
+
+    public void setRemitType(String remitType) {
         this.remitType = remitType;
     }
-    public String getRemitType(){
-        return this.remitType;
+
+    public String getPaymentMode() {
+        return paymentMode;
     }
-    public void setPaymentMode(String paymentMode){
+
+    public void setPaymentMode(String paymentMode) {
         this.paymentMode = paymentMode;
     }
-    public String getPaymentMode(){
-        return this.paymentMode;
+
+    public String getProcessingfee() {
+        return processingfee;
     }
-    public void setProcessingfee(int processingfee){
+
+    public void setProcessingfee(String processingfee) {
         this.processingfee = processingfee;
     }
-    public int getProcessingfee(){
-        return this.processingfee;
+
+    public String getNetAmount() {
+        return netAmount;
     }
-    public void setNetAmount(int netAmount){
+
+    public void setNetAmount(String netAmount) {
         this.netAmount = netAmount;
-    }
-    public int getNetAmount(){
-        return this.netAmount;
-    }
-    public void setEasyWalletList(EasyWalletList easyWalletList){
-        this.easyWalletList = easyWalletList;
-    }
-    public EasyWalletList getEasyWalletList(){
-        return this.easyWalletList;
     }
 }
 

@@ -63,24 +63,14 @@ public interface DMTModuleService {
 
     @POST(BuildConfig.FUND_TRANSFER)   // TODO: FAULTY API ==> Check with team
     @FormUrlEncoded
-    Call<FundTransferResponsePOJO> fundTransfer(@Field("processingBankId") String processingBankId,
-                                                @Field("processingBankName") String processingBankName,
-                                                @Field("amt") String transferAmount,
-                                                @Field("fee") String transferFee,
-                                                @Field("total_amt") String totalAmount,
-                                                @Field("wallet_id") String walletId,
-                                                @Field("wallet_type") String walletType,
-                                                @Field("wallet_bal") String walletBal,
-                                                @Field("neft_Limit") String neftLimit,
-                                                @Field("type") String transferType,
-                                                @Field("CustomerMobileNo") String customerMobileNumber,
-                                                @Field("SenderName") String senderName,
-                                                @Field("neftLimit") String neftLimit_, //TODO: PARAM Redundant
-                                                @Field("impsLimit") String impsLimit,
-                                                @Field("senderId") String senderId,
-                                                @Field("listBen") String listBen,
-                                                @Field("amount") String amount,
-                                                @Field("user_id") String userId);
+    Call<FundTransferResponsePOJO> fundTransfer(
+            @Field("CustomerMobileNo") String customerMobileNo,
+            @Field("SenderName") String senderName,
+            @Field("senderId") String senderId,
+            @Field("listBen") String listBen,
+            @Field("amount") int amount,
+            @Field("user_id") String user_id
+    );
 
 
 

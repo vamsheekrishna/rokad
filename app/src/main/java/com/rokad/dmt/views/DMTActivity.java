@@ -74,7 +74,7 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void goToConformation() {
+    public void goToConformation(com.rokad.dmt.pojos.FundTransfer.Data data) {
         replaceFragment(ConfirmPaymentFragment.newInstance("", ""), "ConfirmPaymentFragment", true);
     }
 
