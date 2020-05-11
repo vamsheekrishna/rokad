@@ -13,20 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mobile_number"
-            app:title="@string/sender_mobile"
-            app:image="@drawable/indiaflag"/>
-
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sender_name"
-            app:title="@string/sender_name"
-            app:image="@drawable/user_new"/>
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -48,38 +34,38 @@
 
 
             <RadioGroup
-            android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="44dp"
-            android:id="@+id/transfer_type"
+                android:id="@+id/transfer_type"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginEnd="2dp"
-            android:orientation="horizontal"
+                android:layout_marginRight="22dp"
+                android:layout_marginEnd="2dp"
+                android:orientation="horizontal"
                 android:background="@drawable/custom_edit_text_bg">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="IMPS"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:checked="true"
-                android:fontFamily="@font/roboto_black"
-                android:layout_margin="12dp"
-                android:id="@+id/imps_transfer"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IMPS"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:checked="true"
+                    android:fontFamily="@font/roboto_black"
+                    android:layout_margin="12dp"
+                    android:id="@+id/imps_transfer"/>
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NEFT"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:fontFamily="@font/roboto_black"
-                android:layout_margin="12dp"
-                android:id="@+id/neft_transfer"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEFT"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_black"
+                    android:layout_margin="12dp"
+                    android:id="@+id/neft_transfer"/>
 
-        </RadioGroup>
+            </RadioGroup>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
@@ -88,6 +74,21 @@
             android:id="@+id/transfer_limit"
             app:title="@string/sender_imps_transfer_limit_header"
             app:image="@drawable/impslimit"/>
+
+
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mobile_number"
+            app:title="@string/sender_mobile"
+            app:image="@drawable/indiaflag"/>
+
+        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sender_name"
+            app:title="@string/sender_name"
+            app:image="@drawable/user_new"/>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
@@ -169,6 +170,7 @@
             android:layout_width="match_parent"
             android:fontFamily="@font/roboto_regular"
             android:text="Check Commission"
+            android:visibility="gone"
             android:background="@drawable/button_bg_gray"
             android:textSize="14sp"
             android:textColor="@color/black"

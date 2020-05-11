@@ -95,6 +95,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         else
             startActivity(new Intent(getContext(), LoginActivity.class));
     }
+
     private void updateWalletBalance() {
         AuthenticationService authenticationService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
         Call<ResponseWalletBalance> apiResponse = authenticationService.getWalletBalance(UserData.getInstance().getId());

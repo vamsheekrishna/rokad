@@ -69,7 +69,7 @@
     <string name="recharge_type_msg">Please choose Prepaid or Postpaid Recharge Type..!!</string>
     <string name="spinner_prompt">Select Location</string>
     <string name="sender_name">Sender Name</string>
-    <string name="transfer_fund">TRANSFER FUND</string>
+    <string name="transfer_fund">Domestic Money Transfer</string>
     <string name="add_new_sender">Add new sender</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>

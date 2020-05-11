@@ -10,7 +10,7 @@
         android:id="@+id/sub_header"
         android:layout_width="wrap_content"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/mobile_number"
+        android:text="Sender Registered Mobile Number"
         android:textSize="@dimen/edit_text_sub_header"
         android:layout_marginLeft="16dp"
         android:layout_height="wrap_content"
