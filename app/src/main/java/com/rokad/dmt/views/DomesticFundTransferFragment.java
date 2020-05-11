@@ -26,6 +26,7 @@ import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
+import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.dmt.viewmodels.SenderData;
 import com.rokad.rokad_api.RetrofitClientInstance;
@@ -33,6 +34,8 @@ import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,7 +115,10 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
                     } else {
                         senderData.setSenderData(mBeneficiaryListResponsePOJO.getData());
-                        beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getSenderData().getBeneficiaries().getBeneficiary()));
+                        List<Beneficiary> list = senderData.getSenderData().getBeneficiaries().getBeneficiary();
+                        if(null != list) {
+                            beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getSenderData().getBeneficiaries().getBeneficiary()));
+                        }
                         // mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
                     }
                 } else {
@@ -192,7 +198,11 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         beneficiariesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                senderData.setSelectedBeneficiary(senderData.getSenderData().getBeneficiaries().getBeneficiary().get(i));
+                try {
+                    senderData.setSelectedBeneficiary(senderData.getSenderData().getBeneficiaries().getBeneficiary().get(i));
+                } catch (Exception e) {
+
+                }
             }
 
             @Override
@@ -265,9 +275,10 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                             senderData.getSenderData().getSenderMobileNo(),
                             senderData.getSenderData().getSenderName(),
                             senderData.getSenderData().getSenderId(),
-                            senderData.getSelectedBeneficiary().getBeneficiaryAccountNo(),
+                            senderData.getSelectedBeneficiary().getBeneficiaryId(),
                             amount,
-                            UserData.getInstance().getId()).enqueue(new Callback<FundTransferResponsePOJO>() {
+                            UserData.getInstance().getId()
+                    ).enqueue(new Callback<FundTransferResponsePOJO>() {
                         @Override
                         public void onResponse(Call<FundTransferResponsePOJO> call, Response<FundTransferResponsePOJO> response) {
                             if (response.isSuccessful()) {

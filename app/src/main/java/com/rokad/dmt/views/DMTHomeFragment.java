@@ -169,11 +169,15 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                         @Override
                         public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                             if (response.isSuccessful()) {
-                                BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
-                                if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
-                                    mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                if(response.body().getStatus().equalsIgnoreCase("Success")) {
+                                    BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
+                                    if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                    } else {
+                                        mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                                    }
                                 } else {
-                                    mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                                    showDialog("", response.body().getMsg());
                                 }
                             } else {
                                 Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
