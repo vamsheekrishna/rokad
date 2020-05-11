@@ -84,7 +84,7 @@
                         android:text="@string/sender_info_header"
                         android:textSize="18sp"
                         android:textStyle="bold|normal"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_bold"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp" />
@@ -98,7 +98,7 @@
                         android:id="@+id/sender_name"
                         android:textSize="16sp"
                         android:textStyle="normal"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_regular"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp" />
@@ -114,7 +114,7 @@
                         android:maxEms="10"
                         android:textStyle="normal"
                         android:inputType="phone"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_regular"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp"
@@ -140,7 +140,7 @@
                         android:text="@string/receiver_info_header"
                         android:textSize="18sp"
                         android:textStyle="bold|normal"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_bold"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp" />
@@ -154,7 +154,7 @@
                         android:id="@+id/receiver_name"
                         android:textSize="16sp"
                         android:textStyle="normal"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_regular"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp" />
@@ -170,7 +170,7 @@
                         android:maxEms="10"
                         android:textStyle="normal"
                         android:inputType="phone"
-                        android:fontFamily="@font/roboto_black"
+                        android:fontFamily="@font/roboto_regular"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginStart="12dp"
@@ -190,16 +190,16 @@
                 android:layout_marginRight="16dp"
                 android:weightSum="2"
                 android:layout_marginTop="18dp">
-                
+
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/transfer_amt_header"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/transfer_amt_header"
+                    android:fontFamily="@font/segoe_ui"
                     android:text="@string/transfer_amount_txt"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
-                    android:textStyle="normal"/>
+                    android:textStyle="normal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
@@ -210,7 +210,7 @@
                     android:layout_marginRight="12dp"
                     android:text="1000"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
                 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -232,7 +232,7 @@
                     android:id="@+id/process_charge_header"
                     android:text="@string/processing_charge_header"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -244,8 +244,9 @@
                     android:layout_marginRight="12dp"
                     android:text="10"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
-                    android:textStyle="normal"/>
+                    android:fontFamily="@font/segoe_ui"
+                    android:textStyle="normal"
+                    android:layout_marginEnd="12dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -265,7 +266,7 @@
                     android:id="@+id/net_header"
                     android:text="@string/net_transfer_header"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView

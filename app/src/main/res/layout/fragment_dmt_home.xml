@@ -18,9 +18,12 @@
        android:gravity="center"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
+
       <androidx.appcompat.widget.AppCompatTextView
           android:fontFamily="@font/roboto_medium"
-          android:textSize="14sp"
+          android:textSize="22sp"
+          android:layout_gravity="start"
+          android:layout_marginBottom="28dp"
           android:textColor="@color/black"
           android:text="@string/transfer_fund"
           android:layout_width="wrap_content"
@@ -31,7 +34,7 @@
          <androidx.appcompat.widget.AppCompatButton
              style="@style/button_color"
              android:id="@+id/transfer_fund"
-             android:text="Transfer Fund"
+             android:text="Transfer Funds"
              />
 
       <androidx.appcompat.widget.AppCompatButton

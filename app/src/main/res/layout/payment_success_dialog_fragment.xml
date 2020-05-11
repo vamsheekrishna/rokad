@@ -24,16 +24,30 @@
             android:background="@drawable/success"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PAYMENT SUCCESSFUL"
+            android:textColor="#3BB54A"
+            android:textStyle="bold|normal"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="22sp"
+            android:textAllCaps="true"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="84dp"/>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="12dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="114dp"
+                android:layout_marginTop="164dp"
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -42,7 +56,7 @@
                     android:layout_weight="1"
                     android:id="@+id/wallet_bal_txt"
                     android:text="@string/wallet_balance_txt"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/roboto_bold"
                     android:textStyle="bold|normal"
                     android:layout_marginLeft="12dp"
                     android:textSize="18sp"
@@ -203,7 +217,7 @@
                     android:id="@+id/transfer_amt_header"
                     android:text="@string/transfer_amount_txt"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -215,7 +229,7 @@
                     android:layout_marginRight="12dp"
                     android:text="1000"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -237,7 +251,7 @@
                     android:id="@+id/process_charge_header"
                     android:text="@string/processing_charge_header"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -249,7 +263,7 @@
                     android:layout_marginRight="12dp"
                     android:text="10"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui"
                     android:textStyle="normal"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -271,7 +285,7 @@
                     android:id="@+id/net_header"
                     android:text="@string/net_transfer_header"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui_bold"
                     android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -283,7 +297,7 @@
                     android:layout_marginRight="12dp"
                     android:text="1000"
                     android:textSize="16sp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/segoe_ui_bold"
                     android:textStyle="bold|normal"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -298,12 +312,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/payment_card"
         android:layout_margin="22dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="168dp"
+            android:minWidth="130dp"
             android:layout_gravity="center_horizontal"
             android:minHeight="40dp"
             android:layout_below="@id/payment_card"
@@ -319,7 +333,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="168dp"
+        android:minWidth="130dp"
         android:minHeight="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/payment_card"
