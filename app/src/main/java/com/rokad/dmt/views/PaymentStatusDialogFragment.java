@@ -1,5 +1,6 @@
 package com.rokad.dmt.views;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,22 +13,22 @@ import androidx.fragment.app.DialogFragment;
 
 import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
-import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
-import com.rokad.mobile_recharge.views.RechargeDialogFragment;
+import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 
 import static com.rokad.mobile_recharge.views.RechargeDialogFragment.IS_SUCCESS;
 import static com.rokad.mobile_recharge.views.RechargeDialogFragment.TRANSACTION;
 
-public class PaymentDialogFragment extends DialogFragment implements View.OnClickListener {
+public class PaymentStatusDialogFragment extends DialogFragment implements View.OnClickListener {
 
     private OnDMTInteractionListener mListener;
+    NewTransactionProcessResponsePOJO transaction;
 
-    public static PaymentDialogFragment newInstance(boolean isSuccess, String transactionID) {
+    public static PaymentStatusDialogFragment newInstance(boolean isSuccess, NewTransactionProcessResponsePOJO transaction) {
 
-        PaymentDialogFragment fragment = new PaymentDialogFragment();
+        PaymentStatusDialogFragment fragment = new PaymentStatusDialogFragment();
         Bundle args = new Bundle();
         args.putBoolean(IS_SUCCESS, isSuccess);
-        args.putString(TRANSACTION, transactionID);
+        //args.putString(TRANSACTION, transactionID);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,6 +55,19 @@ public class PaymentDialogFragment extends DialogFragment implements View.OnClic
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.home_btn).setOnClickListener(this);
         view.findViewById(R.id.repeat_payment_btn).setOnClickListener(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
     }
 
     @Override

@@ -3,18 +3,11 @@ package com.rokad.dmt.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.rokad_api.endpoints.pojos.BaseResponse;
 
 import java.io.Serializable;
 
-public class SenderRegistrationResponsePOJO implements Serializable{
-    @SerializedName("status")
-    @Expose
-    private String status;
-
-    @SerializedName("msg")
-    @Expose
-    String msg;
-
+public class SenderRegistrationResponsePOJO extends BaseResponse implements Serializable{
     @SerializedName("error")
     @Expose
     String error;
@@ -29,22 +22,6 @@ public class SenderRegistrationResponsePOJO implements Serializable{
 
     public void setError(String error) {
         this.error = error;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public SenderData getSenderData() {

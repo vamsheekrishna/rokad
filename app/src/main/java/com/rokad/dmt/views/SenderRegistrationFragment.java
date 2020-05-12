@@ -134,25 +134,31 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){
                     showDialog("Sorry!!", "Please select your State");
                 } else {
+                    progressBar.show();
                     String code=stateDetails.get(STATE_CODE);
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId()).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
                         @Override
                         public void onResponse(Call<SenderRegistrationResponsePOJO> call, Response<SenderRegistrationResponsePOJO> response) {
-                            if (response.body().getStatus().equals("Success")) {
-                                SenderRegistrationResponsePOJO senderRegistrationResponsePOJO = response.body();
-                                SenderData senderData = senderRegistrationResponsePOJO.getSenderData();
-                                mListener.showCustomOTPDialog(senderData, null);
+                            if (response.isSuccessful()) {
+                                SenderRegistrationResponsePOJO data = response.body();
+                                if (data.getStatus().equals("Success")) {
+                                    SenderData senderData = data.getSenderData();
+                                    mListener.showCustomOTPDialog(senderData, null);
+                                } else {
+                                    String text = response.body().getMsg();
+                                    //String text1 = response.body().getError();
+                                    progressBar.cancel();
+                                    showDialog("", text + " ");
+                                }
                             } else {
-                                String text = response.body().getMsg();
-                                //String text1 = response.body().getError();
-                                showDialog("", text+ " ");
+                                progressBar.cancel();
+                                showDialog("", response.message());
                             }
-
                         }
-
                         @Override
                         public void onFailure(Call<SenderRegistrationResponsePOJO> call, Throwable t) {
                             showDialog("", t.getMessage());
+                            progressBar.cancel();
                         }
                     });
                 }

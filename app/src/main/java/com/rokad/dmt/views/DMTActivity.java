@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.rokad.R;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
+import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
@@ -74,12 +76,12 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void goToConformation(com.rokad.dmt.pojos.FundTransfer.Data data) {
-        replaceFragment(ConfirmPaymentFragment.newInstance("", ""), "ConfirmPaymentFragment", true);
+    public void goToConformation(com.rokad.dmt.pojos.FundTransfer.Data data, Beneficiary selectedBeneficiary) {
+        replaceFragment(ConfirmPaymentFragment.newInstance(data, selectedBeneficiary), "ConfirmPaymentFragment", true);
     }
 
     @Override
-    public void showCustomDialog() {
+    public void showCustomDialog(NewTransactionProcessResponsePOJO newTransactionProcessResponsePOJO) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("DMTCommissionDialogFragment");
         if (prev != null) {
@@ -87,7 +89,7 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
         }
         ft.addToBackStack(null);
         DialogFragment dialogFragment;
-        dialogFragment = PaymentDialogFragment.newInstance(true, "");
+        dialogFragment = PaymentStatusDialogFragment.newInstance(true, newTransactionProcessResponsePOJO);
         dialogFragment.setCancelable(false);
         dialogFragment.show(ft, "PaymentDialogFragment");
     }

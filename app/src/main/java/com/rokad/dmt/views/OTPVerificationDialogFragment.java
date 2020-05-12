@@ -113,11 +113,16 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                 DMTService.resendOTP(senderObject.getSessionId(), senderObject.getMobileNo()).enqueue(new Callback<ResendOTPResponsePOJO>() {
                     @Override
                     public void onResponse(Call<ResendOTPResponsePOJO> call, Response<ResendOTPResponsePOJO> response) {
-                        ResendOTPResponsePOJO data = response.body();
-                        if(data.getStatus().equals("Success")) {
-
+                        if(response.isSuccessful()) {
+                            ResendOTPResponsePOJO data = response.body();
+                            if(data.getStatus().equals("Success")) {
+                                dismiss();
+                                getActivity().onBackPressed();
+                            } else {
+                                Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
+                            }
                         } else {
-                            Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -140,7 +145,6 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                                     requireActivity().onBackPressed();
                                 } else {
                                     Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
-                                    // show("", data.getMsg());
                                 }
                             }
                         }

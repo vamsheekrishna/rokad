@@ -110,16 +110,15 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
             @Override
             public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                 if (response.isSuccessful()) {
-                    BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
-                    if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
-                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                    BeneficiaryListResponsePOJO _beneficiaryListResponsePOJO = response.body();
+                    if (_beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                        mListener.showCustomOTPDialog(null, _beneficiaryListResponsePOJO);
                     } else {
-                        senderData.setSenderData(mBeneficiaryListResponsePOJO.getData());
+                        senderData.setSenderData(_beneficiaryListResponsePOJO.getData());
                         List<Beneficiary> list = senderData.getSenderData().getBeneficiaries().getBeneficiary();
                         if(null != list) {
                             beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getSenderData().getBeneficiaries().getBeneficiary()));
                         }
-                        // mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
                     }
                 } else {
                     Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
@@ -147,7 +146,6 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
             transferLimit.accessSubHeaderTextView().setText("Sender IMPS Transfer Limit");
             transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimitRs() + "");
         }
-
     }
 
     @Override
@@ -283,7 +281,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         public void onResponse(Call<FundTransferResponsePOJO> call, Response<FundTransferResponsePOJO> response) {
                             if (response.isSuccessful()) {
                                 if (response.body().getStatus().equalsIgnoreCase("Success")) {
-                                    mListener.goToConformation(response.body().getData());
+                                    mListener.goToConformation(response.body().getData(), senderData.getSelectedBeneficiary());
                                 } else {
                                     showDialog("", response.body().getMsg());
                                 }

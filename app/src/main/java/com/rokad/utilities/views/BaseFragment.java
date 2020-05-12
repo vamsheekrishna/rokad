@@ -1,5 +1,6 @@
 package com.rokad.utilities.views;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+
+import com.rokad.R;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -24,8 +27,18 @@ import static com.rokad.utilities.Utils.internetConnectionAvailable;
 public class BaseFragment extends Fragment {
 
     protected NavController navController;
+    protected ProgressDialog progressBar;
+
     public BaseFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        progressBar.setCancelable(false);
     }
 
     @Override
