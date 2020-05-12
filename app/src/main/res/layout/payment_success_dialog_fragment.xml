@@ -21,15 +21,19 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/success"
+            android:minWidth="70dp"
+            android:minHeight="70dp"
+            android:src="@drawable/bank"
+            android:id="@+id/status_img"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PAYMENT SUCCESSFUL"
-            android:textColor="#3BB54A"
+            android:textColor="@color/success"
             android:textStyle="bold|normal"
             android:fontFamily="@font/roboto_bold"
             android:textSize="22sp"
@@ -41,13 +45,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="12dp"
+            android:paddingTop="164dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="164dp"
+                android:visibility="gone"
                 android:weightSum="2">
 
                 <androidx.appcompat.widget.AppCompatTextView

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransfer.Data;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
@@ -99,34 +100,64 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View view) {
         progressBar.show();
-        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).doTransaction(
-                transferData.getProcessingBankId(),
-                transferData.getProcessingBankName(),
+
+        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
                 transferData.getSenderMobileNo(),
-                transferData.getSenderId(),
-                selectedBeneficiary.getBeneficiaryId(),
-                UserData.getUserData().getId(),
-                transferData.getRemitType()
-        ).enqueue(new Callback<NewTransactionProcessResponsePOJO>() {
+                UserData.getUserData().getId()
+        ).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
             @Override
-            public void onResponse(Call<NewTransactionProcessResponsePOJO> call, Response<NewTransactionProcessResponsePOJO> response) {
+            public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                 if(response.isSuccessful()) {
-                    NewTransactionProcessResponsePOJO newTransactionProcessResponsePOJO= response.body();
-                    if(newTransactionProcessResponsePOJO.getStatus().equalsIgnoreCase("Success")) {
-                        mListener.showCustomDialog(newTransactionProcessResponsePOJO);
-                    } else {
-                        showDialog("", newTransactionProcessResponsePOJO.getMsg());
-                    }
+                    BeneficiaryListResponsePOJO senderData = response.body();
+                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).doTransaction(
+                            transferData.getProcessingBankId(),
+                            transferData.getProcessingBankName(),
+                            "",
+                            transferData.getProcessingfee(),
+                            "","","","",
+                            senderData.getData().getNeftLimit(),
+                            selectedBeneficiary.getSelectedType(),
+                            transferData.getSenderMobileNo(),
+                            transferData.getSenderName(),
+                            senderData.getData().getImpsLimit(),
+                            transferData.getSenderId(),
+                            transferData.getBeneficiaryId(),
+                            transferData.getAmount(),
+                            UserData.getUserData().getId(),
+                            "Y",
+                            "1.0"
+                    ).enqueue(new Callback<NewTransactionProcessResponsePOJO>() {
+                        @Override
+                        public void onResponse(Call<NewTransactionProcessResponsePOJO> call, Response<NewTransactionProcessResponsePOJO> response) {
+                            if(response.isSuccessful()) {
+                                NewTransactionProcessResponsePOJO newTransactionProcessResponsePOJO= response.body();
+                                if(newTransactionProcessResponsePOJO.getStatus().equalsIgnoreCase("Success")) {
+                                    newTransactionProcessResponsePOJO.getData().setBeneficiaryMobile(selectedBeneficiary.getBeneficiaryMobileNo());
+                                    newTransactionProcessResponsePOJO.getData().setBeneficiaryName(selectedBeneficiary.getBeneficiaryFullName());
+                                    mListener.showCustomDialog(newTransactionProcessResponsePOJO);
+                                } else {
+                                    showDialog("", newTransactionProcessResponsePOJO.getMsg());
+                                }
+                            } else {
+                                showDialog("", response.message());
+                            }
+                            progressBar.cancel();
+                        }
+
+                        @Override
+                        public void onFailure(Call<NewTransactionProcessResponsePOJO> call, Throwable t) {
+                            showDialog("", t.getMessage());
+                            progressBar.cancel();
+                        }
+                    });
                 } else {
                     showDialog("", response.message());
                 }
-                progressBar.cancel();
             }
 
             @Override
-            public void onFailure(Call<NewTransactionProcessResponsePOJO> call, Throwable t) {
-                showDialog("", t.getMessage());
-                progressBar.cancel();
+            public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
+
             }
         });
     }

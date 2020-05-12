@@ -47,6 +47,16 @@ public class Beneficiary implements Serializable {
     @Expose
     private List<Object> verifiedName = null;
 
+    private String selectedType;
+
+    public String getSelectedType() {
+        return selectedType;
+    }
+
+    public void setSelectedType(String selectedType) {
+        this.selectedType = selectedType;
+    }
+
     public String getBeneficiaryId() {
         return beneficiaryId;
     }

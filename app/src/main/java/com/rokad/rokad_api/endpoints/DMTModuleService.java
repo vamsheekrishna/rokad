@@ -27,11 +27,24 @@ public interface DMTModuleService {
     @FormUrlEncoded
     Call<NewTransactionProcessResponsePOJO> doTransaction(@Field("processingBankId") String processingBankId,
                                                           @Field("processingBankName") String processingBankName,
-                                                          @Field("CustomerMobileNo") String customerMobileNumber,
+                                                          @Field("amt") String amt,
+                                                          @Field("fee") String fee,
+                                                          @Field("total_amt") String total_amt,
+                                                          @Field("wallet_id") String wallet_id,
+                                                          @Field("wallet_type") String wallet_type,
+                                                          @Field("wallet_bal") String wallet_bal,
+                                                          @Field("neft_Limit") String neft_Limit,
+                                                          @Field("type") String type,
+                                                          @Field("CustomerMobileNo") String CustomerMobileNo,
+                                                          @Field("SenderName") String SenderName,
+                                                          @Field("impsLimit") String impsLimit,
                                                           @Field("senderId") String senderId,
-                                                          @Field("listBen") String beneficiaryID,
-                                                          @Field("user_id") String userId,
-                                                          @Field("type") String transactionType);
+                                                          @Field("listBen") String listBen,
+                                                          @Field("amount") String amount,
+                                                          @Field("user_id") String user_id,
+                                                          @Field("mobileapp") String mobileapp,
+                                                          @Field("mobileversionid") String mobileversionid
+    );
 
     @POST(BuildConfig.SENDER_REGISTRATION)
     @FormUrlEncoded

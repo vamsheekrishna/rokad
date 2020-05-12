@@ -281,6 +281,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         public void onResponse(Call<FundTransferResponsePOJO> call, Response<FundTransferResponsePOJO> response) {
                             if (response.isSuccessful()) {
                                 if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                                    senderData.getSelectedBeneficiary().setSelectedType(senderData.getTransferMode());
                                     mListener.goToConformation(response.body().getData(), senderData.getSelectedBeneficiary());
                                 } else {
                                     showDialog("", response.body().getMsg());

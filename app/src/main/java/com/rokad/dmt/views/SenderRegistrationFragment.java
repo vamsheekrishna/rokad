@@ -130,7 +130,6 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                     showDialog("Sorry!!", "Please enter your first and last name without any spaces and special characters");
                 } else  if (!Utils.isValidMobile(mobileNumber)){
                     showDialog("Sorry!!", "Please enter your valid mobile number");
-
                 } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){
                     showDialog("Sorry!!", "Please select your State");
                 } else {
