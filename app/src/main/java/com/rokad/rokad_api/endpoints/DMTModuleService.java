@@ -19,8 +19,10 @@ public interface DMTModuleService {
 
     @POST(BuildConfig.BENEFICIARY_LIST)
     @FormUrlEncoded
-    Call<BeneficiaryListResponsePOJO> getBeneficiaryLis(@Field("CustomerMobileNo") String mobileNumber,
-                                                                     @Field("Userid") String userID);
+    Call<BeneficiaryListResponsePOJO> getBeneficiaryLis(
+            @Field("CustomerMobileNo") String mobileNumber,
+            @Field("Userid") String userID
+    );
 
 
     @POST(BuildConfig.PROCESS_NEW_TRANSACTION)

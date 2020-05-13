@@ -1,6 +1,8 @@
 package com.rokad.dmt.views;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputFilter;
@@ -39,6 +41,8 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
     private AppCompatTextView resendOTP;
     private SenderData senderObject;
     private DMTModuleService DMTService;
+    private OnDMTInteractionListener mListener;
+    private ProgressDialog progressBar;
 
     public OTPVerificationDialogFragment() {
     }
@@ -53,8 +57,21 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof OnDMTInteractionListener) {
+            mListener = (OnDMTInteractionListener)context;
+        }
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
+        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        progressBar.setCancelable(false);
+
         assert savedInstanceState != null;
         senderObject = (SenderData) getArguments().getSerializable(SEDER);
         DMTService =  RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class);
@@ -91,7 +108,7 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
         };
 
         downTimer.start();
-
+        this.setCancelable(false);
         return view;
     }
     @Override
@@ -110,24 +127,29 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.resend_otp_btn:
+                progressBar.show();
                 DMTService.resendOTP(senderObject.getSessionId(), senderObject.getMobileNo()).enqueue(new Callback<ResendOTPResponsePOJO>() {
                     @Override
                     public void onResponse(Call<ResendOTPResponsePOJO> call, Response<ResendOTPResponsePOJO> response) {
                         if(response.isSuccessful()) {
                             ResendOTPResponsePOJO data = response.body();
                             if(data.getStatus().equals("Success")) {
-                                dismiss();
-                                getActivity().onBackPressed();
+                                ResendOTPResponsePOJO.ResendOTPData temp = data.getResendOTPData();
+                                if(temp.getResponseCode().equals("Y")) {
+                                    otpValue.accessEditText().setText("");
+                                    Toast.makeText(requireContext(), "OTP sent successfully to "+temp.getMobileNo()+". Please check.", Toast.LENGTH_LONG).show();
+                                }
                             } else {
                                 Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
                             }
                         } else {
                             Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
                         }
+                        progressBar.cancel();
                     }
-
                     @Override
                     public void onFailure(Call<ResendOTPResponsePOJO> call, Throwable t) {
+                        progressBar.cancel();
                         Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
@@ -135,6 +157,7 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
             case R.id.submit_otp:
                 String otp = otpValue.accessEditText().getText().toString();
                 if (otp.length() == 6) {
+                    progressBar.show();
                     DMTService.OTPValidation(UserData.getUserData().getId(), senderObject.getSessionId(),senderObject.getMobileNo(),senderObject.getFirstName(),
                             senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState()).enqueue(new Callback<OTPValidationResponsePOJO>() {
                         @Override
@@ -142,18 +165,21 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                             if(response.isSuccessful()) {
                                 OTPValidationResponsePOJO data = response.body();
                                 if(data.getStatus().equals("Success")) {
-                                    requireActivity().onBackPressed();
+                                    mListener.makeAnotherPayment();
                                 } else {
                                     Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
                                 }
                             }
+                            progressBar.cancel();
                         }
-
                         @Override
                         public void onFailure(Call<OTPValidationResponsePOJO> call, Throwable t) {
+                            progressBar.cancel();
                             Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
+                } else {
+                    Toast.makeText(requireActivity(), "Please enter a valid OTP.", Toast.LENGTH_LONG).show();
                 }
 
                 break;
