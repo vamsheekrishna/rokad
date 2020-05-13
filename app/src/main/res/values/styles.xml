@@ -60,7 +60,7 @@
     </style>
 
     <style name="button_color">
-        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:background">@drawable/submit</item>

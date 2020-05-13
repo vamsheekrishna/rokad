@@ -3,4 +3,8 @@
     <dimen name="text_margin">8dp</dimen>
     <dimen name="registration_top_margin">8dp</dimen>
     <dimen name="edit_text_sub_header">12sp</dimen>
+    <dimen name="field_height">40dp</dimen>
+    <dimen name="field_header_bottom_padding">4dp</dimen>
+    <dimen name="thumb_icon_padding">8dp</dimen>
+    <dimen name="row_element_top_padding">22dp</dimen>
 </resources>

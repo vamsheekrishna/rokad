@@ -41,7 +41,8 @@
       <androidx.appcompat.widget.AppCompatButton
           android:id="@+id/add_sender"
           style="@style/button_gray"
-          android:text="@string/add_new_sender"/>
+          android:text="@string/add_new_sender"
+          android:layout_marginTop="40dp"/>
    </LinearLayout>
 
 </RelativeLayout>

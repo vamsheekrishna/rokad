@@ -98,6 +98,9 @@
     <string name="success">success</string>
     <string name="confirm_account_number">Confirm Bank Account Number</string>
     <string name="transfer_type">Transfer Type</string>
+    <string name="imps">IMPS</string>
+    <string name="neft">NEFT</string>
+    <string name="send_otp">Send OTP?</string>
 
 
 </resources>

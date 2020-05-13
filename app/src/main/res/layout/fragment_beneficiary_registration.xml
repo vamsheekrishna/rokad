@@ -49,8 +49,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="32dp">
+            android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/roboto_regular"

@@ -3,10 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="22dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
+    android:paddingTop="@dimen/row_element_top_padding"
     android:background="@android:color/white">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/sub_header"
@@ -14,20 +11,17 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Sender Registered Mobile Number"
         android:textSize="@dimen/edit_text_sub_header"
-        android:layout_marginBottom="6dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp" />
+        android:layout_marginBottom="@dimen/field_header_bottom_padding"
+        android:layout_height="wrap_content" />
     <androidx.appcompat.widget.AppCompatEditText
-        android:layout_marginTop="6dp"
         android:id="@+id/edit_text_view"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingLeft="@dimen/thumb_icon_padding"
+        android:paddingRight="@dimen/thumb_icon_padding"
         android:layout_width="match_parent"
         android:textColorHighlight="#2644DC"
         android:drawablePadding="4dp"
         android:background="@drawable/custom_edit_text_bg"
-        android:layout_height="40dp"
-        android:drawableStart="@drawable/indiaflag"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"/>
+        android:layout_height="@dimen/field_height"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/indiaflag"/>
 </LinearLayout>

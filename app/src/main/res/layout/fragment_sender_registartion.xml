@@ -24,67 +24,49 @@
         android:id="@+id/lst_name"
         app:image="@drawable/user_new"/>
 
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-            android:id="@+id/sender_mobile_num"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:inputType="phone"
-            android:layout_height="wrap_content"
-            app:title="@string/sender_mobile"
-            app:image="@drawable/mobile"/>
+    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+        android:id="@+id/sender_mobile_num"
+        android:layout_width="match_parent"
+        android:inputType="phone"
+        android:layout_height="wrap_content"
+        app:title="@string/sender_mobile"
+        app:image="@drawable/mobile"/>
 
     <TextView
         android:visibility="gone"
         android:id="@+id/send_otp"
-        android:text="Send OTP?"
-        android:clickable="true"
+        android:text="@string/send_otp"
         android:textColor="#2644DC"
-        android:layout_marginTop="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginTop="@dimen/text_margin"
         android:gravity="center_horizontal"
         android:layout_gravity="end"
-        android:layout_marginBottom="32dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:paddingEnd="18dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="wrap_content"/>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:background="@drawable/custom_edit_text_bg"
+        android:layout_marginTop="@dimen/row_element_top_padding"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        style="@style/Widget.AppCompat.Spinner"
-        android:entries="@array/dmt_states_list"
-        android:entryValues="@array/dmt_states_input_params"
-        android:prompt="@string/spinner_prompt"
-        android:spinnerMode="dropdown"
-        android:id="@+id/states_list"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/field_height"
+            style="@style/Widget.AppCompat.Spinner"
+            android:entries="@array/dmt_states_list"
+            android:entryValues="@array/dmt_states_input_params"
+            android:prompt="@string/spinner_prompt"
+            android:spinnerMode="dropdown"
+            android:id="@+id/states_list"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sender_register"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/roboto_regular"
+        style="@style/button_color"
         android:text="@string/sender_register"
-        android:background="@drawable/submit"
-        android:textSize="14sp"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content"/>
+        android:textSize="14sp"/>
 
 </LinearLayout>
