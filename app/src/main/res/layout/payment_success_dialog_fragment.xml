@@ -4,89 +4,47 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
     tools:context="com.rokad.dmt.views.ConfirmPaymentFragment">
 
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:translationZ="90dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/bank"
+        android:id="@+id/status_img"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="-30dp"
+        android:layout_below="@+id/status_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minWidth="338dp"
-        android:minHeight="333dp"
         android:id="@+id/payment_card"
         android:layout_centerHorizontal="true"
-        app:cardElevation="@dimen/cardview_default_elevation"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="38dp">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="70dp"
-            android:minHeight="70dp"
-            android:src="@drawable/bank"
-            android:id="@+id/status_img"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/status_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PAYMENT SUCCESSFUL"
-            android:textColor="@color/success"
-            android:textStyle="bold|normal"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="22sp"
-            android:textAllCaps="true"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="84dp"/>
-
+        app:cardElevation="@dimen/cardview_default_elevation">
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp"
-            android:paddingTop="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_successful"
+                android:textColor="@color/success"
+                android:textStyle="bold|normal"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="22sp"
+                android:layout_margin="26dp"
+                android:textAllCaps="true"
+                android:gravity="center_horizontal"/>
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                android:weightSum="2">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/wallet_bal_txt"
-                    android:text="@string/wallet_balance_txt"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textStyle="bold|normal"
-                    android:layout_marginLeft="12dp"
-                    android:textSize="18sp"
-                    android:layout_marginStart="12dp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="10000"
-                    android:gravity="end"
-                    android:id="@+id/wallet_bal_amt"
-                    android:fontFamily="@font/roboto_black"
-                    android:textStyle="bold|normal"
-                    android:layout_marginRight="12dp"
-                    android:textSize="18sp"
-                    android:layout_marginEnd="12dp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
                 android:weightSum="2"
                 android:orientation="horizontal">
 
@@ -316,41 +274,34 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="16dp"
         android:layout_below="@id/payment_card"
-        android:layout_margin="22dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="130dp"
-            android:layout_gravity="center_horizontal"
             android:minHeight="40dp"
             android:layout_below="@id/payment_card"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
             android:id="@+id/home_btn"
-            android:layout_marginTop="34dp"
             android:textColor="@color/black"
+            android:layout_marginRight="8dp"
             android:background="@drawable/button_bg_gray"
-            android:layout_centerHorizontal="true"
             android:text="Home"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="130dp"
-        android:minHeight="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@id/payment_card"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:id="@+id/repeat_payment_btn"
-        android:layout_marginTop="34dp"
-        android:textColor="@color/white"
-        android:background="@drawable/submit"
-        android:layout_centerHorizontal="true"
-        android:text="@string/do_another"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:minWidth="130dp"
+            android:minHeight="40dp"
+            android:layout_below="@id/payment_card"
+            android:id="@+id/repeat_payment_btn"
+            android:textColor="@color/white"
+            android:background="@drawable/submit"
+            android:text="@string/do_another"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -102,6 +102,7 @@
     <string name="neft">NEFT</string>
     <string name="send_otp">Send OTP?</string>
     <string name="bank_name">Bank Name</string>
+    <string name="payment_successful">PAYMENT SUCCESSFUL</string>
 
 
 </resources>
