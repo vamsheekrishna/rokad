@@ -128,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/register_a_new_beneficiary"
+                android:layout_marginTop="@dimen/field_header_bottom_padding"
                 android:gravity="end"
                 android:textColor="@android:color/holo_blue_dark"
                 android:id="@+id/reg_beneficiary"/>
@@ -155,14 +156,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submit"
-            android:layout_marginTop="32dp"
-            android:layout_width="match_parent"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/proceed"
-            android:background="@drawable/submit"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"/>
+            style="@style/button_color"
+            android:text="@string/proceed"/>
 
     </LinearLayout>
 </ScrollView>
