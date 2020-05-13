@@ -101,11 +101,10 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="24dp"
-            android:paddingLeft="22dp"
-            android:paddingRight="20dp"
-            android:paddingStart="22dp"
-            android:paddingEnd="20dp">
+            android:paddingRight="32dp"
+            android:paddingLeft="32dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="22dp">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sub_header"
                 android:layout_marginBottom="6dp"

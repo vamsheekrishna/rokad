@@ -46,7 +46,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
     private EditTextWithTitleAndThumbIcon firstName, lastName, ifscCode;
     private EditTextWithTitleAndThumbIcon bankAccNumber, confirmBankAccNumber;
     private AppCompatSpinner banksListSpinner, relationSpinner;
-    private AppCompatEditText senderMobileNumber,beneficiaryMobileNumber;
+    private EditTextWithTitleAndThumbIcon senderMobileNumber,beneficiaryMobileNumber;
     List<BankListResponsePOJO.BanksList> bankList = new ArrayList<>();
     BankListResponsePOJO.BanksList selectedBank;
     private ProgressDialog progressBar;
@@ -99,7 +99,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         lastName = view.findViewById(R.id.beneficiary_last_name);
         senderMobileNumber = view.findViewById(R.id.sender_mobile_num);
         String mobile = senderData.getSenderMobileNo();
-        senderMobileNumber.setText(mobile);
+        senderMobileNumber.accessEditText().setText(mobile);
         senderMobileNumber.setFocusable(false);
 
 
@@ -127,7 +127,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         bankAccNumber.accessEditText().setText("50100147713545");
         firstName.accessEditText().setText("Vamshee");
         lastName.accessEditText().setText("Krishna");
-        beneficiaryMobileNumber.setText("8919251923");
+        beneficiaryMobileNumber.accessEditText().setText("8919251923");
 
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
         progressBar.setCancelable(false);
@@ -161,7 +161,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
             case R.id.reg_beneficiary:
                 String _firstName = firstName.accessEditText().getText().toString();
                 String _lastName = lastName.accessEditText().getText().toString();
-                String _beneficiaryMobileNumber = beneficiaryMobileNumber.getText().toString();
+                String _beneficiaryMobileNumber = beneficiaryMobileNumber.accessEditText().getText().toString();
                 String _bankAccNumber = bankAccNumber.accessEditText().getText().toString();
                 String _confirmBankAccNumber = confirmBankAccNumber.accessEditText().getText().toString();
                 String _ifscCode = ifscCode.accessEditText().getText().toString();
@@ -170,7 +170,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                     showDialog("Sorry!!","Please enter your first name without any spaces and special characters.");
                 } else if (!Utils.isValidWord(_lastName)){
                     showDialog("Sorry!!","Please enter your last name without any spaces and special characters.");
-                } else if (!Utils.isValidMobile(senderMobileNumber.getText().toString())){
+                } else if (!Utils.isValidMobile(senderMobileNumber.accessEditText().getText().toString())){
                     showDialog("Sorry!!","Please enter your valid Sender's Mobile Number.");
                 }  else if (!Utils.isValidMobile(_beneficiaryMobileNumber)){
                     showDialog("Sorry!!","Please enter your valid Beneficiary's Mobile Number.");

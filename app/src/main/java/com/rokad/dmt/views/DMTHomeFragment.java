@@ -45,7 +45,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
 
     private String mParam1;
     private String mParam2;
-    private TextView mBalance;
+    private TextView mBalance, subHeader;
     private EditText mobileNumber;
     private OnDMTInteractionListener mListener;
     private ProgressDialog progressBar;
@@ -140,6 +140,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         view.findViewById(R.id.addMoney).setOnClickListener(this);
         view.findViewById(R.id.add_sender).setOnClickListener(this);
         view.findViewById(R.id.transfer_fund).setOnClickListener(this);
+        subHeader = view.findViewById(R.id.sub_header);
+        subHeader.setText("Mobile Number");
         mobileNumber = view.findViewById(R.id.edit_text_view);
         mobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
         mobileNumber.setText("7416226233");

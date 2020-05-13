@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
@@ -51,17 +52,28 @@
         android:layout_alignParentEnd="true" />
 
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@drawable/custom_edit_text_bg"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
+        android:layout_margin="12dp"
         style="@style/Widget.AppCompat.Spinner"
         android:entries="@array/dmt_states_list"
         android:entryValues="@array/dmt_states_input_params"
         android:prompt="@string/spinner_prompt"
         android:spinnerMode="dropdown"
         android:id="@+id/states_list"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.appcompat.widget.AppCompatButton

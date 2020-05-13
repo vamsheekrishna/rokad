@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:maxWidth="340dp"
     android:maxHeight="340dp"
+    android:background="@color/white"
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true">
 

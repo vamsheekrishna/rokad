@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.rokad.dmt.views.DMTHomeFragment">
    <include
