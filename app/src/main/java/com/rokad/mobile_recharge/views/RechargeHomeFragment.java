@@ -139,6 +139,8 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                 @Override
                 public void run() {
                     recyclerView.findViewHolderForAdapterPosition(subscriber).itemView.setAlpha(1f);
+                    mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(subscriber).getKey());
+                    mListener.getMobileRechargeModule().setImage(subscriberModules.get(subscriber).getImage());
                 }
             },100);
         }
@@ -215,7 +217,7 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-//        mobileRechargeNum.setText(BuildConfig.USERNAME);
+        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 
@@ -268,6 +270,15 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
                     mListener.getMobileRechargeModule().setMobileNumber(phone);
                     mListener.getMobileRechargeModule().setRechargeAmount(amount);
                     mListener.getMobileRechargeModule().setRecType(racType);
+
+                    if(racType.equals(getString(R.string.prepaid_radio_btn))){
+                        mListener.getMobileRechargeModule().setPlanType("Prepaid Mobile");
+                        mListener.getMobileRechargeModule().setRechargeType("0");
+                    } else if (racType.equals(getString(R.string.postpaid_radio_btn))){
+                        mListener.getMobileRechargeModule().setRechargeType("1");
+                        mListener.getMobileRechargeModule().setPlanType("Postpaid Mobile");
+                    }
+
                     mListener.getMobileRechargeModule().setStateName(String.valueOf(stateSelector.getSelectedItem()));
                     mListener.getMobileRechargeModule().setMobileOperator(subscriberModules.get(subscriber).getName());
                     mListener.getMobileRechargeModule().setImage(subscriberModules.get(subscriber).getImage());

@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,8 +103,13 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         String mobile = senderData.getSenderMobileNo();
         senderMobileNumber.accessEditText().setText(mobile);
         senderMobileNumber.setFocusable(false);
+        senderMobileNumber.accessEditText().setEnabled(false);
 
         beneficiaryMobileNumber = view.findViewById(R.id.beneficiary_mobile_num);
+        beneficiaryMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(10);
+        beneficiaryMobileNumber.accessEditText().setFilters(fArray);
         banksListSpinner = view.findViewById(R.id.bank_list_spinner);
         banksListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
