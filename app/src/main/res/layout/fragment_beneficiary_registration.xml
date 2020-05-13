@@ -47,13 +47,15 @@
             app:image="@drawable/mobile"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="@dimen/row_element_top_padding"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Bank Name"
+                android:text="@string/bank_name"
+                android:paddingBottom="@dimen/field_header_bottom_padding"
                 android:textSize="@dimen/edit_text_sub_header"
                 android:layout_height="wrap_content"/>
 
@@ -61,28 +63,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/custom_edit_text_bg"
-                android:weightSum="2">
+                android:layout_gravity="left|center"
+                android:gravity="left|center"
+                android:paddingLeft="4dp"
+                android:background="@drawable/custom_edit_text_bg">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/bank"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp" />
+                    android:padding="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bank"/>
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
                     android:id="@+id/bank_list_spinner"
-                    android:paddingStart="8dp"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
-                    android:layout_marginStart="24dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="32dp" />
-
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/field_height"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -103,14 +100,6 @@
             app:title="@string/confirm_account_number"
             app:image="@drawable/bank"/>
 
-        <!--<com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bank_branch"
-            android:inputType="text"
-            app:title="Branch Name"
-            app:image="@drawable/bank"/>-->
-
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,13 +109,14 @@
             app:image="@drawable/ifsc"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="@dimen/row_element_top_padding"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="32dp">
+            android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/sub_header"
                 android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/field_header_bottom_padding"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Relation"
                 android:textSize="@dimen/edit_text_sub_header"
@@ -134,31 +124,25 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/field_height"
                 android:orientation="horizontal"
-                android:background="@drawable/custom_edit_text_bg"
-                android:weightSum="2">
+                android:paddingLeft="4dp"
+                android:background="@drawable/custom_edit_text_bg">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
+                    android:paddingLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/thumbIcon"
                     android:src="@drawable/relation"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginStart="14dp" />
+                    android:layout_gravity="center" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_marginTop="2dp"
                     android:id="@+id/relation_spinner_view"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
                     android:entries="@array/default_relation_list_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="24dp" />
+                    android:layout_height="@dimen/field_height" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -166,15 +150,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/reg_beneficiary"
-            android:layout_marginTop="32dp"
-            android:layout_width="match_parent"
+            style="@style/button_color"
             android:fontFamily="@font/roboto_regular"
-            android:text="Register Beneficiary"
-            android:background="@drawable/submit"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"/>
-
+            android:text="Register Beneficiary"/>
     </LinearLayout>
 </ScrollView>
 

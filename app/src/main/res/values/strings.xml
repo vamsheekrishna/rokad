@@ -101,6 +101,7 @@
     <string name="imps">IMPS</string>
     <string name="neft">NEFT</string>
     <string name="send_otp">Send OTP?</string>
+    <string name="bank_name">Bank Name</string>
 
 
 </resources>
