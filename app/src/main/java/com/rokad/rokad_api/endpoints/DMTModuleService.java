@@ -6,6 +6,7 @@ import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
+import com.rokad.dmt.pojos.PaytmVerificationRequest;
 import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
 import com.rokad.dmt.pojos.ResponseBeneficiaryRegistration;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
@@ -109,4 +110,35 @@ public interface DMTModuleService {
     @FormUrlEncoded
     Call<ResendOTPResponsePOJO> resendOTP(@Field("session_id") String sessionId,
                                           @Field("mob_no") String mobileNumber);
+
+    @POST(BuildConfig.PAYTM_VERIFICATION_REQUEST)
+    Call<PaytmVerificationRequest> paytmVerificationRequest(
+            @Field("icwCode") String icwCode,
+            @Field("senderMobileNo") String senderMobileNo,
+            @Field("sourceId") String sourceId,
+            @Field("username") String username,
+            @Field("user_id") String user_id,
+            @Field("mobileapp") String mobileapp,
+            @Field("mobileversionid") String mobileversionid
+
+    );
+    @POST(BuildConfig.RESEND_BCSENDER_VERIFICATION)
+    Call<ResponseResendBCSenderVerified> resendBCSsenderVerified(
+            @Field("mob_no") String mob_no,
+            @Field("user_id") String user_id,
+            @Field("icwCode") String icwCode,
+            @Field("sourceId") String sourceId,
+            @Field("username") String username,
+            @Field("mobileapp") String mobileapp,
+            @Field("mobileversionid") String mobileversionid
+    );
+    @POST(BuildConfig.PROCESS_OTP_BC_SENDER_VERIFICATION)
+    Call<ResponseProcessOTPbcSenderVerified> processOTPbcSenderVerified(
+            @Field("username") String username,
+            @Field("icwCode") String icwCode,
+            @Field("mob_no") String mob_no,
+            @Field("otp") String otp,
+            @Field("sourceId") String sourceId,
+            @Field("user_id") String user_id
+    );
 }

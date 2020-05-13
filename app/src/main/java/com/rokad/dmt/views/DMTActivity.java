@@ -109,15 +109,15 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
     }
 
     @Override
-    public void showCustomOTPDialog(SenderData mobileNumber, BeneficiaryListResponsePOJO beneficiaryListResponsePOJO) {
+    public void showCustomOTPDialog(SenderData senderData, BeneficiaryListResponsePOJO paytmVerification) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("OTPVerificationDialog");
         if (prev != null) {
             ft.remove(prev);
         }
-        ft.addToBackStack(null);
+        ft.addToBackStack("OTPVerificationDialog");
         DialogFragment dialogFragment;
-        dialogFragment = OTPVerificationDialogFragment.newInstance(mobileNumber);
+        dialogFragment = OTPVerificationDialogFragment.newInstance(senderData, paytmVerification);
         dialogFragment.setCancelable(false);
         dialogFragment.show(ft, "OTPVerificationDialog");
     }

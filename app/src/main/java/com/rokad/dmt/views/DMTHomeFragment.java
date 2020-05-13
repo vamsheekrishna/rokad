@@ -19,11 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
+import com.rokad.dmt.pojos.PaytmVerificationRequest;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
@@ -172,6 +174,33 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                                 if(response.body().getStatus().equalsIgnoreCase("Success")) {
                                     BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
                                     if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                                        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).paytmVerificationRequest(
+                                                beneficiaryListResponsePOJO.getData().getIcwCode(),
+                                                beneficiaryListResponsePOJO.getData().getSenderMobileNo(),
+                                                beneficiaryListResponsePOJO.getData().getSourceId(),
+                                                beneficiaryListResponsePOJO.getData().getUsername(),
+                                                UserData.getUserData().getId(),
+                                                BuildConfig.MOBILE_APPLICATION,
+                                                BuildConfig.MOBILE_VERSION_ID
+                                        ).enqueue(new Callback<PaytmVerificationRequest>() {
+                                            @Override
+                                            public void onResponse(Call<PaytmVerificationRequest> call, Response<PaytmVerificationRequest> response) {
+                                                if (response.isSuccessful()) {
+                                                    PaytmVerificationRequest.PaytemResponse temp = response.body().getData();
+                                                    if (temp.getResponseCode().equals("Y")) {
+                                                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                                        Toast.makeText(requireContext(), temp.getResponseDesc()+" to "+ temp.getMobileNo(), Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<PaytmVerificationRequest> call, Throwable t) {
+
+                                            }
+                                        });
                                         mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
                                     } else {
                                         mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);

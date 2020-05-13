@@ -17,14 +17,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.DialogFragment;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
+import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
+import com.rokad.dmt.pojos.PaytmVerificationRequest;
 import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
+import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
+import com.rokad.rokad_api.endpoints.ResponseProcessOTPbcSenderVerified;
+import com.rokad.rokad_api.endpoints.ResponseResendBCSenderVerified;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
 import java.util.concurrent.TimeUnit;
@@ -37,21 +43,24 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
 
     public static final String SEDER = "seder";
+    private static final String PAYTM_VERIFY = "paytm";
     private EditTextWithTitleAndThumbIcon otpValue;
     private AppCompatTextView resendOTP;
     private SenderData senderObject;
     private DMTModuleService DMTService;
     private OnDMTInteractionListener mListener;
     private ProgressDialog progressBar;
-
+    private CountDownTimer downTimer;
+    private BeneficiaryListResponsePOJO paytmVerification;
     public OTPVerificationDialogFragment() {
     }
 
-    public static OTPVerificationDialogFragment newInstance(SenderData senderData) {
+    public static OTPVerificationDialogFragment newInstance(SenderData senderData, BeneficiaryListResponsePOJO paytmVerification) {
 
         Bundle args = new Bundle();
         OTPVerificationDialogFragment fragment = new OTPVerificationDialogFragment();
         args.putSerializable(SEDER, senderData);
+        args.putSerializable(PAYTM_VERIFY, paytmVerification);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,6 +83,7 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
         assert savedInstanceState != null;
         senderObject = (SenderData) getArguments().getSerializable(SEDER);
+        paytmVerification = (BeneficiaryListResponsePOJO) getArguments().getSerializable(PAYTM_VERIFY);
         DMTService =  RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class);
     }
 
@@ -94,7 +104,7 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
         resendOTP = view.findViewById(R.id.resend_otp_btn);
         view.findViewById(R.id.submit_otp).setOnClickListener(this);
         view.findViewById(R.id.close).setOnClickListener(this);
-        CountDownTimer downTimer = new CountDownTimer(40000,1000) {
+        downTimer = new CountDownTimer(40000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 resendOTP.setText( "Secs : " + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)%60 + "     ");
@@ -128,59 +138,125 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
         switch (v.getId()) {
             case R.id.resend_otp_btn:
                 progressBar.show();
-                DMTService.resendOTP(senderObject.getSessionId(), senderObject.getMobileNo()).enqueue(new Callback<ResendOTPResponsePOJO>() {
-                    @Override
-                    public void onResponse(Call<ResendOTPResponsePOJO> call, Response<ResendOTPResponsePOJO> response) {
-                        if(response.isSuccessful()) {
-                            ResendOTPResponsePOJO data = response.body();
-                            if(data.getStatus().equals("Success")) {
-                                ResendOTPResponsePOJO.ResendOTPData temp = data.getResendOTPData();
-                                if(temp.getResponseCode().equals("Y")) {
-                                    otpValue.accessEditText().setText("");
-                                    Toast.makeText(requireContext(), "OTP sent successfully to "+temp.getMobileNo()+". Please check.", Toast.LENGTH_LONG).show();
-                                }
-                            } else {
-                                Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
-                            }
-                        } else {
-                            Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
-                        }
-                        progressBar.cancel();
-                    }
-                    @Override
-                    public void onFailure(Call<ResendOTPResponsePOJO> call, Throwable t) {
-                        progressBar.cancel();
-                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-                break;
-            case R.id.submit_otp:
-                String otp = otpValue.accessEditText().getText().toString();
-                if (otp.length() == 6) {
-                    progressBar.show();
-                    DMTService.OTPValidation(UserData.getUserData().getId(), senderObject.getSessionId(),senderObject.getMobileNo(),senderObject.getFirstName(),
-                            senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState()).enqueue(new Callback<OTPValidationResponsePOJO>() {
+                if(null != senderObject) {
+                    DMTService.resendOTP(senderObject.getSessionId(), senderObject.getMobileNo()).enqueue(new Callback<ResendOTPResponsePOJO>() {
                         @Override
-                        public void onResponse(Call<OTPValidationResponsePOJO> call, Response<OTPValidationResponsePOJO> response) {
+                        public void onResponse(Call<ResendOTPResponsePOJO> call, Response<ResendOTPResponsePOJO> response) {
                             if(response.isSuccessful()) {
-                                OTPValidationResponsePOJO data = response.body();
+                                ResendOTPResponsePOJO data = response.body();
                                 if(data.getStatus().equals("Success")) {
-                                    mListener.makeAnotherPayment();
+                                    ResendOTPResponsePOJO.ResendOTPData temp = data.getResendOTPData();
+                                    if(temp.getResponseCode().equals("Y")) {
+                                        otpValue.accessEditText().setText("");
+                                        downTimer.start();
+                                        Toast.makeText(requireContext(), "OTP sent successfully to "+temp.getMobileNo()+". Please check.", Toast.LENGTH_LONG).show();
+                                    }
                                 } else {
                                     Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
                                 }
+                            } else {
+                                Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
                             }
                             progressBar.cancel();
                         }
                         @Override
-                        public void onFailure(Call<OTPValidationResponsePOJO> call, Throwable t) {
+                        public void onFailure(Call<ResendOTPResponsePOJO> call, Throwable t) {
                             progressBar.cancel();
                             Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
+                    DMTService.resendBCSsenderVerified(
+                            paytmVerification.getData().getSenderMobileNo(),
+                            UserData.getUserData().getId(),
+                            paytmVerification.getData().getIcwCode(),
+                            paytmVerification.getData().getSourceId(),
+                            paytmVerification.getData().getUsername(),
+                            BuildConfig.MOBILE_APPLICATION,
+                            BuildConfig.MOBILE_VERSION_ID
+                    ).enqueue(new Callback<ResponseResendBCSenderVerified>() {
+                        @Override
+                        public void onResponse(Call<ResponseResendBCSenderVerified> call, Response<ResponseResendBCSenderVerified> response) {
+                            if (response.isSuccessful()) {
+                                assert response.body() != null;
+                                ResponseResendBCSenderVerified.BCSenderVerifiedData temp = response.body().getBcSenderVerifiedData();
+                                if (temp.getResponseCode().equals("Y")) {
+                                    otpValue.accessEditText().setText("");
+                                    downTimer.start();
+                                    Toast.makeText(requireContext(), "OTP sent successfully to " + temp.getMobileNo() + ". Please check.", Toast.LENGTH_LONG).show();
+                                }
+                                progressBar.cancel();
+                            } else {
+                                progressBar.cancel();
+                                Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseResendBCSenderVerified> call, Throwable t) {
+                            progressBar.cancel();
+                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+                break;
+            case R.id.submit_otp:
+                String otp = otpValue.accessEditText().getText().toString();
+                if (otp.length() == 6) {
+                    progressBar.show();
+
+                    if (null != senderObject) {
+                        DMTService.OTPValidation(UserData.getUserData().getId(), senderObject.getSessionId(), senderObject.getMobileNo(), senderObject.getFirstName(),
+                                senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState()).enqueue(new Callback<OTPValidationResponsePOJO>() {
+                            @Override
+                            public void onResponse(Call<OTPValidationResponsePOJO> call, Response<OTPValidationResponsePOJO> response) {
+                                if (response.isSuccessful()) {
+                                    OTPValidationResponsePOJO data = response.body();
+                                    if (data.getStatus().equals("Success")) {
+                                        mListener.makeAnotherPayment();
+                                    } else {
+                                        Toast.makeText(requireActivity(), data.getMsg(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                progressBar.cancel();
+                            }
+
+                            @Override
+                            public void onFailure(Call<OTPValidationResponsePOJO> call, Throwable t) {
+                                progressBar.cancel();
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else if (null != paytmVerification){
+                        Data temp = paytmVerification.getData();
+                        DMTService.processOTPbcSenderVerified(
+                                temp.getUsername(),
+                                temp.getIcwCode(),
+                                temp.getSenderMobileNo(),
+                                otp,
+                                temp.getSourceId(),
+                                UserData.getUserData().getId()
+                        ).enqueue(new Callback<ResponseProcessOTPbcSenderVerified>() {
+                            @Override
+                            public void onResponse(Call<ResponseProcessOTPbcSenderVerified> call, Response<ResponseProcessOTPbcSenderVerified> response) {
+                                if (response.isSuccessful()) {
+                                    mListener.makeAnotherPayment();
+                                }
+                                progressBar.cancel();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseProcessOTPbcSenderVerified> call, Throwable t) {
+                                progressBar.cancel();
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                } else {
                     Toast.makeText(requireActivity(), "Please enter a valid OTP.", Toast.LENGTH_LONG).show();
                 }
+
 
                 break;
 
