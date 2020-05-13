@@ -102,7 +102,6 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         senderMobileNumber.accessEditText().setText(mobile);
         senderMobileNumber.setFocusable(false);
 
-
         beneficiaryMobileNumber = view.findViewById(R.id.beneficiary_mobile_num);
         banksListSpinner = view.findViewById(R.id.bank_list_spinner);
         banksListSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -121,14 +120,6 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
 
         // bankBranch = ((EditTextWithTitleAndThumbIcon)view.findViewById(R.id.bank_branch)).accessEditText();
         ifscCode = view.findViewById(R.id.ifsc_code);
-
-        ifscCode.accessEditText().setText("HDFC0000967");
-        confirmBankAccNumber.accessEditText().setText("50100147713545");
-        bankAccNumber.accessEditText().setText("50100147713545");
-        firstName.accessEditText().setText("Vamshee");
-        lastName.accessEditText().setText("Krishna");
-        beneficiaryMobileNumber.accessEditText().setText("8919251923");
-
         view.findViewById(R.id.reg_beneficiary).setOnClickListener(this);
         progressBar.setCancelable(false);
         progressBar.show();
@@ -153,6 +144,17 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
 //                Toast.makeText(requireActivity(), ""+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /*ifscCode.accessEditText().setText("HDFC0000967");
+        confirmBankAccNumber.accessEditText().setText("50100147713545");
+        bankAccNumber.accessEditText().setText("50100147713545");
+        firstName.accessEditText().setText("Vamshee");
+        lastName.accessEditText().setText("Krishna");
+        beneficiaryMobileNumber.setText("8919251923");*/
     }
 
     @Override
@@ -201,7 +203,6 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                             }
                             progressBar.cancel();
                         }
-
                         @Override
                         public void onFailure(Call<ResponseBeneficiaryRegistration> call, Throwable t) {
                             showDialog("", t.getMessage());
@@ -209,7 +210,6 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                         }
                     });
                 }
-
                 break;
 
         }

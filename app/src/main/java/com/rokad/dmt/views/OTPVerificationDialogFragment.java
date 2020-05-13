@@ -240,8 +240,10 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                         ).enqueue(new Callback<ResponseProcessOTPbcSenderVerified>() {
                             @Override
                             public void onResponse(Call<ResponseProcessOTPbcSenderVerified> call, Response<ResponseProcessOTPbcSenderVerified> response) {
+                                // {"status":"success","amount":4013.76,"msg":"User Wallet Balance"}
                                 if (response.isSuccessful()) {
                                     mListener.makeAnotherPayment();
+                                    dismiss();
                                 }
                                 progressBar.cancel();
                             }

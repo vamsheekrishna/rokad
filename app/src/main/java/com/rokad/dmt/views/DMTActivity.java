@@ -29,32 +29,6 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
         setContentView(R.layout.activity_root_view);
         addFragment(DMTHomeFragment.newInstance("", ""), "DMTHomeFragment", false);
     }
-
-//    @Override
-//    public DMTHomeScreenDetails getHomeScreenDetails() {
-//        return homeScreenDetails;
-//    }
-//
-//    @Override
-//    public FundTransferDetails getFundTransferDetails() {
-//        return fundTransferDetails;
-//    }
-//
-//    @Override
-//    public NewSenderRegistrationDetails getSenderRegistrationDetails() {
-//        return senderRegistrationDetails;
-//    }
-//
-//    @Override
-//    public BeneficiaryRegistrationDetails getBeneficiaryRegistrationDetails() {
-//        return beneficiaryRegistrationDetails;
-//    }
-//
-//    @Override
-//    public CommissionDetails getCommissionDetails() {
-//        return commissionDetails;
-//    }
-
     @Override
     public void goToDMTHome() {
         replaceFragment(DMTHomeFragment.newInstance("", ""), "DMTHomeFragment", false);

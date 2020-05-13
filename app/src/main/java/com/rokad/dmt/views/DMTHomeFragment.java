@@ -144,7 +144,6 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         subHeader.setText("Mobile Number");
         mobileNumber = view.findViewById(R.id.edit_text_view);
         mobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mobileNumber.setText("7416226233");
         mobileNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
         String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
         ((TextView)view.findViewById(R.id.name)).setText(usrName);

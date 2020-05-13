@@ -88,6 +88,6 @@ public class MobileRechargePlans extends BaseFragment implements OnPlanSelectedH
     @Override
     public void onClick(RechargePlans chosenSubscriber) {
         mListener.getMobileRechargeModule().setRechargeAmount(String.valueOf(chosenSubscriber.getRs()));
-        getActivity().onBackPressed();
+        requireActivity().onBackPressed();
     }
 }

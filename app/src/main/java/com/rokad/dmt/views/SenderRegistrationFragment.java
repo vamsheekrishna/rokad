@@ -146,13 +146,12 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                                 } else {
                                     String text = response.body().getMsg();
                                     //String text1 = response.body().getError();
-                                    progressBar.cancel();
                                     showDialog("", text + " ");
                                 }
                             } else {
-                                progressBar.cancel();
                                 showDialog("", response.message());
                             }
+                            progressBar.cancel();
                         }
                         @Override
                         public void onFailure(Call<SenderRegistrationResponsePOJO> call, Throwable t) {
