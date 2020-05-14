@@ -163,7 +163,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
         mListener.getMobileRechargeModule().setImage(operator.getImage());
         mListener.getMobileRechargeModule().setMobileOperator(operator.getName());
         mListener.getMobileRechargeModule().setRechargeAmount(data.getLastTransactionAmount());
-
+        mListener.getMobileRechargeModule().setUserID(UserData.getUserData().getId());
         mListener.goToMakePaymentFragment();
 //        Toast.makeText(getActivity(), "LastTransaction: "+data.getRechargeOn(), Toast.LENGTH_LONG).show();
     }

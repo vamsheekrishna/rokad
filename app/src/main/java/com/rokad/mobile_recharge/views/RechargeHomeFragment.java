@@ -135,16 +135,12 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         rechargeTypeGroup.setOnCheckedChangeListener(this::onCheckedChanged);
 
         if (subscriber != -1 && vhView != null){
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    recyclerView.findViewHolderForAdapterPosition(subscriber).itemView.setAlpha(1f);
-                    mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(subscriber).getKey());
-                    mListener.getMobileRechargeModule().setImage(subscriberModules.get(subscriber).getImage());
-                }
+            new Handler().postDelayed(() -> {
+                Objects.requireNonNull(recyclerView.findViewHolderForAdapterPosition(subscriber)).itemView.setAlpha(1f);
+                mListener.getMobileRechargeModule().setPreOperator(subscriberModules.get(subscriber).getKey());
+                mListener.getMobileRechargeModule().setImage(subscriberModules.get(subscriber).getImage());
             },100);
         }
-
         return view;
     }
 
@@ -217,7 +213,6 @@ public class RechargeHomeFragment extends BaseFragment implements View.OnClickLi
         seePlans = view.findViewById(R.id.see_plans);
         seePlans.setOnClickListener(this);
         mobileRechargeNum = view.findViewById(R.id.mobile_recharge_num);
-        mobileRechargeNum.setText(BuildConfig.USERNAME);
         rechargeAmount = view.findViewById(R.id.recharge_amount);
     }
 

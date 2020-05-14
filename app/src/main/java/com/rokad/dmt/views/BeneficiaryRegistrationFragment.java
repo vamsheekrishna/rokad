@@ -3,26 +3,23 @@ package com.rokad.dmt.views;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatSpinner;
-
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
+
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
-import com.rokad.dmt.pojos.BeneficiaryRegistrationResponsePOJO;
 import com.rokad.dmt.pojos.ResponseBeneficiaryRegistration;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.rokad_api.RetrofitClientInstance;
@@ -200,7 +197,9 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
 
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).beneficiaryRegistration(senderData.getSenderMobileNo(), senderData.getSenderId(), _firstName,
                             _lastName, _beneficiaryMobileNumber, selectedBank.getBankId(),_bankAccNumber, _confirmBankAccNumber,_ifscCode,"ByIfsc"
-                    ,"N", senderData.getSessionId(), UserData.getUserData().getId()).enqueue(new Callback<ResponseBeneficiaryRegistration>() {
+                    ,"N", senderData.getSessionId(), UserData.getUserData().getId(),
+                            BuildConfig.MOBILE_APPLICATION,
+                            BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<ResponseBeneficiaryRegistration>() {
                         @Override
                         public void onResponse(Call<ResponseBeneficiaryRegistration> call, Response<ResponseBeneficiaryRegistration> response) {
                             if(response.isSuccessful() && response.body().getStatus().equalsIgnoreCase("Success")) {

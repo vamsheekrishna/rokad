@@ -2,6 +2,7 @@ package com.rokad.mobile_recharge.models;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
+import com.rokad.authentication.UserData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,8 +46,8 @@ public class MobileRecharge {
         prepaidSubscriberMap.put("TI", prepaidSubscriberList.get(7));
         this.prepaidSubscriberList.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI",""));
         prepaidSubscriberMap.put("AI", prepaidSubscriberList.get(8));
+        userID = UserData.getUserData().getId();
     }
-
 
     public ArrayList<SubscriberModule> getPrepaidSubscriberList() {
         this.prepaidSubscriberList = new ArrayList<>();
@@ -69,6 +70,7 @@ public class MobileRecharge {
         prepaidSubscriberMap.put("TI", prepaidSubscriberList.get(7));
         this.prepaidSubscriberList.add(new SubscriberModule(8,R.drawable.aircel,"Aircel", "AI",""));
         prepaidSubscriberMap.put("AI", prepaidSubscriberList.get(8));
+
         return prepaidSubscriberList;
     }
 

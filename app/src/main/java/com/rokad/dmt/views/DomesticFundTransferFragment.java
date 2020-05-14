@@ -20,6 +20,7 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
@@ -106,7 +107,11 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         super.onResume();
 
         progressBar.show();
-        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(senderData.getSenderData().getSenderMobileNo(), UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
+        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
+                senderData.getSenderData().getSenderMobileNo(),
+                UserData.getUserData().getId(),
+                BuildConfig.MOBILE_APPLICATION,
+                BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
             @Override
             public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                 if (response.isSuccessful()) {
@@ -275,7 +280,9 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                             senderData.getSenderData().getSenderId(),
                             senderData.getSelectedBeneficiary().getBeneficiaryId(),
                             amount,
-                            UserData.getInstance().getId()
+                            UserData.getInstance().getId(),
+                            BuildConfig.MOBILE_APPLICATION,
+                            BuildConfig.MOBILE_VERSION_ID
                     ).enqueue(new Callback<FundTransferResponsePOJO>() {
                         @Override
                         public void onResponse(Call<FundTransferResponsePOJO> call, Response<FundTransferResponsePOJO> response) {

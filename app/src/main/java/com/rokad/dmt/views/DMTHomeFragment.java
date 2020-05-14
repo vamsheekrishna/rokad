@@ -168,7 +168,10 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 } else {
                     // mListener.goToDomesticFundTransfer();
                     progressBar.show();
-                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(mobile, UserData.getUserData().getId()).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
+                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
+                            mobile, UserData.getUserData().getId(),
+                            BuildConfig.MOBILE_APPLICATION,
+                            BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
                         @Override
                         public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                             if (response.isSuccessful()) {

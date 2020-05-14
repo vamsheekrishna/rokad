@@ -22,7 +22,9 @@ public interface DMTModuleService {
     @FormUrlEncoded
     Call<BeneficiaryListResponsePOJO> getBeneficiaryLis(
             @Field("CustomerMobileNo") String mobileNumber,
-            @Field("Userid") String userID
+            @Field("Userid") String userID,
+            @Field("mobileapp") String mobileapp,
+            @Field("mobileversionid") String mobileversionid
     );
 
 
@@ -55,7 +57,9 @@ public interface DMTModuleService {
                                                             @Field("FirstName") String customerFirstName,
                                                             @Field("LastName") String lastName,
                                                             @Field("state") String state,
-                                                            @Field("user_id") String userId);
+                                                            @Field("user_id") String userId,
+                                                            @Field("mobileapp") String mobileapp,
+                                                            @Field("mobileversionid") String mobileversionid);
 
 
     @POST(BuildConfig.BENEFICIARY_REGISTRATION)
@@ -74,7 +78,9 @@ public interface DMTModuleService {
                                                                   @Field("beneficiaryCheck") String beneficiaryCheck,
                                                                   // @Field("processingBankId ") String processingBankId,
                                                                   @Field("unique_session_id") String sessionId,
-                                                                  @Field("user_id") String userId);
+                                                                  @Field("user_id") String userId,
+                                                                  @Field("mobileapp") String mobileapp,
+                                                                  @Field("mobileversionid") String mobileversionid);
 
 
     @POST(BuildConfig.FUND_TRANSFER)   // TODO: FAULTY API ==> Check with team
@@ -85,7 +91,9 @@ public interface DMTModuleService {
             @Field("senderId") String senderId,
             @Field("listBen") String listBen,
             @Field("amount") int amount,
-            @Field("user_id") String user_id
+            @Field("user_id") String user_id,
+            @Field("mobileapp") String mobileapp,
+            @Field("mobileversionid") String mobileversionid
     );
 
 
@@ -103,7 +111,9 @@ public interface DMTModuleService {
                                                   @Field("lname") String lastName,
                                                   @Field("otp") String otp,
                                                   @Field("registrationId") String regID,
-                                                  @Field("paytmUserState") String paytmUserSate);
+                                                  @Field("paytmUserState") String paytmUserSate,
+                                                  @Field("mobileapp") String mobileapp,
+                                                  @Field("mobileversionid") String mobileversionid);
 
 
     @POST(BuildConfig.RESEND_OTP)
@@ -139,6 +149,8 @@ public interface DMTModuleService {
             @Field("mob_no") String mob_no,
             @Field("otp") String otp,
             @Field("sourceId") String sourceId,
-            @Field("user_id") String user_id
+            @Field("user_id") String user_id,
+            @Field("mobileapp") String mobileapp,
+            @Field("mobileversionid") String mobileversionid
     );
 }

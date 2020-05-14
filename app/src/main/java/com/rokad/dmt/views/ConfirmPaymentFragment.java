@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
@@ -103,7 +104,9 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
 
         RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
                 transferData.getSenderMobileNo(),
-                UserData.getUserData().getId()
+                UserData.getUserData().getId(),
+                BuildConfig.MOBILE_APPLICATION,
+                BuildConfig.MOBILE_VERSION_ID
         ).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
             @Override
             public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {

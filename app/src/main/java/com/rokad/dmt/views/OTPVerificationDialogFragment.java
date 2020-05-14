@@ -208,7 +208,9 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
                     if (null != senderObject) {
                         DMTService.OTPValidation(UserData.getUserData().getId(), senderObject.getSessionId(), senderObject.getMobileNo(), senderObject.getFirstName(),
-                                senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState()).enqueue(new Callback<OTPValidationResponsePOJO>() {
+                                senderObject.getLastName(), otp, senderObject.getRegistrationId(), senderObject.getPaytmUserState(),
+                                BuildConfig.MOBILE_APPLICATION,
+                                BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<OTPValidationResponsePOJO>() {
                             @Override
                             public void onResponse(Call<OTPValidationResponsePOJO> call, Response<OTPValidationResponsePOJO> response) {
                                 if (response.isSuccessful()) {
@@ -236,7 +238,9 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                                 temp.getSenderMobileNo(),
                                 otp,
                                 temp.getSourceId(),
-                                UserData.getUserData().getId()
+                                UserData.getUserData().getId(),
+                                BuildConfig.MOBILE_APPLICATION,
+                                BuildConfig.MOBILE_VERSION_ID
                         ).enqueue(new Callback<ResponseProcessOTPbcSenderVerified>() {
                             @Override
                             public void onResponse(Call<ResponseProcessOTPbcSenderVerified> call, Response<ResponseProcessOTPbcSenderVerified> response) {

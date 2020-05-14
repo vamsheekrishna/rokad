@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
@@ -135,7 +136,9 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 } else {
                     progressBar.show();
                     String code=stateDetails.get(STATE_CODE);
-                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId()).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
+                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId(),
+                            BuildConfig.MOBILE_APPLICATION,
+                            BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
                         @Override
                         public void onResponse(Call<SenderRegistrationResponsePOJO> call, Response<SenderRegistrationResponsePOJO> response) {
                             if (response.isSuccessful()) {
