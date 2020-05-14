@@ -11,25 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dmt.views.DMTActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+        <activity android:name=".dmt.views.DMTActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+
         <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:name=".mobile_recharge.views.MobileRechargeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".utilities.views.BaseActivity" />
+
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".authentication.LoginActivity">
-        </activity>
+
+        <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:name=".home.HomeActivity" />
+        <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:name=".authentication.LoginActivity"/>
     </application>
 
 </manifest>

@@ -96,30 +96,6 @@ android {
             buildConfigField("String", "RECHARGE", '"rest_server/Tsoapi/recharge/"')
             buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
             buildConfigField("String", "HISTORY", '"rest_server/Tsoapi/last_transactions_prepaid/"')
-
-            // DMT Service
-            buildConfigField("String", "BENEFICIARY_LIST", '"rest_server/Domestic_transfer/list_beneficiary"')
-            // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/process_transaction_new
-            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer/process_transaction_new"')
-            // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/sender_register
-            buildConfigField("String", "SENDER_REGISTRATION", '"rest_server/Domestic_transfer/sender_register"')
-            // https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/fund_transfer
-            buildConfigField("String", "FUND_TRANSFER", '"rest_server/Domestic_transfer/fund_transfer"')
-//            https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/bank_list
-            buildConfigField("String", "BANK_LIST", '"rest_server/Domestic_transfer/bank_list"')
-//            https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/validate_otp
-            buildConfigField("String", "OTP_VERIFICATION", '"rest_server/Domestic_transfer/validate_otp"')
-//            https://testingrokad.msrtcors.com/rest_server/Domestic_transfer/resend_otp
-            buildConfigField("String", "RESEND_OTP", '"rest_server/Domestic_transfer/resend_otp"')
-
-//            //DMT Module APIs
-//            buildConfigField("String", "SENDER_REGISTRATION", '"rest_server/Domestic_transfer/sender_register"')
-//            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer/beneficiary_register"')
-//            buildConfigField("String", "BENEFICIARY_LIST",'"rest_server/Domestic_transfer/list_beneficiary"')
-            buildConfigField("String", "PROCESS_NEW_TRANSACTION", '"rest_server/Domestic_transfer/process_transaction_new"')
-//            buildConfigField("String", "FUND_TRANSFER", '"rest_server/Domestic_transfer/fund_transfer"')
-
-
         }
     }
     buildTypes {
