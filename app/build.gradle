@@ -87,20 +87,18 @@ android {
             buildConfigField("String", "RECHARGE", '"rest_server/Tsoapi/recharge/"')
             buildConfigField("String", "GET_PLANS", '"rest_server/mplan/getDataPlans"')
             buildConfigField("String", "HISTORY", '"rest_server/Tsoapi/last_transactions_prepaid/"')
-
-
             // DMT Service
-            buildConfigField("String", "BENEFICIARY_LIST", '"rest_server/Domestic_transfer/list_beneficiary"')
-            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer/beneficiary_register"')
-            buildConfigField("String", "SENDER_REGISTRATION", '"rest_server/Domestic_transfer/sender_register"')
-            buildConfigField("String", "FUND_TRANSFER", '"rest_server/Domestic_transfer/fund_transfer"')
-            buildConfigField("String", "BANK_LIST", '"rest_server/Domestic_transfer/bank_list"')
-            buildConfigField("String", "OTP_VERIFICATION", '"rest_server/Domestic_transfer/validate_otp"')
-            buildConfigField("String", "RESEND_OTP", '"rest_server/Domestic_transfer/resend_otp"')
-            buildConfigField("String", "PROCESS_NEW_TRANSACTION", '"rest_server/Domestic_transfer/process_transaction_new"')
-            buildConfigField("String", "PAYTM_VERIFICATION_REQUEST", '"rest_server/Domestic_transfer/paytm_verification_request"')
-            buildConfigField("String", "RESEND_BCSENDER_VERIFICATION", '"rest_server/Domestic_transfer/resend_bcsenderverified"')
-            buildConfigField("String", "PROCESS_OTP_BC_SENDER_VERIFICATION", '"rest_server/Domestic_transfer/process_otp_bcsenderverified"')
+            buildConfigField("String", "BENEFICIARY_LIST", '"rest_server/Domestic_transfer_api/list_beneficiary"')
+            buildConfigField("String", "BENEFICIARY_REGISTRATION", '"rest_server/Domestic_transfer_api/beneficiary_register"')
+            buildConfigField("String", "SENDER_REGISTRATION", '"rest_server/Domestic_transfer_api/sender_register"')
+            buildConfigField("String", "FUND_TRANSFER", '"rest_server/Domestic_transfer_api/fund_transfer"')
+            buildConfigField("String", "BANK_LIST", '"rest_server/Domestic_transfer_api/bank_list"')
+            buildConfigField("String", "OTP_VERIFICATION", '"rest_server/Domestic_transfer_api/validate_otp"')
+            buildConfigField("String", "RESEND_OTP", '"rest_server/Domestic_transfer_api/resend_otp"')
+            buildConfigField("String", "PROCESS_NEW_TRANSACTION", '"rest_server/Domestic_transfer_api/process_transaction_new"')
+            buildConfigField("String", "PAYTM_VERIFICATION_REQUEST", '"rest_server/Domestic_transfer_api/paytm_verification_request"')
+            buildConfigField("String", "RESEND_BCSENDER_VERIFICATION", '"rest_server/Domestic_transfer_api/resend_bcsenderverified"')
+            buildConfigField("String", "PROCESS_OTP_BC_SENDER_VERIFICATION", '"rest_server/Domestic_transfer_api/process_otp_bcsenderverified"')
 
 
         }

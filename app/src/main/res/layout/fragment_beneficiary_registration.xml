@@ -109,6 +109,7 @@
             app:image="@drawable/ifsc"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:visibility="gone"
             android:layout_marginTop="@dimen/row_element_top_padding"
             android:orientation="vertical"
             android:layout_width="match_parent"

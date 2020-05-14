@@ -58,6 +58,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/transfer_limit"

@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
@@ -27,7 +26,6 @@ import com.rokad.authentication.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
-import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.dmt.viewmodels.SenderData;
@@ -277,7 +275,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                         beneficiariesSpinner.getSelectedItem().equals("Please select a Beneficiary.")) {
                     showDialog("Sorry!!", "Please select a Beneficiary.");
                 } else if (amount < 100 || amount > 25000) {
-                    showDialog("Sorry!!", "Please enter the amount between of 100/- and 25000/- to Transfer.");
+                    showDialog("Sorry!!", getString(R.string.minimum_amount_alert));
                 } else {
                     progressBar.show();
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).fundTransfer(

@@ -89,7 +89,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         super.onResume();
         requireActivity().setTitle("Services Home");
 
-        updateWalletBalance();
+        //updateWalletBalance();
         String walletBalance = UserData.getInstance().getWalletBalance();
 
         if (walletBalance != null)
@@ -148,6 +148,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
         ((TextView)view.findViewById(R.id.name)).setText(usrName);
         mBalance = view.findViewById(R.id.balance);
+        view.findViewById(R.id.addMoneyRoot).setVisibility(View.GONE);
+        view.findViewById(R.id.addMoneytext).setVisibility(View.GONE);
     }
 
     @Override
