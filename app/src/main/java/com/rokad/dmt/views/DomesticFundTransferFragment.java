@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -121,8 +122,13 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                     } else {
                         senderData.setSenderData(_beneficiaryListResponsePOJO.getData());
                         List<Beneficiary> list = senderData.getSenderData().getBeneficiaries().getBeneficiary();
-                        if(null != list) {
+                        if(null != list && list.size() > 0) {
                             beneficiariesSpinner.setAdapter(new BeneficiaryAdapter(senderData.getSenderData().getBeneficiaries().getBeneficiary()));
+                        } else {
+                            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                                    R.array.beneficiary_default_spinner_item, android.R.layout.simple_spinner_item);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            beneficiariesSpinner.setAdapter(adapter);
                         }
                     }
                 } else {
@@ -270,8 +276,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                 } else if (beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
                         beneficiariesSpinner.getSelectedItem().equals("Please select a Beneficiary.")) {
                     showDialog("Sorry!!", "Please select a Beneficiary.");
-                } else if (amount < 10) {
-                    showDialog("Sorry!!", "Please enter the minimum of 10/- to Transfer.");
+                } else if (amount < 100 || amount > 25000) {
+                    showDialog("Sorry!!", "Please enter the amount between of 100/- and 25000/- to Transfer.");
                 } else {
                     progressBar.show();
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).fundTransfer(
