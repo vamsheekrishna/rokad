@@ -41,7 +41,7 @@
                 android:textColor="@color/success"
                 android:textStyle="bold|normal"
                 android:fontFamily="@font/roboto_bold"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:layout_margin="26dp"
                 android:textAllCaps="true"
                 android:gravity="center_horizontal"/>

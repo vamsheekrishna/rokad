@@ -47,16 +47,13 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private BeneficiaryListResponsePOJO mBeneficiaryListResponsePOJO;
     private String mParam2;
     private OnDMTInteractionListener mListener;
     private EditTextWithTitleAndThumbIcon transferAmount;
     private AppCompatSpinner beneficiariesSpinner;
     private TextWithTitleAndThumbIcon senderName, senderMobileNumber, senderRegID;
-    private RadioGroup transferTypeGroup;
     private RadioButton transferType;
-    SenderData senderData;
+    private SenderData senderData;
     private ProgressDialog progressBar;
 
     public DomesticFundTransferFragment() {
@@ -85,7 +82,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mBeneficiaryListResponsePOJO = (BeneficiaryListResponsePOJO) getArguments().getSerializable(ARG_PARAM1);
+            // TODO: Rename and change types of parameters
+            BeneficiaryListResponsePOJO mBeneficiaryListResponsePOJO = (BeneficiaryListResponsePOJO) getArguments().getSerializable(ARG_PARAM1);
             Data sender = mBeneficiaryListResponsePOJO.getData();
             senderData.setSenderData(sender);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -189,7 +187,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         senderRegID = view.findViewById(R.id.sender_reg_id);
         senderRegID.accessEditText().setFocusable(false);
 
-        transferTypeGroup = view.findViewById(R.id.transfer_type);
+        RadioGroup transferTypeGroup = view.findViewById(R.id.transfer_type);
 
         transferAmount = view.findViewById(R.id.transfer_amt);
         transferAmount.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);

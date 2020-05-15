@@ -40,12 +40,12 @@ public class Beneficiary implements Serializable {
     @SerializedName("verified")
     @Expose
     private String verified;
-    @SerializedName("verifiedDate")
+    /*@SerializedName("verifiedDate")
     @Expose
     private List<Object> verifiedDate = null;
     @SerializedName("verifiedName")
     @Expose
-    private List<Object> verifiedName = null;
+    private List<Object> verifiedName = null;*/
 
     private String selectedType;
 
@@ -137,7 +137,7 @@ public class Beneficiary implements Serializable {
         this.verified = verified;
     }
 
-    public List<Object> getVerifiedDate() {
+    /*public List<Object> getVerifiedDate() {
         return verifiedDate;
     }
 
@@ -151,5 +151,5 @@ public class Beneficiary implements Serializable {
 
     public void setVerifiedName(List<Object> verifiedName) {
         this.verifiedName = verifiedName;
-    }
+    }*/
 }
