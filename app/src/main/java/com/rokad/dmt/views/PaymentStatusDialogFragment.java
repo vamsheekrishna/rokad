@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ public class PaymentStatusDialogFragment extends DialogFragment implements View.
     NewTransactionProcessResponsePOJO transaction;
     private AppCompatTextView senderName, senderMobileNum, receiverName, receiverMobileNum, transferAmt, processingFee, netTransferAmt, statusText;
     private AppCompatImageView statusImg;
+    private Button repeatPaymentBTN;
 
     public static PaymentStatusDialogFragment newInstance(boolean isSuccess, NewTransactionProcessResponsePOJO transaction) {
 
@@ -59,7 +61,8 @@ public class PaymentStatusDialogFragment extends DialogFragment implements View.
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.home_btn).setOnClickListener(this);
-        view.findViewById(R.id.repeat_payment_btn).setOnClickListener(this);
+        repeatPaymentBTN = view.findViewById(R.id.repeat_payment_btn);
+        repeatPaymentBTN.setOnClickListener(this);
 
         senderName = view.findViewById(R.id.sender_name);
         senderMobileNum = view.findViewById(R.id.sender_mobile_num);
@@ -84,12 +87,15 @@ public class PaymentStatusDialogFragment extends DialogFragment implements View.
         netTransferAmt.setText(transaction.getData().getNetAmount());
         statusText.setText(transaction.getData().getResponseDesc());
         if(transaction.getData().getResponseCode().equalsIgnoreCase("Y")) {
+            repeatPaymentBTN.setText(getString(R.string.do_another));
             statusText.setTextColor(getResources().getColor(R.color.success));
             statusImg.setImageDrawable(getResources().getDrawable(R.drawable.success));
         } else if(transaction.getData().getResponseCode().equalsIgnoreCase("N")) {
+            repeatPaymentBTN.setText(getString(R.string.try_again));
             statusText.setTextColor(getResources().getColor(R.color.fail));
             statusImg.setImageDrawable(getResources().getDrawable(R.drawable.fail));
         } else if(transaction.getData().getResponseCode().equalsIgnoreCase("P")) {
+            repeatPaymentBTN.setText(getString(R.string.do_another));
             statusText.setTextColor(getResources().getColor(R.color.gray));
             statusImg.setImageDrawable(getResources().getDrawable(R.drawable.bank));
         }

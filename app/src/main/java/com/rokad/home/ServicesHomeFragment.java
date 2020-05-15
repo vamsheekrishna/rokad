@@ -26,6 +26,7 @@ import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -72,6 +73,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
     }
 
     private void updateWalletBalance() {
+        progressBar.show();
         AuthenticationService authenticationService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
         Call<ResponseWalletBalance> apiResponse = authenticationService.getWalletBalance(UserData.getInstance().getId());
         apiResponse.enqueue(new Callback<ResponseWalletBalance>() {
@@ -92,13 +94,17 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
                 } catch (Exception e) {
                     showDialog("Sorry..!!", getString(R.string.server_failed_case));
                 }
-
+                progressBar.cancel();
             }
 
             @Override
             public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
-
-                showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                }
+                progressBar.cancel();
             }
         });
     }

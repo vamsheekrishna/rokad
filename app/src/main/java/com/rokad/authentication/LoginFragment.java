@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
@@ -27,6 +28,7 @@ import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.Objects;
 
@@ -174,9 +176,15 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onFailure(Call<ResponseUser> call, Throwable t) {
-                        Log.d("onFailure", "onFailure: Login Fragment ");
+                        // Log.d("onFailure", "onFailure: Login Fragment ");
                         progressBar.dismiss();
-                        showDialog("Sorry..", getString(R.string.internet_failed_login_case));
+                        if(t instanceof SocketTimeoutException){
+                            showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                        } else {
+                            showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        // showDialog("Sorry..", getString(R.string.internet_failed_login_case));
                     }
                 });
 

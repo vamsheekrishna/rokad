@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,8 @@ import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.views.BaseFragment;
+
+import java.net.SocketTimeoutException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -149,7 +152,13 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
 
                         @Override
                         public void onFailure(Call<NewTransactionProcessResponsePOJO> call, Throwable t) {
-                            showDialog("", t.getMessage());
+                            // showDialog("", t.getMessage());
+                            if(t instanceof SocketTimeoutException){
+                                showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                            } else {
+                                showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
                             progressBar.cancel();
                         }
                     });
@@ -160,7 +169,13 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
 
             @Override
             public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
-
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                progressBar.cancel();
             }
         });
     }

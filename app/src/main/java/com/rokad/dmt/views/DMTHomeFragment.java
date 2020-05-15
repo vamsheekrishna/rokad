@@ -33,6 +33,7 @@ import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -87,11 +88,9 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        requireActivity().setTitle("Services Home");
-
-        //updateWalletBalance();
+        requireActivity().setTitle(getString(R.string.transfer_fund));
+        updateWalletBalance();
         String walletBalance = UserData.getInstance().getWalletBalance();
-
         if (walletBalance != null)
             mBalance .setText(walletBalance);
         else
@@ -99,6 +98,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void updateWalletBalance() {
+        progressBar.show();
         AuthenticationService authenticationService = RetrofitClientInstance.getRetrofitInstance().create(AuthenticationService.class);
         Call<ResponseWalletBalance> apiResponse = authenticationService.getWalletBalance(UserData.getInstance().getId());
         apiResponse.enqueue(new Callback<ResponseWalletBalance>() {
@@ -117,11 +117,19 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 } catch (Exception e) {
                     showDialog("Sorry..!!", getString(R.string.server_failed_case));
                 }
+                progressBar.cancel();
             }
 
             @Override
             public void onFailure(Call<ResponseWalletBalance> call, Throwable t) {
-                showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                progressBar.cancel();
+                // showDialog("Sorry..!!", getString(R.string.server_failed_case));
 //                Log.e("===D"," errorrr");
             }
         });
@@ -148,8 +156,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
         ((TextView)view.findViewById(R.id.name)).setText(usrName);
         mBalance = view.findViewById(R.id.balance);
-        view.findViewById(R.id.addMoneyRoot).setVisibility(View.GONE);
-        view.findViewById(R.id.addMoneytext).setVisibility(View.GONE);
+//        view.findViewById(R.id.addMoneyRoot).setVisibility(View.GONE);
+//        view.findViewById(R.id.addMoneytext).setVisibility(View.GONE);
     }
 
     @Override
@@ -204,7 +212,13 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
 
                                             @Override
                                             public void onFailure(Call<PaytmVerificationRequest> call, Throwable t) {
-
+                                                if(t instanceof SocketTimeoutException){
+                                                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                                                } else {
+                                                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                                }
+                                                progressBar.cancel();
                                             }
                                         });
                                         mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
@@ -222,8 +236,14 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
 
                         @Override
                         public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
-                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
-                            Log.d("Failure", "Failure: "+t.getMessage());
+                            if(t instanceof SocketTimeoutException){
+                                showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                            } else {
+                                showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                            // Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            // Log.d("Failure", "Failure: "+t.getMessage());
                             progressBar.cancel();
                         }
                     });

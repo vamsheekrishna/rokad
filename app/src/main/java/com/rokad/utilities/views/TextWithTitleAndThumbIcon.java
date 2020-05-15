@@ -6,36 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.rokad.R;
 
-public class EditTextWithTitleAndThumbIcon extends LinearLayout {
-    private AppCompatEditText appCompatEditText;
+public class TextWithTitleAndThumbIcon extends LinearLayout {
+    private AppCompatTextView appCompatText;
     private AppCompatTextView subHeaderTextView;
 
-    public EditTextWithTitleAndThumbIcon(Context context) {
+    public TextWithTitleAndThumbIcon(Context context) {
         super(context);
         initView(null);
     }
 
-    public EditTextWithTitleAndThumbIcon(Context context, @Nullable AttributeSet attrs) {
+    public TextWithTitleAndThumbIcon(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(attrs);
     }
 
-    public EditTextWithTitleAndThumbIcon(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TextWithTitleAndThumbIcon(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(attrs);
     }
 
     private void initView(AttributeSet attrs) {
-        View view = inflate(getContext(), R.layout.custom_edit_text_left_icon, this);
+        View view = inflate(getContext(), R.layout.custom_text_left_icon, this);
         if(null != attrs) {
             TypedArray styledAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.EditTextWithTitleAndThumbIcon);
             if(null != styledAttributes) {
@@ -52,8 +49,8 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
                     int width = img.getIntrinsicWidth();
                     int height = img.getIntrinsicHeight();
                     img.setBounds(0, 0, width, height);
-                    appCompatEditText = view.findViewById(R.id.edit_text_view);
-                    appCompatEditText.setCompoundDrawables(img, null, null, null);
+                    appCompatText = view.findViewById(R.id.edit_text_view);
+                    appCompatText.setCompoundDrawables(img, null, null, null);
                 } catch (Exception e) {
 
                 }
@@ -64,7 +61,7 @@ public class EditTextWithTitleAndThumbIcon extends LinearLayout {
     public AppCompatTextView accessSubHeaderTextView(){
         return subHeaderTextView;
     }
-    public AppCompatEditText accessEditText(){
-        return appCompatEditText;
+    public AppCompatTextView accessEditText(){
+        return appCompatText;
     }
 }

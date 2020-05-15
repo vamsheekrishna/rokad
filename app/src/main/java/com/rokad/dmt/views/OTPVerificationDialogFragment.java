@@ -33,6 +33,7 @@ import com.rokad.rokad_api.endpoints.ResponseProcessOTPbcSenderVerified;
 import com.rokad.rokad_api.endpoints.ResponseResendBCSenderVerified;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
+import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -161,8 +162,14 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
                         }
                         @Override
                         public void onFailure(Call<ResendOTPResponsePOJO> call, Throwable t) {
+                            if(t instanceof SocketTimeoutException){
+                                Toast.makeText(requireActivity(),getString(R.string.time_out_msg), Toast.LENGTH_LONG).show();
+                            } else {
+                                // showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
                             progressBar.cancel();
-                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            // Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
@@ -194,8 +201,13 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
                         @Override
                         public void onFailure(Call<ResponseResendBCSenderVerified> call, Throwable t) {
+                            if(t instanceof SocketTimeoutException){
+                                Toast.makeText(requireActivity(),getString(R.string.time_out_msg), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
                             progressBar.cancel();
-                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            // Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -226,8 +238,13 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
                             @Override
                             public void onFailure(Call<OTPValidationResponsePOJO> call, Throwable t) {
+                                if(t instanceof SocketTimeoutException){
+                                    Toast.makeText(requireActivity(),getString(R.string.time_out_msg), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
                                 progressBar.cancel();
-                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                // Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
                     } else if (null != paytmVerification){
@@ -254,8 +271,13 @@ public class OTPVerificationDialogFragment extends DialogFragment implements Vie
 
                             @Override
                             public void onFailure(Call<ResponseProcessOTPbcSenderVerified> call, Throwable t) {
+                                if(t instanceof SocketTimeoutException){
+                                    Toast.makeText(requireActivity(),getString(R.string.time_out_msg), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
                                 progressBar.cancel();
-                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                // Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }

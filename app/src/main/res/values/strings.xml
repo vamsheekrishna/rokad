@@ -104,6 +104,9 @@
     <string name="bank_name">Bank Name</string>
     <string name="payment_successful">PAYMENT SUCCESSFUL</string>
     <string name="minimum_amount_alert">Please enter the amount between 100 and 25000.</string>
+    <string name="time_out_title">Time out error</string>
+    <string name="time_out_msg">Check your network connection and try again.</string>
+    <string name="domestic_fund_transfer">Domestic Fund transfer</string>
 
 
 </resources>

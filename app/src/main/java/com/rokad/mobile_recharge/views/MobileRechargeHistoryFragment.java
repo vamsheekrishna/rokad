@@ -26,6 +26,7 @@ import com.rokad.rokad_api.endpoints.pojos.LastTransaction;
 import com.rokad.rokad_api.endpoints.pojos.ResponseGetHistory;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -117,6 +118,12 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
 //                progressBar.dismiss();
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 recyclerView.setVisibility(View.GONE);
                 emptyView.setText("Please try again later.");
                 emptyView.setVisibility(View.VISIBLE);

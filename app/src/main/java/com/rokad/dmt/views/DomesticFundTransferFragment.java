@@ -34,7 +34,9 @@ import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
+import com.rokad.utilities.views.TextWithTitleAndThumbIcon;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,9 +51,9 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private BeneficiaryListResponsePOJO mBeneficiaryListResponsePOJO;
     private String mParam2;
     private OnDMTInteractionListener mListener;
-    private EditTextWithTitleAndThumbIcon senderName, transferLimit, transferAmount;
+    private EditTextWithTitleAndThumbIcon transferAmount;
     private AppCompatSpinner beneficiariesSpinner;
-    private EditTextWithTitleAndThumbIcon senderMobileNumber, senderRegID;
+    private TextWithTitleAndThumbIcon senderName, senderMobileNumber, senderRegID;
     private RadioGroup transferTypeGroup;
     private RadioButton transferType;
     SenderData senderData;
@@ -94,7 +96,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        requireActivity().setTitle("Transfer Money");
+        requireActivity().setTitle(getString(R.string.domestic_fund_transfer));
         progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
         progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progressBar.setCancelable(false);
@@ -137,24 +139,28 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 
             @Override
             public void onFailure(Call<BeneficiaryListResponsePOJO> call, Throwable t) {
-                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
-                Log.d("Failure", "Failure: " + t.getMessage());
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 progressBar.cancel();
             }
         });
 
         senderRegID.accessEditText().setText(senderData.getSenderData().getSenderId());
-        transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimit());
+        // transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimit());
         senderMobileNumber.accessEditText().setText(senderData.getSenderData().getSenderMobileNo());
         senderName.accessEditText().setText(senderData.getSenderData().getSenderName());
 
-        if (senderData.getTransferMode().equals("NEFT")) {
+        /*if (senderData.getTransferMode().equals("NEFT")) {
             transferLimit.accessSubHeaderTextView().setText("Sender NEFT Transfer Limit");
             transferLimit.accessEditText().setText(senderData.getSenderData().getNeftLimitRs() + "");
         } else {
             transferLimit.accessSubHeaderTextView().setText("Sender IMPS Transfer Limit");
             transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimitRs() + "");
-        }
+        }*/
     }
 
     @Override
@@ -177,8 +183,8 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 
         senderName.accessEditText().setOnFocusChangeListener(this);
 
-        transferLimit = view.findViewById(R.id.transfer_limit);
-        transferLimit.accessEditText().setFocusable(false);
+        // transferLimit = view.findViewById(R.id.transfer_limit);
+        // transferLimit.accessEditText().setFocusable(false);
 
         senderRegID = view.findViewById(R.id.sender_reg_id);
         senderRegID.accessEditText().setFocusable(false);
@@ -192,13 +198,13 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         transferTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
             transferType = view.findViewById(checkedId);
             senderData.setTransferMode(transferType.getText().toString());
-            if (senderData.getTransferMode().equals("NEFT")) {
+            /*if (senderData.getTransferMode().equals("NEFT")) {
                 transferLimit.accessSubHeaderTextView().setText("Sender NEFT Transfer Limit");
                 transferLimit.accessEditText().setText(senderData.getSenderData().getNeftLimitRs() + "");
             } else {
                 transferLimit.accessSubHeaderTextView().setText("Sender IMPS Transfer Limit");
                 transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimitRs() + "");
-            }
+            }*/
         });
 
         beneficiariesSpinner = view.findViewById(R.id.spinner_view);
@@ -305,7 +311,12 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
 
                         @Override
                         public void onFailure(Call<FundTransferResponsePOJO> call, Throwable t) {
-                            showDialog("", t.getMessage());
+                            if(t instanceof SocketTimeoutException){
+                                showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                            } else {
+                                showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
                             progressBar.cancel();
                         }
                     });

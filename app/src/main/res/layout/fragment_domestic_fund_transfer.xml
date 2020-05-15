@@ -66,21 +66,21 @@
             app:image="@drawable/impslimit"/>
 
 
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+        <com.rokad.utilities.views.TextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mobile_number"
             app:title="@string/sender_mobile"
             app:image="@drawable/indiaflag"/>
 
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+        <com.rokad.utilities.views.TextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/sender_name"
             app:title="@string/sender_name"
             app:image="@drawable/user_new"/>
 
-        <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+        <com.rokad.utilities.views.TextWithTitleAndThumbIcon
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/sender_reg_id"

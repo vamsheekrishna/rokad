@@ -28,6 +28,7 @@ import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,6 +145,11 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
             @Override
             public void onFailure(Call<BankListResponsePOJO> call, Throwable t) {
                 progressBar.cancel();
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("", t.getMessage());
+                }
 //                Log.d("onFailure", "onFailure: "+t.getMessage());
 //                Toast.makeText(requireActivity(), ""+t.getMessage(),Toast.LENGTH_LONG).show();
             }
@@ -211,8 +217,12 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
                         }
                         @Override
                         public void onFailure(Call<ResponseBeneficiaryRegistration> call, Throwable t) {
-                            showDialog("", t.getMessage());
                             progressBar.cancel();
+                            if(t instanceof SocketTimeoutException){
+                                showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                            } else {
+                                showDialog("", t.getMessage());
+                            }
                         }
                     });
                 }

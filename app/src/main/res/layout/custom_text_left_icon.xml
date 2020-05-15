@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/row_element_top_padding"
+    android:background="@android:color/white">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sub_header"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Sender Registered Mobile Number"
+        android:textSize="@dimen/edit_text_sub_header"
+        android:layout_marginBottom="@dimen/field_header_bottom_padding"
+        android:layout_height="wrap_content" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:gravity="left|center"
+        android:id="@+id/edit_text_view"
+        android:text="aksjdh "
+        android:paddingLeft="@dimen/thumb_icon_padding"
+        android:paddingRight="@dimen/thumb_icon_padding"
+        android:layout_width="match_parent"
+        android:textColorHighlight="#2644DC"
+        android:drawablePadding="4dp"
+        android:background="@drawable/custom_edit_text_bg"
+        android:layout_height="@dimen/field_height"
+        android:maxLines="1"
+        android:minLines="1"
+        android:singleLine="true"
+        android:drawableLeft="@drawable/indiaflag"/>
+</LinearLayout>

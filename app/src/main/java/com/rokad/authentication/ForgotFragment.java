@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.rokad.R;
@@ -21,6 +22,7 @@ import com.rokad.rokad_api.endpoints.AuthenticationService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseForgotPassword;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -100,14 +102,20 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
 
             @Override
             public void onFailure(Call<ResponseForgotPassword> call, Throwable t) {
-                Log.d("onFailure", "onFailure: ");
+                //Log.d("onFailure", "onFailure: ");
+                if(t instanceof SocketTimeoutException){
+                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                } else {
+                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 progressBar.dismiss();
             }
         });
     }
 
     private void showAlertDialog(String title, String text) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle(title.toUpperCase())
                 .setMessage(text)
                 .setCancelable(false)
