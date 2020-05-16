@@ -37,8 +37,8 @@ android {
             buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
 
 
-            buildConfigField("String","USERNAME",'"7039191834"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')
+            buildConfigField("String", "USERNAME", '"7039191834"')
+            buildConfigField("String", "PASSWORD", '"Trimax@123"')
 
             buildConfigField("String", "LOGIN", '"rest_server/rokad/login"')
             buildConfigField("String", "WALLET_BALANCE", '"rest_server/rokad/getAgentWalletBalance"')
@@ -73,8 +73,8 @@ android {
             buildConfigField("String", "MOBILE_APPLICATION", '"Y"')
             buildConfigField("String", "MOBILE_VERSION_ID", '"1.0"')
 
-            buildConfigField("String","USERNAME",'"8286506657"')
-            buildConfigField("String","PASSWORD",'"Trimax@123"')
+            buildConfigField("String", "USERNAME", '"8286506657"')
+            buildConfigField("String", "PASSWORD", '"Trimax@123"')
 
             //LOGIN/Forgot password APIS
             buildConfigField("String", "LOGIN", '"rest_server/rokad_andriod/login"')
@@ -151,3 +151,4 @@ dependencies {
 
 // Apply the Crashlytics Gradle plugin
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
