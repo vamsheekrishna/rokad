@@ -295,9 +295,9 @@
             android:minHeight="40dp"
             android:layout_below="@id/payment_card"
             android:id="@+id/home_btn"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginRight="8dp"
-            android:background="@drawable/button_bg_gray"
+            android:background="@drawable/button_round_edges"
             android:text="Home"/>
 
         <androidx.appcompat.widget.AppCompatButton
