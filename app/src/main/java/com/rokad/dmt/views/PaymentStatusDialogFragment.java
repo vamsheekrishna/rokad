@@ -24,7 +24,7 @@ import static com.rokad.mobile_recharge.views.RechargeDialogFragment.TRANSACTION
 public class PaymentStatusDialogFragment extends DialogFragment implements View.OnClickListener {
 
     private OnDMTInteractionListener mListener;
-    NewTransactionProcessResponsePOJO transaction;
+    private NewTransactionProcessResponsePOJO transaction;
     private AppCompatTextView senderName, senderMobileNum, receiverName, receiverMobileNum, transferAmt, processingFee, netTransferAmt, statusText;
     private AppCompatImageView statusImg;
     private Button repeatPaymentBTN;
@@ -118,7 +118,7 @@ public class PaymentStatusDialogFragment extends DialogFragment implements View.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_btn:
-                getActivity().finish();
+                requireActivity().finish();
                 break;
             case R.id.repeat_payment_btn:
                 mListener.makeAnotherPayment();

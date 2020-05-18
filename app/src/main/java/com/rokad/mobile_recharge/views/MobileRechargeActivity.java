@@ -1,11 +1,13 @@
 package com.rokad.mobile_recharge.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import com.rokad.R;
 import com.rokad.authentication.UserData;
+import com.rokad.dmt.views.DMTActivity;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
@@ -50,7 +52,11 @@ public class MobileRechargeActivity extends ServicesBaseActivity implements OnMo
 
     @Override
     public void makeAnotherPayment() {
-        replaceFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
+        Intent intent = new Intent(getApplicationContext(), MobileRechargeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        //replaceFragment(MobileHomeFragment.newInstance("",""),"MobileHomeFragment",false);
     }
 
     @Override

@@ -177,6 +177,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                     showDialog("", "Please enter a valid mobile number");
                 } else {
                     // mListener.goToDomesticFundTransfer();
+                    mobileNumber.setText("");
                     progressBar.show();
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
                             mobile, UserData.getUserData().getId(),

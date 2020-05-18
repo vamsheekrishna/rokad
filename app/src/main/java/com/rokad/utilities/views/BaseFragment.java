@@ -68,17 +68,22 @@ public class BaseFragment extends Fragment {
 
 
     protected void showDialog(String title, String msg) {
-        AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
-        builder.setTitle(title);
-        builder.setCancelable(false);
-        builder.setMessage(msg);
-        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        try {
+            AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
+            builder.setTitle(title);
+            builder.setCancelable(false);
+            builder.setMessage(msg);
+            builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        } catch (Exception e) {
+
+        }
+
     }
 }

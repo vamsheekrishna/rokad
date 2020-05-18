@@ -127,8 +127,10 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 String lstName = lastName.accessEditText().getText().toString();
                 String mobileNumber = senderMobileNumber.accessEditText().getText().toString();
 
-                if (!Utils.isValidWord(fstName) && !Utils.isValidWord(lstName)){
-                    showDialog("Sorry!!", "Please enter your first and last name without any spaces and special characters");
+                if (null != fstName && fstName.length()>2 && !Utils.isValidWord(fstName)){
+                    showDialog("Sorry!!", "Please enter your first name without any spaces and special characters");
+                } else if (null != fstName && fstName.length()>2 && !Utils.isValidWord(lstName)){
+                    showDialog("Sorry!!", "Please enter your last name without any spaces and special characters");
                 } else  if (!Utils.isValidMobile(mobileNumber)){
                     showDialog("Sorry!!", "Please enter your valid mobile number");
                 } else if (stateSelector.getSelectedItem().equals(getString(R.string.spinner_prompt))){

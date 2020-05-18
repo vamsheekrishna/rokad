@@ -1,5 +1,6 @@
 package com.rokad.dmt.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -14,6 +15,8 @@ import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.utilities.views.ServicesBaseActivity;
+
+import java.util.zip.Inflater;
 
 public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractionListener {
 
@@ -98,7 +101,11 @@ public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractio
 
     @Override
     public void makeAnotherPayment() {
-        goToDMTHome();
+        Intent intent = new Intent(getApplicationContext(), DMTActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        // goToDMTHome();
     }
 
 }
