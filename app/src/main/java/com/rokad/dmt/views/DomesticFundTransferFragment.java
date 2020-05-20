@@ -272,13 +272,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                 }
 
 
-                if (!Utils.isValidMobile(senderMobileNumber.accessEditText().getText().toString())) {
-                    showDialog("Sorry!!", "Please check the sender's mobile number.");
-                } else if (!Utils.isValidWord(senderName.accessEditText().getText().toString())) {
-                    showDialog("Sorry!!", "Please enter the sender's Name properly.");
-                } else if (senderRegID.accessEditText().getText().equals("")) {
-                    showDialog("Sorry!!", "Please enter sender's Registration ID.");
-                } else if (beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
+                if (beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
                         beneficiariesSpinner.getSelectedItem().equals("Please select a Beneficiary.")) {
                     showDialog("Sorry!!", "Please select a Beneficiary.");
                 } else if (amount < 100 || amount > 25000) {
