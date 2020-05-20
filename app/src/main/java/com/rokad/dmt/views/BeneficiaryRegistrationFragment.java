@@ -100,6 +100,7 @@ public class BeneficiaryRegistrationFragment extends BaseFragment implements Vie
         senderMobileNumber = view.findViewById(R.id.sender_mobile_num);
         String mobile = senderData.getSenderMobileNo();
         senderMobileNumber.accessEditText().setText(mobile);
+        senderMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
         senderMobileNumber.setFocusable(false);
         senderMobileNumber.accessEditText().setEnabled(false);
 

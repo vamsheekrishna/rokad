@@ -182,7 +182,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                             showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
                         } else {
                             showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+//                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         // showDialog("Sorry..", getString(R.string.internet_failed_login_case));
                     }

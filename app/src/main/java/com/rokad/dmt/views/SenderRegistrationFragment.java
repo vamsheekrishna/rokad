@@ -103,7 +103,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
         firstName = view.findViewById(R.id.fst_name);
         lastName = view.findViewById(R.id.lst_name);
         senderMobileNumber = view.findViewById(R.id.sender_mobile_num);
-        senderMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        senderMobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
         InputFilter[] fArray = new InputFilter[1];
         fArray[0] = new InputFilter.LengthFilter(10);
         senderMobileNumber.accessEditText().setFilters(fArray);
