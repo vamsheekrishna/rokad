@@ -1,5 +1,6 @@
 package com.rokad.mobile_recharge.views;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rokad.R;
@@ -43,6 +45,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
     private RecyclerView recyclerView;
     private AppCompatTextView emptyView;
     private OnMobileRechargeListener mListener;
+    private ProgressBar progressSpinner;
 
     public MobileRechargeHistoryFragment() {
         // Required empty public constructor
@@ -80,53 +83,63 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_mobile_recharge_history, container, false);
         emptyView = view.findViewById(R.id.empty_view);
+         progressSpinner = view.findViewById(R.id.progress_circular);
         return view;
     }
-
 
     public void loadRechargeHistory(){
 //        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
 //        progressBar.setCancelable(false);
 //        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
 //        progressBar.show();
-        emptyView.setVisibility(View.VISIBLE);
-        emptyView.setText("Loading..!!");
+        progressSpinner.setVisibility(View.VISIBLE);
+//        emptyView.setVisibility(View.VISIBLE);
+//        emptyView.setText("Loading..!!");
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
         mobileRechargeService.getHistory(UserData.getUserData().getId()).enqueue(new Callback<ResponseGetHistory>() {
             @Override
             public void onResponse(Call<ResponseGetHistory> call, Response<ResponseGetHistory> response) {
-                if(response.isSuccessful()) {
-                    if(response.body().getStatus().equals("success") && response.body().getLastTransaction().length > 0) {
+                progressSpinner.setVisibility(View.GONE);
+                if (getActivity()!= null && isAdded()) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus().equals("success") && response.body().getLastTransaction().length > 0) {
 //                        progressBar.dismiss();
-                        emptyView.setVisibility(View.GONE);
-                        for (LastTransaction lastTransaction : response.body().getLastTransaction()) {
-                            SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
-                            lastTransaction.setOperatorLogo(operator.getImage());
-                            lastTransaction.setOperatorName(operator.getName());
-                            lastTransaction.setStateName(lastTransaction.getStateName());
+                            progressSpinner.setVisibility(View.GONE);
+                            emptyView.setVisibility(View.GONE);
+                            for (LastTransaction lastTransaction : response.body().getLastTransaction()) {
+                                SubscriberModule operator = mListener.getMobileRechargeModule().getPrepaidSubscriber(lastTransaction.getOperator());
+                                lastTransaction.setOperatorLogo(operator.getImage());
+                                lastTransaction.setOperatorName(operator.getName());
+                                lastTransaction.setStateName(lastTransaction.getStateName());
+                            }
+
+                            RechargeHistoryRecyclerAdapter recyclerAdapter = new RechargeHistoryRecyclerAdapter(response.body().getLastTransaction()
+                                    , MobileRechargeHistoryFragment.this);
+                            recyclerView.setAdapter(recyclerAdapter);
+                        } else {
+                            showDialog("", response.message());
                         }
-                        RechargeHistoryRecyclerAdapter recyclerAdapter = new RechargeHistoryRecyclerAdapter(response.body().getLastTransaction()
-                                , MobileRechargeHistoryFragment.this);
-                        recyclerView.setAdapter(recyclerAdapter);
-                    } else {
-                        showDialog("", response.message());
+                        // LastTransaction[] data = response.body().getLastTransaction();
                     }
-                    // LastTransaction[] data = response.body().getLastTransaction();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
 //                progressBar.dismiss();
-                if(t instanceof SocketTimeoutException){
-                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
-                } else {
-                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                progressSpinner.setVisibility(View.GONE);
+                Activity activity = getActivity();
+                if (activity != null && isAdded()) {
+                    if (t instanceof SocketTimeoutException) {
+                        showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                    } else {
+                        showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    recyclerView.setVisibility(View.GONE);
+                    emptyView.setText("Please try again later.");
+                    emptyView.setVisibility(View.VISIBLE);
                 }
-                recyclerView.setVisibility(View.GONE);
-                emptyView.setText("Please try again later.");
-                emptyView.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -156,6 +169,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
         super.onResume();
         requireActivity().setTitle("Mobile Recharge");
         loadRechargeHistory();
+        recyclerView.setAdapter(null);
     }
 
     @Override
