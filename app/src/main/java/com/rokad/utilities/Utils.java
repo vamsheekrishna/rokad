@@ -44,6 +44,6 @@ public class Utils {
 
     public static boolean isValidWord(String word) {
 
-        return word.matches("[A-Za-z][^.]*");
+        return word.matches("^[a-zA-Z_]*$");
     }
 }

@@ -127,9 +127,9 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 String lstName = lastName.accessEditText().getText().toString();
                 String mobileNumber = senderMobileNumber.accessEditText().getText().toString();
 
-                if (null != fstName && fstName.length()>2 && !Utils.isValidWord(fstName)){
+                if (fstName.isEmpty() || !Utils.isValidWord(fstName)){
                     showDialog("Sorry!!", "Please enter your first name without any spaces and special characters");
-                } else if (null != fstName && fstName.length()>2 && !Utils.isValidWord(lstName)){
+                } else if (lstName.isEmpty() || !Utils.isValidWord(lstName)){
                     showDialog("Sorry!!", "Please enter your last name without any spaces and special characters");
                 } else  if (!Utils.isValidMobile(mobileNumber)){
                     showDialog("Sorry!!", "Please enter your valid mobile number");
@@ -160,7 +160,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                         }
                         @Override
                         public void onFailure(Call<SenderRegistrationResponsePOJO> call, Throwable t) {
-                            showDialog("", t.getMessage());
+                            showDialog("", "Please try again in some time.");
                             progressBar.cancel();
                         }
                     });
