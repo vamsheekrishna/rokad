@@ -47,6 +47,7 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
     private EditTextWithTitleAndThumbIcon firstName, lastName,senderMobileNumber;
     private AppCompatSpinner stateSelector;
     private HashMap<String, String> stateDetails;
+    private Call<SenderRegistrationResponsePOJO> senderRegistration;
 
     public SenderRegistrationFragment() {
         // Required empty public constructor
@@ -76,6 +77,14 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(null != senderRegistration) {
+            senderRegistration.cancel();
         }
     }
 
@@ -126,10 +135,9 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 String fstName = firstName.accessEditText().getText().toString();
                 String lstName = lastName.accessEditText().getText().toString();
                 String mobileNumber = senderMobileNumber.accessEditText().getText().toString();
-
-                if (fstName.isEmpty() || !Utils.isValidWord(fstName)){
+                if (fstName.length() < 2 || !Utils.isValidWord(fstName)){
                     showDialog("Sorry!!", "Please enter your first name without any spaces and special characters");
-                } else if (lstName.isEmpty() || !Utils.isValidWord(lstName)){
+                } else if ( lstName.length() < 2 || !Utils.isValidWord(lstName)){
                     showDialog("Sorry!!", "Please enter your last name without any spaces and special characters");
                 } else  if (!Utils.isValidMobile(mobileNumber)){
                     showDialog("Sorry!!", "Please enter your valid mobile number");
@@ -138,9 +146,10 @@ public class SenderRegistrationFragment extends BaseFragment implements View.OnC
                 } else {
                     progressBar.show();
                     String code=stateDetails.get(STATE_CODE);
-                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId(),
+                    senderRegistration = RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).senderRegistration(mobileNumber, fstName, lstName, code, UserData.getUserData().getId(),
                             BuildConfig.MOBILE_APPLICATION,
-                            BuildConfig.MOBILE_VERSION_ID).enqueue(new Callback<SenderRegistrationResponsePOJO>() {
+                            BuildConfig.MOBILE_VERSION_ID);
+                    senderRegistration.enqueue(new Callback<SenderRegistrationResponsePOJO>() {
                         @Override
                         public void onResponse(Call<SenderRegistrationResponsePOJO> call, Response<SenderRegistrationResponsePOJO> response) {
                             if (response.isSuccessful()) {

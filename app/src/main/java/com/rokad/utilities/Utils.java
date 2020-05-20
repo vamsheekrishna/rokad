@@ -43,7 +43,10 @@ public class Utils {
     }
 
     public static boolean isValidWord(String word) {
-
-        return word.matches("^[a-zA-Z_]*$");
+        if (word != null && word.length()>0) {
+            return word.matches("^[a-zA-Z_]*$");
+        } else {
+            return false;
+        }
     }
 }

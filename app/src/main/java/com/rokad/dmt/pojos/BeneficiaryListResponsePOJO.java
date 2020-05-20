@@ -10,26 +10,11 @@ import com.rokad.rokad_api.endpoints.pojos.BaseResponse;
 
 import java.io.Serializable;
 
-public class BeneficiaryListResponsePOJO extends BaseResponse implements Parcelable, Serializable{
+public class BeneficiaryListResponsePOJO extends BaseResponse implements Serializable{
 
     @SerializedName("data")
     @Expose
     private Data data;
-
-    protected BeneficiaryListResponsePOJO(Parcel in) {
-    }
-
-    public static final Creator<BeneficiaryListResponsePOJO> CREATOR = new Creator<BeneficiaryListResponsePOJO>() {
-        @Override
-        public BeneficiaryListResponsePOJO createFromParcel(Parcel in) {
-            return new BeneficiaryListResponsePOJO(in);
-        }
-
-        @Override
-        public BeneficiaryListResponsePOJO[] newArray(int size) {
-            return new BeneficiaryListResponsePOJO[size];
-        }
-    };
 
     public Data getData() {
         return data;
@@ -38,13 +23,5 @@ public class BeneficiaryListResponsePOJO extends BaseResponse implements Parcela
         this.data = data;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-    }
 }
 

@@ -146,7 +146,7 @@ public class RechargeDialogFragment extends DialogFragment implements View.OnCli
                 dismiss();
             }
         } else if(view.getId() == R.id.home) {
-            Objects.requireNonNull(getActivity()).finish();
+            requireActivity().finish();
         }
     }
 }

@@ -117,7 +117,6 @@
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_view"
-                    android:entries="@array/beneficiary_default_spinner_item"
                     android:layout_width="match_parent"
                     android:textColorHighlight="#2644DC"
                     android:layout_gravity="center_horizontal"

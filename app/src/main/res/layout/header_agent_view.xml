@@ -7,6 +7,13 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="32dp">
 
+    <Button
+        android:id="@+id/refresh"
+        android:layout_margin="16dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/domestic_money_transfer"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
     <androidx.appcompat.widget.AppCompatButton
         android:visibility="gone"
         android:layout_margin="20dp"

@@ -3,6 +3,7 @@ package com.rokad.dmt.views;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,9 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     private OnDMTInteractionListener mListener;
     private AppCompatTextView senderName, senderMobileNum, receiverName, receiverMobileNum, transferAmt, processingFee, netTransferAmt;
     Beneficiary selectedBeneficiary;
+    private Call<BeneficiaryListResponsePOJO> getBeneficiaryLis;
+    private Call<NewTransactionProcessResponsePOJO> doTransaction;
+
     public ConfirmPaymentFragment() {
         // Required empty public constructor
     }
@@ -102,20 +106,33 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        if (null != doTransaction) {
+            doTransaction.cancel();
+        }
+        if(null != progressBar) {
+            progressBar.cancel();
+        }
+        Log.d("doTransaction", "cancel doTransaction");
+    }
+
+    @Override
     public void onClick(View view) {
         progressBar.show();
 
-        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
+        getBeneficiaryLis = RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
                 transferData.getSenderMobileNo(),
                 UserData.getUserData().getId(),
                 BuildConfig.MOBILE_APPLICATION,
                 BuildConfig.MOBILE_VERSION_ID
-        ).enqueue(new Callback<BeneficiaryListResponsePOJO>() {
+        );
+        getBeneficiaryLis.enqueue(new Callback<BeneficiaryListResponsePOJO>() {
             @Override
             public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                 if(response.isSuccessful()) {
                     BeneficiaryListResponsePOJO senderData = response.body();
-                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).doTransaction(
+                    doTransaction = RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).doTransaction(
                             transferData.getProcessingBankId(),
                             transferData.getProcessingBankName(),
                             "",
@@ -132,7 +149,8 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                             UserData.getUserData().getId(),
                             "Y",
                             "1.0"
-                    ).enqueue(new Callback<NewTransactionProcessResponsePOJO>() {
+                    );
+                    doTransaction.enqueue(new Callback<NewTransactionProcessResponsePOJO>() {
                         @Override
                         public void onResponse(Call<NewTransactionProcessResponsePOJO> call, Response<NewTransactionProcessResponsePOJO> response) {
                             if(response.isSuccessful()) {
@@ -155,6 +173,8 @@ public class ConfirmPaymentFragment extends BaseFragment implements View.OnClick
                             // showDialog("", t.getMessage());
                             if(t instanceof SocketTimeoutException){
                                 showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                            }  else if (call.isCanceled()) {
+                                Log.e("TAG", "request was cancelled");
                             } else {
                                 showDialog("Sorry..!!", getString(R.string.server_failed_case));
                                 Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();

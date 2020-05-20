@@ -46,7 +46,7 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
 
     private String mParam1;
     private String mParam2;
-    private TextView mBalance, subHeader;
+    private TextView mBalance;
     private EditText mobileNumber;
     private OnDMTInteractionListener mListener;
     private ProgressDialog progressBar;
@@ -95,6 +95,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
             mBalance .setText(walletBalance);
         else
             startActivity(new Intent(getContext(), LoginActivity.class));
+
+        mobileNumber.setText("");
     }
 
     private void updateWalletBalance() {
@@ -106,7 +108,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
             public void onResponse(Call<ResponseWalletBalance> call, Response<ResponseWalletBalance> response) {
                 try {
                     if (response.body().getStatus().equals("success")) {
-                        String walletBalance = UserData.getInstance().getWalletBalance();
+                        ResponseWalletBalance data = response.body();
+                        String walletBalance = data.getAmount();// UserData.getInstance().getWalletBalance();
                         if (walletBalance != null) {
                             mBalance.setText(walletBalance);
                         }
@@ -148,7 +151,8 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
         view.findViewById(R.id.addMoney).setOnClickListener(this);
         view.findViewById(R.id.add_sender).setOnClickListener(this);
         view.findViewById(R.id.transfer_fund).setOnClickListener(this);
-        subHeader = view.findViewById(R.id.sub_header);
+        view.findViewById(R.id.refresh).setOnClickListener(this);
+        TextView subHeader = view.findViewById(R.id.sub_header);
         subHeader.setText("Mobile Number");
         mobileNumber = view.findViewById(R.id.edit_text_view);
         mobileNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -163,6 +167,9 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.refresh:
+                updateWalletBalance();
+                break;
             case R.id.addMoney:
                 AlertDialog.Builder builder =new AlertDialog.Builder(requireActivity());
                 builder.setTitle("Sorry....");
@@ -176,8 +183,6 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 if(!Utils.isValidMobile(mobile)) {
                     showDialog("", "Please enter a valid mobile number");
                 } else {
-                    // mListener.goToDomesticFundTransfer();
-                    mobileNumber.setText("");
                     progressBar.show();
                     RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).getBeneficiaryLis(
                             mobile, UserData.getUserData().getId(),
@@ -186,48 +191,52 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                         @Override
                         public void onResponse(Call<BeneficiaryListResponsePOJO> call, Response<BeneficiaryListResponsePOJO> response) {
                             if (response.isSuccessful()) {
-                                if(response.body().getStatus().equalsIgnoreCase("Success")) {
-                                    BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
-                                    if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
-                                        RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).paytmVerificationRequest(
-                                                beneficiaryListResponsePOJO.getData().getIcwCode(),
-                                                beneficiaryListResponsePOJO.getData().getSenderMobileNo(),
-                                                beneficiaryListResponsePOJO.getData().getSourceId(),
-                                                beneficiaryListResponsePOJO.getData().getUsername(),
-                                                UserData.getUserData().getId(),
-                                                BuildConfig.MOBILE_APPLICATION,
-                                                BuildConfig.MOBILE_VERSION_ID
-                                        ).enqueue(new Callback<PaytmVerificationRequest>() {
-                                            @Override
-                                            public void onResponse(Call<PaytmVerificationRequest> call, Response<PaytmVerificationRequest> response) {
-                                                if (response.isSuccessful()) {
-                                                    PaytmVerificationRequest.PaytemResponse temp = response.body().getData();
-                                                    if (temp.getResponseCode().equals("Y")) {
-                                                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
-                                                        Toast.makeText(requireContext(), temp.getResponseDesc()+" to "+ temp.getMobileNo(), Toast.LENGTH_LONG).show();
-                                                    } else {
-                                                        Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                                try{
+                                    if(response.body().getStatus().equalsIgnoreCase("Success")) {
+                                        BeneficiaryListResponsePOJO beneficiaryListResponsePOJO = response.body();
+                                        if (beneficiaryListResponsePOJO.getData().getBcSenderVerified().equalsIgnoreCase("N")) {
+                                            RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).paytmVerificationRequest(
+                                                    beneficiaryListResponsePOJO.getData().getIcwCode(),
+                                                    beneficiaryListResponsePOJO.getData().getSenderMobileNo(),
+                                                    beneficiaryListResponsePOJO.getData().getSourceId(),
+                                                    beneficiaryListResponsePOJO.getData().getUsername(),
+                                                    UserData.getUserData().getId(),
+                                                    BuildConfig.MOBILE_APPLICATION,
+                                                    BuildConfig.MOBILE_VERSION_ID
+                                            ).enqueue(new Callback<PaytmVerificationRequest>() {
+                                                @Override
+                                                public void onResponse(Call<PaytmVerificationRequest> call, Response<PaytmVerificationRequest> response) {
+                                                    if (response.isSuccessful()) {
+                                                        PaytmVerificationRequest.PaytemResponse temp = response.body().getData();
+                                                        if (temp.getResponseCode().equals("Y")) {
+                                                            mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                                            Toast.makeText(requireContext(), temp.getResponseDesc()+" to "+ temp.getMobileNo(), Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onFailure(Call<PaytmVerificationRequest> call, Throwable t) {
-                                                if(t instanceof SocketTimeoutException){
-                                                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
-                                                } else {
-                                                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                                                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                                @Override
+                                                public void onFailure(Call<PaytmVerificationRequest> call, Throwable t) {
+                                                    if(t instanceof SocketTimeoutException){
+                                                        showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                                                    } else {
+                                                        showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                    progressBar.cancel();
                                                 }
-                                                progressBar.cancel();
-                                            }
-                                        });
-                                        mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                            });
+                                            mListener.showCustomOTPDialog(null, beneficiaryListResponsePOJO);
+                                        } else {
+                                            mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                                        }
                                     } else {
-                                        mListener.goToDomesticFundTransfer(beneficiaryListResponsePOJO);
+                                        showDialog("", response.body().getMsg());
                                     }
-                                } else {
-                                    showDialog("", response.body().getMsg());
+                                } catch (Exception e) {
+                                    Log.d("Exception", "Exception: "+e.getMessage());
                                 }
                             } else {
                                 Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_LONG).show();
@@ -254,5 +263,11 @@ public class DMTHomeFragment extends BaseFragment implements View.OnClickListene
                 mListener.goToSenderRegistration();
                 break;
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 }

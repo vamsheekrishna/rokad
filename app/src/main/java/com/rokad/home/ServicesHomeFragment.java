@@ -81,8 +81,9 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
             public void onResponse(Call<ResponseWalletBalance> call, Response<ResponseWalletBalance> response) {
                 try {
                     if (response.body().getStatus().equals("success")) {
-                        String walletBalance = UserData.getInstance().getWalletBalance();
+                        String walletBalance = response.body().getAmount(); // UserData.getInstance().getWalletBalance();
                         if (walletBalance != null) {
+                            UserData.getInstance().setWalletBalance(walletBalance);
                             mBalance.setText(walletBalance);
                         }
                         else {
@@ -121,6 +122,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
         view.findViewById(R.id.addMoney).setOnClickListener(this);
+        view.findViewById(R.id.refresh).setOnClickListener(this);
 
         String usrName = UserData.getInstance().getFirstName() +" "+ UserData.getInstance().getLastName();
 
@@ -158,6 +160,8 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
 
         if (view.getId() == R.id.addMoney) {
             showDialog();
+        } else if(view.getId() == R.id.refresh) {
+            updateWalletBalance();
         } else {
             DummyContent.DummyItem mItem = (DummyContent.DummyItem) view.getTag();
             Intent intent;

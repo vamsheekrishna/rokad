@@ -74,9 +74,7 @@ public class Data extends ViewModel implements Serializable {
     @SerializedName("bankId")
     @Expose
     private String bankId;
-    @SerializedName("easyWalletList")
-    @Expose
-    private EasyWalletList easyWalletList;
+
     @SerializedName("beneficiaries")
     @Expose
     private Beneficiaries beneficiaries;
@@ -255,14 +253,6 @@ public class Data extends ViewModel implements Serializable {
 
     public void setBankId(String bankId) {
         this.bankId = bankId;
-    }
-
-    public EasyWalletList getEasyWalletList() {
-        return easyWalletList;
-    }
-
-    public void setEasyWalletList(EasyWalletList easyWalletList) {
-        this.easyWalletList = easyWalletList;
     }
 
     public Beneficiaries getBeneficiaries() {

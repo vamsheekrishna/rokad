@@ -55,6 +55,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     private RadioButton transferType;
     private SenderData senderData;
     private ProgressDialog progressBar;
+    private Call<FundTransferResponsePOJO> fundTransfer;
 
     public DomesticFundTransferFragment() {
         // Required empty public constructor
@@ -142,6 +143,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                 } else {
                     showDialog("Sorry..!!", getString(R.string.server_failed_case));
                     Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.d("Exception", "Exception: "+t.getMessage());
                 }
                 progressBar.cancel();
             }
@@ -151,14 +153,6 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
         // transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimit());
         senderMobileNumber.accessEditText().setText(senderData.getSenderData().getSenderMobileNo());
         senderName.accessEditText().setText(senderData.getSenderData().getSenderName());
-
-        /*if (senderData.getTransferMode().equals("NEFT")) {
-            transferLimit.accessSubHeaderTextView().setText("Sender NEFT Transfer Limit");
-            transferLimit.accessEditText().setText(senderData.getSenderData().getNeftLimitRs() + "");
-        } else {
-            transferLimit.accessSubHeaderTextView().setText("Sender IMPS Transfer Limit");
-            transferLimit.accessEditText().setText(senderData.getSenderData().getImpsLimitRs() + "");
-        }*/
     }
 
     @Override
@@ -224,6 +218,15 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        if(null != fundTransfer) {
+            fundTransfer.cancel();
+        }
+        Log.d("onStop", "onStop==========");
+    }
+
+    @Override
     public void onFocusChange(View v, boolean hasFocus) {
         switch (v.getId()) {
             case R.id.sender_name:
@@ -282,7 +285,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                     showDialog("Sorry!!", getString(R.string.minimum_amount_alert));
                 } else {
                     progressBar.show();
-                    RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).fundTransfer(
+                    fundTransfer = RetrofitClientInstance.getRetrofitInstance().create(DMTModuleService.class).fundTransfer(
                             senderData.getSenderData().getSenderMobileNo(),
                             senderData.getSenderData().getSenderName(),
                             senderData.getSenderData().getSenderId(),
@@ -291,31 +294,42 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                             UserData.getInstance().getId(),
                             BuildConfig.MOBILE_APPLICATION,
                             BuildConfig.MOBILE_VERSION_ID
-                    ).enqueue(new Callback<FundTransferResponsePOJO>() {
+                    );
+                    fundTransfer.enqueue(new Callback<FundTransferResponsePOJO>() {
                         @Override
                         public void onResponse(Call<FundTransferResponsePOJO> call, Response<FundTransferResponsePOJO> response) {
-                            if (response.isSuccessful()) {
-                                if (response.body().getStatus().equalsIgnoreCase("Success")) {
-                                    senderData.getSelectedBeneficiary().setSelectedType(senderData.getTransferMode());
-                                    mListener.goToConformation(response.body().getData(), senderData.getSelectedBeneficiary());
+                            try {
+                                if (response.isSuccessful()) {
+                                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                                        senderData.getSelectedBeneficiary().setSelectedType(senderData.getTransferMode());
+                                        mListener.goToConformation(response.body().getData(), senderData.getSelectedBeneficiary());
+                                    } else {
+                                        showDialog("", response.body().getMsg());
+                                    }
                                 } else {
-                                    showDialog("", response.body().getMsg());
+                                    showDialog("", response.message());
                                 }
-                            } else {
-                                showDialog("", response.message());
+                                progressBar.cancel();
+                            } catch (Exception e){
+                                Log.d("Exception", "Exception: "+e.getMessage());
                             }
-                            progressBar.cancel();
                         }
 
                         @Override
                         public void onFailure(Call<FundTransferResponsePOJO> call, Throwable t) {
-                            if(t instanceof SocketTimeoutException){
-                                showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
-                            } else {
-                                showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            try {
+                                if(t instanceof SocketTimeoutException){
+                                    showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                                } else if (call.isCanceled()) {
+                                    Log.e("TAG", "request was cancelled");
+                                } else {
+                                    showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                                    Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                                progressBar.cancel();
+                            } catch (Exception e) {
+                                Log.d("Exception", "Exception: "+e.getMessage());
                             }
-                            progressBar.cancel();
                         }
                     });
                     break;
