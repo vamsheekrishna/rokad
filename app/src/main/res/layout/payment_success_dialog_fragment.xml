@@ -56,7 +56,7 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginRight="4dp"
                     android:layout_marginLeft="4dp"
@@ -83,8 +83,8 @@
                         android:layout_height="wrap_content"
                         android:minHeight="20dp"
                         android:minWidth="84dp"
-                        android:maxLines="2"
-                        android:minLines="2"
+                        android:maxLines="3"
+                        android:minLines="3"
                         android:text="XYZ"
                         android:id="@+id/sender_name"
                         android:textSize="16sp"
@@ -117,7 +117,7 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/dmt_module_receiver_info_bg"
                     android:layout_marginLeft="4dp"
@@ -144,8 +144,8 @@
                         android:layout_height="wrap_content"
                         android:minHeight="20dp"
                         android:minWidth="84dp"
-                        android:maxLines="2"
-                        android:minLines="2"
+                        android:maxLines="3"
+                        android:minLines="3"
                         android:text="XYZ ahd askjashd kahd "
                         android:id="@+id/receiver_name"
                         android:textSize="16sp"

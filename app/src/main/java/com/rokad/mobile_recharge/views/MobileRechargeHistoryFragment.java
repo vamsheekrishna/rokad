@@ -88,13 +88,7 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
     }
 
     public void loadRechargeHistory(){
-//        ProgressDialog progressBar = new ProgressDialog(getActivity(), R.style.mySpinnerTheme);
-//        progressBar.setCancelable(false);
-//        progressBar.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-//        progressBar.show();
         progressSpinner.setVisibility(View.VISIBLE);
-//        emptyView.setVisibility(View.VISIBLE);
-//        emptyView.setText("Loading..!!");
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
         mobileRechargeService.getHistory(UserData.getUserData().getId()).enqueue(new Callback<ResponseGetHistory>() {
             @Override
@@ -119,14 +113,12 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
                         } else {
                             showDialog("", response.message());
                         }
-                        // LastTransaction[] data = response.body().getLastTransaction();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
-//                progressBar.dismiss();
                 progressSpinner.setVisibility(View.GONE);
                 Activity activity = getActivity();
                 if (activity != null && isAdded()) {
@@ -186,6 +178,5 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
         mListener.getMobileRechargeModule().setRechargeAmount(data.getLastTransactionAmount());
         mListener.getMobileRechargeModule().setUserID(UserData.getUserData().getId());
         mListener.goToMakePaymentFragment();
-//        Toast.makeText(getActivity(), "LastTransaction: "+data.getRechargeOn(), Toast.LENGTH_LONG).show();
     }
 }

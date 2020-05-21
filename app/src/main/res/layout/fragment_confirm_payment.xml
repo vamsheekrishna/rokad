@@ -63,7 +63,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="26dp"
                 android:weightSum="2"
                 android:orientation="horizontal">
@@ -96,6 +96,9 @@
                         android:minHeight="20dp"
                         android:minWidth="84dp"
                         android:text="XYZ"
+                        android:gravity="center|left"
+                        android:minLines="3"
+                        android:maxLines="3"
                         android:id="@+id/sender_name"
                         android:textSize="16sp"
                         android:textStyle="normal"
@@ -126,7 +129,7 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/dmt_module_receiver_info_bg"
                     android:layout_marginLeft="8dp"
@@ -152,6 +155,9 @@
                         android:minHeight="20dp"
                         android:minWidth="84dp"
                         android:text="XYZ"
+                        android:gravity="center|left"
+                        android:minLines="3"
+                        android:maxLines="3"
                         android:id="@+id/receiver_name"
                         android:textSize="16sp"
                         android:textStyle="normal"

@@ -272,7 +272,7 @@ public class DomesticFundTransferFragment extends BaseFragment implements View.O
                 }
 
 
-                if (beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
+                if (null == senderData.getSelectedBeneficiary() || beneficiariesSpinner.getSelectedItem().equals(getString(R.string.default_beneficiary_spinner_prompt)) ||
                         beneficiariesSpinner.getSelectedItem().equals("Please select a Beneficiary.")) {
                     showDialog("Sorry!!", "Please select a Beneficiary.");
                 } else if (amount < 100 || amount > 25000) {
