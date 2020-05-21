@@ -11,10 +11,6 @@ public class SenderData implements Serializable
     @Expose
     private String sessionId;
 
-//    @SerializedName("sourceId")
-//    @Expose
-//    private String sourceId;
-
     @SerializedName("requestType")
     @Expose
     private Integer requestType;
@@ -58,9 +54,9 @@ public class SenderData implements Serializable
     @Expose
     private String paytmUserState;
 
-    @SerializedName("easyWalletList")
-    @Expose
-    private EasyWalletList easyWalletList;
+//    @SerializedName("easyWalletList")
+//    @Expose
+//    private EasyWalletList easyWalletList;
 
     public String getSessionId() {
         return sessionId;
@@ -158,11 +154,11 @@ public class SenderData implements Serializable
         this.paytmUserState = paytmUserState;
     }
 
-    public EasyWalletList getEasyWalletList() {
-        return easyWalletList;
-    }
-
-    public void setEasyWalletList(EasyWalletList easyWalletList) {
-        this.easyWalletList = easyWalletList;
-    }
+//    public EasyWalletList getEasyWalletList() {
+//        return easyWalletList;
+//    }
+//
+//    public void setEasyWalletList(EasyWalletList easyWalletList) {
+//        this.easyWalletList = easyWalletList;
+//    }
 }
