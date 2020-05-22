@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.rokad.R;
 import com.rokad.authentication.UserData;
@@ -26,6 +27,7 @@ import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
 import com.rokad.utilities.views.BaseFragment;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -139,7 +141,20 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onFailure(Call<ResponseMobileRecharge> call, Throwable t) {
                 Log.d("onFailure", "onFailure: ");
-                FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+                try {
+                    if(t instanceof SocketTimeoutException){
+                        showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                    } else if (call.isCanceled()) {
+                        Log.e("TAG", "request was cancelled");
+                    } else {
+                        showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    progressBar.cancel();
+                } catch (Exception e) {
+                    Log.d("Exception", "Exception: "+e.getMessage());
+                }
+                /*FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                 Fragment prev = requireActivity().getSupportFragmentManager().findFragmentByTag("vehicleLockFragment");
                 if (prev != null) {
                     ft.remove(prev);
@@ -148,7 +163,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                 DialogFragment dialogFragment = RechargeDialogFragment.newInstance(false, "");
                 dialogFragment.setCancelable(false);
                 dialogFragment.show(getChildFragmentManager(), "dialog fragment");
-                progressBar.dismiss();
+                progressBar.dismiss();*/
             }
         });
     }

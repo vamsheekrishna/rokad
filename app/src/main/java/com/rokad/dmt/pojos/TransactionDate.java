@@ -3,7 +3,9 @@ package com.rokad.dmt.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TransactionDate {
+import java.io.Serializable;
+
+public class TransactionDate implements Serializable {
     @SerializedName("sessionId")
     @Expose
     private

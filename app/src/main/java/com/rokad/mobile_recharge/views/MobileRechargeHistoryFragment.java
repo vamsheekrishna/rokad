@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,18 +120,22 @@ public class MobileRechargeHistoryFragment extends BaseFragment implements View.
 
             @Override
             public void onFailure(Call<ResponseGetHistory> call, Throwable t) {
-                progressSpinner.setVisibility(View.GONE);
-                Activity activity = getActivity();
-                if (activity != null && isAdded()) {
-                    if (t instanceof SocketTimeoutException) {
-                        showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
-                    } else {
-                        showDialog("Sorry..!!", getString(R.string.server_failed_case));
-                        Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                try {
+                    progressSpinner.setVisibility(View.GONE);
+                    Activity activity = getActivity();
+                    if (activity != null && isAdded()) {
+                        if (t instanceof SocketTimeoutException) {
+                            showDialog(getString(R.string.time_out_title), getString(R.string.time_out_msg));
+                        } else {
+                            showDialog("Sorry..!!", getString(R.string.server_failed_case));
+                            Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        recyclerView.setVisibility(View.GONE);
+                        emptyView.setText("Please try again later.");
+                        emptyView.setVisibility(View.VISIBLE);
                     }
-                    recyclerView.setVisibility(View.GONE);
-                    emptyView.setText("Please try again later.");
-                    emptyView.setVisibility(View.VISIBLE);
+                } catch (Exception e) {
+                    Log.d("Exception", "Exception: "+e.getMessage());
                 }
             }
         });
