@@ -41,7 +41,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
     private String mParam1;
     private String mParam2;
     private OnMobileRechargeListener mListener;
-
+    private Call<ResponseMobileRecharge> user;
     public MakePaymentFragment() {
         // Required empty public constructor
     }
@@ -104,7 +104,7 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
 
         MobileRecharge data = mListener.getMobileRechargeModule();
         MobileRechargeService mobileRechargeService = RetrofitClientInstance.getRetrofitInstance().create(MobileRechargeService.class);
-        Call<ResponseMobileRecharge> user = getResponseMobileRechargeCall(data, mobileRechargeService);
+        user = getResponseMobileRechargeCall(data, mobileRechargeService);
         user.enqueue(new Callback<ResponseMobileRecharge>() {
             @Override
             public void onResponse(Call<ResponseMobileRecharge> call, Response<ResponseMobileRecharge> response) {
@@ -186,6 +186,14 @@ public class MakePaymentFragment extends BaseFragment implements View.OnClickLis
                     data.getPaymentType());
         }
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(user!=null) {
+            user.cancel();
+        }
     }
 
     @Override
