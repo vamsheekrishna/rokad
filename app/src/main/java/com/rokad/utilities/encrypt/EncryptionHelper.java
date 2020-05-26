@@ -40,7 +40,7 @@ public class EncryptionHelper {
 	     for (int i = 0; i < j; i++) {
 	     	byte b = arrayOfByte[i];
 	       
-	       formatter.format("%02x", new Object[] { Byte.valueOf(b) });
+	       formatter.format("%02x", Byte.valueOf(b));
 	     }
 	     return formatter.toString();
 	   }

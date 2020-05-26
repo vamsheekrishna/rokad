@@ -29,7 +29,7 @@ public class DummyContent {
             this.id = id;
         }
     }
-    public static enum ServicesID {
+    public enum ServicesID {
         Mobile,
         Advance_Ticket_Booking,
         Insurance,

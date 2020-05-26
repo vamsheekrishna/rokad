@@ -76,7 +76,7 @@ public class MobileRechargePlans extends BaseFragment implements OnPlanSelectedH
 
         if (sm.isEmpty()){
             smsPlansList.setVisibility(View.GONE);
-            ((AppCompatTextView)view.findViewById(R.id.empty_view)).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.empty_view).setVisibility(View.VISIBLE);
         } else {
             RechargePlansAdapter adapter = new RechargePlansAdapter(this, getContext(), sm);
             smsPlansList.setAdapter(adapter);

@@ -1,6 +1,7 @@
 package com.rokad.utilities.encrypt;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,8 +15,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import android.util.Base64;
-
-;
 
 public  class AESEncryption  extends EncryptionKey implements Encryption
 {
@@ -38,7 +37,7 @@ public  class AESEncryption  extends EncryptionKey implements Encryption
 				cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
 				//final String encryptedString = Base64.encodeBase64(cipher.doFinal(encryptionSTR.getBytes())).toString();
 				//final String encryptedString = Base64.encodeBase64String(cipher.doFinal(encryptionSTR.getBytes("UTF-8")));
-				byte[] data = cipher.doFinal(encryptionSTR.getBytes("UTF-8"));
+				byte[] data = cipher.doFinal(encryptionSTR.getBytes(StandardCharsets.UTF_8));
 				String hash = Base64.encodeToString(data, Base64.DEFAULT);
 				encode = hash;
 			}
@@ -111,7 +110,7 @@ public  class AESEncryption  extends EncryptionKey implements Encryption
 		byte[]	key;
 		MessageDigest sha = null;
 		try {
-			key = myKey.getBytes("UTF-8");
+			key = myKey.getBytes(StandardCharsets.UTF_8);
 			// System.out.println(key.length);
 			sha = MessageDigest.getInstance("SHA-256");
 			key = sha.digest(key);
@@ -122,12 +121,9 @@ public  class AESEncryption  extends EncryptionKey implements Encryption
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-	}
+
+    }
 
 	@Override
 	public void setKey(String key) {

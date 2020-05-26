@@ -2,6 +2,7 @@ package com.rokad.utilities.encrypt;
 
 import org.apache.commons.codec.binary.Base64;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
@@ -44,13 +45,13 @@ public  class DESEncryption extends EncryptionKey implements Encryption
 			}
 
 			// Encode the string into bytes using utf-8
-			byte[] utf8 = encryptionSTR.getBytes("UTF-8");
+			byte[] utf8 = encryptionSTR.getBytes(StandardCharsets.UTF_8);
 
 			// Encrypt
 			byte[] enc = ecipher.doFinal(utf8);
 
 			// Encode bytes to base64 to get a string
-			return new String(Base64.encodeBase64(enc), "UTF-8");
+			return new String(Base64.encodeBase64(enc), StandardCharsets.UTF_8);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,7 +82,7 @@ public  class DESEncryption extends EncryptionKey implements Encryption
 			byte[] utf8 = dcipher.doFinal(dec);
 
 			// Decode using utf-8
-			return new String(utf8, "UTF8");
+			return new String(utf8, StandardCharsets.UTF_8);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -94,7 +95,7 @@ public  class DESEncryption extends EncryptionKey implements Encryption
 		try {
 			final MessageDigest md = MessageDigest.getInstance("md5");
 			final byte[] digestOfPassword = md.digest(Base64
-					.decodeBase64(keyString.getBytes("UTF-8")));
+					.decodeBase64(keyString.getBytes(StandardCharsets.UTF_8)));
 			final byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
 			for (int j = 0, k = 16; j < 8;) {
 				keyBytes[k++] = keyBytes[j++];

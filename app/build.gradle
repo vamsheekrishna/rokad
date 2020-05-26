@@ -11,7 +11,7 @@ android {
         buildConfigField("String", "PASSWORD", '""')
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2
+        versionCode 4
         versionName "1.0"
         buildConfigField("String", "API_KEY", '"abcdefghijklmn"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,9 +62,6 @@ android {
         }
         prod {
             dimension "version"
-            applicationIdSuffix ".prod"
-            versionNameSuffix "-prod"
-
             resValue "string", "app_name", "Rokad"
             buildConfigField("String", "AUTH_USERNAME", '"1234567890"')
             buildConfigField("String", "AUTH_PASSWORD", '"Trimax@123"')
@@ -123,6 +120,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    dexOptions {
+        preDexLibraries false
+        javaMaxHeapSize "4g"
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    //JNI Lib Declaration
+    sourceSets.main {
+        jniLibs.srcDirs 'src/main/jniLibs'
+    }
 }
 
 dependencies {
@@ -148,6 +158,7 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation files('libs/mantra.mfs100.jar')
 
     // Recommended: Add the Firebase SDK for Google Analytics.
 //    implementation 'com.google.firebase:firebase-analytics:17.4.1'

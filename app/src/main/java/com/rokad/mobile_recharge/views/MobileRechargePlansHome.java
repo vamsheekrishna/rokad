@@ -51,7 +51,7 @@ public class MobileRechargePlansHome extends BaseFragment {
     public static MobileRechargePlansHome newInstance(Records data) {
         MobileRechargePlansHome fragment = new MobileRechargePlansHome();
         Bundle args = new Bundle();
-        args.putSerializable(PLANS_OBJECT, (Serializable) data);
+        args.putSerializable(PLANS_OBJECT, data);
         fragment.setArguments(args);
         return fragment;
     }

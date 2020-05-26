@@ -129,10 +129,7 @@ public class UserData {
     }
 
     static public boolean isSessionExpire() {
-        if(null == userData) {
-            return true;
-        }
-        return false;
+        return null == userData;
     }
 
     public static UserData getUserData() {
