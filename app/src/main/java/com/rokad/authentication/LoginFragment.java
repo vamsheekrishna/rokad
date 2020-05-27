@@ -1,8 +1,13 @@
 package com.rokad.authentication;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,18 +18,13 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
-import com.rokad.rokad_api.endpoints.pojos.User;
+import com.rokad.home.HomeActivity;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AuthenticationService;
+import com.rokad.rokad_api.endpoints.pojos.ResponseUser;
+import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
@@ -163,8 +163,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                             List<User> users = response.body().getData();
                             User user = users.get(0);
                             UserData.setInstance(user);
-                            navController.navigate(R.id.action_loginFragment_to_homeActivity);
-                            getActivity().finish();
+                            startActivity(new Intent(requireActivity(), HomeActivity.class));
+                            // navController.navigate(R.id.action_loginFragment_to_homeActivity);
+                            requireActivity().finish();
                         } else if (response.body() != null){
                             showDialog("Sorry..", response.body().getMsg());
                         } else {

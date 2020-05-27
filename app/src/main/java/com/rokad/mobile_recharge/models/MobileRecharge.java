@@ -2,11 +2,10 @@ package com.rokad.mobile_recharge.models;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MobileRecharge {
 

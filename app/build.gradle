@@ -11,7 +11,7 @@ android {
         buildConfigField("String", "PASSWORD", '""')
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
+        versionCode 5
         versionName "1.0"
         buildConfigField("String", "API_KEY", '"abcdefghijklmn"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,6 +62,8 @@ android {
         }
         prod {
             dimension "version"
+            applicationIdSuffix ".prod"
+            versionNameSuffix "-prod"
             resValue "string", "app_name", "Rokad"
             buildConfigField("String", "AUTH_USERNAME", '"1234567890"')
             buildConfigField("String", "AUTH_PASSWORD", '"Trimax@123"')
@@ -106,7 +108,9 @@ android {
             buildConfigField("String", "PASSWORD", '""')
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     lintOptions {

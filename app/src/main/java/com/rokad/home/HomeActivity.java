@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.utilities.views.BaseNavigationDrawerActivity;
 

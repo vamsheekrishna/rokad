@@ -1,7 +1,6 @@
 package com.rokad.mobile_recharge.views;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -19,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.mobile_recharge.adapters.RechargeHistoryRecyclerAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.SubscriberModule;
@@ -30,7 +29,6 @@ import com.rokad.rokad_api.endpoints.pojos.ResponseGetHistory;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.net.SocketTimeoutException;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

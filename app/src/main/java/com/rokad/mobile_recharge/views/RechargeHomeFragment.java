@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
@@ -38,7 +38,6 @@ import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.math.BigDecimal;
-import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

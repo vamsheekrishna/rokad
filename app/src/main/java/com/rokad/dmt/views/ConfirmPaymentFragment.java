@@ -1,6 +1,5 @@
 package com.rokad.dmt.views;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransfer.Data;

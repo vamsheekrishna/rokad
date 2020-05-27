@@ -2,7 +2,6 @@ package com.rokad.dmt.views;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -22,7 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.PaytmVerificationRequest;
@@ -34,7 +33,6 @@ import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.net.SocketTimeoutException;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -19,11 +19,10 @@ import androidx.fragment.app.DialogFragment;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.OTPValidationResponsePOJO;
-import com.rokad.dmt.pojos.PaytmVerificationRequest;
 import com.rokad.dmt.pojos.ResendOTPResponsePOJO;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.dmt.pojos.beneficiaryList.Data;

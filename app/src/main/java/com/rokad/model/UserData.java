@@ -1,7 +1,5 @@
-package com.rokad.authentication;
+package com.rokad.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import com.rokad.rokad_api.endpoints.pojos.User;
 import com.rokad.utilities.encrypt.Encryption;
 import com.rokad.utilities.encrypt.EncryptionFactory;

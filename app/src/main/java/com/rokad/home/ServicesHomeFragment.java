@@ -3,7 +3,6 @@ package com.rokad.home;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.dmt.views.DMTActivity;
 import com.rokad.home.dummy.DummyContent;
 import com.rokad.mobile_recharge.views.MobileRechargeActivity;
@@ -27,7 +26,6 @@ import com.rokad.rokad_api.endpoints.pojos.ResponseWalletBalance;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.net.SocketTimeoutException;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

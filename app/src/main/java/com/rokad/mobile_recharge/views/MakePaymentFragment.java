@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.rokad_api.RetrofitClientInstance;
@@ -28,7 +28,6 @@ import com.rokad.rokad_api.endpoints.pojos.ResponseMobileRecharge;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.net.SocketTimeoutException;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

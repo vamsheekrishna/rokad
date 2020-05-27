@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.rokad.authentication.LoginActivity;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.home.HomeActivity;
 
 public class SplashActivity extends AppCompatActivity {

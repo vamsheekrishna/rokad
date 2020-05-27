@@ -6,15 +6,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.rokad.R;
-import com.rokad.authentication.UserData;
-import com.rokad.dmt.views.DMTActivity;
+import com.rokad.model.UserData;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MobileRechargeActivity extends ServicesBaseActivity implements OnMobileRechargeListener {

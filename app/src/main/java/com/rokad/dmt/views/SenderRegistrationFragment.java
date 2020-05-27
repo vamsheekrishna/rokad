@@ -17,7 +17,7 @@ import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.authentication.UserData;
+import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
