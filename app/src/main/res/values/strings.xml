@@ -108,7 +108,7 @@
     <string name="time_out_msg">Check your network connection and try again.</string>
     <string name="domestic_fund_transfer">Domestic Fund transfer</string>
 
-<!--    Mantra strings Start-->
+    <!--    Mantra strings Start-->
     <string name="action_settings">Settings</string>
     <string name="app_title">MANTRA-MFS100-TEST</string>
     <string name="Init">INIT</string>
@@ -131,6 +131,11 @@
         <item>31</item>
     </string-array>
 
+    <string name="aeps_minimum_amount_alert">Please enter the amount between 100 and 10000.</string>
     <string name="title_activity_preference">Preference</string>
-<!--    Mantra Strings End-->
+    <string name="error_first_name">Please enter your first name without any spaces and special characters.</string>
+    <string name="erroe_last_name">Please enter your last name without any spaces and special characters.</string>
+    <string name="error_valid_email">Please enter your valid Email.</string>
+    <string name="error_valid_mobile">Please enter your valid Mobile Number.</string>
+    <!--    Mantra Strings End-->
 </resources>

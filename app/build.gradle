@@ -59,6 +59,8 @@ android {
             buildConfigField("String", "PAYTM_VERIFICATION_REQUEST", '"rest_server/Domestic_transfer/paytm_verification_request"')
             buildConfigField("String", "RESEND_BCSENDER_VERIFICATION", '"rest_server/Domestic_transfer/resend_bcsenderverified"')
             buildConfigField("String", "PROCESS_OTP_BC_SENDER_VERIFICATION", '"rest_server/Domestic_transfer/process_otp_bcsenderverified"')
+            // AEPS
+            buildConfigField("String", "AEPS_TRANSACTION_PROCESS", '"rest_server/Aeps_smart_api/transaction_process"')
         }
         prod {
             dimension "version"
@@ -99,6 +101,8 @@ android {
             buildConfigField("String", "RESEND_BCSENDER_VERIFICATION", '"rest_server/Domestic_transfer_api/resend_bcsenderverified"')
             buildConfigField("String", "PROCESS_OTP_BC_SENDER_VERIFICATION", '"rest_server/Domestic_transfer_api/process_otp_bcsenderverified"')
 
+            // AEPS 
+            buildConfigField("String", "AEPS_TRANSACTION_PROCESS", '"rest_server/Aeps_smart_api/transaction_process"')
 
         }
     }
@@ -174,3 +178,4 @@ dependencies {
 // Apply the Crashlytics Gradle plugin
 //apply plugin: 'com.google.firebase.crashlytics'
 //apply plugin: 'com.google.gms.google-services'
+

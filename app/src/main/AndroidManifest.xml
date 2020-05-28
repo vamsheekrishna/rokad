@@ -37,6 +37,7 @@
             android:screenOrientation="portrait"
             android:name=".authentication.LoginActivity"/>
         <activity android:name=".mantra.MFS100Test" />
+        <activity android:name=".AEPS.AEPSActivity" />
     </application>
 
 </manifest>

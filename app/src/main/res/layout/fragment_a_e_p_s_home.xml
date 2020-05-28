@@ -27,11 +27,12 @@
         android:id="@+id/cust_mobile_num"
         android:layout_below="@id/cust_lst_name"
         app:title="@string/mobile_number"
-        app:image="@drawable/user_new"/>
+        app:image="@drawable/mobile"/>
 
     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:id="@+id/cust_email"
         android:layout_below="@id/cust_mobile_num"
         app:title="@string/enter_email_address"
@@ -47,8 +48,8 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/button_gray"
-        android:text="submit"
+        style="@style/button_color"
+        android:text="@string/proceed"
         android:layout_below="@id/cust_amt"
         android:id="@+id/submit"
         android:layout_centerHorizontal="true"/>

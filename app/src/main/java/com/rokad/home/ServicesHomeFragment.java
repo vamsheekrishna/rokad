@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rokad.AEPS.AEPSActivity;
 import com.rokad.R;
 import com.rokad.authentication.LoginActivity;
 import com.rokad.model.UserData;
@@ -140,7 +141,7 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
         DummyContent.ITEMS.clear();
         DummyContent.createDummyItem(1, R.drawable.mobile_home_icon, "Mobile");
         DummyContent.createDummyItem(2, R.drawable.domestic_money_transfer, "Domestic Money Transfer");
-//        DummyContent.createDummyItem(2, R.drawable.advance_ticket_booking, "Advance Ticket Booking");
+        DummyContent.createDummyItem(10, R.drawable.e_paylater, "AEPS");
         /*DummyContent.createDummyItem(3, R.drawable.insurance, "Insurance");
         DummyContent.createDummyItem(4, R.drawable.current_bus_booking, "Current Bus Booking");
         DummyContent.createDummyItem(5, R.drawable.air_hotel_booking, "Hotel Booking");
@@ -169,6 +170,10 @@ public class ServicesHomeFragment extends BaseFragment implements View.OnClickLi
                 startActivity(intent);
             } else if(mItem.id == 2) {
                 intent = new Intent(getActivity(), DMTActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            } else if(mItem.id == 10) {
+                intent = new Intent(getActivity(), AEPSActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             } else {
