@@ -2,19 +2,17 @@ package com.rokad.mobile_recharge.views;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.rokad.R;
+import com.rokad.mobile_recharge.adapters.RechargePlansAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.OnPlanSelectedHandler;
-import com.rokad.mobile_recharge.adapters.RechargePlansAdapter;
 import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.utilities.views.BaseFragment;
 

@@ -14,14 +14,6 @@ import androidx.navigation.NavController;
 
 import com.rokad.R;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Objects;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import static com.rokad.utilities.Utils.internetConnectionAvailable;
 
 public class BaseFragment extends Fragment {

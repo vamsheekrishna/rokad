@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.model.UserData;
 import com.rokad.mobile_recharge.adapters.SubscriberListAdapter;
 import com.rokad.mobile_recharge.interfaces.OnMobileRechargeListener;
 import com.rokad.mobile_recharge.interfaces.RecyclerOnClickHandler;
@@ -33,6 +32,7 @@ import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPlans;
 import com.rokad.mobile_recharge.models.mPlans.ResponseGetPostpaidPlans;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.MobileRechargeService;
 import com.rokad.utilities.views.BaseFragment;

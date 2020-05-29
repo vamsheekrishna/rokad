@@ -11,10 +11,9 @@ import com.rokad.R;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 class BankListAdapter extends BaseAdapter {
-    List<BankListResponsePOJO.BanksList> bankList;
+    private List<BankListResponsePOJO.BanksList> bankList;
     public BankListAdapter(List<BankListResponsePOJO.BanksList> bankList) {
         this.bankList = bankList;
     }

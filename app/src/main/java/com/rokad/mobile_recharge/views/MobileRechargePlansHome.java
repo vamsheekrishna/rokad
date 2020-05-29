@@ -14,7 +14,6 @@ import com.rokad.mobile_recharge.models.mPlans.RechargePlans;
 import com.rokad.mobile_recharge.models.mPlans.Records;
 import com.rokad.utilities.views.BaseFragment;
 
-import java.io.Serializable;
 import java.util.List;
 
 

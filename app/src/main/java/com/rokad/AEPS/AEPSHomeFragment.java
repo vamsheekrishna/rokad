@@ -1,25 +1,22 @@
 package com.rokad.AEPS;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.rokad.R;
 import com.rokad.dmt.pojos.TransactionProcessPOJO;
-import com.rokad.mantra.MFS100Test;
 import com.rokad.model.UserData;
-import com.rokad.rokad_api.endpoints.AEPSService;
 import com.rokad.rokad_api.RetrofitClientInstance;
+import com.rokad.rokad_api.endpoints.AEPSService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;

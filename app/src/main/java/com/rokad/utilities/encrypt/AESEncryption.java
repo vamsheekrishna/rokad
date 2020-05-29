@@ -1,6 +1,7 @@
 package com.rokad.utilities.encrypt;
 
-import java.io.UnsupportedEncodingException;
+import android.util.Base64;
+
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -13,8 +14,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import android.util.Base64;
 
 public  class AESEncryption  extends EncryptionKey implements Encryption
 {

@@ -10,11 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
-import com.rokad.mobile_recharge.models.MobileRecharge;
 import com.rokad.rokad_api.endpoints.pojos.LastTransaction;
-import com.rokad.rokad_api.endpoints.pojos.ResponseGetHistory;
-
-import retrofit2.Callback;
 
 public class RechargeHistoryRecyclerAdapter extends RecyclerView.Adapter<RechargeHistoryRecyclerAdapter.HistoryHolder> {
 

@@ -14,12 +14,12 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransfer.Data;
 import com.rokad.dmt.pojos.NewTransactionProcessResponsePOJO;
 import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.views.BaseFragment;

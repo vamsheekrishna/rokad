@@ -14,8 +14,6 @@ import androidx.navigation.Navigation;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
 
-import java.util.Objects;
-
 public class RegistrationFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";

@@ -22,13 +22,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BeneficiaryListResponsePOJO;
 import com.rokad.dmt.pojos.FundTransferResponsePOJO;
 import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.dmt.viewmodels.SenderData;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;

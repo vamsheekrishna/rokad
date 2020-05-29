@@ -17,11 +17,11 @@ import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.BankListResponsePOJO;
 import com.rokad.dmt.pojos.ResponseBeneficiaryRegistration;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;

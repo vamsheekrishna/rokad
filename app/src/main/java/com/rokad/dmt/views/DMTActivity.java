@@ -16,8 +16,6 @@ import com.rokad.dmt.pojos.beneficiaryList.Beneficiary;
 import com.rokad.dmt.pojos.beneficiaryList.Data;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
-import java.util.zip.Inflater;
-
 public class DMTActivity extends ServicesBaseActivity implements OnDMTInteractionListener {
 
 

@@ -3,7 +3,6 @@ package com.rokad.dmt.views;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -17,10 +16,10 @@ import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.rokad.BuildConfig;
 import com.rokad.R;
-import com.rokad.model.UserData;
 import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.SenderRegistration.SenderData;
 import com.rokad.dmt.pojos.SenderRegistrationResponsePOJO;
+import com.rokad.model.UserData;
 import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.DMTModuleService;
 import com.rokad.utilities.Utils;

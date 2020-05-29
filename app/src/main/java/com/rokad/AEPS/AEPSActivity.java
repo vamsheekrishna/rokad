@@ -1,13 +1,9 @@
 package com.rokad.AEPS;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.rokad.R;
-import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.dmt.pojos.TransactionProcessPOJO;
-import com.rokad.utilities.views.BaseActivity;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
 public class AEPSActivity extends ServicesBaseActivity implements OnAEPSInteractionListener {
