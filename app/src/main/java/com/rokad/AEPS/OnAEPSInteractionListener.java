@@ -4,4 +4,6 @@ import com.rokad.dmt.pojos.TransactionProcessPOJO;
 
 interface OnAEPSInteractionListener {
     void showWebView(TransactionProcessPOJO.TransactionProcessData data);
+
+    void showPaymentReceipt();
 }

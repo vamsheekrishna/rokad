@@ -3,10 +3,11 @@ package com.rokad.AEPS;
 import android.os.Bundle;
 
 import com.rokad.R;
-import com.rokad.dmt.pojos.TransactionProcessPOJO;
 import com.rokad.utilities.views.ServicesBaseActivity;
+import com.rokad.dmt.pojos.TransactionProcessPOJO;
 
-public class AEPSActivity extends ServicesBaseActivity implements OnAEPSInteractionListener {
+
+public class AEPSActivity extends ServicesBaseActivity  implements OnAEPSInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +19,10 @@ public class AEPSActivity extends ServicesBaseActivity implements OnAEPSInteract
     @Override
     public void showWebView(TransactionProcessPOJO.TransactionProcessData data) {
         replaceFragment(WebViewFragment.newInstance(data,""), "web-view", true);
+    }
+
+    @Override
+    public void showPaymentReceipt() {
+        replaceFragment(ReceiptFragment.newInstance("",""), "receipt_fragment", true);
     }
 }
