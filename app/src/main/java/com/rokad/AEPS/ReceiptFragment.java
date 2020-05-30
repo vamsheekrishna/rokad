@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.rokad.R;
 import com.rokad.utilities.views.BaseFragment;
 
@@ -55,6 +57,10 @@ public class ReceiptFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_emo, container, false);
+        View view = inflater.inflate(R.layout.fragment_emo, container, false);
+        RecyclerView splitupView = view.findViewById(R.id.split_up_list);
+        ReceiptSplitupRecyclerAdapter splitupRecyclerAdapter = new ReceiptSplitupRecyclerAdapter();
+        splitupView.setAdapter(splitupRecyclerAdapter);
+        return view;
     }
 }
