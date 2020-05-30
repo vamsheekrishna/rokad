@@ -35,11 +35,6 @@ class BankListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-       /* TextView textView =new TextView(viewGroup.getContext());
-        textView.setText(getItem(i).getBankName());
-        textView.setPadding(4,4,4,4);
-        textView.setTextSize(16);*/
-
         LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_view_row, viewGroup, false);
         TextView index = rowView.findViewById(R.id.index);
