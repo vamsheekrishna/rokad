@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_margin="4dp">-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="4dp">
 <TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_margin="8dp"
@@ -37,4 +38,4 @@ android:weightSum="3">
     android:textSize="20sp"
     android:fontFamily="@font/segoe_ui"/>
 </TableRow>
-<!--</TableLayout>-->
+</TableLayout>

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/black_border_line"
+    android:layout_margin="12dp"
+    tools:context="com.rokad.AEPS.ReceiptFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rokad_img"
+        android:src="@drawable/rokadpng"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/rokad_img"
+        android:id="@+id/date_stuff"
+        android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_marginTop="12dp"
+        android:layout_weight="2"
+        tools:ignore="UselessParent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:id="@+id/date_header"
+            android:textColor="@color/black"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:textSize="22sp"
+            android:gravity="end"
+            android:text="Date: "/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:id="@+id/date"
+            android:fontFamily="@font/segoe_ui"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:gravity="start"
+            android:text="30-05-2020"/>
+    </TableRow>
+
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+        android:background="@color/gray"
+        android:layout_below="@id/date_stuff"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_stuff"
+        android:layout_marginTop="8dp"
+        android:id="@+id/head_table">
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_header_name"
+                android:text="Service Name"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Cash Withdraw"
+                android:id="@+id/service_name"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/agent_name_header"
+                android:text="Agent Name"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Rajendra Shinde"
+                android:id="@+id/agent_name"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/mobile_num_header"
+                android:text="Mobile Number"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="9823438182"
+                android:id="@+id/mobile_number"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/paid_by_header"
+                android:text="Paid By"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Wallet"
+                android:id="@+id/payment_mode"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/trans_header"
+                android:text="ROKAD Trans No"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="2154635476"
+                android:id="@+id/transaction_num"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/rrn_header"
+                android:text="RRN"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="6358746587"
+                android:id="@+id/rrn_num"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+    </TableLayout>
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:background="@color/gray"-->
+<!--        android:layout_below="@id/head_table"/>-->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head_table"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:background="@drawable/black_border_line"
+        android:id="@+id/split_up">
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="3">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Sr. No"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:id="@+id/serial_num_head"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_name_header"
+                android:text="Charge Name"
+                android:gravity="center"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="Amt"
+                android:id="@+id/paid_amt_header"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/segoe_ui_bold"/>
+        </TableRow>
+
+
+<!--        <TableRow>-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_height="wrap_content"
+                android:id="@+id/split_up_list" />
+<!--        </TableRow>-->
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="3">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:layout_height="wrap_content"
+                android:id="@+id/sub_total_header"
+                android:text="Sub Total"
+                android:layout_marginEnd="12dp"
+                android:gravity="end"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:id="@+id/sub_total_amt"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui_bold"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="3">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:layout_height="wrap_content"
+                android:id="@+id/total_amt_header"
+                android:text="Total Amount Paid"
+                android:layout_marginEnd="12dp"
+                android:gravity="end"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:id="@+id/total_amt"
+                android:textSize="20sp"
+                android:fontFamily="@font/segoe_ui_bold"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:orientation="vertical"
+        android:layout_below="@id/split_up">
+
+
+        <TableRow
+            android:layout_margin="8dp"
+            android:weightSum="2">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/in_words_amt_header"
+                android:text="Total Amount Paid(in words)"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="One Hundred Rupees Only"
+                android:id="@+id/amt_in_words"
+                android:textSize="14sp"
+                android:fontFamily="@font/segoe_ui"/>
+        </TableRow>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:id="@+id/recept_note"
+                android:textColor="@color/black"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Note: This is a computer generated receipt. So Signature is not required."
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"/>
+
+    </TableLayout>
+
+
+
+</RelativeLayout>
+</ScrollView>
