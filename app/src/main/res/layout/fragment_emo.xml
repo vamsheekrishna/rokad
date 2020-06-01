@@ -18,41 +18,37 @@
         android:id="@+id/rokad_img"
         android:src="@drawable/rokadpng"/>
 
-    <TableLayout
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_below="@id/rokad_img"
-        android:id="@+id/date_stuff"
-        android:layout_height="wrap_content">
-
-    <TableRow
         android:layout_marginTop="12dp"
-        android:layout_weight="2"
-        tools:ignore="UselessParent">
+        android:id="@+id/date_stuff">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="2.8"
             android:id="@+id/date_header"
             android:textColor="@color/black"
             android:fontFamily="@font/segoe_ui_bold"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:gravity="end"
             android:text="Date: "/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:id="@+id/date"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/segoe_ui"
             android:textColor="@color/black"
-            android:textSize="22sp"
-            android:gravity="start"
+            android:textSize="18sp"
+            android:gravity="end"
             android:text="30-05-2020"/>
-    </TableRow>
-
-    </TableLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -61,13 +57,18 @@
         android:background="@color/gray"
         android:layout_below="@id/date_stuff"/>
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/date_stuff"
+        android:orientation="vertical"
         android:layout_marginTop="8dp"
         android:id="@+id/head_table">
-        <TableRow
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -78,7 +79,7 @@
                 android:text="Service Name"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -87,11 +88,14 @@
                 android:layout_height="wrap_content"
                 android:text="Cash Withdraw"
                 android:id="@+id/service_name"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -102,7 +106,7 @@
                 android:text="Agent Name"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -111,11 +115,14 @@
                 android:layout_height="wrap_content"
                 android:text="Rajendra Shinde"
                 android:id="@+id/agent_name"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -126,7 +133,7 @@
                 android:text="Mobile Number"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -135,12 +142,15 @@
                 android:layout_height="wrap_content"
                 android:text="9823438182"
                 android:id="@+id/mobile_number"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -151,7 +161,7 @@
                 android:text="Paid By"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -160,11 +170,14 @@
                 android:layout_height="wrap_content"
                 android:text="Wallet"
                 android:id="@+id/payment_mode"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -175,7 +188,7 @@
                 android:text="ROKAD Trans No"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -184,11 +197,14 @@
                 android:layout_height="wrap_content"
                 android:text="2154635476"
                 android:id="@+id/transaction_num"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -199,7 +215,7 @@
                 android:text="RRN"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -208,10 +224,10 @@
                 android:layout_height="wrap_content"
                 android:text="6358746587"
                 android:id="@+id/rrn_num"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
-    </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 <!--    <View-->
 <!--        android:layout_width="match_parent"-->
@@ -220,7 +236,7 @@
 <!--        android:background="@color/gray"-->
 <!--        android:layout_below="@id/head_table"/>-->
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/head_table"
@@ -229,7 +245,9 @@
         android:background="@drawable/black_border_line"
         android:id="@+id/split_up">
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:weightSum="3">
 
@@ -238,6 +256,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:text="Sr. No"
                 android:fontFamily="@font/segoe_ui_bold"
@@ -252,7 +271,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -260,22 +279,25 @@
                 android:layout_height="wrap_content"
                 android:text="Amt"
                 android:id="@+id/paid_amt_header"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/segoe_ui_bold"/>
-        </TableRow>
+        </LinearLayout>
 
 
 <!--        <TableRow>-->
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_height="wrap_content"
                 android:id="@+id/split_up_list" />
 <!--        </TableRow>-->
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="3">
 
@@ -290,7 +312,7 @@
                 android:gravity="end"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -298,11 +320,14 @@
                 android:layout_height="wrap_content"
                 android:text="100"
                 android:id="@+id/sub_total_amt"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui_bold"/>
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="3">
 
@@ -317,7 +342,7 @@
                 android:gravity="end"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
@@ -325,14 +350,14 @@
                 android:layout_height="wrap_content"
                 android:text="100"
                 android:id="@+id/total_amt"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/segoe_ui_bold"/>
-        </TableRow>
+        </LinearLayout>
 
-    </TableLayout>
+    </LinearLayout>
 
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description"
@@ -340,7 +365,10 @@
         android:layout_below="@id/split_up">
 
 
-        <TableRow
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="8dp"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatTextView
@@ -351,7 +379,7 @@
                 android:text="Total Amount Paid(in words)"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -360,19 +388,20 @@
                 android:layout_height="wrap_content"
                 android:text="One Hundred Rupees Only"
                 android:id="@+id/amt_in_words"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/segoe_ui"/>
-        </TableRow>
+        </LinearLayout>
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
+                android:layout_margin="12dp"
                 android:id="@+id/recept_note"
                 android:textColor="@color/black"
                 android:fontFamily="@font/segoe_ui_bold"
+                android:textSize="16dp"
                 android:text="Note: This is a computer generated receipt. So Signature is not required."
                 android:singleLine="true"
                 android:ellipsize="marquee"
@@ -382,7 +411,7 @@
                 android:focusableInTouchMode="true"
                 android:freezesText="true"/>
 
-    </TableLayout>
+    </LinearLayout>
 
 
 

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_margin="4dp">
-<TableRow
-    xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_margin="8dp"
-android:weightSum="3">
 
 <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="0dp"
@@ -15,7 +11,9 @@ android:weightSum="3">
     android:layout_weight="0.5"
     android:gravity="center"
     android:textColor="@color/black"
+    android:fontFamily="@font/segoe_ui_bold"
     android:text="1"
+    android:textSize="16sp"
     android:id="@+id/serial_num"/>
 
 <androidx.appcompat.widget.AppCompatTextView
@@ -25,9 +23,9 @@ android:weightSum="3">
     android:id="@+id/service_name_split"
     android:text="AEPS Cash Withdraw"
     android:gravity="center"
-    android:fontFamily="@font/segoe_ui_bold"
+    android:fontFamily="@font/segoe_ui"
     android:textColor="@color/black"
-    android:textSize="16sp" />
+    android:textSize="18sp" />
 
 <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="0dp"
@@ -35,7 +33,7 @@ android:weightSum="3">
     android:layout_height="wrap_content"
     android:text="500"
     android:id="@+id/paid_amt"
-    android:textSize="20sp"
+    android:textSize="18sp"
     android:fontFamily="@font/segoe_ui"/>
-</TableRow>
-</TableLayout>
+
+</LinearLayout>

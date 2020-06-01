@@ -198,7 +198,7 @@ public class ReceiptFragment extends BaseFragment {
 
     private String getDate(){
        Calendar calendar = Calendar.getInstance();
-       SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+       SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
        return dateFormat.format(calendar.getTime());
    }
 }
