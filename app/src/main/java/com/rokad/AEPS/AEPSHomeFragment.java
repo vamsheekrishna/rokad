@@ -128,6 +128,10 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
                     if(response.isSuccessful()) {
                         TransactionProcessPOJO data = response.body();
                         if(data.getStatus().equalsIgnoreCase("Success")) {
+                            firstName.accessEditText().setText("");
+                            lastName.accessEditText().setText("");
+                            mobileNumber.accessEditText().setText("");
+                            amt.accessEditText().setText("");
                             mListener.showWebView(data.getData());
                             // startActivity(new Intent(requireActivity(), MFS100Test.class));
                         }
