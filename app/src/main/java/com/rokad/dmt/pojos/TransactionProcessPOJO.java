@@ -25,13 +25,25 @@ public class TransactionProcessPOJO extends BaseResponse {
         @Expose
         String request_id;
 
-        @SerializedName("agentcode")
+        @SerializedName("sourceid")
         @Expose
-        String agentcode;
+        String sourceid;
 
         @SerializedName("mastercode")
         @Expose
         String mastercode;
+
+        @SerializedName("agentcode")
+        @Expose
+        String agentcode;
+
+        @SerializedName("trackid")
+        @Expose
+        String trackid;
+
+        @SerializedName("checksum")
+        @Expose
+        String checksum;
 
         @SerializedName("RETURNURL")
         @Expose
@@ -67,6 +79,30 @@ public class TransactionProcessPOJO extends BaseResponse {
 
         public void setRETURNURL(String RETURNURL) {
             this.RETURNURL = RETURNURL;
+        }
+
+        public String getSourceid() {
+            return sourceid;
+        }
+
+        public void setSourceid(String sourceid) {
+            this.sourceid = sourceid;
+        }
+
+        public String getTrackid() {
+            return trackid;
+        }
+
+        public void setTrackid(String trackid) {
+            this.trackid = trackid;
+        }
+
+        public String getChecksum() {
+            return checksum;
+        }
+
+        public void setChecksum(String checksum) {
+            this.checksum = checksum;
         }
     }
 }

@@ -2,6 +2,7 @@ package com.rokad.AEPS;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,6 +90,7 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
         amt =  view.findViewById(R.id.cust_amt);
 
         mobileNumber.accessEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        mobileNumber.accessEditText().setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
         amt.accessEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
         email.accessEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
     }

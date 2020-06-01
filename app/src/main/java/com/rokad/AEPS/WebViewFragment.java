@@ -1,6 +1,7 @@
 package com.rokad.AEPS;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,16 +86,25 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
         // Enable Javascript
         webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
 
         CustomWebViewClient webViewClient = new CustomWebViewClient();
         webView.setWebViewClient(webViewClient);
         // Add the custom WebViewClient class
-        webView.setWebViewClient(new CustomWebViewClient());
         // Add the javascript interface
         webView.addJavascriptInterface(new JavaScriptInterface(), "interface");
         // Load the example html file to the WebView
         // webView.loadUrl("file:///android_asset/index.html");
-        webView.loadUrl("https://rokad.in/home");
+        // webView.loadUrl("https://rokad.in/home");
+
+        // webView.loadUrl(buffer.toString());
+        String buffer = "?request_id=" + mParam1.getRequest_id() +
+                "&sourceid=" + mParam1.getSourceid() +
+                "&mastercode=" + mParam1.getMastercode() +
+                "&agentcode=" + mParam1.getAgentcode() +
+                "&trackid=" + mParam1.getTrackid() +
+                "&checksum=" + mParam1.getChecksum();
+        webView.postUrl(mParam1.getRETURNURL(), buffer.getBytes());
     }
 
     @Override
@@ -120,6 +130,20 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
     private class CustomWebViewClient extends WebViewClient {
 
         @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return super.shouldOverrideUrlLoading(view, url);
+        }
+        /*@Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
             // If the url to be loaded starts with the custom protocol, skip
@@ -132,7 +156,7 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
             }
 
             return false;
-        }
+        }*/
     }
 
     /**
