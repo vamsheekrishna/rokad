@@ -14,7 +14,6 @@ public class AEPSActivity extends ServicesBaseActivity  implements OnAEPSInterac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
         addFragment(new AEPSHomeFragment(),"AEPSHomeFragment", false);
-
     }
 
     @Override

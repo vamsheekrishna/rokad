@@ -96,15 +96,17 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
         // Load the example html file to the WebView
         // webView.loadUrl("file:///android_asset/index.html");
         // webView.loadUrl("https://rokad.in/home");
-
         // webView.loadUrl(buffer.toString());
-        String buffer = "?request_id=" + mParam1.getRequest_id() +
+        String buffer = "?inputjson= request_id=" + mParam1.getRequest_id() +
                 "&sourceid=" + mParam1.getSourceid() +
                 "&mastercode=" + mParam1.getMastercode() +
                 "&agentcode=" + mParam1.getAgentcode() +
                 "&trackid=" + mParam1.getTrackid() +
                 "&checksum=" + mParam1.getChecksum();
-        webView.postUrl(mParam1.getRETURNURL(), buffer.getBytes());
+
+        String temp = "?inputjson={\"sourceid\":\""+mParam1.getSourceid()+"\",\"mastercode\":\""+mParam1.getMastercode()+"\",\"agentcode\":\""+mParam1.getAgentcode()+"\",\"trackid\":\""+mParam1.getTrackid()+"\",\"checksum\":\""+mParam1.getChecksum()+"\",\"redirectionurl\":\"https://testingrokad.msrtcors.com/admin/aeps_smart/transaction_response\"}";
+        String tepm1 = mParam1.getRETURNURL()+temp;
+        webView.postUrl(tepm1,null);
     }
 
     @Override

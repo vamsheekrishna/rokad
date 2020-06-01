@@ -45,9 +45,9 @@ public class TransactionProcessPOJO extends BaseResponse {
         @Expose
         String checksum;
 
-        @SerializedName("RETURNURL")
+        @SerializedName("redirecturl")
         @Expose
-        String RETURNURL;
+        String redirecturl;
 
         public String getRequest_id() {
             return request_id;
@@ -74,11 +74,11 @@ public class TransactionProcessPOJO extends BaseResponse {
         }
 
         public String getRETURNURL() {
-            return RETURNURL;
+            return redirecturl;
         }
 
         public void setRETURNURL(String RETURNURL) {
-            this.RETURNURL = RETURNURL;
+            this.redirecturl = RETURNURL;
         }
 
         public String getSourceid() {
