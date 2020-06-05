@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -81,15 +81,16 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         webView = view.findViewById(R.id.webView);
-        view.findViewById(R.id.button).setOnClickListener(this);
-        view.findViewById(R.id.returnValue).setOnClickListener(this);
+//        view.findViewById(R.id.button).setOnClickListener(this);
+//        view.findViewById(R.id.returnValue).setOnClickListener(this);
         // Enable Javascript
         webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true);
 
         CustomWebViewClient webViewClient = new CustomWebViewClient();
         webView.setWebViewClient(webViewClient);
+        webView.setWebChromeClient(new CustomWebViewChromeClient());
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
         // Add the custom WebViewClient class
         // Add the javascript interface
         webView.addJavascriptInterface(new JavaScriptInterface(), "interface");
@@ -104,14 +105,14 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
                 "&trackid=" + mParam1.getTrackid() +
                 "&checksum=" + mParam1.getChecksum();
 
-        String temp = "?inputjson={\"sourceid\":\""+mParam1.getSourceid()+"\",\"mastercode\":\""+mParam1.getMastercode()+"\",\"agentcode\":\""+mParam1.getAgentcode()+"\",\"trackid\":\""+mParam1.getTrackid()+"\",\"checksum\":\""+mParam1.getChecksum()+"\",\"redirectionurl\":\"https://testingrokad.msrtcors.com/admin/aeps_smart/transaction_response\"}";
-        String tepm1 = mParam1.getRETURNURL()+temp;
+        String temp = "?inputjson={\"sourceid\":\""+mParam1.getSourceid()+"\",\"mastercode\":\""+mParam1.getMastercode()+"\",\"agentcode\":\""+mParam1.getAgentcode()+"\",\"trackid\":\""+mParam1.getTrackid()+"\",\"checksum\":\""+mParam1.getChecksum()+"\",\"redirectionurl\":\""+mParam1.getRokadurl()+"\",\"request_from\":\"mobile\"}";
+        String tepm1 = mParam1.getEbixurl()+temp;
         webView.postUrl(tepm1,null);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        /*switch (view.getId()) {
             case R.id.button:
                 webView.loadUrl("javascript:callFromApp('"+data+"');");
                 break;
@@ -123,6 +124,15 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
                     }
                 });
                 break;
+        }*/
+    }
+
+    // @Override
+    public void onBackPressed() {
+        if(webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.requireActivity().onBackPressed();
         }
     }
 
@@ -145,20 +155,6 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             return super.shouldOverrideUrlLoading(view, url);
         }
-        /*@Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-            // If the url to be loaded starts with the custom protocol, skip
-            // loading and do something else
-            if (url.startsWith("tanelikorri://")) {
-
-                Toast.makeText(requireActivity(), "Custom protocol call", Toast.LENGTH_LONG).show();
-
-                return true;
-            }
-
-            return false;
-        }*/
     }
 
     /**
@@ -172,5 +168,9 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
         public void callFromJS() {
             Toast.makeText(requireActivity(), "JavaScript interface call", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private class CustomWebViewChromeClient extends WebChromeClient {
+
     }
 }

@@ -45,9 +45,41 @@ public class TransactionProcessPOJO extends BaseResponse {
         @Expose
         String checksum;
 
-        @SerializedName("redirecturl")
+        @SerializedName("ebixurl")
         @Expose
-        String redirecturl;
+        String ebixurl;
+
+        @SerializedName("rokadurl")
+        @Expose
+        String rokadurl;
+
+        @SerializedName("request_from")
+        @Expose
+        String request_from;
+
+        public String getEbixurl() {
+            return ebixurl;
+        }
+
+        public void setEbixurl(String ebixurl) {
+            this.ebixurl = ebixurl;
+        }
+
+        public String getRokadurl() {
+            return rokadurl;
+        }
+
+        public void setRokadurl(String rokadurl) {
+            this.rokadurl = rokadurl;
+        }
+
+        public String getRequest_from() {
+            return request_from;
+        }
+
+        public void setRequest_from(String request_from) {
+            this.request_from = request_from;
+        }
 
         public String getRequest_id() {
             return request_id;
@@ -71,14 +103,6 @@ public class TransactionProcessPOJO extends BaseResponse {
 
         public void setMastercode(String mastercode) {
             this.mastercode = mastercode;
-        }
-
-        public String getRETURNURL() {
-            return redirecturl;
-        }
-
-        public void setRETURNURL(String RETURNURL) {
-            this.redirecturl = RETURNURL;
         }
 
         public String getSourceid() {

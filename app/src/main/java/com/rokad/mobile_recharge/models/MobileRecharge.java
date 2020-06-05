@@ -27,7 +27,7 @@ public class MobileRecharge {
     public MobileRecharge() {
         this.prepaidSubscriberList = new ArrayList<>();
         prepaidSubscriberMap = new HashMap<>();
-        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
+        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AE","Airtel"));
         prepaidSubscriberMap.put("AE", prepaidSubscriberList.get(0));
         this.prepaidSubscriberList.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
         prepaidSubscriberMap.put("RG", prepaidSubscriberList.get(1));
@@ -37,7 +37,7 @@ public class MobileRecharge {
         prepaidSubscriberMap.put("I", prepaidSubscriberList.get(3));
         this.prepaidSubscriberList.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V", "Vodafone"));
         prepaidSubscriberMap.put("V", prepaidSubscriberList.get(4));
-        this.prepaidSubscriberList.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE", "jio"));
+        this.prepaidSubscriberList.add(new SubscriberModule(5,R.drawable.jio,"JIO","JOE", "jio"));
         prepaidSubscriberMap.put("JOE", prepaidSubscriberList.get(5));
         this.prepaidSubscriberList.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",""));
         prepaidSubscriberMap.put("TD", prepaidSubscriberList.get(6));
@@ -51,7 +51,7 @@ public class MobileRecharge {
     public ArrayList<SubscriberModule> getPrepaidSubscriberList() {
         this.prepaidSubscriberList = new ArrayList<>();
         prepaidSubscriberMap = new HashMap<>();
-        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "AirtelExpress", "AE","Airtel"));
+        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AE","Airtel"));
         prepaidSubscriberMap.put("AE", prepaidSubscriberList.get(0));
         this.prepaidSubscriberList.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
         prepaidSubscriberMap.put("RG", prepaidSubscriberList.get(1));
@@ -61,7 +61,7 @@ public class MobileRecharge {
         prepaidSubscriberMap.put("I", prepaidSubscriberList.get(3));
         this.prepaidSubscriberList.add(new SubscriberModule(4, R.drawable.vodafone, "Vodafone", "V", "Vodafone"));
         prepaidSubscriberMap.put("V", prepaidSubscriberList.get(4));
-        this.prepaidSubscriberList.add(new SubscriberModule(5,R.drawable.jio,"JOE","JOE", "jio"));
+        this.prepaidSubscriberList.add(new SubscriberModule(5,R.drawable.jio,"JIO","JOE", "jio"));
         prepaidSubscriberMap.put("JOE", prepaidSubscriberList.get(5));
         this.prepaidSubscriberList.add(new SubscriberModule(6,R.drawable.docomo,"Tata Docomo","TD",""));
         prepaidSubscriberMap.put("TD", prepaidSubscriberList.get(6));
