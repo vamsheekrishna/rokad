@@ -70,7 +70,7 @@ public class UserData {
     }
    static public void setInstance(User userData) {
         Encryption aesAlgorithm;
-       try {
+        try {
            aesAlgorithm = EncryptionFactory.getEncryptionByName("AES");
            String input = "Rajan";
            String key = "QWRTEfnfdys635";//E-m!tr@2016
@@ -110,9 +110,9 @@ public class UserData {
            getInstance().setUserName(aesAlgorithm.decrypt(userData.getUserName()));
            getInstance().setWalletBalance(aesAlgorithm.decrypt(userData.getWalletBalance()));
 
-       } catch (Exception e) {
+         } catch (Exception e) {
            e.printStackTrace();
-       }
+        }
    }
 
     static public UserData getInstance() {

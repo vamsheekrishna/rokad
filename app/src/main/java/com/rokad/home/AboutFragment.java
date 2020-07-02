@@ -42,7 +42,7 @@ public class AboutFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("About");
+        requireActivity().setTitle("About");
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

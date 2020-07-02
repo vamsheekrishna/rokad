@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.rokad.R;
 import com.rokad.utilities.views.BaseActivity;
 
-public class LoginActivity extends BaseActivity {
+        public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

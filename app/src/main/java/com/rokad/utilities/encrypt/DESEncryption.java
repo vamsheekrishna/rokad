@@ -94,8 +94,7 @@ public  class DESEncryption extends EncryptionKey implements Encryption
 		
 		try {
 			final MessageDigest md = MessageDigest.getInstance("md5");
-			final byte[] digestOfPassword = md.digest(Base64
-					.decodeBase64(keyString.getBytes(StandardCharsets.UTF_8)));
+			final byte[] digestOfPassword = md.digest(Base64.decodeBase64(keyString.getBytes(StandardCharsets.UTF_8)));
 			final byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
 			for (int j = 0, k = 16; j < 8;) {
 				keyBytes[k++] = keyBytes[j++];

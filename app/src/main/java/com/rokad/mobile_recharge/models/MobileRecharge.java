@@ -27,8 +27,8 @@ public class MobileRecharge {
     public MobileRecharge() {
         this.prepaidSubscriberList = new ArrayList<>();
         prepaidSubscriberMap = new HashMap<>();
-        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AE","Airtel"));
-        prepaidSubscriberMap.put("AE", prepaidSubscriberList.get(0));
+        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "A","Airtel"));
+        prepaidSubscriberMap.put("A", prepaidSubscriberList.get(0));
         this.prepaidSubscriberList.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
         prepaidSubscriberMap.put("RG", prepaidSubscriberList.get(1));
         this.prepaidSubscriberList.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B", "BSNL"));
@@ -51,8 +51,8 @@ public class MobileRecharge {
     public ArrayList<SubscriberModule> getPrepaidSubscriberList() {
         this.prepaidSubscriberList = new ArrayList<>();
         prepaidSubscriberMap = new HashMap<>();
-        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "AE","Airtel"));
-        prepaidSubscriberMap.put("AE", prepaidSubscriberList.get(0));
+        this.prepaidSubscriberList.add(new SubscriberModule(0, R.drawable.airtel, "Airtel", "A","Airtel"));
+        prepaidSubscriberMap.put("A", prepaidSubscriberList.get(0));
         this.prepaidSubscriberList.add(new SubscriberModule(1, R.drawable.reliance, "Reliance GSM", "RG",""));
         prepaidSubscriberMap.put("RG", prepaidSubscriberList.get(1));
         this.prepaidSubscriberList.add(new SubscriberModule(2, R.drawable.bsnl, "BSNL", "B", "BSNL"));

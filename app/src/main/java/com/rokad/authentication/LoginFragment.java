@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.navigation.Navigation;
 
+import com.rokad.BuildConfig;
 import com.rokad.R;
 import com.rokad.home.HomeActivity;
 import com.rokad.model.UserData;
@@ -40,7 +41,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private AppCompatEditText userName, password;
@@ -84,8 +84,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
          forgotPwd = view.findViewById(R.id.forgot_pwd);
          register = view.findViewById(R.id.register);
 
-//         userName.setText(BuildConfig.USERNAME);
-//         password.setText(BuildConfig.AUTH_PASSWORD);
+         userName.setText(BuildConfig.USERNAME);
+         password.setText(BuildConfig.AUTH_PASSWORD);
 
         return view;
     }

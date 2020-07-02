@@ -1,6 +1,7 @@
 package com.rokad.mantra;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,7 @@ import com.rokad.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 
 public class MFS100Test extends Activity implements MFS100Event {
 
@@ -44,6 +46,7 @@ public class MFS100Test extends Activity implements MFS100Event {
     CheckBox cbFastDetection;
     private static long mLastClkTime = 0;
     private static long Threshold = 1500;
+    private String xmlBiometricString = "";
 
     private enum ScannerAction {
         Capture, Verify
@@ -271,8 +274,13 @@ public class MFS100Test extends Activity implements MFS100Event {
                                 + fingerData.GrayScale() + "\nBits Per Pixal: "
                                 + fingerData.Bpp() + "\nWSQ Info: "
                                 + fingerData.WSQInfo();
+
                         SetLogOnUIThread(log);
                         SetData2(fingerData);
+
+                        Intent intent = new Intent();
+                        intent.setAction("in.gov.uidai.rdservice.fp.INFO");
+                        startActivityForResult(intent, 1);
                     }
                 } catch (Exception ex) {
                     SetTextOnUIThread("Error");
@@ -581,6 +589,75 @@ public class MFS100Test extends Activity implements MFS100Event {
             Toast.makeText(getApplicationContext(), err, Toast.LENGTH_LONG).show();
         } catch (Exception ignored) {
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            String result = data.getStringExtra("DEVICE_INFO");
+
+            String rdService = data.getStringExtra("RD_SERVICE_INFO");
+
+            if (rdService != null) {
+
+                System.out.println("RD SERVICE INFO: " + rdService);
+            }
+
+            if (result != null && !rdService.contains("status=\"NOTREADY\"")) {
+
+                String pidOption = "<PidOptions ver=\"2.0\">" +
+
+//"<Opts env=\"P\" Dtype=\"P\" fCount=\"1\" fType=\"0\" format=\"0\" iCount=\"0\" iType=\"0\" otp=\"1234\" wadh=\"Hello\" pCount=\"0\" pType=\"0\" pidVer=\"2.0\" posh=\"UNKNOWN\" timeout=\"10000\"/>" +
+                        "<Opts env=\"P\" Dtype=\"P\" fCount=\"1\" fType=\"0\" format=\"1\" iCount=\"0\" iType=\"0\" pCount=\"0\" pType=\"0\" pidVer=\"2.0\" timeout=\"30000\"/>" +
+
+                        "</PidOptions>";
+
+                Intent intent2 = new Intent();
+
+                intent2.setAction("in.gov.uidai.rdservice.fp.CAPTURE");
+
+                intent2.putExtra("PID_OPTIONS", pidOption);
+
+                startActivityForResult(intent2, 2);
+
+            } else {
+                Toast.makeText(MFS100Test.this, "Alert! Device not ready", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        if (requestCode == 2) {
+
+            String result = data.getStringExtra("PID_DATA");
+
+            if (result != null) {
+
+                try {
+
+                    xmlBiometricString = "<?xml version=\"1.0\"?>" + result;
+
+                    xmlBiometricString = xmlBiometricString.replaceAll("\"", "'");
+
+                    xmlBiometricString = xmlBiometricString.replaceAll("\n", "");
+
+                    byte[] byteText = xmlBiometricString.getBytes(Charset.forName("UTF-8"));
+
+                    xmlBiometricString = new String(byteText, "UTF-8");
+
+                    System.out.println("RESULT PID DATA: " + xmlBiometricString);
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        Toast.makeText(MFS100Test.this, "xmlBiometricString: "+xmlBiometricString, Toast.LENGTH_LONG).show();
+        Log.d("xmlBiometricString", "xmlBiometricString: "+xmlBiometricString);
     }
 
 }

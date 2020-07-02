@@ -1,7 +1,9 @@
 package com.rokad.AEPS;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
@@ -13,25 +15,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.mantra.mfs100.FingerData;
+import com.mantra.mfs100.MFS100;
+import com.mantra.mfs100.MFS100Event;
 import com.rokad.R;
-import com.rokad.dmt.pojos.TransactionProcessPOJO;
-import com.rokad.model.UserData;
-import com.rokad.rokad_api.RetrofitClientInstance;
 import com.rokad.rokad_api.endpoints.AEPSService;
 import com.rokad.utilities.Utils;
 import com.rokad.utilities.views.BaseFragment;
 import com.rokad.utilities.views.EditTextWithTitleAndThumbIcon;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.nio.charset.Charset;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AEPSHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AEPSHomeFragment extends BaseFragment implements View.OnClickListener {
+public class AEPSHomeFragment extends BaseFragment implements View.OnClickListener, MFS100Event {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -41,7 +41,15 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
     private EditTextWithTitleAndThumbIcon firstName, lastName, mobileNumber, email, amt;
     private AEPSService aepsService;
     private OnAEPSInteractionListener mListener;
+    private FingerData lastCapFingerData = null;
 
+
+    MFS100 mfs100 = null;
+    private String xmlBiometricString = "";
+    private enum ScannerAction {
+        Capture, Verify
+    }
+    ScannerAction scannerAction = ScannerAction.Capture;
     public AEPSHomeFragment() {
         // Required empty public constructor
     }
@@ -70,6 +78,13 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        try {
+            mfs100 = new MFS100(this);
+            mfs100.SetApplicationContext(getContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -97,11 +112,17 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        String _firstName = firstName.accessEditText().getText().toString();
+        /*String _firstName = firstName.accessEditText().getText().toString();
         String _lastName = lastName.accessEditText().getText().toString();
         String _mobileNumber = mobileNumber.accessEditText().getText().toString();
         String _email = email.accessEditText().getText().toString();
-        String _amt = amt.accessEditText().getText().toString();
+        String _amt = amt.accessEditText().getText().toString();*/
+        String _firstName = "vamshee";
+        String _lastName = "krishna";
+        String _mobileNumber = "7416226233";
+        String _email = email.accessEditText().getText().toString();
+        String _amt = "100";
+
         int amount = 0;
         try {
             amount = Integer.parseInt(_amt);
@@ -120,7 +141,17 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
             showDialog("Sorry!!",getString(R.string.aeps_minimum_amount_alert));
         } else {
             progressBar.show();
-            aepsService = RetrofitClientInstance.getRetrofitInstance().create(AEPSService.class);
+
+            /*scannerAction = ScannerAction.Capture;
+            if (!isCaptureRunning) {
+                StartSyncCapture();
+            }*/
+
+            Intent intent = new Intent();
+            intent.setAction("in.gov.uidai.rdservice.fp.INFO");
+            startActivityForResult(intent, 1);
+
+            /*aepsService = RetrofitClientInstance.getRetrofitInstance().create(AEPSService.class);
             aepsService.transactionProcess(_firstName, _lastName, _mobileNumber, _amt,
                     UserData.getUserData().getId()).enqueue(new Callback<TransactionProcessPOJO>() {
                 @Override
@@ -146,7 +177,172 @@ public class AEPSHomeFragment extends BaseFragment implements View.OnClickListen
                     showDialog("", t.getMessage());
                     progressBar.cancel();
                 }
-            });
+            });*/
         }
     }
+
+    private long mLastAttTime=0l;
+    private static long mLastClkTime = 0;
+    private static long Threshold = 1500;
+    long mLastDttTime=0l;
+
+    @Override
+    public void OnDeviceAttached(int vid, int pid, boolean hasPermission) {
+        if (SystemClock.elapsedRealtime() - mLastAttTime < Threshold) {
+            return;
+        }
+        mLastAttTime = SystemClock.elapsedRealtime();
+        int ret;
+        if (!hasPermission) {
+            showDialog("","Permission denied");
+            return;
+        }
+        try {
+            if (vid == 1204 || vid == 11279) {
+                if (pid == 34323) {
+                    ret = mfs100.LoadFirmware();
+                    if (ret != 0) {
+                        showDialog("",mfs100.GetErrorMsg(ret));
+                    } else {
+                        showDialog("","Load firmware success");
+                    }
+                } else if (pid == 4101) {
+                    String key = "Without Key";
+                    ret = mfs100.Init();
+                    if (ret == 0) {
+                        // showDialog("", key);
+                        initScanner();
+                    } else {
+                        showDialog("",mfs100.GetErrorMsg(ret));
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void OnDeviceDetached() {
+        try {
+
+            if (SystemClock.elapsedRealtime() - mLastDttTime < Threshold) {
+                return;
+            }
+            mLastDttTime = SystemClock.elapsedRealtime();
+            UnInitScanner();
+            showDialog("","Device removed");
+        } catch (Exception e) {
+        }
+    }
+    private void initScanner() {
+        try {
+            int ret = mfs100.Init();
+            if (ret != 0) {
+                showDialog("",mfs100.GetErrorMsg(ret));
+            } else {
+                showDialog("","Init success");
+                String info = "Serial: " + mfs100.GetDeviceInfo().SerialNo()
+                        + " Make: " + mfs100.GetDeviceInfo().Make()
+                        + " Model: " + mfs100.GetDeviceInfo().Model()
+                        + "\nCertificate: " + mfs100.GetCertification();
+                showDialog("",info);
+            }
+        } catch (Exception ex) {
+            showDialog("","Init failed, unhandled exception");
+        }
+    }
+    private void UnInitScanner() {
+        try {
+            int ret = mfs100.UnInit();
+            if (ret != 0) {
+                showDialog("",mfs100.GetErrorMsg(ret));
+            } else {
+                showDialog("","Uninit Success");
+                showDialog("","Uninit Success");
+                lastCapFingerData = null;
+            }
+        } catch (Exception e) {
+            Log.e("UnInitScanner.EX", e.toString());
+        }
+    }
+    @Override
+    public void OnHostCheckFailed(String err) {
+        try {
+            showDialog("", err);
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            String result = data.getStringExtra("DEVICE_INFO");
+
+            String rdService = data.getStringExtra("RD_SERVICE_INFO");
+
+            if (rdService != null) {
+
+                System.out.println("RD SERVICE INFO: " + rdService);
+            }
+
+            if (result != null && !rdService.contains("status=\"NOTREADY\"")) {
+
+                String pidOption = "<PidOptions ver=\"2.0\">" +
+
+//"<Opts env=\"P\" Dtype=\"P\" fCount=\"1\" fType=\"0\" format=\"0\" iCount=\"0\" iType=\"0\" otp=\"1234\" wadh=\"Hello\" pCount=\"0\" pType=\"0\" pidVer=\"2.0\" posh=\"UNKNOWN\" timeout=\"10000\"/>" +
+                        "<Opts env=\"P\" Dtype=\"P\" fCount=\"1\" fType=\"0\" format=\"1\" iCount=\"0\" iType=\"0\" pCount=\"0\" pType=\"0\" pidVer=\"2.0\" timeout=\"30000\"/>" +
+
+                        "</PidOptions>";
+
+                Intent intent2 = new Intent();
+
+                intent2.setAction("in.gov.uidai.rdservice.fp.CAPTURE");
+
+                intent2.putExtra("PID_OPTIONS", pidOption);
+
+                startActivityForResult(intent2, 2);
+
+            } else {
+                showDialog("", "Alert! Device not ready");
+            }
+        }
+
+        if (requestCode == 2) {
+
+            String result = data.getStringExtra("PID_DATA");
+
+            if (result != null) {
+
+                try {
+
+                    xmlBiometricString = "<?xml version=\"1.0\"?>" + result;
+
+                    xmlBiometricString = xmlBiometricString.replaceAll("\"", "'");
+
+                    xmlBiometricString = xmlBiometricString.replaceAll("\n", "");
+
+                    byte[] byteText = xmlBiometricString.getBytes(Charset.forName("UTF-8"));
+
+                    xmlBiometricString = new String(byteText, "UTF-8");
+
+                    System.out.println("RESULT PID DATA: " + xmlBiometricString);
+                    showDialog("","xmlBiometricString: "+xmlBiometricString);
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                }
+            }
+        }
+        if(progressBar.isShowing()) {
+            progressBar.dismiss();
+        }
+        Log.d("xmlBiometricString", "xmlBiometricString: "+xmlBiometricString);
+    }
+
 }

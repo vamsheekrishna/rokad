@@ -11,13 +11,18 @@ android {
         buildConfigField("String", "PASSWORD", '""')
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1"
         buildConfigField("String", "API_KEY", '"abcdefghijklmn"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-// Specifies one flavor dimension.
+    // Specifies one flavor dimension.
     flavorDimensions "version"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     productFlavors {
         staging {
             // Assigns this product flavor to the "version" flavor dimension.
@@ -31,7 +36,7 @@ android {
 
             buildConfigField("String", "AUTH_USERNAME", '"9960703227"')
             buildConfigField("String", "AUTH_PASSWORD", '"Trimax@123"')
-            buildConfigField("String", "BASE_URL", '"https://testingrokad.msrtcors.com"')
+            buildConfigField("String", "BASE_URL", '"https://testingrokad.msrtcors.com/"')
 
             buildConfigField("String", "MOBILE_APPLICATION", "\"Y\"")
             buildConfigField("String", "MOBILE_VERSION_ID", "\"1.1\"")
@@ -163,14 +168,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
-
-    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation files('libs/mantra.mfs100.jar')
-    // Recommended: Add the Firebase SDK for Google Analytics.
-//    implementation 'com.google.firebase:firebase-analytics:17.4.1'
-//     Add the Firebase Crashlytics SDK.
-//    implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
 
 }
 

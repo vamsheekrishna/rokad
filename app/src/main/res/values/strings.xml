@@ -60,7 +60,7 @@
     <string name="rokad_wallet_balance_text">Rokad Wallet Balance :</string>
     <string name="make_payment_btn">Make Payment</string>
     <string name="try_again">Try Again</string>
-    <string name="app_version">App ver 1.0</string>
+    <string name="app_version">App ver 1.1</string>
     <string name="invalid_mobile_number_alert">Please enter valid phone number.</string>
     <string name="phone_number_check_msg">Please enter a valid phone number</string>
     <string name="valid_recharge_amt_check_msg">Please enter a valid amount minimum of RS.10 You can choose it from available plans.</string>
