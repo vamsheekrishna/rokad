@@ -32,8 +32,6 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private WebSettings webSettings;
-    // TODO: Rename and change types of parameters
-    private TransactionProcessPOJO.TransactionProcessData mParam1;
     private String mParam2;
     private WebView webView;
     private String data = "Hi i am from Android string!!!";
@@ -41,20 +39,9 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
     public WebViewFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WebViewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WebViewFragment newInstance(TransactionProcessPOJO.TransactionProcessData param1, String param2) {
+    public static WebViewFragment newInstance( String param2) {
         WebViewFragment fragment = new WebViewFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -64,7 +51,6 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = (TransactionProcessPOJO.TransactionProcessData) getArguments().getSerializable(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -98,16 +84,7 @@ public class WebViewFragment extends BaseFragment implements View.OnClickListene
         // webView.loadUrl("file:///android_asset/index.html");
         // webView.loadUrl("https://rokad.in/home");
         // webView.loadUrl(buffer.toString());
-        String buffer = "?inputjson= request_id=" + mParam1.getRequest_id() +
-                "&sourceid=" + mParam1.getSourceid() +
-                "&mastercode=" + mParam1.getMastercode() +
-                "&agentcode=" + mParam1.getAgentcode() +
-                "&trackid=" + mParam1.getTrackid() +
-                "&checksum=" + mParam1.getChecksum();
-
-        String temp = "?inputjson={\"sourceid\":\""+mParam1.getSourceid()+"\",\"mastercode\":\""+mParam1.getMastercode()+"\",\"agentcode\":\""+mParam1.getAgentcode()+"\",\"trackid\":\""+mParam1.getTrackid()+"\",\"checksum\":\""+mParam1.getChecksum()+"\",\"redirectionurl\":\""+mParam1.getRokadurl()+"\",\"request_from\":\"mobile\"}";
-        String tepm1 = mParam1.getEbixurl()+temp;
-        webView.postUrl(tepm1,null);
+        webView.postUrl("tepm1",null);
     }
 
     @Override

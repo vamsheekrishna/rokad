@@ -1,57 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.rokad.AEPS.AEPSHomeFragment">
-    
-   <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/cust_fst_name"
-       app:title="@string/first_name"
-       app:image="@drawable/user_new"/>
+    android:orientation="vertical"
+    tools:context="com.rokad.AEPS.AEPSHomeFragment"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_margin="16dp">
 
-    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cust_lst_name"
-        android:layout_below="@id/cust_fst_name"
-        app:title="@string/last_name"
-        app:image="@drawable/user_new"/>
-
-    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cust_mobile_num"
-        android:layout_below="@id/cust_lst_name"
-        app:title="@string/mobile_number"
-        app:image="@drawable/mobile"/>
-
-    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/cust_email"
-        android:layout_below="@id/cust_mobile_num"
-        app:title="@string/enter_email_address"
-        app:image="@drawable/ic_email_black_24dp"/>
-
-    <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cust_amt"
-        android:layout_below="@id/cust_email"
-        app:title="Amount"
-        app:image="@drawable/amount"/>
-
-
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
+        android:id="@+id/cash_withdrawal"
         style="@style/button_color"
-        android:text="@string/proceed"
-        android:layout_below="@id/cust_amt"
-        android:id="@+id/submit"
-        android:layout_centerHorizontal="true"/>
+        android:text="@string/cash_withdrawal"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/balance_enquire"
+        style="@style/button_gray"
+        android:text="@string/balance_enquire"/>
+</LinearLayout>

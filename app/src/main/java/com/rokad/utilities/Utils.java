@@ -8,6 +8,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -53,4 +55,29 @@ public class Utils {
     public static boolean isValidEmail(String email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+    public static boolean isValidAadharNumber(String str)
+    {
+        // Regex to check valid Aadhar number.
+        String regex = "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$";
+
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+
+        // If the string is empty
+        // return false
+        if (str == null) {
+            return false;
+        }
+
+        // Pattern class contains matcher() method
+        // to find matching between given string
+        // and regular expression.
+        Matcher m = p.matcher(str);
+
+        // Return if the string
+        // matched the ReGex
+        return m.matches();
+    }
+
 }

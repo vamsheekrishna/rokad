@@ -137,5 +137,10 @@
     <string name="erroe_last_name">Please enter your last name without any spaces and special characters.</string>
     <string name="error_valid_email">Please enter your valid Email.</string>
     <string name="error_valid_mobile">Please enter your valid Mobile Number.</string>
+    <string name="error_valid_aadhaar">Please enter your valid Aadhaar Number.</string>
+    <string name="cash_withdrawal">Cash Withdrawal</string>
+    <string name="balance_enquire">Balance Enquire</string>
+    <string name="aes_select_bank">Please select the bank</string>
+    <string name="erroe_capture_thumb">Please capture the thumb data.</string>
     <!--    Mantra Strings End-->
 </resources>

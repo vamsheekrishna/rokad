@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.rokad.AEPS.CashWithdrawalFragment">
+    
+   <ScrollView
+       android:layout_alignParentTop="true"
+       android:layout_above="@+id/submit"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/cust_fst_name"
+         app:title="@string/first_name"
+         app:image="@drawable/user_new"/>
+
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/cust_lst_name"
+         app:title="@string/last_name"
+         app:image="@drawable/user_new"/>
+
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/cust_mobile_num"
+         app:title="@string/mobile_number"
+         app:image="@drawable/mobile"/>
+
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:visibility="gone"
+         android:id="@+id/cust_email"
+         app:title="@string/enter_email_address"
+         app:image="@drawable/ic_email_black_24dp"/>
+
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/cust_amt"
+         app:title="Withdrawal Amount"
+         app:image="@drawable/amount"/>
+     <androidx.appcompat.widget.LinearLayoutCompat
+         android:id="@+id/bank_place_holder"
+         android:layout_marginTop="@dimen/row_element_top_padding"
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+      <androidx.appcompat.widget.AppCompatTextView
+          android:layout_width="wrap_content"
+          android:fontFamily="@font/roboto_regular"
+          android:text="@string/bank_name"
+          android:paddingBottom="@dimen/field_header_bottom_padding"
+          android:textSize="@dimen/edit_text_sub_header"
+          android:layout_height="wrap_content"/>
+
+      <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_gravity="start|center"
+          android:gravity="start|center"
+          android:paddingStart="4dp"
+          android:background="@drawable/custom_edit_text_bg">
+
+       <androidx.appcompat.widget.AppCompatImageView
+           android:padding="4dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/bank"/>
+
+       <androidx.appcompat.widget.AppCompatSpinner
+           android:id="@+id/bank_list_spinner"
+           android:layout_width="match_parent"
+           android:textColorHighlight="#2644DC"
+           android:layout_height="wrap_content"
+           android:minHeight="@dimen/field_height"/>
+      </androidx.appcompat.widget.LinearLayoutCompat>
+
+     </androidx.appcompat.widget.LinearLayoutCompat>
+     <com.rokad.utilities.views.EditTextWithTitleAndThumbIcon
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/aadhaar_number"
+         app:maxLength="12"
+         app:title="Aadhaar Number"
+         app:image="@drawable/user_new"/>
+     <LinearLayout
+         android:gravity="center"
+         android:layout_marginTop="16dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+      <Button
+          android:id="@+id/capture_button"
+          android:text="Capture Thumb"
+          android:src="@drawable/capture_image"
+          style="@style/button_gray"
+          android:layout_margin="0dp"
+          android:layout_marginEnd="30dp"/>
+      <ImageView
+          android:visibility="gone"
+          android:background="@drawable/capture_image"
+          android:id="@+id/capture_image"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_marginLeft="30dp"/>
+     </LinearLayout>
+    </LinearLayout>
+   </ScrollView>
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/button_color"
+        android:text="@string/proceed"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/submit"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
