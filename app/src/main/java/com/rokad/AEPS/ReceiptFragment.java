@@ -1,5 +1,6 @@
 package com.rokad.AEPS;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.os.SystemClock;
@@ -8,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rokad.R;
+import com.rokad.dmt.interfaces.OnDMTInteractionListener;
 import com.rokad.utilities.views.BaseFragment;
 
 import java.text.DecimalFormat;
@@ -21,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class ReceiptFragment extends BaseFragment {
+public class ReceiptFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -32,6 +35,7 @@ public class ReceiptFragment extends BaseFragment {
     private RecyclerView splitupView;
     private AppCompatTextView dateText;
     private AppCompatTextView amtInWords;
+    private OnAEPSInteractionListener mListener;
 
     public ReceiptFragment() {
         // Required empty public constructor
@@ -44,6 +48,14 @@ public class ReceiptFragment extends BaseFragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof OnAEPSInteractionListener) {
+            mListener = (OnAEPSInteractionListener)context;
+        }
     }
 
     @Override
@@ -62,6 +74,9 @@ public class ReceiptFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_emo, container, false);
 
 
+        view.findViewById(R.id.home_btn).setOnClickListener(this);
+        view.findViewById(R.id.repeat_payment_btn).setOnClickListener(this);
+
         splitupView = view.findViewById(R.id.split_up_list);
         splitupView.setAdapter(new ReceiptSplitupRecyclerAdapter());
 
@@ -76,6 +91,18 @@ public class ReceiptFragment extends BaseFragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.home_btn:
+                requireActivity().finish();
+                break;
+            case R.id.repeat_payment_btn:
+                mListener.makeAnotherPayment();
+                break;
+        }
     }
 
     public class EnglishNumberToWords {

@@ -1,8 +1,10 @@
 package com.rokad.AEPS;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.rokad.R;
+import com.rokad.dmt.views.DMTActivity;
 import com.rokad.utilities.views.ServicesBaseActivity;
 
 
@@ -41,5 +43,13 @@ public class AEPSActivity extends ServicesBaseActivity  implements OnAEPSInterac
     @Override
     public void goToReceiptFragment() {
         replaceFragment(ReceiptFragment.newInstance("", ""), "ReceiptFragment", true);
+    }
+
+    @Override
+    public void makeAnotherPayment() {
+        Intent intent = new Intent(getApplicationContext(), AEPSActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

@@ -433,8 +433,8 @@
         android:id="@+id/footer"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:layout_margin="16dp"
-        android:layout_marginTop="0dp"
+        android:padding="16dp"
+        android:paddingTop="0dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -460,6 +460,5 @@
             android:textColor="@color/white"
             android:background="@drawable/submit"
             android:text="@string/do_another"/>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

@@ -12,4 +12,6 @@ interface OnAEPSInteractionListener {
     void goToBalanceEnquire();
 
     void goToReceiptFragment();
+
+    void makeAnotherPayment();
 }
